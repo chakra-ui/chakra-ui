@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const fileUploadSlotRecipe = defineSlotRecipe({
-  className: "file-upload",
+  className: "chakra-file-upload",
   slots: [
     "root",
     "dropzone",

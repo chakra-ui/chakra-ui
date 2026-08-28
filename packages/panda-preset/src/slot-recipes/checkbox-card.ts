@@ -10,7 +10,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
     "indicator",
     "content",
   ],
-  className: "checkbox-card",
+  className: "chakra-checkbox-card",
   base: {
     root: {
       display: "flex",

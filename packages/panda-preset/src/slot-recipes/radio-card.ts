@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const radioCardSlotRecipe = defineSlotRecipe({
-  className: "radio-card",
+  className: "chakra-radio-card",
   slots: [
     "root",
     "label",

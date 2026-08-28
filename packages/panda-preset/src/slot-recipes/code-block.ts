@@ -17,7 +17,7 @@ export const codeBlockSlotRecipe = defineSlotRecipe({
     "collapseIndicator",
     "collapseText",
   ],
-  className: "code-block",
+  className: "chakra-code-block",
   base: {
     root: {
       colorPalette: "gray",

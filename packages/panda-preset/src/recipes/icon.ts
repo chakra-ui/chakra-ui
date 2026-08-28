@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const iconRecipe = defineRecipe({
-  className: "icon",
+  className: "chakra-icon",
   base: {
     display: "inline-block",
     lineHeight: "1em",

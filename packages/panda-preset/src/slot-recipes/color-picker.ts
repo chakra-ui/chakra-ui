@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const colorPickerSlotRecipe = defineSlotRecipe({
-  className: "colorPicker",
+  className: "chakra-colorPicker",
   slots: [
     "root",
     "label",

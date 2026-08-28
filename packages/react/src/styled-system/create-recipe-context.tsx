@@ -35,16 +35,25 @@ export function createRecipeContext<K extends RecipeKey>(
       recipe: restProps.recipe || recipeConfig,
     }) as SystemRecipeFn<{}, {}>
 
-    // @ts-ignore
     const [variantProps, otherProps] = useMemo(
       () => recipe.splitVariantProps(restProps),
       [recipe, restProps],
     )
-    const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
+    const className = useMemo(() => {
+      const base = recipe.className ?? (recipe as any).config?.className
+      if (unstyled) return base
+      const variantMap = (recipe as any).variantMap ?? {}
+      const defaults = (recipe as any).config?.defaultVariants ?? {}
+      const resolved = { ...defaults, ...variantProps }
+      const variantClasses = Object.entries(resolved)
+        .filter(([k, v]) => v != null && variantMap[k]?.includes(String(v)))
+        .map(([k, v]) => `${base}--${k}_${v}`)
+      return cx(base, ...variantClasses)
+    }, [recipe, variantProps, unstyled])
 
     return {
-      styles,
-      className: recipe.className,
+      styles: EMPTY_STYLES,
+      className,
       props: otherProps,
     }
   }
@@ -74,8 +83,8 @@ export function createRecipeContext<K extends RecipeKey>(
       )
     })
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      (Component as any).displayName || (Component as any).name
     return StyledComponent as any
   }
 

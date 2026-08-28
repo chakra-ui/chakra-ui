@@ -1,39 +1,24 @@
 "use client"
 
 import { forwardRef, useMemo } from "react"
+import { createRecipeContext } from "../../../styled-system-panda/jsx"
+import { button } from "../../../styled-system-panda/recipes/button"
 import { mergeProps } from "../../merge-props"
 import {
   type HTMLChakraProps,
   type RecipeProps,
   type UnstyledProp,
   chakra,
-  createRecipeContext,
 } from "../../styled-system"
 import { cx, dataAttr } from "../../utils"
 import { Loader } from "../loader"
 
-const { useRecipeResult, PropsProvider, usePropsContext } = createRecipeContext(
-  { key: "button" },
-)
+const { PropsProvider, usePropsContext } = createRecipeContext(button)
 
 export interface ButtonLoadingProps {
-  /**
-   * If `true`, the button will show a loading spinner.
-   * @default false
-   */
   loading?: boolean | undefined
-  /**
-   * The text to show while loading.
-   */
   loadingText?: React.ReactNode | undefined
-  /**
-   * The spinner to show while loading.
-   */
   spinner?: React.ReactNode | undefined
-  /**
-   * The placement of the spinner
-   * @default "start"
-   */
   spinnerPlacement?: "start" | "end" | undefined
 }
 
@@ -49,29 +34,33 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(inProps, ref) {
     const propsContext = usePropsContext()
     const props = useMemo(
-      () => mergeProps(propsContext, inProps),
+      () => mergeProps(propsContext ?? {}, inProps),
       [propsContext, inProps],
     )
-    const result = useRecipeResult(props)
+
+    const [variantProps, ownProps] = button.splitVariantProps(props as any)
     const {
       loading,
       loadingText,
       children,
       spinner,
       spinnerPlacement,
-      ...rest
-    } = result.props
+      css: cssProp,
+      className,
+      ...elementProps
+    } = ownProps as Record<string, any>
+
     return (
       <chakra.button
         type="button"
         ref={ref}
-        {...rest}
+        {...elementProps}
         data-loading={dataAttr(loading)}
-        disabled={loading || rest.disabled}
-        className={cx(result.className, props.className)}
-        css={[result.styles, props.css]}
+        disabled={loading || elementProps.disabled}
+        className={cx(button(variantProps), className)}
+        css={cssProp}
       >
-        {!props.asChild && loading ? (
+        {!(props as any).asChild && loading ? (
           <Loader
             spinner={spinner}
             text={loadingText}

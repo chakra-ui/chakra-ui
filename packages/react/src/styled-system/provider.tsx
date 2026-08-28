@@ -1,6 +1,5 @@
 "use client"
 
-import { Global } from "@emotion/react"
 import { createContext } from "../create-context"
 import type { SystemContext } from "./types"
 
@@ -12,15 +11,18 @@ const [ChakraContextProvider, useChakraContext] = createContext<SystemContext>({
 
 export interface ChakraProviderProps {
   value: SystemContext
+
+  cssFn?: (...args: any[]) => string
   children: React.ReactNode
 }
 
 function ChakraProvider(props: ChakraProviderProps) {
-  const { value: sys, children } = props
+  const { value: sys, cssFn, children } = props
+
+  const contextValue = cssFn ? { ...sys, css: cssFn as any } : sys
+
   return (
-    <ChakraContextProvider value={sys}>
-      {!sys._config.disableLayers && <Global styles={sys.layers.atRule} />}
-      <Global styles={sys._global} />
+    <ChakraContextProvider value={contextValue}>
       {children}
     </ChakraContextProvider>
   )

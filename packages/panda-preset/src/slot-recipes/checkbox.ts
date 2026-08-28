@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const checkboxSlotRecipe = defineSlotRecipe({
   slots: ["root", "label", "control", "indicator", "group"],
-  className: "checkbox",
+  className: "chakra-checkbox",
   base: {
     root: {
       display: "inline-flex",

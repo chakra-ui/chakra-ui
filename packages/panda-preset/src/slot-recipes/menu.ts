@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const menuSlotRecipe = defineSlotRecipe({
-  className: "menu",
+  className: "chakra-menu",
   slots: [
     "arrow",
     "arrowTip",

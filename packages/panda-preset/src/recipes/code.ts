@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const codeRecipe = defineRecipe({
-  className: "code",
+  className: "chakra-code",
   base: {
     fontFamily: "mono",
     alignItems: "center",

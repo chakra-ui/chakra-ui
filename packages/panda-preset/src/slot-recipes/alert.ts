@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const alertSlotRecipe = defineSlotRecipe({
   slots: ["title", "description", "root", "indicator", "content"],
-  className: "alert",
+  className: "chakra-alert",
   base: {
     root: {
       width: "full",

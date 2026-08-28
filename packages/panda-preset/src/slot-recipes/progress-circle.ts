@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const progressCircleSlotRecipe = defineSlotRecipe({
-  className: "progress-circle",
+  className: "chakra-progress-circle",
   slots: [
     "root",
     "label",

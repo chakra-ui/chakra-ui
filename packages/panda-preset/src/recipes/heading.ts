@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const headingRecipe = defineRecipe({
-  className: "heading",
+  className: "chakra-heading",
   base: {
     fontFamily: "heading",
     fontWeight: "semibold",

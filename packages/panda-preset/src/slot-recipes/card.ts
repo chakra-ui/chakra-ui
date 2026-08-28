@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const cardSlotRecipe = defineSlotRecipe({
-  className: "card",
+  className: "chakra-card",
   slots: ["root", "header", "body", "footer", "title", "description"],
   base: {
     root: {

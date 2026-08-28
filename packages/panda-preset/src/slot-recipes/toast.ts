@@ -9,7 +9,7 @@ export const toastSlotRecipe = defineSlotRecipe({
     "closeTrigger",
     "actionTrigger",
   ],
-  className: "toast",
+  className: "chakra-toast",
   base: {
     root: {
       width: "full",

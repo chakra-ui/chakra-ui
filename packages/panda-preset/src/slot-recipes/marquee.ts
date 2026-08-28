@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const marqueeSlotRecipe = defineSlotRecipe({
-  className: "marquee",
+  className: "chakra-marquee",
   slots: ["root", "viewport", "content", "edge", "item"],
   base: {
     root: {

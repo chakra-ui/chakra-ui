@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const switchSlotRecipe = defineSlotRecipe({
   slots: ["root", "label", "control", "thumb", "indicator"],
-  className: "switch",
+  className: "chakra-switch",
   base: {
     root: {
       display: "inline-flex",

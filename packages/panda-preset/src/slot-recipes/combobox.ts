@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const comboboxSlotRecipe = defineSlotRecipe({
-  className: "combobox",
+  className: "chakra-combobox",
   slots: [
     "root",
     "clearTrigger",

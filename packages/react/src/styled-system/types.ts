@@ -26,10 +26,6 @@ interface Recursive<T> {
   [key: string]: T | Recursive<T>
 }
 
-/* -----------------------------------------------------------------------------
- * Token Dictionary
- * -----------------------------------------------------------------------------*/
-
 export type TokenCategory =
   | "zIndex"
   | "opacity"
@@ -143,10 +139,6 @@ export interface Token<T = any> {
   extensions: TokenExtensions
 }
 
-/* -----------------------------------------------------------------------------
- * Utility
- * -----------------------------------------------------------------------------*/
-
 type ThemeFn = (token: (path: string) => any) => Record<string, string>
 
 interface UtilityTokenFn {
@@ -183,21 +175,12 @@ export type PropertyValues =
   | ThemeFn
 
 export interface UtilityPropertyConfig {
-  /**
-   * The css style object this property will generate.
-   */
   transform?: PropertyTransform | undefined
-  /**
-   * The possible values this property can have.
-   */
+
   values?: PropertyValues | undefined
-  /**
-   * The css property this utility maps to.
-   */
+
   property?: CssProperty | undefined
-  /**
-   * The shorthand of the property.
-   */
+
   shorthand?: string | string[] | undefined
 }
 
@@ -218,10 +201,6 @@ export interface Utility {
   addPropertyType(property: string, type: string[]): void
 }
 
-/* -----------------------------------------------------------------------------
- * Breakpoints
- * -----------------------------------------------------------------------------*/
-
 export interface BreakpointEntry {
   name: string
   min?: string | null | undefined
@@ -237,10 +216,6 @@ export interface Breakpoint {
   conditions: Dict
   getCondition(key: string): string
 }
-
-/* -----------------------------------------------------------------------------
- * Condition
- * -----------------------------------------------------------------------------*/
 
 export interface Condition {
   keys(): string[]
@@ -260,10 +235,6 @@ export interface ConditionConfig {
   conditions: ConditionRecord
 }
 
-/* -----------------------------------------------------------------------------
- * System Context
- * -----------------------------------------------------------------------------*/
-
 export interface TokenFn {
   (path: string, fallback?: any): any
   var(path: string, fallback?: any): any
@@ -280,7 +251,6 @@ export interface Layers {
 export interface SystemContext {
   $$chakra: true
   _config: SystemConfig
-  _global: Dict[]
   utility: Utility
   conditions: Condition
   tokens: TokenDictionary
@@ -291,9 +261,6 @@ export interface SystemContext {
   splitCssProps<T extends SystemStyleObject>(
     props: T,
   ): [SystemStyleObject, DistributiveOmit<T, keyof SystemStyleObject>]
-  getTokenCss(): Dict
-  getGlobalCss(): Dict
-  getPreflightCss(): Dict
   css: CssFn
   cva: RecipeCreatorFn
   sva: SlotRecipeCreatorFn

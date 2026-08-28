@@ -21,7 +21,6 @@ export const addNegativeTokens: TokenMiddleware = {
         return
       }
 
-      // Efficient shallow clone - only copy what we need to modify
       const newPath = [...token.path]
       const lastPath = newPath[newPath.length - 1]
 

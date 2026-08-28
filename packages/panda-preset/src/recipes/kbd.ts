@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const kbdRecipe = defineRecipe({
-  className: "kbd",
+  className: "chakra-kbd",
   base: {
     display: "inline-flex",
     alignItems: "center",

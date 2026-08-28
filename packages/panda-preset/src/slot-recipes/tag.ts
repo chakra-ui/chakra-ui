@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const tagSlotRecipe = defineSlotRecipe({
   slots: ["root", "label", "closeTrigger", "startElement", "endElement"],
-  className: "tag",
+  className: "chakra-tag",
   base: {
     root: {
       display: "inline-flex",

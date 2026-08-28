@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const collapsibleSlotRecipe = defineSlotRecipe({
   slots: ["root", "trigger", "content", "indicator"],
-  className: "collapsible",
+  className: "chakra-collapsible",
   base: {
     content: {
       overflow: "hidden",

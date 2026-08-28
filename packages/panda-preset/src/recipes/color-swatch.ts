@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const colorSwatchRecipe = defineRecipe({
-  className: "color-swatch",
+  className: "chakra-color-swatch",
   base: {
     boxSize: "var(--swatch-size)",
     shadow: "inset 0 0 0 1px rgba(0, 0, 0, 0.1)",

@@ -52,7 +52,10 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
+    "@chakra-ui/panda-preset": "workspace:*",
     "@emotion/react": "11.14.0",
+    "@pandacss/dev": "2.0.0-beta.15",
+    "@pandacss/preset-base": "2.0.0-beta.15",
     "fast-safe-stringify": "^2.1.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",

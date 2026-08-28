@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const hoverCardSlotRecipe = defineSlotRecipe({
-  className: "hover-card",
+  className: "chakra-hover-card",
   slots: ["arrow", "arrowTip", "trigger", "positioner", "content"],
   base: {
     content: {

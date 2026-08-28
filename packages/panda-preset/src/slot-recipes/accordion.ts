@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const accordionSlotRecipe = defineSlotRecipe({
-  className: "accordion",
+  className: "chakra-accordion",
   slots: [
     "root",
     "item",

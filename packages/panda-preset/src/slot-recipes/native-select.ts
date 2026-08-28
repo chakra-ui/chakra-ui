@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const nativeSelectSlotRecipe = defineSlotRecipe({
-  className: "native-select",
+  className: "chakra-native-select",
   slots: ["root", "field", "indicator"],
   base: {
     root: {

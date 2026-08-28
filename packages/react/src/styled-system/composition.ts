@@ -9,10 +9,6 @@ interface Recursive<T> {
   [key: string]: Recursive<T> | T
 }
 
-/* -----------------------------------------------------------------------------
- * Text styles
- * -----------------------------------------------------------------------------*/
-
 type TextStyleProperty =
   | "color"
   | "direction"
@@ -87,10 +83,6 @@ type TextStyleProperty =
 export type TextStyle = CompositionStyleObject<TextStyleProperty>
 
 export type TextStyles = Recursive<Token<TextStyle>>
-
-/* -----------------------------------------------------------------------------
- * Layer styles
- * -----------------------------------------------------------------------------*/
 
 type LogicalPlacement =
   | "Inline"
@@ -198,10 +190,6 @@ type LayerStyleProperty =
 export type LayerStyle = CompositionStyleObject<LayerStyleProperty>
 
 export type LayerStyles = Recursive<Token<LayerStyle>>
-
-/* -----------------------------------------------------------------------------
- * Motion styles
- * -----------------------------------------------------------------------------*/
 
 type AnimationStyleProperty =
   | "animation"

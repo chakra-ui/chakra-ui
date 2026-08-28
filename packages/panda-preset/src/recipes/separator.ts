@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const separatorRecipe = defineRecipe({
-  className: "separator",
+  className: "chakra-separator",
   base: {
     display: "block",
     borderColor: "border",

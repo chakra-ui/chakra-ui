@@ -13,7 +13,7 @@ export const editableSlotRecipe = defineSlotRecipe({
     "control",
     "textarea",
   ],
-  className: "editable",
+  className: "chakra-editable",
   base: {
     root: {
       display: "inline-flex",

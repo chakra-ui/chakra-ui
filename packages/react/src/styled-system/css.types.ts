@@ -6,10 +6,6 @@ import type { AnySelector, Selectors } from "./selectors"
 type String = string & {}
 type Number = number & {}
 
-/* -----------------------------------------------------------------------------
- * Native css properties
- * -----------------------------------------------------------------------------*/
-
 export type CssProperty = keyof PropertiesFallback
 
 export interface CssProperties
@@ -22,10 +18,6 @@ export interface CssKeyframes {
 }
 
 export type KeyframeIdentityFn = (keyframes: CssKeyframes) => CssKeyframes
-
-/* -----------------------------------------------------------------------------
- * Conditional css properties
- * -----------------------------------------------------------------------------*/
 
 export type Condition = keyof Conditions
 
@@ -47,10 +39,6 @@ export type Nested<P> = P & {
 export type MinimalNested<P> = {
   [K in keyof Conditions]?: Nested<P>
 }
-
-/* -----------------------------------------------------------------------------
- * Native css props
- * -----------------------------------------------------------------------------*/
 
 export type NestedCssProperties = Nested<CssProperties>
 
@@ -75,10 +63,6 @@ type FilterStyleObject<P extends string> = {
 export type CompositionStyleObject<Property extends string> = Nested<
   FilterStyleObject<Property> & CssVarProperties
 >
-
-/* -----------------------------------------------------------------------------
- * Jsx style props
- * -----------------------------------------------------------------------------*/
 
 interface WithCss {
   css?: SystemStyleObject | undefined

@@ -13,7 +13,7 @@ export const tagsInputSlotRecipe = defineSlotRecipe({
     "itemText",
     "itemDeleteTrigger",
   ],
-  className: "tags-input",
+  className: "chakra-tags-input",
   base: {
     root: {
       display: "flex",

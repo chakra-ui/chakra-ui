@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const tooltipSlotRecipe = defineSlotRecipe({
   slots: ["trigger", "arrow", "arrowTip", "positioner", "content"],
-  className: "tooltip",
+  className: "chakra-tooltip",
   base: {
     content: {
       "--tooltip-bg": "colors.bg.inverted",

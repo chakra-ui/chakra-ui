@@ -12,10 +12,6 @@ import type {
   TokenDefinition,
 } from "./types"
 
-/* -----------------------------------------------------------------------------
- * Core creators
- * -----------------------------------------------------------------------------*/
-
 export const defineConditions = <T extends ConditionRecord>(v: T): T => v
 
 export const defineRecipe: RecipeIdentityFn = (v) => v
@@ -36,10 +32,6 @@ export const defineAnimationStyles = (
 
 export const defineLayerStyles = (v: CompositionStyles["layerStyles"]) => v
 
-/* -----------------------------------------------------------------------------
- * Token creators
- * -----------------------------------------------------------------------------*/
-
 type ProxyValue<T> = {
   <Value>(definition: Value extends T ? Value : T): Value
 } & {
@@ -57,13 +49,8 @@ function createProxy<T>(): ProxyValue<T> {
   })
 }
 
-export const defineTokens = /* @__PURE__ */ createProxy<TokenDefinition>()
-export const defineSemanticTokens =
-  /* @__PURE__ */ createProxy<SemanticTokenDefinition>()
-
-/* -----------------------------------------------------------------------------
- * System creators
- * -----------------------------------------------------------------------------*/
+export const defineTokens = createProxy<TokenDefinition>()
+export const defineSemanticTokens = createProxy<SemanticTokenDefinition>()
 
 export const defineConfig = (v: SystemConfig) => v
 

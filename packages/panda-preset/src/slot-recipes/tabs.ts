@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const tabsSlotRecipe = defineSlotRecipe({
   slots: ["root", "trigger", "list", "content", "contentGroup", "indicator"],
-  className: "tabs",
+  className: "chakra-tabs",
   base: {
     root: {
       "--tabs-trigger-radius": "radii.l2",

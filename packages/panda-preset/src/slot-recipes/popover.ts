@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const popoverSlotRecipe = defineSlotRecipe({
-  className: "popover",
+  className: "chakra-popover",
   slots: [
     "arrow",
     "arrowTip",

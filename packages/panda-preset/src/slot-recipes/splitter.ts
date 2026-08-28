@@ -9,7 +9,7 @@ export const splitterSlotRecipe = defineSlotRecipe({
     "resizeTriggerSeparator",
     "resizeTriggerIndicator",
   ],
-  className: "splitter",
+  className: "chakra-splitter",
   base: {
     resizeTrigger: {
       "--splitter-border-color": "colors.border",

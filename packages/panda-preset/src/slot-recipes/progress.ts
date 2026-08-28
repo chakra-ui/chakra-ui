@@ -12,7 +12,7 @@ export const progressSlotRecipe = defineSlotRecipe({
     "circleTrack",
     "circleRange",
   ],
-  className: "progress",
+  className: "chakra-progress",
   base: {
     root: {
       textStyle: "sm",

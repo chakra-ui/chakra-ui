@@ -18,7 +18,7 @@ export const treeViewSlotRecipe = defineSlotRecipe({
     "root",
     "tree",
   ],
-  className: "tree-view",
+  className: "chakra-tree-view",
   base: {
     root: {
       width: "full",

@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const qrCodeSlotRecipe = defineSlotRecipe({
   slots: ["root", "frame", "pattern", "overlay", "downloadTrigger"],
-  className: "qr-code",
+  className: "chakra-qr-code",
   base: {
     root: {
       position: "relative",

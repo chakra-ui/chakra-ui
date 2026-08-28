@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const radiomarkRecipe = defineRecipe({
-  className: "radiomark",
+  className: "chakra-radiomark",
   base: {
     display: "inline-flex",
     alignItems: "center",

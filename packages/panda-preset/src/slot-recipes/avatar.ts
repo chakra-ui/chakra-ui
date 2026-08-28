@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const avatarSlotRecipe = defineSlotRecipe({
   slots: ["root", "image", "fallback"],
-  className: "avatar",
+  className: "chakra-avatar",
   base: {
     root: {
       display: "inline-flex",

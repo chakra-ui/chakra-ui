@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const emptyStateSlotRecipe = defineSlotRecipe({
   slots: ["root", "content", "indicator", "title", "description"],
-  className: "empty-state",
+  className: "chakra-empty-state",
   base: {
     root: {
       width: "full",

@@ -13,7 +13,6 @@ export function sortAtRules(obj: Dict): Dict {
   const containerQueries: [Query, QueryValue][] = []
   const rest: Dict = {}
 
-  // Separate media queries, container queries, and other properties
   for (const [key, value] of Object.entries(obj)) {
     if (key.startsWith("@media")) {
       mediaQueries.push([key, value])
@@ -26,11 +25,9 @@ export function sortAtRules(obj: Dict): Dict {
     }
   }
 
-  // Sort queries
   const sortedMediaQueries = sortQueries(mediaQueries)
   const sortedContainerQueries = sortQueries(containerQueries)
 
-  // Combine sorted queries with the rest of the properties
   return {
     ...rest,
     ...Object.fromEntries(sortedMediaQueries),

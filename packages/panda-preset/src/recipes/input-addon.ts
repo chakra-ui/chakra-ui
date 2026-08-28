@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const inputAddonRecipe = defineRecipe({
-  className: "input-addon",
+  className: "chakra-input-addon",
   base: {
     flex: "0 0 auto",
     width: "auto",

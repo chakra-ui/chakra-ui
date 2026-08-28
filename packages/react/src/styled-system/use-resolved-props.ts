@@ -1,6 +1,7 @@
 import { useMemo } from "react"
-import { splitProps } from "../utils"
-import { useChakraContext } from "./provider"
+import { css as pandaCss } from "../../styled-system-panda/css"
+import { isCssProperty } from "../../styled-system-panda/jsx/is-valid-prop"
+import { cx, splitProps } from "../utils"
 
 const htmlProps = new Set([
   "htmlWidth",
@@ -23,8 +24,6 @@ export function useResolvedProps(
   cvaRecipe: any,
   shouldForwardProps: any,
 ): ResolvedPropsResult {
-  const { css, isValidProperty } = useChakraContext()
-
   const { children, ...props } = inProps
 
   const result = useMemo(() => {
@@ -37,7 +36,7 @@ export function useResolvedProps(
       cvaRecipe.variantKeys,
     )
 
-    const [styleProps, elementProps] = splitProps(restProps_C, isValidProperty)
+    const [styleProps, elementProps] = splitProps(restProps_C, isCssProperty)
 
     return {
       forwardedProps,
@@ -45,7 +44,7 @@ export function useResolvedProps(
       styleProps,
       elementProps,
     }
-  }, [cvaRecipe.variantKeys, shouldForwardProps, props, isValidProperty])
+  }, [cvaRecipe.variantKeys, shouldForwardProps, props])
 
   const { css: cssStyles, ...propStyles } = result.styleProps
 
@@ -64,8 +63,9 @@ export function useResolvedProps(
   }, [cvaRecipe, result.variantProps, props.colorPalette, props.orientation])
 
   const styles = useMemo((): any => {
-    return css(cvaStyles, ...toArray(cssStyles), propStyles)
-  }, [css, cvaStyles, cssStyles, propStyles])
+    const cvaClass = typeof cvaStyles === "string" ? cvaStyles : ""
+    return cx(cvaClass, pandaCss(...toArray(cssStyles), propStyles))
+  }, [cvaStyles, cssStyles, propStyles])
 
   return {
     styles,

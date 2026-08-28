@@ -9,12 +9,16 @@
   },
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
-    "react-icons": "5.5.0",
-    "react": "^19.2.1",
     "next-themes": "^0.4.6",
-    "react-dom": "^19.2.1"
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-icons": "5.5.0"
   },
   "devDependencies": {
+    "@chakra-ui/panda-preset": "workspace:*",
+    "@pandacss/dev": "2.0.0-beta.15",
+    "@pandacss/preset-base": "2.0.0-beta.15",
+    "@pandacss/vite": "2.0.0-beta.15",
     "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^5.1.1",

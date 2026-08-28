@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const scrollAreaSlotRecipe = defineSlotRecipe({
-  className: "scroll-area",
+  className: "chakra-scroll-area",
   slots: ["root", "viewport", "content", "scrollbar", "thumb", "corner"],
   base: {
     root: {

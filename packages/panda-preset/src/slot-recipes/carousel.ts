@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const carouselSlotRecipe = defineSlotRecipe({
-  className: "carousel",
+  className: "chakra-carousel",
   slots: [
     "root",
     "itemGroup",

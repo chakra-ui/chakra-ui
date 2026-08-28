@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const inputRecipe = defineRecipe({
-  className: "input",
+  className: "chakra-input",
   base: {
     width: "100%",
     minWidth: "0",

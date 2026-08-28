@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const buttonRecipe = defineRecipe({
-  className: "button",
+  className: "chakra-button",
   base: {
     display: "inline-flex",
     appearance: "none",

@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const ratingGroupSlotRecipe = defineSlotRecipe({
-  className: "rating-group",
+  className: "chakra-rating-group",
   slots: ["root", "label", "item", "control", "itemIndicator"],
   base: {
     root: {

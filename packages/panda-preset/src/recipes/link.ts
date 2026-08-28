@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const linkRecipe = defineRecipe({
-  className: "link",
+  className: "chakra-link",
   base: {
     display: "inline-flex",
     alignItems: "center",

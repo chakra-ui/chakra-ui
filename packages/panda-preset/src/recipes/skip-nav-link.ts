@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const skipNavLinkRecipe = defineRecipe({
-  className: "skip-nav",
+  className: "chakra-skip-nav",
   base: {
     display: "inline-flex",
     bg: "bg.panel",

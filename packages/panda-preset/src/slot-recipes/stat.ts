@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const statSlotRecipe = defineSlotRecipe({
-  className: "stat",
+  className: "chakra-stat",
   slots: ["root", "label", "helpText", "valueText", "valueUnit", "indicator"],
   base: {
     root: {

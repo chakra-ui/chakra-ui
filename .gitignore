@@ -108,3 +108,6 @@ report.*
 *storybook.log
 
 .vscode/mcp.json
+
+packages/react/styled-system-panda
+sandbox/vite-ts/styled-system

@@ -31,10 +31,6 @@ export type RecipeVariantMap<T extends RecipeVariantRecord> = {
   [K in keyof T]: Array<keyof T[K]>
 }
 
-/* -----------------------------------------------------------------------------
- * Recipe / Standard
- * -----------------------------------------------------------------------------*/
-
 export interface RecipeRuntimeFn<
   T extends RecipeVariantRecord,
 > extends RecipeVariantFn<T> {
@@ -63,27 +59,16 @@ export type RecipeCompoundVariant<T> = T & {
 export interface RecipeDefinition<
   T extends RecipeVariantRecord = RecipeVariantRecord,
 > {
-  /**
-   * The class name of the recipe.
-   */
   className?: string | undefined
-  /**
-   * The base styles of the recipe.
-   */
+
   base?: SystemStyleObject | undefined
-  /**
-   * The multi-variant styles of the recipe.
-   */
+
   variants?: T | undefined
-  /**
-   * The default variants of the recipe.
-   */
+
   defaultVariants?:
     | (RecipeSelection<T> & { colorPalette?: ColorPalette | undefined })
     | undefined
-  /**
-   * The styles to apply when a combination of variants is selected.
-   */
+
   compoundVariants?:
     | Pretty<RecipeCompoundVariant<RecipeCompoundSelection<T>>>[]
     | undefined
@@ -96,10 +81,6 @@ export type RecipeCreatorFn = <T extends RecipeVariantRecord>(
 export type RecipeIdentityFn = <T extends RecipeVariantRecord>(
   config: RecipeDefinition<T>,
 ) => RecipeDefinition<T>
-
-/* -----------------------------------------------------------------------------
- * Recipe / Slot
- * -----------------------------------------------------------------------------*/
 
 type SlotRecord<S extends string, T> = Partial<Record<S, T | undefined>>
 
@@ -133,34 +114,18 @@ export interface SlotRecipeDefinition<
   S extends string = string,
   T extends SlotRecipeVariantRecord<S> = SlotRecipeVariantRecord<S>,
 > {
-  /**
-   * The class name of the recipe. Useful for targeting slots.
-   *
-   * Say the recipe has slots like `root`, `control` and the class name is 'checkbox'
-   * Each slot will have a class name like `checkbox__root`, `checkbox__control`
-   */
   className?: string | undefined
-  /**
-   * The parts/slots of the recipe.
-   */
+
   slots: S[] | Readonly<S[]>
-  /**
-   * The base styles of the recipe.
-   */
+
   base?: SlotRecord<S, SystemStyleObject> | undefined
-  /**
-   * The multi-variant styles of the recipe.
-   */
+
   variants?: T | undefined
-  /**
-   * The default variants of the recipe.
-   */
+
   defaultVariants?:
     | (RecipeSelection<T> & { colorPalette?: ColorPalette | undefined })
     | undefined
-  /**
-   * The styles to apply when a combination of variants is selected.
-   */
+
   compoundVariants?:
     | Pretty<SlotRecipeCompoundVariant<S, RecipeCompoundSelection<T>>>[]
     | undefined
@@ -184,10 +149,6 @@ export type SlotRecipeConfig<
   S extends string = string,
   T extends SlotRecipeVariantRecord<S> = SlotRecipeVariantRecord<S>,
 > = SlotRecipeDefinition<S, T>
-
-/* -----------------------------------------------------------------------------
- * Config / Codegen
- * -----------------------------------------------------------------------------*/
 
 export interface SystemRecipeFn<VP, VM> {
   __type: Partial<VP>;

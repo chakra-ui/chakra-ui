@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const blockquoteSlotRecipe = defineSlotRecipe({
-  className: "blockquote",
+  className: "chakra-blockquote",
   slots: ["root", "icon", "content", "caption"],
   base: {
     root: {

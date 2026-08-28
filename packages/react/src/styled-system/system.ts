@@ -1,25 +1,15 @@
 import { isCssProperty } from "@pandacss/is-valid-prop"
 import {
-  type Dict,
-  compact,
-  flatten,
-  isObject,
-  mapEntries,
-  memo,
-  mergeWith,
-  splitProps,
-} from "../utils"
+  css as pandaCss,
+  cva as pandaCva,
+  sva as pandaSva,
+} from "../../styled-system-panda/css"
+import { compact, flatten, isObject, memo, splitProps } from "../utils"
 import { createBreakpoints } from "./breakpoints"
 import { createConditions } from "./conditions"
 import { mergeConfigs } from "./config"
-import { createCssFn } from "./css"
-import { createRecipeFn } from "./cva"
 import { createLayers } from "./layers"
-import { createNormalizeFn } from "./normalize"
-import { createPreflight } from "./preflight"
-import { createSerializeFn } from "./serialize"
 import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
-import { createSlotRecipeFn } from "./sva"
 import { createTokenDictionary } from "./token-dictionary"
 import type {
   SystemConfig,
@@ -34,14 +24,11 @@ import { createUtility } from "./utility"
 
 export function createSystem(...configs: SystemConfig[]): SystemContext {
   const config = mergeConfigs(...configs)
-  const {
-    theme = {},
-    utilities = {},
-    globalCss = {},
-    cssVarsRoot = ":where(:root, :host)",
-    cssVarsPrefix = "chakra",
-    preflight,
-  } = config
+  const { theme = {}, utilities = {}, cssVarsPrefix = "chakra" } = config
+
+  const css: any = pandaCss
+  const cva: any = pandaCva
+  const sva: any = pandaSva
 
   const layers = createLayers(config)
 
@@ -79,7 +66,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
       utility.register(key, {
         values: Object.keys(flatValues),
         transform(value) {
-          return css(flatValues[value])
+          return flatValues[value]
         },
       })
     }
@@ -112,66 +99,8 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     return value
   }
 
-  const normalizeFn = createNormalizeFn({
-    utility,
-    normalize: normalizeValue,
-  })
-
-  const serialize = createSerializeFn({
-    conditions,
-    isValidProperty,
-  })
-
-  const css = createCssFn({
-    transform: utility.transform,
-    conditions,
-    normalize: normalizeFn,
-  })
-
-  const cva = createRecipeFn({
-    css: css as any,
-    conditions,
-    normalize: normalizeFn,
-    layers,
-  })
-
-  const sva = createSlotRecipeFn({ cva })
-
-  function getTokenCss() {
-    const result: Dict = {}
-
-    for (const [key, values] of tokens.cssVarMap.entries()) {
-      const varsObj = Object.fromEntries(values) as any
-      if (Object.keys(varsObj).length === 0) continue
-      const selector = key === "base" ? cssVarsRoot : conditions.resolve(key)
-      const isAtRule = selector.startsWith("@")
-      const cssObject = css(
-        serialize({
-          [selector]: isAtRule ? { [cssVarsRoot]: varsObj } : varsObj,
-        }),
-      )
-      mergeWith(result, cssObject)
-    }
-
-    return layers.wrap("tokens", result)
-  }
-
-  function getGlobalCss() {
-    const keyframes = mapEntries(
-      theme.keyframes ?? EMPTY_OBJECT,
-      (key, value) => [`@keyframes ${key}`, value],
-    )
-    const result = Object.assign({}, keyframes, css(serialize(globalCss)))
-    return layers.wrap("base", result)
-  }
-
   function splitCssProps(props: any) {
     return splitProps(props, isValidProperty as any)
-  }
-
-  function getPreflightCss() {
-    const result = createPreflight({ preflight })
-    return layers.wrap("reset", result)
   }
 
   const tokenMap = getTokenMap(tokens)
@@ -204,8 +133,6 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     return isRecipe(key) || isSlotRecipe(key)
   }
 
-  const _global = [getPreflightCss(), getGlobalCss(), getTokenCss()]
-
   const query: SystemQuery = {
     layerStyles: compositionQuery(theme.layerStyles ?? EMPTY_OBJECT),
     textStyles: compositionQuery(theme.textStyles ?? EMPTY_OBJECT),
@@ -228,7 +155,6 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
   return {
     $$chakra: true,
     _config: config,
-    _global,
     breakpoints,
     tokens,
     conditions,
@@ -239,9 +165,6 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     isValidProperty,
     splitCssProps: splitCssProps as any,
     normalizeValue,
-    getTokenCss,
-    getGlobalCss,
-    getPreflightCss,
     css: css as any,
     cva,
     sva,

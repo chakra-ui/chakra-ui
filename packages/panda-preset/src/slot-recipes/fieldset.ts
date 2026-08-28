@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const fieldsetSlotRecipe = defineSlotRecipe({
-  className: "fieldset",
+  className: "chakra-fieldset",
   slots: ["root", "errorText", "helperText", "legend", "content"],
   base: {
     root: {

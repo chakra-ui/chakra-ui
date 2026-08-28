@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const listboxSlotRecipe = defineSlotRecipe({
-  className: "listbox",
+  className: "chakra-listbox",
   slots: [
     "label",
     "input",

@@ -21,9 +21,6 @@ import type {
 } from "./recipe.types"
 
 export interface UnstyledProp {
-  /**
-   * If `true`, the element will opt out of the theme styles.
-   */
   unstyled?: boolean | undefined
 }
 

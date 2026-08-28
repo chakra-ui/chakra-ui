@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const markRecipe = defineRecipe({
-  className: "mark",
+  className: "chakra-mark",
   base: {
     bg: "transparent",
     color: "inherit",

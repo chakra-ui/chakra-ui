@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const sliderSlotRecipe = defineSlotRecipe({
-  className: "slider",
+  className: "chakra-slider",
   slots: [
     "root",
     "label",

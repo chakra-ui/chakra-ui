@@ -70,19 +70,36 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       recipe: restProps.recipe || recipeConfig,
     }) as SystemSlotRecipeFn<string, {}, {}>
 
-    // @ts-ignore
     const [variantProps, otherProps] = useMemo(
       () => slotRecipe.splitVariantProps(restProps),
       [restProps, slotRecipe],
     )
-    const styles = useMemo(
-      () => (unstyled ? EMPTY_SLOT_STYLES : slotRecipe(variantProps)),
-      [unstyled, variantProps, slotRecipe],
-    )
+    const classNames = useMemo(() => {
+      const baseMap = ((slotRecipe as any).classNameMap ?? {}) as Record<
+        string,
+        string
+      >
+      if (unstyled) return baseMap
+      const variantMap = (slotRecipe as any).variantMap ?? {}
+      const defaults =
+        (slotRecipe as any).config?.defaultVariants ??
+        (slotRecipe as any).defaultVariants ??
+        {}
+      const resolved = { ...defaults, ...variantProps }
+      const parts = Object.entries(resolved)
+        .filter(([k, v]) => v != null && variantMap[k]?.includes(String(v)))
+        .map(([k, v]) => `--${k}_${v}`)
+      return Object.fromEntries(
+        Object.entries(baseMap).map(([slot, base]) => [
+          slot,
+          cx(base, ...parts.map((p) => `${base}${p}`)),
+        ]),
+      ) as Record<string, string>
+    }, [slotRecipe, variantProps, unstyled])
 
     return {
-      styles: styles as Record<string, SystemStyleObject>,
-      classNames: slotRecipe.classNameMap as Record<string, string>,
+      styles: EMPTY_SLOT_STYLES as Record<string, SystemStyleObject>,
+      classNames,
       props: otherProps,
     }
   }
@@ -110,8 +127,8 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       )
     }
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      (Component as any).displayName || (Component as any).name
     return StyledComponent as any
   }
 
@@ -150,8 +167,8 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       return options?.wrapElement?.(element, props as P) ?? element
     })
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      (Component as any).displayName || (Component as any).name
 
     return StyledComponent as any
   }
@@ -180,8 +197,8 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
       )
     })
 
-    // @ts-expect-error
-    StyledComponent.displayName = Component.displayName || Component.name
+    StyledComponent.displayName =
+      (Component as any).displayName || (Component as any).name
     return StyledComponent as any
   }
 

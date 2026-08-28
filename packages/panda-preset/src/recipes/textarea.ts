@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const textareaRecipe = defineRecipe({
-  className: "textarea",
+  className: "chakra-textarea",
   base: {
     width: "100%",
     minWidth: "0",

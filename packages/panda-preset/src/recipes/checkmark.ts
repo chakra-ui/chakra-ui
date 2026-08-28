@@ -1,7 +1,7 @@
 import { defineRecipe } from "../def"
 
 export const checkmarkRecipe = defineRecipe({
-  className: "checkmark",
+  className: "chakra-checkmark",
   base: {
     display: "inline-flex",
     alignItems: "center",

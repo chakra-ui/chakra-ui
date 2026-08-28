@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const fieldSlotRecipe = defineSlotRecipe({
-  className: "field",
+  className: "chakra-field",
   slots: [
     "root",
     "errorText",

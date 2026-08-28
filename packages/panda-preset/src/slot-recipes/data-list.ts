@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../def"
 
 export const dataListSlotRecipe = defineSlotRecipe({
   slots: ["root", "item", "itemLabel", "itemValue"],
-  className: "data-list",
+  className: "chakra-data-list",
   base: {
     itemLabel: {
       display: "flex",

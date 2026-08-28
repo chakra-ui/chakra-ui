@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const radioGroupSlotRecipe = defineSlotRecipe({
-  className: "radio-group",
+  className: "chakra-radio-group",
   slots: [
     "root",
     "label",

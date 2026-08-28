@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../def"
 
 export const segmentGroupSlotRecipe = defineSlotRecipe({
-  className: "segment-group",
+  className: "chakra-segment-group",
   slots: ["root", "label", "item", "itemText", "itemControl", "indicator"],
   base: {
     root: {
