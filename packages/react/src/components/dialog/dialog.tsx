@@ -143,6 +143,7 @@ export const DialogActionTrigger = forwardRef<
       ref={ref}
       onClick={(event) => {
         props.onClick?.(event)
+        if (event.defaultPrevented) return
         dialog.setOpen(false)
       }}
     />

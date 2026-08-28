@@ -36,4 +36,24 @@ describe("Dialog", () => {
     await user.click(getByTestId("action-trigger"))
     expect(onClick).toHaveBeenCalledTimes(1)
   })
+
+  it("does not close when the user calls preventDefault", async () => {
+    const onOpenChange = vi.fn()
+    const { getByTestId, user } = render(
+      <Dialog.Root open onOpenChange={onOpenChange}>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.ActionTrigger
+              data-testid="action-trigger"
+              onClick={(event) => event.preventDefault()}
+            >
+              Cancel
+            </Dialog.ActionTrigger>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>,
+    )
+    await user.click(getByTestId("action-trigger"))
+    expect(onOpenChange).not.toHaveBeenCalled()
+  })
 })
