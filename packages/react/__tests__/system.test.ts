@@ -295,9 +295,6 @@ describe("system", () => {
     const heightThenWidth = sys.css({ height: "200px", width: "100px" })
 
     expect(Object.keys(widthThenHeight)).toEqual(["width", "height"])
-    expect(
-      Object.keys(heightThenWidth),
-      "SYSTEM_CSS_MEMO_ORDER_SENTINEL: reversed properties reused the first cached result",
-    ).toEqual(["height", "width"])
+    expect(Object.keys(heightThenWidth)).toEqual(["height", "width"])
   })
 })
