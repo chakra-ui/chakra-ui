@@ -1,4 +1,5 @@
 import type { Assign } from "@ark-ui/react"
+import type { SystemProperties } from "@chakra-ui/styled-system/types"
 import type {
   ComponentProps,
   ComponentPropsWithoutRef,
@@ -6,7 +7,6 @@ import type {
   FunctionComponent,
   JSX,
 } from "react"
-import type { SystemProperties } from "../../styled-system-panda/types"
 import type {
   Dict,
   DistributiveOmit,

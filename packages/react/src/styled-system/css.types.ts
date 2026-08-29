@@ -1,9 +1,9 @@
-import type { PropertiesFallback } from "csstype"
 import type {
   Conditions,
   CssVarProperties,
   SystemProperties,
-} from "../../styled-system-panda/types"
+} from "@chakra-ui/styled-system/types"
+import type { PropertiesFallback } from "csstype"
 import type { AnySelector, Selectors } from "./selectors"
 
 type String = string & {}

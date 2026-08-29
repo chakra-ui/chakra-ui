@@ -1,0 +1,77 @@
+{
+  "name": "@chakra-ui/styled-system",
+  "version": "3.33.0",
+  "description": "Chakra's default generated Panda styled-system (runtime, recipes, patterns, types)",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "css",
+    "jsx",
+    "recipes",
+    "patterns",
+    "tokens",
+    "types",
+    "helpers.js",
+    "helpers.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./css/index.js"
+    },
+    "./css": {
+      "types": "./css/index.d.ts",
+      "default": "./css/index.js"
+    },
+    "./css/*": {
+      "types": "./css/*.d.ts",
+      "default": "./css/*.js"
+    },
+    "./jsx": {
+      "types": "./jsx/index.d.ts",
+      "default": "./jsx/index.js"
+    },
+    "./jsx/*": {
+      "types": "./jsx/*.d.ts",
+      "default": "./jsx/*.js"
+    },
+    "./recipes": {
+      "types": "./recipes/index.d.ts",
+      "default": "./recipes/index.js"
+    },
+    "./recipes/*": {
+      "types": "./recipes/*.d.ts",
+      "default": "./recipes/*.js"
+    },
+    "./patterns": {
+      "types": "./patterns/index.d.ts",
+      "default": "./patterns/index.js"
+    },
+    "./patterns/*": {
+      "types": "./patterns/*.d.ts",
+      "default": "./patterns/*.js"
+    },
+    "./tokens": {
+      "types": "./tokens/index.d.ts",
+      "default": "./tokens/index.js"
+    },
+    "./types": {
+      "types": "./types/index.d.ts"
+    },
+    "./helpers": {
+      "types": "./helpers.d.ts",
+      "default": "./helpers.js"
+    }
+  },
+  "scripts": {
+    "codegen": "panda codegen",
+    "prepare": "panda codegen"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@chakra-ui/panda-preset": "workspace:*",
+    "@pandacss/dev": "2.0.0-beta.15"
+  }
+}

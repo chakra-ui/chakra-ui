@@ -1,8 +1,8 @@
 "use client"
 
+import { createRecipeContext } from "@chakra-ui/styled-system/jsx"
+import { button } from "@chakra-ui/styled-system/recipes/button"
 import { forwardRef, useMemo } from "react"
-import { createRecipeContext } from "../../../styled-system-panda/jsx"
-import { button } from "../../../styled-system-panda/recipes/button"
 import { mergeProps } from "../../merge-props"
 import {
   type HTMLChakraProps,

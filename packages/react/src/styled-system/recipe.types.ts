@@ -1,4 +1,4 @@
-import type { ColorPalette } from "../../styled-system-panda/types"
+import type { ColorPalette } from "@chakra-ui/styled-system/types"
 import type { DistributiveOmit, Pretty } from "../utils"
 import type { ConditionalValue, SystemStyleObject } from "./css.types"
 

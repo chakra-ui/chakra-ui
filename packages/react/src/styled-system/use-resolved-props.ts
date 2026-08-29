@@ -1,6 +1,6 @@
+import { css as pandaCss } from "@chakra-ui/styled-system/css"
+import { isCssProperty } from "@chakra-ui/styled-system/jsx/is-valid-prop"
 import { useMemo } from "react"
-import { css as pandaCss } from "../../styled-system-panda/css"
-import { isCssProperty } from "../../styled-system-panda/jsx/is-valid-prop"
 import { cx, splitProps } from "../utils"
 
 const htmlProps = new Set([

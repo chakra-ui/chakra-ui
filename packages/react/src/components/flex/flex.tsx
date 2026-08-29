@@ -1,7 +1,7 @@
 "use client"
 
+import { flex } from "@chakra-ui/styled-system/patterns"
 import { forwardRef } from "react"
-import { flex } from "../../../styled-system-panda/patterns"
 import {
   type HTMLChakraProps,
   type SystemStyleObject,

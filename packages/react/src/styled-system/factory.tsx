@@ -1,8 +1,8 @@
 "use client"
 
+import { cva as pandaCva } from "@chakra-ui/styled-system/css"
+import { isCssProperty } from "@chakra-ui/styled-system/jsx/is-valid-prop"
 import * as React from "react"
-import { cva as pandaCva } from "../../styled-system-panda/css"
-import { isCssProperty } from "../../styled-system-panda/jsx/is-valid-prop"
 import { mergeProps } from "../merge-props"
 import { mergeRefs } from "../merge-refs"
 import { compact, cx, getElementRef, uniq } from "../utils"

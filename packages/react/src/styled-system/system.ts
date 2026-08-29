@@ -1,9 +1,9 @@
-import { isCssProperty } from "@pandacss/is-valid-prop"
 import {
   css as pandaCss,
   cva as pandaCva,
   sva as pandaSva,
-} from "../../styled-system-panda/css"
+} from "@chakra-ui/styled-system/css"
+import { isCssProperty } from "@pandacss/is-valid-prop"
 import { compact, flatten, isObject, memo, splitProps } from "../utils"
 import { createBreakpoints } from "./breakpoints"
 import { createConditions } from "./conditions"

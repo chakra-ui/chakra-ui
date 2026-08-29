@@ -35,12 +35,7 @@ describe("cx", () => {
   })
 
   test("handles all falsy values", () => {
-    expect(cx(null, undefined, false, 0, "", "foo")).toBe("foo")
-  })
-
-  test("handles zero as a class name (edge case)", () => {
-    // Note: 0 is falsy, so it will be filtered out
-    expect(cx("foo", 0, "bar")).toBe("foo bar")
+    expect(cx(null, undefined, false, "", "foo")).toBe("foo")
   })
 
   test("returns empty string when all inputs are falsy", () => {

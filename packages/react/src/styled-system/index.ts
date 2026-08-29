@@ -51,7 +51,7 @@ export type {
   ColorPalette,
   Token,
   Tokens,
-} from "../../styled-system-panda/types"
+} from "@chakra-ui/styled-system/types"
 export * from "./provider"
 export * from "./recipe-props"
 export type * from "./recipe.types"

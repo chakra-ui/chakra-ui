@@ -109,5 +109,13 @@ report.*
 
 .vscode/mcp.json
 
-packages/react/styled-system-panda
 sandbox/vite-ts/styled-system
+
+packages/styled-system/css
+packages/styled-system/jsx
+packages/styled-system/recipes
+packages/styled-system/patterns
+packages/styled-system/tokens
+packages/styled-system/types
+packages/styled-system/helpers.js
+packages/styled-system/helpers.d.ts
