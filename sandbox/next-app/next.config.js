@@ -4,4 +4,14 @@ module.exports = {
   experimental: {
     externalDir: true,
   },
+  webpack(config) {
+    config.resolve.conditionNames = [
+      "dev",
+      "import",
+      "module",
+      "browser",
+      "default",
+    ]
+    return config
+  },
 }

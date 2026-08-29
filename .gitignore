@@ -119,3 +119,5 @@ packages/styled-system/tokens
 packages/styled-system/types
 packages/styled-system/helpers.js
 packages/styled-system/helpers.d.ts
+
+sandbox/next-app/styled-system

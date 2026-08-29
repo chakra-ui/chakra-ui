@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google"
-import Provider from "./provider"
+import "./panda.css"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,9 +14,7 @@ export default function RootLayout({
   return (
     <html className={inter.className} suppressHydrationWarning>
       <head />
-      <body>
-        <Provider>{children}</Provider>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

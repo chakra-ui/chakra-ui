@@ -278,7 +278,24 @@ And on top of Panda's generic app build responsibilities:
 - `@chakra-ui/emotion` is the opt-in package for users who want runtime Emotion
   styling back (Mantine model). It is additive and never in the default bundle.
 
-## POC Status
+## RSC
+
+Verified in a Next.js app-router Server Component (`sandbox/next-app`):
+`<Box>` + `<Button>` render **statically prerendered, styled, with no client
+provider** — the extracted CSS (`bg_red.500`, `chakra-button--variant_solid`, …)
+is in the build output and the classes are in the server-rendered HTML.
+Build-time extraction runs through Next's PostCSS pipeline
+(`@pandacss/dev/postcss`).
+
+One real constraint surfaced: the **`chakra.*` JSX-factory Proxy cannot be used
+directly in a Server Component**. The factory module is `"use client"`, so in
+RSC it resolves to a client _reference_, and the Proxy's dynamic property access
+(`chakra.div`) returns `undefined` → "Element type is invalid". **Named
+primitives (`Box`, `Flex`, `Stack`, `Button`, …) work fine** — they're concrete
+client components a server tree renders normally. Guidance: in Server Components
+use the named primitives; reserve `chakra.*` for Client Components. (A
+non-Proxy, RSC-safe factory export could lift this, if direct `chakra.*` in RSC
+is wanted.)
 
 Proven in a Vite sandbox (`sandbox/vite-ts`) with **0 `@emotion`/`insertStyles`
 in the built output** and no provider:
