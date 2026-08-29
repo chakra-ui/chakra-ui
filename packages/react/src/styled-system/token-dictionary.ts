@@ -1,3 +1,4 @@
+import { cssVar } from "@chakra-ui/panda-preset"
 import {
   type Dict,
   compact,
@@ -10,7 +11,6 @@ import {
   memo,
   walkObject,
 } from "../utils"
-import { cssVar } from "./css-var"
 import { esc } from "./esc"
 import { expandTokenReferences as _expandReferences } from "./expand-reference"
 import { mapToJson } from "./map-to-json"

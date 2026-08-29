@@ -1,5 +1,5 @@
+import { colorMix } from "@chakra-ui/panda-preset"
 import { type Dict, isFunction, isString, mapEntries, memo } from "../utils"
-import { colorMix } from "./color-mix"
 import { mapToJson } from "./map-to-json"
 import { EMPTY_OBJECT } from "./singleton"
 import type {

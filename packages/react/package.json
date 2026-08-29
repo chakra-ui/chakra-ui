@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@ark-ui/react": "^5.34.0",
+    "@chakra-ui/panda-preset": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@pandacss/is-valid-prop": "^1.4.2",
     "csstype": "^3.2.3"
@@ -48,7 +49,6 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
-    "@chakra-ui/panda-preset": "workspace:*",
     "@emotion/react": "11.14.0",
     "@pandacss/dev": "2.0.0-beta.15",
     "@pandacss/types": "2.0.0-beta.15",
@@ -99,17 +99,6 @@
       "require": {
         "types": "./dist/types/preset.d.ts",
         "default": "./dist/cjs/preset.cjs"
-      }
-    },
-    "./preset-base": {
-      "dev": "./src/preset-base.ts",
-      "import": {
-        "types": "./dist/types/preset-base.d.ts",
-        "default": "./dist/esm/preset-base.js"
-      },
-      "require": {
-        "types": "./dist/types/preset-base.d.ts",
-        "default": "./dist/cjs/preset-base.cjs"
       }
     },
     "./styled-system": {

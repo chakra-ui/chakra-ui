@@ -11,6 +11,8 @@ import type {
 
 export const defineConfig = (config: Config) => config
 
+export const defineConditions = <T>(conditions: T): T => conditions
+
 export const defineRecipe = (recipes: RecipeConfig) => recipes
 
 export const defineSlotRecipe = (slotRecipes: SlotRecipeConfig) => slotRecipes

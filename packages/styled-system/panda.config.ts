@@ -1,5 +1,5 @@
+import { defaultBaseConfig, defaultConditions } from "@chakra-ui/panda-preset"
 import { defineConfig } from "@pandacss/dev"
-import { defaultBaseConfig, defaultConditions } from "../react/src/preset-base"
 
 export default defineConfig({
   presets: ["@chakra-ui/panda-preset"],

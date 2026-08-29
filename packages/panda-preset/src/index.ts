@@ -12,6 +12,10 @@ import { textStyles } from "./text-styles"
 import { tokens } from "./tokens"
 import { utilities } from "./utilities"
 
+export { defaultBaseConfig, defaultConditions } from "./base-config"
+export { createColorMixTransform, colorMix } from "./color-mix"
+export { cssVar } from "./css-var"
+
 export default definePreset({
   name: "@chakra-ui/panda-preset",
   globalCss,
