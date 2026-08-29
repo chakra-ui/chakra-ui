@@ -31,7 +31,7 @@ export const mergeConfigs = (...configs: SystemConfig[]): SystemConfig => {
         return value
       },
       {
-        stop(value) {
+        stop(value: any) {
           return (
             isValidToken(value) &&
             Object.keys(value).some(

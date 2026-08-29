@@ -5,15 +5,18 @@ import { alert } from "@chakra-ui/styled-system/recipes/alert"
 import { type ComponentProps, Fragment, forwardRef } from "react"
 import { createContext } from "../../create-context"
 import {
-  type ConditionalValue,
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
 } from "../../styled-system"
 import { CheckCircleIcon, InfoIcon, WarningIcon } from "../icons"
 
+const { withProvider, withContext } = createSlotRecipeContext(alert)
+
+const AlertRootBase = withProvider("div", "root")
+
 interface StatusProps {
-  status: ConditionalValue<"info" | "warning" | "success" | "error" | "neutral">
+  status: ComponentProps<typeof AlertRootBase>["status"]
 }
 
 export const [AlertStatusProvider, useAlertStatusContext] =
@@ -23,8 +26,6 @@ export const [AlertStatusProvider, useAlertStatusContext] =
     providerName: "<Alert />",
   })
 
-const { withProvider, withContext } = createSlotRecipeContext(alert)
-
 export interface AlertRootBaseProps
   extends SlotRecipeProps<"alert">, UnstyledProp {}
 
@@ -33,15 +34,12 @@ export interface AlertRootProps extends HTMLChakraProps<
   AlertRootBaseProps
 > {}
 
-const AlertRootBase = withProvider("div", "root")
-
 export const AlertRoot = forwardRef<
   HTMLDivElement,
   ComponentProps<typeof AlertRootBase>
 >(function AlertRoot(props, ref) {
-  const status = "status" in props ? props.status : undefined
   return (
-    <AlertStatusProvider value={{ status: status ?? "info" }}>
+    <AlertStatusProvider value={{ status: props.status ?? "info" }}>
       <AlertRootBase ref={ref} {...props} />
     </AlertStatusProvider>
   )

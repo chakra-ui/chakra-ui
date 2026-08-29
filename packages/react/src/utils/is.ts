@@ -1,5 +1,4 @@
-export const isObject = (v: any): v is Record<string, any> =>
-  v != null && typeof v === "object" && !Array.isArray(v)
+export { isObject } from "@chakra-ui/styled-system/helpers"
 
 export const isCssVar = (v: string): boolean => /^var\(--.+\)$/.test(v)
 
