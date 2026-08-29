@@ -3,8 +3,11 @@ import type {
   CssVarProperties,
   SystemProperties,
 } from "@chakra-ui/styled-system/types"
+import type { SystemStyleObject } from "@chakra-ui/styled-system/types"
 import type { PropertiesFallback } from "csstype"
 import type { AnySelector, Selectors } from "./selectors"
+
+export type { SystemStyleObject } from "@chakra-ui/styled-system/types"
 
 type String = string & {}
 type Number = number & {}
@@ -44,8 +47,6 @@ export type MinimalNested<P> = {
 }
 
 export type NestedCssProperties = Nested<CssProperties>
-
-export type SystemStyleObject = Nested<SystemProperties & CssVarProperties>
 
 export type SystemStyleIdentityFn = (
   style: SystemStyleObject,
