@@ -44,6 +44,9 @@ export function useSlotRecipe(options: any): any {
   const { key, recipe: recipeProp } = options
   const sys = useChakraContext()
   return useMemo((): any => {
+    if (typeof recipeProp === "function" && recipeProp.splitVariantProps) {
+      return recipeProp
+    }
     const recipe = recipeProp || (key != null ? sys.getSlotRecipe(key) : {})
     return sys.sva(structuredClone(recipe))
   }, [key, recipeProp, sys])
