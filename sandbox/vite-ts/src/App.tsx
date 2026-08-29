@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -67,6 +68,15 @@ export default function Page() {
             </Card.Description>
           </Card.Body>
         </Card.Root>
+        <Alert.Root status="success" variant="subtle">
+          <Alert.Indicator />
+          <Alert.Content>
+            <Alert.Title>Slot recipe, no runtime</Alert.Title>
+            <Alert.Description>
+              Alert on Panda's generated createSlotRecipeContext
+            </Alert.Description>
+          </Alert.Content>
+        </Alert.Root>
       </Stack>
     </Box>
   )

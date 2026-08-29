@@ -1,14 +1,14 @@
 "use client"
 
-import { Fragment, forwardRef } from "react"
+import { createSlotRecipeContext } from "@chakra-ui/styled-system/jsx"
+import { alert } from "@chakra-ui/styled-system/recipes/alert"
+import { type ComponentProps, Fragment, forwardRef } from "react"
 import { createContext } from "../../create-context"
 import {
   type ConditionalValue,
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  chakra,
-  createSlotRecipeContext,
 } from "../../styled-system"
 import { CheckCircleIcon, InfoIcon, WarningIcon } from "../icons"
 
@@ -23,18 +23,7 @@ export const [AlertStatusProvider, useAlertStatusContext] =
     providerName: "<Alert />",
   })
 
-////////////////////////////////////////////////////////////////////////////////////
-
-const {
-  withProvider,
-  withContext,
-  useStyles: useAlertStyles,
-  PropsProvider,
-} = createSlotRecipeContext({ key: "alert" })
-
-export { useAlertStyles }
-
-////////////////////////////////////////////////////////////////////////////////////
+const { withProvider, withContext } = createSlotRecipeContext(alert)
 
 export interface AlertRootBaseProps
   extends SlotRecipeProps<"alert">, UnstyledProp {}
@@ -44,57 +33,33 @@ export interface AlertRootProps extends HTMLChakraProps<
   AlertRootBaseProps
 > {}
 
-export const AlertRoot = withProvider<HTMLDivElement, AlertRootProps>(
-  "div",
-  "root",
-  {
-    forwardAsChild: true,
-    wrapElement(element, props) {
-      return (
-        // @ts-ignore fix later
-        <AlertStatusProvider value={{ status: props.status || "info" }}>
-          {element}
-        </AlertStatusProvider>
-      )
-    },
-  },
-)
+const AlertRootBase = withProvider("div", "root")
 
-////////////////////////////////////////////////////////////////////////////////////
-
-export const AlertPropsProvider =
-  PropsProvider as React.Provider<AlertRootBaseProps>
-
-////////////////////////////////////////////////////////////////////////////////////
+export const AlertRoot = forwardRef<
+  HTMLDivElement,
+  ComponentProps<typeof AlertRootBase>
+>(function AlertRoot(props, ref) {
+  const status = "status" in props ? props.status : undefined
+  return (
+    <AlertStatusProvider value={{ status: status ?? "info" }}>
+      <AlertRootBase ref={ref} {...props} />
+    </AlertStatusProvider>
+  )
+})
 
 export interface AlertTitleProps extends HTMLChakraProps<"div">, UnstyledProp {}
 
-export const AlertTitle = withContext<HTMLDivElement, AlertTitleProps>(
-  "div",
-  "title",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
+export const AlertTitle = withContext("div", "title")
 
 export interface AlertDescriptionProps
   extends HTMLChakraProps<"div">, UnstyledProp {}
 
-export const AlertDescription = withContext<
-  HTMLDivElement,
-  AlertDescriptionProps
->("div", "description")
-
-////////////////////////////////////////////////////////////////////////////////////
+export const AlertDescription = withContext("div", "description")
 
 export interface AlertContentProps
   extends HTMLChakraProps<"div">, UnstyledProp {}
 
-export const AlertContent = withContext<HTMLDivElement, AlertContentProps>(
-  "div",
-  "content",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
+export const AlertContent = withContext("div", "content")
 
 const iconMap = {
   info: InfoIcon,
@@ -106,18 +71,18 @@ const iconMap = {
 
 export interface AlertIndicatorProps extends HTMLChakraProps<"span"> {}
 
-export const AlertIndicator = forwardRef<SVGSVGElement, AlertIndicatorProps>(
-  function AlertIndicator(props, ref) {
-    const api = useAlertStatusContext()
-    const styles = useAlertStyles()
+const AlertIndicatorBase = withContext("span", "indicator")
 
-    const Icon = typeof api.status === "string" ? iconMap[api.status] : Fragment
-    const { children = <Icon />, ...rest } = props
-
-    return (
-      <chakra.span ref={ref} {...rest} css={[styles.indicator, props.css]}>
-        {children}
-      </chakra.span>
-    )
-  },
-)
+export const AlertIndicator = forwardRef<
+  HTMLSpanElement,
+  ComponentProps<typeof AlertIndicatorBase>
+>(function AlertIndicator(props, ref) {
+  const api = useAlertStatusContext()
+  const Icon = typeof api.status === "string" ? iconMap[api.status] : Fragment
+  const { children = <Icon />, ...rest } = props
+  return (
+    <AlertIndicatorBase ref={ref} {...rest}>
+      {children}
+    </AlertIndicatorBase>
+  )
+})

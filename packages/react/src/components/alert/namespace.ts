@@ -3,7 +3,6 @@ export {
   AlertDescription as Description,
   AlertIndicator as Indicator,
   AlertRoot as Root,
-  AlertPropsProvider as RootPropsProvider,
   AlertContent as Content,
 } from "./alert"
 

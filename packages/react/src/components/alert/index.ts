@@ -4,8 +4,6 @@ export {
   AlertContent,
   AlertIndicator,
   AlertRoot,
-  AlertPropsProvider,
-  useAlertStyles,
 } from "./alert"
 
 export type {
