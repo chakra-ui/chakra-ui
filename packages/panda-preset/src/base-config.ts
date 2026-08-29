@@ -1,3 +1,4 @@
+import type { Conditions } from "@pandacss/types"
 import { createColorMixTransform } from "./color-mix"
 import { cssVar } from "./css-var"
 import { defineConditions, defineConfig } from "./def"
@@ -70,11 +71,12 @@ const createTransition = (value: string) => {
   }
 }
 
-export const defaultConditions = defineConditions({
-  hover: [
-    "@media (hover: hover)",
-    "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
-  ],
+export const defaultConditions = defineConditions<Conditions>({
+  hover: {
+    "@media (hover: hover)": {
+      "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])": "@slot",
+    },
+  },
   active:
     "&:is(:active, [data-active]):not(:disabled, [data-disabled], [data-state=open])",
   focus: "&:is(:focus, [data-focus])",

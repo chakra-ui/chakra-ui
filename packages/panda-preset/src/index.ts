@@ -1,4 +1,6 @@
+import type { UtilityConfig } from "@pandacss/types"
 import { animationStyles } from "./animation-styles"
+import { defaultBaseConfig, defaultConditions } from "./base-config"
 import { breakpoints } from "./breakpoints"
 import { definePreset } from "./def"
 import { globalCss } from "./global-css"
@@ -32,10 +34,14 @@ export default definePreset({
     animationStyles,
   },
   utilities: {
-    extend: utilities,
+    extend: {
+      ...defaultBaseConfig.utilities,
+      ...utilities,
+    } as UtilityConfig,
   },
   conditions: {
     extend: {
+      ...defaultConditions,
       icon: "& :where(svg)",
     },
   },
