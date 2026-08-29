@@ -1,11 +1,11 @@
 "use client"
 
+import { chakra } from "@chakra-ui/styled-system/jsx"
 import { forwardRef, useMemo } from "react"
 import { createContext } from "../create-context"
 import { mergeProps } from "../merge-props"
 import { cx } from "../utils"
 import { EMPTY_STYLES } from "./empty"
-import { chakra } from "./factory"
 import type { JsxFactoryOptions } from "./factory.types"
 import type { SystemRecipeFn } from "./recipe.types"
 import { type RecipeKey, type UseRecipeOptions, useRecipe } from "./use-recipe"

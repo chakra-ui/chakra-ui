@@ -23,7 +23,7 @@ export type {
   TextStyles,
 } from "./composition"
 export * from "./empty"
-export { chakra } from "./factory"
+export { chakra } from "@chakra-ui/styled-system/jsx"
 export type {
   ChakraComponent,
   HTMLChakraProps,

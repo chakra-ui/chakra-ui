@@ -1,12 +1,12 @@
 "use client"
 
+import { chakra } from "@chakra-ui/styled-system/jsx"
 import { forwardRef, useMemo } from "react"
 import { createContext } from "../create-context"
 import { mergeProps } from "../merge-props"
 import { cx } from "../utils"
 import type { SystemStyleObject } from "./css.types"
 import { EMPTY_SLOT_STYLES } from "./empty"
-import { chakra } from "./factory"
 import type { JsxFactoryOptions } from "./factory.types"
 import type { ConfigRecipeSlots } from "./generated/recipes.gen"
 import type { SystemSlotRecipeFn } from "./recipe.types"
