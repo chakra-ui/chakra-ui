@@ -1,12 +1,10 @@
 export {
   CardBody,
   CardRoot,
-  CardPropsProvider,
   CardFooter,
   CardHeader,
   CardTitle,
   CardDescription,
-  useCardStyles,
 } from "./card"
 
 export type {

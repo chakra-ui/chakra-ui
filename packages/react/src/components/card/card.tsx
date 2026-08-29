@@ -1,24 +1,14 @@
 "use client"
 
-import {
-  type HTMLChakraProps,
-  type SlotRecipeProps,
-  type UnstyledProp,
-  createSlotRecipeContext,
+import { createSlotRecipeContext } from "@chakra-ui/styled-system/jsx"
+import { card } from "@chakra-ui/styled-system/recipes/card"
+import type {
+  HTMLChakraProps,
+  SlotRecipeProps,
+  UnstyledProp,
 } from "../../styled-system"
 
-////////////////////////////////////////////////////////////////////////////////////
-
-const {
-  withProvider,
-  withContext,
-  useStyles: useCardStyles,
-  PropsProvider,
-} = createSlotRecipeContext({ key: "card" })
-
-export { useCardStyles }
-
-////////////////////////////////////////////////////////////////////////////////////
+const { withProvider, withContext } = createSlotRecipeContext(card)
 
 export interface CardRootBaseProps
   extends SlotRecipeProps<"card">, UnstyledProp {}
@@ -28,58 +18,25 @@ export interface CardRootProps extends HTMLChakraProps<
   CardRootBaseProps
 > {}
 
-export const CardRoot = withProvider<HTMLDivElement, CardRootProps>(
-  "div",
-  "root",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export const CardPropsProvider =
-  PropsProvider as React.Provider<CardRootBaseProps>
-
-////////////////////////////////////////////////////////////////////////////////////
+export const CardRoot = withProvider("div", "root")
 
 export interface CardBodyProps extends HTMLChakraProps<"div">, UnstyledProp {}
 
-export const CardBody = withContext<HTMLDivElement, CardBodyProps>(
-  "div",
-  "body",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
+export const CardBody = withContext("div", "body")
 
 export interface CardHeaderProps extends HTMLChakraProps<"div">, UnstyledProp {}
 
-export const CardHeader = withContext<HTMLDivElement, CardHeaderProps>(
-  "div",
-  "header",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
+export const CardHeader = withContext("div", "header")
 
 export interface CardFooterProps extends HTMLChakraProps<"div">, UnstyledProp {}
 
-export const CardFooter = withContext<HTMLDivElement, CardFooterProps>(
-  "div",
-  "footer",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
+export const CardFooter = withContext("div", "footer")
 
 export interface CardTitleProps extends HTMLChakraProps<"h2">, UnstyledProp {}
 
-export const CardTitle = withContext<HTMLHeadingElement, CardTitleProps>(
-  "h3",
-  "title",
-)
-
-////////////////////////////////////////////////////////////////////////////////////
+export const CardTitle = withContext("h3", "title")
 
 export interface CardDescriptionProps
   extends HTMLChakraProps<"p">, UnstyledProp {}
 
-export const CardDescription = withContext<
-  HTMLParagraphElement,
-  CardDescriptionProps
->("p", "description")
+export const CardDescription = withContext("p", "description")

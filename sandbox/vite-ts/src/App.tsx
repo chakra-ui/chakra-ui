@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Card,
   Center,
   Flex,
   HStack,
@@ -55,6 +56,17 @@ export default function Page() {
         <Center bg="purple.500" color="white" h="16" borderRadius="md">
           centered
         </Center>
+        <Card.Root>
+          <Card.Header>
+            <Card.Title>Slot recipe</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Card.Description>
+              Card is a slot recipe via Panda's generated
+              createSlotRecipeContext
+            </Card.Description>
+          </Card.Body>
+        </Card.Root>
       </Stack>
     </Box>
   )
