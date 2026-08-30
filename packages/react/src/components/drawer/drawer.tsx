@@ -141,7 +141,10 @@ export const DrawerActionTrigger = forwardRef<
       type="button"
       {...props}
       ref={ref}
-      onClick={() => drawer.setOpen(false)}
+      onClick={(event) => {
+        props.onClick?.(event)
+        drawer.setOpen(false)
+      }}
     />
   )
 })
