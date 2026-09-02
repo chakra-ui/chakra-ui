@@ -1,6 +1,6 @@
 import { Field, HStack, Input, NativeSelect } from "@chakra-ui/react"
 
-export const FieldWithMultipleControls = () => {
+export const FieldWithTargetControl = () => {
   return (
     <Field.Root target="amount" maxW="sm">
       <Field.Label>Price</Field.Label>
@@ -19,9 +19,6 @@ export const FieldWithMultipleControls = () => {
           <Input type="number" placeholder="0.00" />
         </Field.Item>
       </HStack>
-      <Field.HelperText>
-        Enter the price and select a currency.
-      </Field.HelperText>
     </Field.Root>
   )
 }
