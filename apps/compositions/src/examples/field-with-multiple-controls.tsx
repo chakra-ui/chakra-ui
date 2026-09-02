@@ -6,7 +6,7 @@ export const FieldWithMultipleControls = () => {
       <Field.Label>Price</Field.Label>
       <HStack gap="2">
         <Field.Item value="currency">
-          <NativeSelect.Root width="100px">
+          <NativeSelect.Root width="150px">
             <NativeSelect.Field aria-label="Currency" defaultValue="USD">
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
