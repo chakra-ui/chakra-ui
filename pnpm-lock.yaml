@@ -576,8 +576,8 @@ importers:
         specifier: ^4.1.12
         version: 4.1.12
       '@visulima/boxen':
-        specifier: ^2.0.10
-        version: 2.0.10
+        specifier: ^5.0.0
+        version: 5.0.0
       chokidar:
         specifier: 5.0.0
         version: 5.0.0
@@ -6121,9 +6121,9 @@ packages:
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
 
-  '@visulima/boxen@2.0.10':
-    resolution: {integrity: sha512-ljghUzl32eUxIixARh8HBBJ2SXz2mJoD7C7Tl9/AEerN/PNihq1PMkzX/QPvMYOXpKrwoPt8ISNOc2EUacX5Wg==}
-    engines: {node: '>=20.18 <=25.x'}
+  '@visulima/boxen@5.0.0':
+    resolution: {integrity: sha512-IGbBM21w5YSGzeDhBJ5/0XAen+tBc/fzCnbD2gMVqcG8mGolyNFMK9vK8mlAkchSgvfqYrJtwRtLzrv2IPhtzg==}
+    engines: {node: ^22.14.0 || >=24.10.0}
     os: [darwin, linux, win32]
 
   '@vitejs/plugin-react@6.0.1':
@@ -17577,7 +17577,7 @@ snapshots:
 
   '@vanilla-extract/private@1.0.6': {}
 
-  '@visulima/boxen@2.0.10': {}
+  '@visulima/boxen@5.0.0': {}
 
   '@vitejs/plugin-react@6.0.1(vite@8.0.2(@types/node@24.10.12)(esbuild@0.27.3)(jiti@2.6.1)(terser@5.46.0)(tsx@4.22.4)(yaml@2.9.0))':
     dependencies:

@@ -54,7 +54,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
-    "@visulima/boxen": "^2.0.10",
+    "@visulima/boxen": "^5.0.0",
     "chokidar": "5.0.0",
     "cli-table": "^0.3.11",
     "commander": "14.0.3",
