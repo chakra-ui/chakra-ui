@@ -46,7 +46,10 @@ and the generated recipe function would be an invalid identifier:
 
 ```ts
 // packages/panda-preset/src/slot-recipes/index.ts
-swittch: switchSlotRecipe,
+export const slotRecipes = {
+  // ...
+  swittch: switchSlotRecipe,
+}
 ```
 
 Panda therefore looks for `Swittch` and `Swittch.Root`. Nothing renders those,
@@ -80,16 +83,18 @@ and the namespaced form:
 
 ```ts
 // slot recipe: `jsx` replaces the root name, so list what's actually rendered
-jsx: [
-  "Switch",
-  "Switch.Root",
-  "SwitchRoot",
-  "Switch.RootProvider",
-  "SwitchRootProvider",
-]
+export const switchSlotRecipe = defineSlotRecipe({
+  className: "chakra-switch",
+  jsx: ["Switch", "Switch.Root", "SwitchRoot", "Switch.RootProvider"],
+  // ...
+})
 
 // plain recipe: `jsx` replaces the default, so `Button` has to be listed too
-jsx: ["Button", "ButtonGroup", "CloseButton", "IconButton"]
+export const buttonRecipe = defineRecipe({
+  className: "chakra-button",
+  jsx: ["Button", "ButtonGroup", "CloseButton", "IconButton"],
+  // ...
+})
 ```
 
 This is additive. A `jsx` entry only produces CSS when that tag actually appears
