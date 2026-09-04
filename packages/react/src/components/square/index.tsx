@@ -19,14 +19,16 @@ export const Square = forwardRef<HTMLDivElement, SquareProps>(
         {...rest}
         ref={ref}
         boxSize={size}
-        css={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexShrink: 0,
-          flexGrow: 0,
-          ...props.css,
-        }}
+        css={[
+          {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            flexGrow: 0,
+          },
+          props.css,
+        ]}
       />
     )
   },
