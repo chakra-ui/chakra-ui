@@ -84,14 +84,14 @@ and the namespaced form:
 ```ts
 // slot recipe: `jsx` replaces the root name, so list what's actually rendered
 export const switchSlotRecipe = defineSlotRecipe({
-  className: "chakra-switch",
+  className: "switch",
   jsx: ["Switch", "Switch.Root", "SwitchRoot", "Switch.RootProvider"],
   // ...
 })
 
 // plain recipe: `jsx` replaces the default, so `Button` has to be listed too
 export const buttonRecipe = defineRecipe({
-  className: "chakra-button",
+  className: "button",
   jsx: ["Button", "ButtonGroup", "CloseButton", "IconButton"],
   // ...
 })
