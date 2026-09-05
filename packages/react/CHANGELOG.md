@@ -1,5 +1,39 @@
 # @chakra-ui/react
 
+## 3.37.1
+
+### Patch Changes
+
+- [`51f0eac`](https://github.com/chakra-ui/chakra-ui/commit/51f0eac7eea69af24b418b4477ab190e6da08eeb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix Checkbox Card,
+  Radio Card, and Slider ignoring their cursor tokens, so overriding
+  `tokens.cursor.checkbox`, `radio`, or `slider` in the theme did nothing.
+  Disabled elements now use `tokens.cursor.disabled` instead of a hardcoded
+  `not-allowed`, and Listbox items use `tokens.cursor.option`.
+
+- [#10966](https://github.com/chakra-ui/chakra-ui/pull/10966)
+  [`1eb59bc`](https://github.com/chakra-ui/chakra-ui/commit/1eb59bce1139ab7d89c07106cd7182a9770a14a7)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - **Flex,
+  Square**: Fix the array form of the `css` prop being silently dropped. Both
+  components merged the incoming `css` into their base styles with an object
+  spread, which turns an array into index keys instead of merging its entries.
+  They now pass `css={[baseStyles, props.css]}`, matching `AspectRatio`, `Bleed`
+  and `Float`. `Circle` renders through `Square`, so it is fixed too
+
+- [#10961](https://github.com/chakra-ui/chakra-ui/pull/10961)
+  [`0b20b60`](https://github.com/chakra-ui/chakra-ui/commit/0b20b600315d5f603724e6a6614edae2da045bcb)
+  Thanks [@giaBaoJS](https://github.com/giaBaoJS)! - Fix `useBreakpoint` and
+  `useBreakpointValue` ignoring the `getWindow` option, so media queries were
+  always evaluated against the ambient `window` instead of the provided one
+  (iframes, Shadow DOM, tests).
+
+- [#10953](https://github.com/chakra-ui/chakra-ui/pull/10953)
+  [`de7d481`](https://github.com/chakra-ui/chakra-ui/commit/de7d48180bcea703cb5a747f1f97702eac830a08)
+  Thanks [@Fnine59](https://github.com/Fnine59)! - Fix the style cache ignoring
+  property order, so style objects and recipe variants passed in a different
+  order could get another call site's result. This was the cause of SSR
+  hydration mismatches on `className`.
+
 ## 3.37.0
 
 ### Minor Changes
