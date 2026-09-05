@@ -194,6 +194,29 @@ describe("css", () => {
     `)
   })
 
+  test("important marker is only read at the end of a value", () => {
+    // an exclamation mark inside the value is part of the value
+    expect(css({ content: '"Hello!"' })).toEqual({ content: '"Hello!"' })
+    expect(css({ _before: { content: '"!"' } })).toEqual({
+      "&::before": { content: '"!"' },
+    })
+    expect(css({ backgroundImage: "url(/a!b.png)" })).toEqual({
+      backgroundImage: "url(/a!b.png)",
+    })
+    expect(css({ fontFamily: "'Wow! Sans', sans-serif" })).toEqual({
+      fontFamily: "'Wow! Sans', sans-serif",
+    })
+
+    // the marker itself keeps working, with or without surrounding spaces
+    expect(css({ color: "red!" })).toEqual({ color: "red !important" })
+    expect(css({ color: "red !important" })).toEqual({
+      color: "red !important",
+    })
+    expect(css({ color: "red!important " })).toEqual({
+      color: "red !important",
+    })
+  })
+
   test("expand css var token", () => {
     const result = css({
       "--banner-height": "sizes.small",
