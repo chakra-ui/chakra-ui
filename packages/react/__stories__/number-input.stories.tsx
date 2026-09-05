@@ -19,6 +19,7 @@ export { NumberInputWithField as Field } from "compositions/examples/number-inpu
 export { NumberInputWithFormatOptions as FormatOptions } from "compositions/examples/number-input-with-format-options"
 export { NumberInputWithHookForm as HookForm } from "compositions/examples/number-input-with-hook-form"
 export { NumberInputWithInvalid as Invalid } from "compositions/examples/number-input-with-invalid"
+export { NumberInputWithLabel as Label } from "compositions/examples/number-input-with-label"
 export { NumberInputWithMinMax as MinMax } from "compositions/examples/number-input-with-min-max"
 export { NumberInputWithMouseWheel as MouseWheel } from "compositions/examples/number-input-with-mouse-wheel"
 export { NumberInputWithScrubber as Scrubber } from "compositions/examples/number-input-with-scrubber"
