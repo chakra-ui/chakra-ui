@@ -76,16 +76,16 @@ In scope:
 
 Out of scope, with an owner:
 
-| topic                                                       | owned by                                                    |
-| ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `designSystem`, `panda/lib.json`, parent-chain resolution   | Panda · `design-notes/design-system-manifest.md`            |
-| build-info hydration, module tree-shaking                   | Panda · `design-notes/build-info.md`                        |
-| dual importMap, app-composed styled-system, overlay codegen | Panda · `design-notes/virtual-styled-system.md`             |
-| Chakra packaging, component metadata, framework aliases     | Panda · `design-notes/chakra-ui-design-system-migration.md` |
-| generated artifact families, emission model                 | Panda · `design-notes/codegen-design.md`                    |
-| JSX tag matching for config recipes                         | [jsx-tracking.md](./jsx-tracking.md)                        |
-| the opt-in Emotion package                                  | [emotion-opt-in.md](./emotion-opt-in.md)                    |
-| upstream gaps blocking this work                            | [panda-v2-gaps.md](./panda-v2-gaps.md)                      |
+| topic                                                       | owned by                                                                                                                                  |
+| ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `designSystem`, `panda/lib.json`, parent-chain resolution   | Panda · [design-system-manifest](https://github.com/chakra-ui/panda/blob/v2/design-notes/design-system-manifest.md)                       |
+| build-info hydration, module tree-shaking                   | Panda · [build-info](https://github.com/chakra-ui/panda/blob/v2/design-notes/build-info.md)                                               |
+| dual importMap, app-composed styled-system, overlay codegen | Panda · [virtual-styled-system](https://github.com/chakra-ui/panda/blob/v2/design-notes/virtual-styled-system.md)                         |
+| Chakra packaging, component metadata, framework aliases     | Panda · [chakra-ui-design-system-migration](https://github.com/chakra-ui/panda/blob/v2/design-notes/chakra-ui-design-system-migration.md) |
+| generated artifact families, emission model                 | Panda · [codegen-design](https://github.com/chakra-ui/panda/blob/v2/design-notes/codegen-design.md)                                       |
+| JSX tag matching for config recipes                         | [jsx-tracking.md](./jsx-tracking.md)                                                                                                      |
+| the opt-in Emotion package                                  | [emotion-opt-in.md](./emotion-opt-in.md)                                                                                                  |
+| upstream gaps blocking this work                            | [panda-v2-gaps.md](./panda-v2-gaps.md)                                                                                                    |
 
 ## Upstream contracts
 
@@ -95,11 +95,13 @@ disagree, Panda's note wins.
 
 Two of them are load-bearing here:
 
-- `chakra-ui-design-system-migration.md` specifies the Chakra package shape, the
-  manifest, component metadata, and the runtime/type/extraction resolution
-  layers. This note assumes that design and does not restate it.
-- `codegen-design.md` is the model for how a single feature is specified
-  end-to-end. It is the shape each area below should reach before it is built.
+- [chakra-ui-design-system-migration](https://github.com/chakra-ui/panda/blob/v2/design-notes/chakra-ui-design-system-migration.md)
+  specifies the Chakra package shape, the manifest, component metadata, and the
+  runtime/type/extraction resolution layers. This note assumes that design and
+  does not restate it.
+- [codegen-design](https://github.com/chakra-ui/panda/blob/v2/design-notes/codegen-design.md)
+  is the model for how a single feature is specified end-to-end. It is the shape
+  each area below should reach before it is built.
 
 ## What replaces the engine
 
