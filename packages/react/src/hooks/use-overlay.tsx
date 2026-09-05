@@ -169,7 +169,21 @@ export function createOverlay<TProps extends Dict, TReturn = unknown>(
     return exitPromise
   }
 
+  // a removed overlay never reaches close or exit, so settle the promises
+  // handed out by `open` and `close` instead of leaving callers awaiting forever
+  const settlePending = (id: string) => {
+    const overlay = map.get(id) as
+      | (CreateOverlayProps<TReturn> & TProps)
+      | undefined
+    if (!overlay) return
+    overlay.setReturnValue?.(undefined as TReturn)
+    overlay.setExitComplete?.()
+    overlay.setReturnValue = undefined
+    overlay.setExitComplete = undefined
+  }
+
   const remove = (id: string) => {
+    settlePending(id)
     map.delete(id)
     exitPromises.delete(id)
     publish()
@@ -197,6 +211,7 @@ export function createOverlay<TProps extends Dict, TReturn = unknown>(
   }
 
   const removeAll = () => {
+    for (const id of map.keys()) settlePending(id)
     map.clear()
     exitPromises.clear()
     publish()
