@@ -1,363 +1,289 @@
-# Chakra v4 · Styling Engine (Panda, zero Emotion)
+---
+title: Chakra v4 Styling Engine
+date: 2026-09-05
+status: proposed
+scope:
+  - packages/react/src/styled-system
+  - packages/panda-preset
+---
+
+# Chakra v4 Styling Engine
+
+## TL;DR
+
+Chakra v4 makes Panda v2 the styling engine and ships `@chakra-ui/react` as a
+Panda **design system**. An app opts in with one config field:
+
+```ts
+export default defineConfig({
+  designSystem: "@chakra-ui/react",
+  include: ["./src/**/*.{ts,tsx}"],
+})
+```
+
+Three consequences follow, and they are the whole note:
+
+- CSS is produced at build time, so no style insertion happens at render.
+- The theme is a Panda preset, so no provider is required to read it.
+- Chakra publishes what it extracted, so an app never re-scans our source.
+
+This note owns the **engine boundary only** — what replaces the hand-written
+styled-system, and which parts of Chakra move as a result. It does not specify
+the manifest format, codegen, or overlay resolution; those are Panda-side
+contracts, listed under [Upstream contracts](#upstream-contracts).
 
 ## Decision
 
-Chakra v4 uses **Panda v2 as its only styling engine**. There is no Emotion in
-the core and no runtime styling-engine adapter. CSS is produced at build time by
-Panda's extractor; Chakra components emit deterministic class names, never
-runtime style insertion.
+`packages/react/src/styled-system` is a hand-written CSS-in-JS engine — 46
+modules covering `css`, `cva`, `sva`, `serialize`, `normalize`, `preflight`, the
+`chakra` factory, a token dictionary, and a runtime system object built per app
+and passed through React context.
 
-Emotion is not removed from users — it becomes an **opt-in package**
-(`@chakra-ui/emotion`), following Mantine's model. If a consumer never installs
-it, it is never in the bundle.
+Panda v2 generates all of it. We delete ours and consume Panda's, rather than
+adapting one to the other. Chakra keeps the layers it is actually good at:
 
-Packaging mirrors the Panda-side design
-([chakra-ui-design-system-migration.md](https://github.com/chakra-ui/panda/blob/v2/design-notes/chakra-ui-design-system-migration.md)):
+| layer                    | owner  |
+| ------------------------ | ------ |
+| state machines           | zag    |
+| headless components      | ark-ui |
+| design system, React API | Chakra |
+| style engine, CSS output | Panda  |
+
+## Why not keep the runtime
+
+The runtime engine is the source of the problems v4 exists to fix:
+
+- **Render cost.** Every styled element serializes and inserts styles at render.
+- **SSR/RSC friction.** Style insertion needs a client boundary, so a styled
+  element cannot be a Server Component.
+- **A mandatory provider.** `ChakraProvider` exists largely to carry the system
+  object. Anything reading the theme must sit under it.
+
+None of these are fixable inside a runtime engine. They are properties of doing
+the work at render time.
+
+## Scope of this note
+
+Single-scoped, in the sense the other notes are: this note takes the engine swap
+from "what replaces the engine" to "what is done", and stops there.
+
+In scope:
+
+- what replaces `packages/react/src/styled-system`
+- how the theme is published and how an app extends it
+- every area of Chakra that changes as a consequence, each sized as its own unit
+  of work
+
+Out of scope, with an owner:
+
+| topic                                                       | owned by                                                    |
+| ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `designSystem`, `panda/lib.json`, parent-chain resolution   | Panda · `design-notes/design-system-manifest.md`            |
+| build-info hydration, module tree-shaking                   | Panda · `design-notes/build-info.md`                        |
+| dual importMap, app-composed styled-system, overlay codegen | Panda · `design-notes/virtual-styled-system.md`             |
+| Chakra packaging, component metadata, framework aliases     | Panda · `design-notes/chakra-ui-design-system-migration.md` |
+| generated artifact families, emission model                 | Panda · `design-notes/codegen-design.md`                    |
+| JSX tag matching for config recipes                         | [jsx-tracking.md](./jsx-tracking.md)                        |
+| the opt-in Emotion package                                  | [emotion-opt-in.md](./emotion-opt-in.md)                    |
+| upstream gaps blocking this work                            | [panda-v2-gaps.md](./panda-v2-gaps.md)                      |
+
+## Upstream contracts
+
+The Panda-side notes above are the authority for anything they cover. Where this
+note shows a manifest field or an alias, it is illustrative — if the two
+disagree, Panda's note wins.
+
+Two of them are load-bearing here:
+
+- `chakra-ui-design-system-migration.md` specifies the Chakra package shape, the
+  manifest, component metadata, and the runtime/type/extraction resolution
+  layers. This note assumes that design and does not restate it.
+- `codegen-design.md` is the model for how a single feature is specified
+  end-to-end. It is the shape each area below should reach before it is built.
+
+## What replaces the engine
+
+Panda codegen produces the runtime Chakra imports:
 
 ```txt
-@chakra-ui/react            # user-facing React components
-@chakra-ui/styled-system    # Chakra's default generated Panda runtime, preset, build info
+css/        css, cva, sva, cx
+recipes/    one module per config recipe
+patterns/   stack, hstack, flex, center, ...
+jsx/        the factory, createRecipeContext, createSlotRecipeContext
+tokens/     token + colour-palette access
+types/      SystemStyleObject and friends
 ```
 
-`@chakra-ui/react` depends on `@chakra-ui/styled-system` (not a peer dep —
-Chakra owns the default styled-system; users do not install or version it).
-Components import styling helpers from the package root:
+Chakra component source imports only from the styled-system package root, never
+a relative path:
 
-```ts
+```tsx
 import { css, cx } from "@chakra-ui/styled-system/css"
-import { stack } from "@chakra-ui/styled-system/patterns"
 import { button } from "@chakra-ui/styled-system/recipes"
 ```
 
-In a Panda-aware app, Panda composes one final `styled-system` from the Chakra
-preset + any upstream design-system presets + app config, and the app maps
-`@chakra-ui/styled-system/*` → `./styled-system/*` so app-added tokens/variants
-win.
+The same specifier resolves two ways. In our repo and in a default install it is
+the published package. In a Panda-aware app it is mapped to the app's generated
+output, so app-added tokens and variants are what the component actually gets —
+in CSS and in types.
 
-## Motivation
+## Areas of Chakra that change
 
-This is runtime elimination, not engine shopping. Emotion's runtime insertion
-has been a long-standing cost — perf, SSR/RSC friction, and a mandatory provider
-— and v4 is the breaking window to end it. Prior art exists: projects have
-migrated from Emotion to Panda for exactly these reasons, and Chakra wants the
-same outcome. This framing is what settles the adapter question: a runtime
-styling-engine adapter keeps Emotion a first-class runtime engine and therefore
-preserves the very cost v4 exists to remove. The only path that actually ends
-the runtime is a single build-time engine with Emotion as an additive opt-in
-(see [emotion-opt-in.md](./emotion-opt-in.md)).
+Each row is a unit of work: one concern, shippable and verifiable alone. Order
+is dependency order, not priority.
 
-This is also co-design, not adaptation. Much of Panda v2 — the `designSystem`
-key, the manifest, build-info — was built with Chakra v4 as the driving use
-case. The fit between Chakra-as-design-system and Panda v2 is intentional on
-both sides, so the packaging shape below is a contract the two projects shaped
-together, not a constraint Chakra is bending to.
+### 1. Theme → preset
 
-## Canonical Scope
+`packages/react/src/theme` is the source of truth today;
+`@chakra-ui/panda-preset` is generated from it via `theme:eject` / `theme:sync`.
+Under the design system the preset is what ships, so the sync direction and the
+drift risk both need settling — that generation step is already known to drop
+registrations.
 
-This note is the Chakra-specific engine design. The generic packaging/resolution
-contracts it builds on are owned Panda-side:
+**Done when:** one source of truth, and a check that fails if a recipe file
+exists without being registered.
 
-- Design-system manifest, `designSystem`, parent-chain resolution → the Panda
-  migration note (linked above).
-- Build-info hydration and module/export tree-shaking → Panda `build-info`.
-- Dual `importMap`, app-composed `styled-system`, overlay codegen → Panda
-  `virtual-styled-system`.
+### 2. Recipes become config recipes
 
-Keep this note focused on: the engine choice and why not an adapter, the
-component refactor (patterns / recipes / the extraction boundary), the Emotion
-removal path, the runtime direction, and the current POC status.
+19 recipes and 57 slot recipes. Panda emits stable class names from a
+`className` field rather than hashing at runtime, which makes them a build-time
+artifact and introduces tag matching as a real concern.
 
-## Why This Shape
+**Done when:** every recipe emits CSS for the tags Chakra actually exports. See
+[jsx-tracking.md](./jsx-tracking.md).
 
-Panda is the engine, not one engine behind a seam. Everything else follows from
-that:
+### 3. The factory
 
-- **No adapter, no runtime branch.** Nothing resolves the engine from React
-  context, so no styled call carries a runtime check and the bundler never ships
-  two engines. An adapter-based alternative (explored in the fork PR
-  [isBatak/chakra-ui#12](https://github.com/isBatak/chakra-ui/pull/12)) lets
-  Emotion and Panda coexist, but that seam forces both engines into the bundle
-  and a runtime check on every styled call. The tree-shaking wall there is
-  structural, not a bug — and a `'use panda'`-style directive would only mask a
-  problem the seam creates. Removing the seam removes the problem.
-- **Static per-recipe imports, not a name registry.** `button` imports its own
-  recipe module, so unused recipes tree-shake out. A `recipe("button")` string
-  registry defeats this because the bundler must retain every registered recipe.
-- **Emotion opt-in package.** With no engine to switch, there is nothing to
-  tree-shake and no directive to write. `@chakra-ui/emotion` exists only for
-  users who opt back in.
-- **CSS must be derivable from a definition.** Style props, recipes, and
-  patterns each give a static definition to extract from. Anything computed
-  inside a component at render is invisible to the extractor — the rule that
-  drives the entire component refactor.
+`factory.tsx` becomes Panda's generated factory. Behaviour to preserve: `as`,
+`asChild`, style props, `unstyled`, `shouldForwardProp`. `asChild` is the one
+that does not survive as-is — Ark v6 replaces it with a `render` prop, which is
+the moment to drop it from the factory.
 
-## Package Setup
+**Done when:** `chakra.div` and `chakra("button", recipe)` cover current usage.
 
-`@chakra-ui/react` component source imports **only package-root** styled-system
-specifiers (`@chakra-ui/styled-system/{css,recipes,patterns,jsx}`) — never
-relative paths — so a Panda app can remap them to its composed output. Chakra's
-own repo, tests, and Storybook resolve the same specifiers to the shipped
-default styled-system.
+### 4. Layout primitives → patterns
 
-The default styled-system is generated from:
+`Box`, `Flex`, `Stack`, `HStack`, `VStack`, `Center`, `Grid`, `Container`. Panda
+patterns extract statically. Each needs a decision: pattern, or a re-export over
+the factory.
 
-```txt
-@chakra-ui/panda-preset      # Chakra's theme: tokens, recipes, slot recipes, patterns
-+ defaultBaseConfig          # Chakra's base: utilities (bg/gapX/logical radii) + conditions
-```
+**Done when:** each primitive is one or the other, deliberately.
 
-Neither `@pandacss/preset-base` nor `@pandacss/preset-panda` is used — Panda v2
-does not auto-include them, and Chakra already provides a _wider_ base (see
-"What We Tried").
+### 5. The key-based recipe registry
 
-## Consumer App DX
+`useRecipe({ key })` / `useSlotRecipe({ key })` look recipes up on the system
+object at render. Static per-recipe imports replace them, which is also what
+makes unused recipes tree-shake. Deletes `use-recipe.ts`, `use-slot-recipe.ts`,
+and `generated/recipes.gen.ts` (48KB of it).
 
-```bash
-npm i @chakra-ui/react            # styling engine included; no styled-system to manage
-npm i @chakra-ui/emotion          # only if you want Emotion back
-```
+**Done when:** no component resolves a recipe by string key.
 
-```ts
-// one plugin bundles the Panda config: Chakra base, jsxFactory, importMap, source scoping
-import { chakra } from "@chakra-ui/react/vite"
+### 6. Components
 
-export default { plugins: [chakra(), react()] }
-```
+119 component directories. Single-recipe components are mechanical. Slot
+components are blocked upstream — Panda's generated `createSlotRecipeContext`
+exposes `withProvider` / `withContext` / `withRootProvider`, but not `useStyles`
+or `wrapElement`, which our slot components rely on.
 
-- **No provider required for styling.** Base primitives render correctly
-  server-side with zero client JS for CSS. A client provider is needed only for
-  genuinely dynamic concerns (color mode, direction, Ark environment).
-- **Unchanged authoring.** `<Box mt="4">`, `<Button variant="solid">`,
-  `<Stack gap="4">` work exactly as today; the difference is the CSS is
-  extracted at build time.
+**Done when:** the upstream gap closes, then in batches by component family.
 
-## The Styling Model
+### 7. The client boundary
 
-Three sources, all statically extractable, plus a runtime remainder that emits
-no CSS:
+145 files carry `"use client"`. The generated factory needs no directive; the
+recipe-context helpers do, because they use React context. So a component is a
+Server Component unless it genuinely needs context — and the barrel currently
+prevents that from mattering, since one import pulls the whole client graph.
 
-| Source       | Example                                                     | Extracted from               |
-| ------------ | ----------------------------------------------------------- | ---------------------------- |
-| Style props  | `<chakra.div bg="red.500" mt="4">`                          | app JSX                      |
-| Recipes      | `<Button variant="solid">`                                  | recipe definition + app JSX  |
-| Patterns     | `<Stack gap="4">`                                           | pattern definition + app JSX |
-| Runtime only | color mode, `asChild`, Ark state, `Stack` separator cloning | — (no CSS)                   |
+**Done when:** a page importing Chakra ships only the client code it uses.
 
-## The Extraction Boundary
+### 8. The provider
 
-Build-time extraction reads the **app's** source. Raw style props and recipes
-are literal there, so they extract. Composite components that style themselves
-**at runtime** are invisible: `Stack` renders `<chakra.div display="flex" …>`,
-`Flex` builds a `css` object, `Center` uses an inline cva — so `<Stack gap="4">`
-emits only `gap_4`, never the `display:flex` the component applies, and layout
-silently breaks.
+`ChakraProvider` + `createSystem` exist to build and carry the system object.
+With the theme in config there is nothing to carry. Colour mode stays: the
+`.dark` class still needs setting, semantic tokens do the rest.
 
-Resolution, by component kind:
+**Done when:** a styled component renders correctly with no provider above it.
 
-- **Layout primitives → Panda patterns.** The pattern owns styling and extracts
-  statically (via the preset pattern + `importMap.patterns`); the component
-  keeps only genuine runtime logic. Once `<Stack>` is pattern-recognized, the
-  component implementation is decoupled from extraction — which is why most
-  layout components collapse to re-exports or thin wrappers.
-- **Recipe / slot-recipe components → generated recipes.** Full CSS is generated
-  from the recipe definition regardless of which variants an app uses.
-- **Genuinely dynamic** stays runtime and emits no CSS.
+### 9. Distribution
 
-### Component Refactor Map
+Chakra CI publishes the generated styled-system, the preset, and the build info.
+Apps need runtime aliases and TypeScript paths for the styled-system root —
+Vite, Next webpack, and Next Turbopack each differ. Shape and generation are
+specified in the Panda migration note.
 
-- **Delete → re-export the generated pattern** (no extra API/logic): `Box`,
-  `Spacer`, `Square`, `Circle`, `AspectRatio`, `Bleed`, `Float`,
-  `VisuallyHidden`, `LinkOverlay`, `Wrap`, `Grid`/`GridItem`, `Container`.
-- **Slim to a thin wrapper**: `Flex`/`Center` (done), `Stack`/`HStack`/`VStack`
-  (pattern + separator), `Group`.
-- **Recipe track**: `Button` (done); slot-recipe components (`Alert`, `Dialog`,
-  `Menu`, …) move to generated slot recipes + `createSlotRecipeContext`.
+**Done when:** one documented line of app setup per framework.
 
-## Resolution Plan
+### 10. Everything downstream
 
-Three resolution layers, following the Panda migration note.
+`@chakra-ui/charts` (recharts today), `@chakra-ui/cli` (theme typegen, which
+Panda codegen replaces), `@chakra-ui/codemod` (needs a v3 → v4 path), the docs
+site, and the sandboxes.
 
-### Extraction
+**Done when:** each has migrated or has an issue saying why it hasn't.
 
-Panda `importMap` lists every styled-system package root so the extractor
-recognizes imports from Chakra source, upstream design-system source, and app
-source:
+## Consumer DX
+
+Extending the theme is config, not a provider:
 
 ```ts
-importMap: ["@chakra-ui/styled-system", "styled-system"]
-```
-
-### Runtime
-
-The `@chakra-ui/react/vite` plugin maps the package root to the app's generated
-output (`@chakra-ui/styled-system/* -> ./styled-system/*`); Next
-webpack/Turbopack use the equivalent alias config.
-
-### Types
-
-TypeScript `paths` must match the runtime alias, or app-added variants/tokens
-will resolve to the default declarations and fail to type-check:
-
-```jsonc
-{
-  "compilerOptions": {
-    "paths": { "@chakra-ui/styled-system/*": ["./styled-system/*"] },
-  },
-}
-```
-
-## Component Metadata
-
-Build info alone is not enough: Chakra source does not contain consumer-selected
-props (`<Button size="sm" variant="outline" mt="4" />`). Chakra publishes
-`panda.components.json` mapping exports to recipes, patterns, slot recipes, and
-style-prop support, so Panda can extract Chakra JSX usage from app source:
-
-```jsonc
-{
-  "Button": {
-    "kind": "recipe",
-    "recipe": "button",
-    "element": "button",
-    "styleProps": true,
-  },
-  "Stack": { "kind": "pattern", "pattern": "stack", "styleProps": true },
-  "Accordion": {
-    "kind": "namespace",
-    "members": {
-      "Root": {
-        "kind": "slotRecipe",
-        "recipe": "accordion",
-        "slot": "root",
-        "styleProps": true,
+export default defineConfig({
+  designSystem: "@chakra-ui/react",
+  theme: {
+    extend: {
+      tokens: {
+        colors: { brand: { 500: { value: "#3b82f6" } } },
+      },
+      recipes: {
+        button: {
+          variants: {
+            variant: { marketing: { bg: "brand.500", color: "white" } },
+          },
+        },
       },
     },
   },
-}
+})
 ```
 
-## Runtime Direction
+App code is unchanged Chakra, and both the CSS and the types reflect the merged
+config:
 
-The goal is **not zero runtime** — Chakra still needs React components, Ark
-integration, contexts, polymorphism, `asChild`, prop splitting, and class
-composition. The goal is **no runtime style insertion**:
-
-```txt
-render component
-  -> split props
-  -> generated recipe/pattern runtime returns class names
-  -> generated css runtime returns deterministic atomic class names
-  -> compose className
-  -> no Emotion insertion
+```tsx
+<Button colorPalette="brand" variant="marketing" />
 ```
 
-CSS comes from: Chakra build-info hydration, app extraction of Chakra JSX usage,
-app extraction of direct styled-system usage, and static CSS / safelists for
-intentionally dynamic cases.
+## Non-goals
 
-## Build Responsibilities
+- **Zero runtime.** Chakra still ships React components, Ark integration,
+  contexts, prop splitting, and class composition. The goal is no style
+  _insertion_ at render, not no JavaScript.
+- **Emotion removed from the world.** It leaves the core; it comes back as an
+  opt-in package for anyone who wants it. See
+  [emotion-opt-in.md](./emotion-opt-in.md).
 
-Chakra CI produces:
+## Open questions
 
-1. `@chakra-ui/styled-system` generated runtime files.
-2. `@chakra-ui/styled-system/panda.preset` + `panda.buildinfo.json`.
-3. `@chakra-ui/react/panda.manifest.json` + `panda.components.json`.
+1. Does `@chakra-ui/panda-preset` become `@chakra-ui/theme`, with
+   `@chakra-ui/react` as the design system? Panda's docs draw exactly that line
+   between shipping a preset and shipping a design system.
+2. Does the styled-system package keep its own codegen, or does the app generate
+   everything?
+3. What replaces `*PropsProvider`? It is a `React.Provider` taking
+   `value={{ … }}`, which build-time extraction cannot see. Panda's own provider
+   takes variant props directly.
+4. How much component metadata can be derived from our source conventions rather
+   than hand-maintained?
 
-And on top of Panda's generic app build responsibilities:
+## Definition of done
 
-- Component source imports only package-root styled-system specifiers.
-- Component metadata maps Chakra exports → recipes / patterns / slot recipes /
-  style-props.
-- Runtime aliases + TypeScript paths documented/automated for Vite, Next
-  webpack, Turbopack.
-
-## Emotion Removal / Opt-in
-
-- Core `@chakra-ui/react` ships no Emotion; the static factory composes class
-  names only.
-- `@chakra-ui/emotion` is the opt-in package for users who want runtime Emotion
-  styling back (Mantine model). It is additive and never in the default bundle.
-
-## RSC
-
-Verified in a Next.js app-router Server Component (`sandbox/next-app`):
-`<Box>` + `<Button>` render **statically prerendered, styled, with no client
-provider** — the extracted CSS (`bg_red.500`, `chakra-button--variant_solid`, …)
-is in the build output and the classes are in the server-rendered HTML.
-Build-time extraction runs through Next's PostCSS pipeline
-(`@pandacss/dev/postcss`).
-
-One real constraint surfaced: the **`chakra.*` JSX-factory Proxy cannot be used
-directly in a Server Component**. The factory module is `"use client"`, so in
-RSC it resolves to a client _reference_, and the Proxy's dynamic property access
-(`chakra.div`) returns `undefined` → "Element type is invalid". **Named
-primitives (`Box`, `Flex`, `Stack`, `Button`, …) work fine** — they're concrete
-client components a server tree renders normally. Guidance: in Server Components
-use the named primitives; reserve `chakra.*` for Client Components. (A
-non-Proxy, RSC-safe factory export could lift this, if direct `chakra.*` in RSC
-is wanted.)
-
-Proven in a Vite sandbox (`sandbox/vite-ts`) with **0 `@emotion`/`insertStyles`
-in the built output** and no provider:
-
-- Style props, `Button` (recipe + static per-recipe import), and
-  `Stack`/`HStack`/`VStack`/ `Flex`/`Center` (patterns) all extract and render
-  at build time.
-- Tree-shaking confirmed: unused recipes (badge/alert/accordion) absent when the
-  app only uses Button.
-- `packages/react` typechecks at 0 errors, no `as any`, no `@ts-ignore` in
-  styling code.
-
-## What We Tried and Rejected
-
-- **Runtime StyledEngine adapter** — runtime check + both engines bundled;
-  tree-shaking wall is structural. Dropped the seam entirely.
-- **`@pandacss/preset-base` as the base** — narrower than Chakra's base (missing
-  `gapX`/ `gapY`, logical radii, `_notLast`, color-mix transforms). Use
-  `defaultBaseConfig`.
-- **`staticCss` for layout** — worked but doesn't scale; replaced by patterns.
-- **Full re-point of `UtilityConfig` to Panda's type** — Panda's
-  mapped-over-`LiteralUnion` type kills inline-transform inference (~40
-  implicit-anys). Kept Chakra's plain-index `UtilityConfig` built on Panda's
-  leaf types.
-- **Deleting the token-dictionary/utility/conditions cluster** — collapsed the
-  type layer; reverted. Only `css`/`cva`/`sva` were swapped for the generated
-  runtime.
-
-## Open Questions
-
-1. Should Chakra publish the generic `panda.lib.json`, or a Chakra wrapper
-   manifest pointing at `@chakra-ui/styled-system`?
-2. How much of `panda.components.json` can be generated from Chakra source
-   conventions?
-3. Contract for **dynamic style props** (`<Flex direction={expr}>`) — runtime
-   pattern fn fallback + static CSS/safelist coverage.
-4. **ClassName single source** — the 72 recipe classNames were hand-prefixed
-   `chakra-` to match the runtime; a single generated source removes the drift
-   risk.
-5. Panda-side friction (v2 base/preset not auto-included, array-condition
-   removal, pattern `jsxName` capitalization, inline-transform inference) —
-   tracked in the Panda v2 gaps note.
-6. Preset build landmine: `pnpm build` on `@chakra-ui/panda-preset` runs
-   `clean && theme`; `theme` fails on an undici env bug _after_ `clean` deletes
-   ejected src. Build directly with `tsx scripts/build/main.ts --dts` until
-   fixed.
-
-## Definition of Done
-
-- `@chakra-ui/react` depends on `@chakra-ui/styled-system`; components import
-  style helpers from the package root.
-- `designSystem: "@chakra-ui/react"` resolves Chakra preset, build info,
-  component metadata, and styled-system package root.
-- Layout primitives are patterns; recipe/slot-recipe components use generated
-  recipes.
-- Zero Emotion in the core bundle; `@chakra-ui/emotion` opt-in restores runtime
-  Emotion.
-- Base primitives render RSC-friendly with no client provider for styling.
-
-## Related
-
-- [Panda: Chakra UI as a Panda v2 Design System](https://github.com/chakra-ui/panda/blob/v2/design-notes/chakra-ui-design-system-migration.md)
-  — target packaging, `designSystem`, manifest, resolution contracts.
-- Panda v2 gaps found wiring this up — local note for the Panda team
-  (`../panda/design-notes/chakra-v4-panda-v2-gaps.md`).
+- `packages/react/src/styled-system` is deleted; nothing hand-written generates
+  CSS.
+- `designSystem: "@chakra-ui/react"` resolves the preset, build info, and
+  styled-system root, with no hand-written `importMap`.
+- An app adds `colors.brand` and `<Button colorPalette="brand" />` is correct in
+  CSS and in types.
+- An app adds `button.variant.marketing` and `<Button variant="marketing" />` is
+  correct in CSS and in types.
+- A styled component renders in a Server Component with no provider.
+- No `@emotion/*` in the dependency tree of `@chakra-ui/react`.
+- Vite, Next webpack, and Next Turbopack each have documented setup.
