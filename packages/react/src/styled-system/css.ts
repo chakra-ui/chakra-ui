@@ -12,10 +12,7 @@ import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
 import { sortAtRules } from "./sort-at-rules"
 import type { SystemContext } from "./types"
 
-// The marker is a trailing `!` or `!important`. Anchoring it to the end of
-// the value keeps an exclamation mark inside a value, such as
-// `content: '"!"'` or `url(/a!b.png)`, from being read as the marker.
-const importantRegex = /\s*!(important)?\s*$/i
+const importantRegex = /\s*!\s*(important)?\s*$/i
 
 const isImportant = memo((v: unknown) =>
   isString(v) ? importantRegex.test(v) : false,

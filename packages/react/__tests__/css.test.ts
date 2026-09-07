@@ -195,7 +195,6 @@ describe("css", () => {
   })
 
   test("important marker is only read at the end of a value", () => {
-    // an exclamation mark inside the value is part of the value
     expect(css({ content: '"Hello!"' })).toEqual({ content: '"Hello!"' })
     expect(css({ _before: { content: '"!"' } })).toEqual({
       "&::before": { content: '"!"' },
@@ -207,12 +206,14 @@ describe("css", () => {
       fontFamily: "'Wow! Sans', sans-serif",
     })
 
-    // the marker itself keeps working, with or without surrounding spaces
     expect(css({ color: "red!" })).toEqual({ color: "red !important" })
     expect(css({ color: "red !important" })).toEqual({
       color: "red !important",
     })
     expect(css({ color: "red!important " })).toEqual({
+      color: "red !important",
+    })
+    expect(css({ color: "red ! important" })).toEqual({
       color: "red !important",
     })
   })
