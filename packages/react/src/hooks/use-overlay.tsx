@@ -178,8 +178,6 @@ export function createOverlay<TProps extends Dict, TReturn = unknown>(
     if (!overlay) return
     overlay.setReturnValue?.(undefined as TReturn)
     overlay.setExitComplete?.()
-    overlay.setReturnValue = undefined
-    overlay.setExitComplete = undefined
   }
 
   const remove = (id: string) => {
