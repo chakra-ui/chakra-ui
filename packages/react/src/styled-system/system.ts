@@ -177,7 +177,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
   const tokenMap = getTokenMap(tokens)
 
   const tokenFn: TokenFn = (path: string, fallback?: any) => {
-    return tokenMap.get(path)?.value || fallback
+    return tokenMap.get(path)?.value ?? fallback
   }
 
   tokenFn.var = (path: string, fallback?: any) => {

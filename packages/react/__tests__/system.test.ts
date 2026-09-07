@@ -289,6 +289,24 @@ describe("system", () => {
     expect(sys.token("colors.teal.200")).toBe("#light")
   })
 
+  test("system.token resolves tokens whose value is zero", () => {
+    const sys = createSystem({
+      theme: {
+        tokens: {
+          zIndex: {
+            base: { value: 0 },
+            docked: { value: 10 },
+          },
+        },
+      },
+    })
+
+    expect(sys.token("zIndex.base")).toBe(0)
+    expect(sys.token("zIndex.base", "base")).toBe(0)
+    expect(sys.token("zIndex.docked")).toBe(10)
+    expect(sys.token("zIndex.unknown", "fallback")).toBe("fallback")
+  })
+
   test("system.css preserves property order in memo cache keys (#10952)", () => {
     const sys = createSystem({})
     const widthThenHeight = sys.css({ width: "100px", height: "200px" })
