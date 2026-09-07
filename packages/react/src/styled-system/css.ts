@@ -12,7 +12,7 @@ import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
 import { sortAtRules } from "./sort-at-rules"
 import type { SystemContext } from "./types"
 
-const importantRegex = /\s*!(important)?/i
+const importantRegex = /\s*!\s*(important)?\s*$/i
 
 const isImportant = memo((v: unknown) =>
   isString(v) ? importantRegex.test(v) : false,
