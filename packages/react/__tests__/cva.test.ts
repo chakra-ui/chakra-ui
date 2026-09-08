@@ -162,4 +162,56 @@ describe("cva", () => {
       "@layer recipes": { marginTop: "20px" },
     })
   })
+
+  test("keeps variant keys that collide with CSS shorthands", () => {
+    const { cva: cvaWithShorthand } = createSystem({
+      theme: {
+        breakpoints: { sm: "30em" },
+      },
+      utilities: {
+        borderRadius: { shorthand: "rounded" },
+        background: { shorthand: "bg" },
+        padding: { shorthand: "p" },
+      },
+    })
+
+    const recipe = cvaWithShorthand({
+      base: { color: "red" },
+      variants: {
+        rounded: {
+          true: {
+            borderWidth: "2px",
+            borderStyle: "solid",
+          },
+        },
+        bg: {
+          solid: { background: "blue" },
+        },
+        p: {
+          sm: { padding: "4px" },
+        },
+      },
+      compoundVariants: [
+        {
+          rounded: true,
+          bg: "solid",
+          css: { borderColor: "green" },
+        },
+      ],
+      defaultVariants: {
+        rounded: true,
+      },
+    })
+
+    expect(recipe({ bg: "solid", p: "sm" })).toMatchObject({
+      "@layer recipes": {
+        color: "red",
+        borderWidth: "2px",
+        borderStyle: "solid",
+        background: "blue",
+        padding: "4px",
+        borderColor: "green",
+      },
+    })
+  })
 })

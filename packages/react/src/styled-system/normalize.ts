@@ -15,3 +15,16 @@ export function createNormalizeFn(context: {
     })
   }
 }
+
+/** Normalize recipe props (array → breakpoint) without rewriting CSS shorthand keys. */
+export function createNormalizePropsFn(context: {
+  normalize: SystemContext["normalizeValue"]
+}) {
+  const { normalize } = context
+
+  return function (props: Dict) {
+    return walkObject(props, normalize, {
+      stop: (value) => Array.isArray(value),
+    })
+  }
+}
