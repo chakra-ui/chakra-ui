@@ -1,5 +1,21 @@
 # @chakra-ui/panda-preset
 
+## 3.37.1
+
+### Patch Changes
+
+- [`51f0eac`](https://github.com/chakra-ui/chakra-ui/commit/51f0eac7eea69af24b418b4477ab190e6da08eeb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix Checkbox Card,
+  Radio Card, and Slider ignoring their cursor tokens, so overriding
+  `tokens.cursor.checkbox`, `radio`, or `slider` in the theme did nothing.
+  Disabled elements now use `tokens.cursor.disabled` instead of a hardcoded
+  `not-allowed`, and Listbox items use `tokens.cursor.option`.
+
+- [#10979](https://github.com/chakra-ui/chakra-ui/pull/10979)
+  [`67abe9f`](https://github.com/chakra-ui/chakra-ui/commit/67abe9fb80240035a49264ed946fc6bb90ec6cb5)
+  Thanks [@dvd233](https://github.com/dvd233)! - Fix disabled file upload delete
+  triggers showing an active cursor and full-strength icon.
+
 ## 3.37.0
 
 ### Patch Changes

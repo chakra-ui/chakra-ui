@@ -1,5 +1,7 @@
 # @chakra-ui/codemod
 
+## 3.37.1
+
 ## 3.37.0
 
 ### Minor Changes
