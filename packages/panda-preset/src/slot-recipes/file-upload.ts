@@ -110,6 +110,9 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       p: "2px",
       color: "fg.muted",
       cursor: "button",
+      _disabled: {
+        layerStyle: "disabled",
+      },
     },
     itemPreview: {
       color: "fg.muted",
