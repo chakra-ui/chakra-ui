@@ -1,5 +1,68 @@
 # @chakra-ui/react
 
+## 3.37.1
+
+### Patch Changes
+
+- [`51f0eac`](https://github.com/chakra-ui/chakra-ui/commit/51f0eac7eea69af24b418b4477ab190e6da08eeb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix Checkbox Card,
+  Radio Card, and Slider ignoring their cursor tokens, so overriding
+  `tokens.cursor.checkbox`, `radio`, or `slider` in the theme did nothing.
+  Disabled elements now use `tokens.cursor.disabled` instead of a hardcoded
+  `not-allowed`, and Listbox items use `tokens.cursor.option`.
+
+- [#10966](https://github.com/chakra-ui/chakra-ui/pull/10966)
+  [`1eb59bc`](https://github.com/chakra-ui/chakra-ui/commit/1eb59bce1139ab7d89c07106cd7182a9770a14a7)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - - **Flex,
+  Square**: Fix the array form of the `css` prop being silently dropped. Both
+  components merged the incoming `css` into their base styles with an object
+  spread, which turns an array into index keys instead of merging its entries.
+  They now pass `css={[baseStyles, props.css]}`, matching `AspectRatio`, `Bleed`
+  and `Float`. `Circle` renders through `Square`, so it is fixed too
+
+- [#10970](https://github.com/chakra-ui/chakra-ui/pull/10970)
+  [`d88c3e9`](https://github.com/chakra-ui/chakra-ui/commit/d88c3e9424e5c9d7afacc09899d81cebfd223d09)
+  Thanks [@MaxFreedomPollard](https://github.com/MaxFreedomPollard)! - -
+  **System**: Fix an exclamation mark anywhere inside a style value being read
+  as the `!important` marker. `content: '"!"'` rendered as an empty string,
+  `url(/a!b.png)` lost its `!`, and every such value was emitted with
+  `!important`. The marker is now only recognised at the end of the value, so
+  `color: "red!"` and `color: "red !important"` behave as before.
+
+- [#10961](https://github.com/chakra-ui/chakra-ui/pull/10961)
+  [`0b20b60`](https://github.com/chakra-ui/chakra-ui/commit/0b20b600315d5f603724e6a6614edae2da045bcb)
+  Thanks [@giaBaoJS](https://github.com/giaBaoJS)! - Fix `useBreakpoint` and
+  `useBreakpointValue` ignoring the `getWindow` option, so media queries were
+  always evaluated against the ambient `window` instead of the provided one
+  (iframes, Shadow DOM, tests).
+
+- [#10968](https://github.com/chakra-ui/chakra-ui/pull/10968)
+  [`c455101`](https://github.com/chakra-ui/chakra-ui/commit/c455101cfaa02527bbaf06b90de5cb26b18a2b7b)
+  Thanks [@giaBaoJS](https://github.com/giaBaoJS)! - Fix `createOverlay` leaving
+  promises pending forever when an overlay is removed. `remove` and `removeAll`
+  deleted the overlay without settling the promises handed out by `open`,
+  `close` and `waitForExit`, so any code awaiting them was stuck. They now
+  resolve with `undefined`.
+
+- [#10979](https://github.com/chakra-ui/chakra-ui/pull/10979)
+  [`67abe9f`](https://github.com/chakra-ui/chakra-ui/commit/67abe9fb80240035a49264ed946fc6bb90ec6cb5)
+  Thanks [@dvd233](https://github.com/dvd233)! - Fix disabled file upload delete
+  triggers showing an active cursor and full-strength icon.
+
+- [#10953](https://github.com/chakra-ui/chakra-ui/pull/10953)
+  [`de7d481`](https://github.com/chakra-ui/chakra-ui/commit/de7d48180bcea703cb5a747f1f97702eac830a08)
+  Thanks [@Fnine59](https://github.com/Fnine59)! - Fix the style cache ignoring
+  property order, so style objects and recipe variants passed in a different
+  order could get another call site's result. This was the cause of SSR
+  hydration mismatches on `className`.
+
+- [#10971](https://github.com/chakra-ui/chakra-ui/pull/10971)
+  [`fbc174e`](https://github.com/chakra-ui/chakra-ui/commit/fbc174e5e27c3cf913b2d77720d05a720680a6eb)
+  Thanks [@giaBaoJS](https://github.com/giaBaoJS)! - Fix `system.token()` and
+  `useToken()` returning the fallback for tokens whose value is `0`. The lookup
+  used `||` instead of `??`, so `useToken("zIndex", "base")` returned the string
+  `"base"` instead of `0`, while `tokens.getVar()` already used `??`.
+
 ## 3.37.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @chakra-ui/cli
 
+## 3.37.1
+
+### Patch Changes
+
+- [`6107f36`](https://github.com/chakra-ui/chakra-ui/commit/6107f36cbf0a5cf96abcdb8fc778ded9c3c67c17)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix
+  `@chakra-ui/cli` failing to install on Node.js 26.
+
 ## 3.37.0
 
 ## 3.36.1
