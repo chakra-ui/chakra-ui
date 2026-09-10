@@ -422,8 +422,8 @@ importers:
   apps/www:
     dependencies:
       '@ark-ui/react':
-        specifier: 5.39.0
-        version: 5.39.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: 5.39.1
+        version: 5.39.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@chakra-ui/charts':
         specifier: workspace:*
         version: link:../../packages/charts
@@ -690,8 +690,8 @@ importers:
   packages/react:
     dependencies:
       '@ark-ui/react':
-        specifier: 5.39.0
-        version: 5.39.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: 5.39.1
+        version: 5.39.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@emotion/is-prop-valid':
         specifier: ^1.4.0
         version: 1.4.0
@@ -1339,8 +1339,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@ark-ui/react@5.39.0':
-    resolution: {integrity: sha512-qKMyliIHgkp4TPrdr9xmkXeP9lmuEvhRJNPNah7Wnp54lspsZJY4b08rNM+NWtlnhxO1P8iChKRKcohSQgXL/g==}
+  '@ark-ui/react@5.39.1':
+    resolution: {integrity: sha512-QiEyu2AwECSxViSy+DIF+0yT0OSLvZurzc65o2gyaGVfUBxt4RZMWpIKI6F9WgvGcrYFUAIyLpCUvjS9tmdDQg==}
     peerDependencies:
       react: 19.2.6
       react-dom: 19.2.6
@@ -12838,7 +12838,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
 
-  '@ark-ui/react@5.39.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@ark-ui/react@5.39.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@internationalized/date': 3.12.3
       '@zag-js/accordion': 1.43.3
@@ -14691,7 +14691,7 @@ snapshots:
 
   '@internationalized/number@3.6.7':
     dependencies:
-      '@swc/helpers': 0.5.15
+      '@swc/helpers': 0.5.23
 
   '@isaacs/cliui@8.0.2':
     dependencies:
