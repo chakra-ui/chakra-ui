@@ -1,6 +1,7 @@
 import * as p from "@clack/prompts"
 import { spawn } from "child_process"
 import fs from "fs"
+import { type Agent, resolveCommand } from "package-manager-detector"
 import path from "path"
 import picocolors from "picocolors"
 import semver from "semver"
@@ -11,7 +12,7 @@ import { transforms, upgradeTransforms } from "./transforms.js"
 import { getProjectInfo } from "./utils/get-project-info.js"
 import { isGitClean } from "./utils/git.js"
 import { isPackageUsed } from "./utils/is-package-used.js"
-import { getPackageManager } from "./utils/package-manager.js"
+import { getAgent } from "./utils/package-manager.js"
 
 interface UpgradeOptions {
   dry?: boolean
@@ -72,8 +73,8 @@ export async function upgrade(
     }
   }
 
-  const packageManager = getPackageManager()
-  p.log.success(`Using package manager: ${packageManager}`)
+  const agent = await getAgent()
+  p.log.success(`Using package manager: ${agent}`)
 
   section("Dependency Analysis")
 
@@ -129,20 +130,10 @@ export async function upgrade(
 
     try {
       if (packagesToRemove.length > 0) {
-        await runCommand(
-          `${packageManager} ${
-            packageManager === "npm" ? "uninstall" : "remove"
-          } ${packagesToRemove.join(" ")}`,
-          true,
-        )
+        await runResolved(agent, "uninstall", packagesToRemove)
       }
 
-      await runCommand(
-        `${packageManager} ${
-          packageManager === "npm" ? "install" : "add"
-        } ${packagesToInstall.join(" ")}`,
-        true,
-      )
+      await runResolved(agent, "add", packagesToInstall)
 
       s.stop("Dependencies updated")
     } catch (err) {
@@ -170,14 +161,7 @@ export async function upgrade(
     s.start("Installing snippets...")
 
     try {
-      const executor =
-        packageManager === "pnpm"
-          ? "pnpm dlx"
-          : packageManager === "bun"
-            ? "bunx"
-            : "npx --yes"
-
-      await runCommand(`${executor} @chakra-ui/cli snippet add`, true)
+      await runResolved(agent, "execute", ["@chakra-ui/cli", "snippet", "add"])
       s.stop("Snippets installed")
     } catch (err) {
       s.stop("Snippet installation failed")
@@ -308,6 +292,20 @@ export async function upgrade(
       ),
     )
   }
+}
+
+async function runResolved(
+  agent: Agent,
+  command: "add" | "uninstall" | "execute",
+  args: string[],
+) {
+  const resolved = resolveCommand(agent, command, args)
+  if (!resolved) {
+    throw new Error(
+      `Cannot resolve "${command}" for package manager "${agent}"`,
+    )
+  }
+  await runCommand(`${resolved.command} ${resolved.args.join(" ")}`, true)
 }
 
 async function runCommand(cmd: string, silent = false) {
