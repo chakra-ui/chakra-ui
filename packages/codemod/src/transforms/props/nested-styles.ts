@@ -1,62 +1,53 @@
-import type {
-  API,
-  FileInfo,
-  JSXExpressionContainer,
-  Options,
-} from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   isTrackedJsx,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+  const openings = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
 
-  root.find(j.JSXElement).forEach((elPath) => {
-    const opening = elPath.node.openingElement
-    if (!isTrackedJsx(opening, chakraLocalNames)) return
-    opening.attributes?.forEach((attr) => {
-      if (attr.type !== "JSXAttribute") return
-      if (attr.name.type !== "JSXIdentifier") return
-      if (attr.name.name !== "sx" && attr.name.name !== "__css") return
-      if (!attr.value || attr.value.type !== "JSXExpressionContainer") return
+  for (const opening of openings) {
+    if (!isTrackedJsx(opening, chakraLocalNames)) continue
 
-      const expr = attr.value as JSXExpressionContainer
-      if (expr.expression.type !== "ObjectExpression") return
+    for (const attr of opening.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) continue
+      const nameNode = attr.getNameNode()
+      if (!Node.isIdentifier(nameNode)) continue
+      const name = nameNode.getText()
+      if (name !== "sx" && name !== "__css") continue
 
-      const cssProps = j.objectExpression(
-        expr.expression.properties.map((prop) => {
-          if (prop.type !== "ObjectProperty") return prop
-          if (
-            prop.key.type !== "Identifier" &&
-            prop.key.type !== "StringLiteral"
-          )
-            return prop
+      const init = attr.getInitializer()
+      if (!init || !Node.isJsxExpression(init)) continue
+      const obj = init.getExpression()
+      if (!obj || !Node.isObjectLiteralExpression(obj)) continue
 
-          const keyName =
-            prop.key.type === "Identifier" ? prop.key.name : prop.key.value
+      // Prefix nested object-valued keys with "& " so they become CSS selectors.
+      const props = obj.getProperties()
+      for (let i = props.length - 1; i >= 0; i--) {
+        const prop = props[i]
+        if (!Node.isPropertyAssignment(prop)) continue
+        const keyNode = prop.getNameNode()
+        let keyName: string
+        if (Node.isIdentifier(keyNode)) keyName = keyNode.getText()
+        else if (Node.isStringLiteral(keyNode))
+          keyName = keyNode.getLiteralValue()
+        else continue
+        const value = prop.getInitializer()
+        if (!value || !Node.isObjectLiteralExpression(value)) continue
+        keyNode.replaceWithText(JSON.stringify(`& ${keyName}`))
+      }
 
-          if (prop.value.type === "ObjectExpression") {
-            return j.objectProperty(j.stringLiteral(`& ${keyName}`), prop.value)
-          }
-
-          return prop
-        }),
-      )
-
-      attr.name.name = "css"
-      expr.expression = cssProps
-    })
-  })
-
-  return root.toSource({ quote: "single" })
+      nameNode.replaceWithText("css")
+    }
+  }
 }
+
+export default transform

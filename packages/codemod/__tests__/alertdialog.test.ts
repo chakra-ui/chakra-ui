@@ -579,6 +579,7 @@ export default function App() {
               <Button colorScheme="red" onClick={onOpen}>
                 Delete Customer
               </Button>
+
               <Dialog.Root
                 open={isOpen}
                 initialFocusEl={() => cancelRef.current}
@@ -599,9 +600,11 @@ export default function App() {
                           Delete Customer
                         </Dialog.Header>
                         <Dialog.CloseTrigger />
+
                         <Dialog.Body>
                           Are you sure? You can't undo this action afterwards.
                         </Dialog.Body>
+
                         <Dialog.Footer>
                           <Button ref={cancelRef} onClick={onClose}>
                             Cancel

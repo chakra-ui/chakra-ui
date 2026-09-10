@@ -1,72 +1,64 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
-
-  root
-    .find(j.JSXElement)
-    .filter((path) => {
-      const baseName = getJsxBaseName(path.node.openingElement.name)
-      return chakraLocalNames.has(baseName)
-    })
-    .forEach((path) => {
-      path.node.openingElement.attributes?.forEach((attr) => {
-        if (attr.type !== "JSXAttribute") return
-
-        if (attr.name.name === "casing") {
-          attr.name.name = "textTransform"
-        }
-      })
-    })
-
-  root.find(j.ObjectPattern).forEach((path) => {
-    path.node.properties.forEach((prop) => {
-      if (
-        prop.type === "Property" &&
-        prop.key.type === "Identifier" &&
-        prop.key.name === "casing" &&
-        prop.value.type === "Identifier" &&
-        prop.value.name === "casing" &&
-        prop.shorthand
-      ) {
-        prop.key.name = "textTransform"
-        prop.shorthand = false
+  // 1. JSX attribute: casing -> textTransform
+  const openings = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+  for (const opening of openings) {
+    if (!chakraLocalNames.has(getJsxBaseName(opening.getTagNameNode())))
+      continue
+    for (const attr of opening.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) continue
+      const nameNode = attr.getNameNode()
+      if (Node.isIdentifier(nameNode) && nameNode.getText() === "casing") {
+        nameNode.replaceWithText("textTransform")
       }
-    })
-  })
+    }
+  }
 
-  root
-    .find(j.TSIndexedAccessType, {
-      indexType: { literal: { value: "casing" } },
-    })
-    .forEach((path) => {
-      const objectType = path.node.objectType
-      if (
-        objectType.type === "TSTypeReference" &&
-        objectType.typeName.type === "Identifier" &&
-        chakraLocalNames.has(objectType.typeName.name.replace("Props", ""))
-      ) {
-        if (
-          path.node.indexType.type === "TSLiteralType" &&
-          path.node.indexType.literal.type === "StringLiteral"
-        ) {
-          path.node.indexType.literal.value = "textTransform"
-        }
+  // 2. Destructuring shorthand: { casing } -> { textTransform: casing }
+  for (const pattern of sourceFile.getDescendantsOfKind(
+    SyntaxKind.ObjectBindingPattern,
+  )) {
+    const elements = pattern.getElements()
+    for (let i = elements.length - 1; i >= 0; i--) {
+      const el = elements[i]
+      if (el.getDotDotDotToken()) continue
+      if (el.getPropertyNameNode()) continue // aliased, not shorthand
+      const nameNode = el.getNameNode()
+      if (Node.isIdentifier(nameNode) && nameNode.getText() === "casing") {
+        el.replaceWithText("textTransform: casing")
       }
-    })
+    }
+  }
 
-  return root.toSource({ quote: "single" })
+  // 3. Indexed access type: Props["casing"] -> Props["textTransform"]
+  for (const iat of sourceFile.getDescendantsOfKind(
+    SyntaxKind.IndexedAccessType,
+  )) {
+    const objectType = iat.getObjectTypeNode()
+    const indexType = iat.getIndexTypeNode()
+    if (!Node.isTypeReference(objectType)) continue
+    const typeName = objectType.getTypeName()
+    if (!Node.isIdentifier(typeName)) continue
+    if (!chakraLocalNames.has(typeName.getText().replace("Props", ""))) continue
+    if (!Node.isLiteralTypeNode(indexType)) continue
+    const literal = indexType.getLiteral()
+    if (!Node.isStringLiteral(literal)) continue
+    if (literal.getLiteralValue() === "casing") {
+      literal.setLiteralValue("textTransform")
+    }
+  }
 }
+
+export default transform

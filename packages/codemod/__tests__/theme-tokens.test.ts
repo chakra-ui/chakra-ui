@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import transform from "../src/transforms/theme/theme-tokens"
-import { applyTransform } from "./test-utils"
+import { applyTransform, applyTransformFiles } from "./test-utils"
 
 describe("theme-tokens codemod", () => {
   describe("textStyles transformations", () => {
@@ -67,7 +67,6 @@ const theme = extendTheme({
             textStyles: {
               heading: {
                 description: 'Heading text style',
-
                 value: {
                   fontFamily: 'Georgia',
                   fontWeight: 'bold',
@@ -234,7 +233,6 @@ const theme = extendTheme({
             layerStyles: {
               card: {
                 description: 'Card container style',
-
                 value: {
                   bg: 'white',
                   shadow: 'md',
@@ -374,7 +372,6 @@ const theme = extendTheme({
                 },
               },
             },
-
             layerStyles: {
               card: {
                 value: {
@@ -431,22 +428,18 @@ const theme = extendTheme({
                 },
               },
             },
-
             textStyles: {
               body: {
                 description: 'Body text',
-
                 value: {
                   fontFamily: 'Inter',
                   fontSize: '16px',
                 },
               },
             },
-
             layerStyles: {
               card: {
                 description: 'Card style',
-
                 value: {
                   bg: 'white',
                   shadow: 'md',
@@ -513,7 +506,6 @@ const theme = extendTheme({
                 },
               },
             },
-
             semanticTokens: {
               colors: {
                 primary: {
@@ -524,11 +516,9 @@ const theme = extendTheme({
                 },
               },
             },
-
             textStyles: {
               heading: {
                 description: 'Heading styles',
-
                 value: {
                   fontFamily: 'Georgia',
                   fontWeight: 'bold',
@@ -541,7 +531,6 @@ const theme = extendTheme({
                 },
               },
             },
-
             layerStyles: {
               card: {
                 value: {
@@ -551,7 +540,6 @@ const theme = extendTheme({
               },
               selected: {
                 description: 'Selected state',
-
                 value: {
                   bg: 'blue.50',
                   borderColor: 'blue.500',
@@ -638,6 +626,71 @@ const theme = extendTheme({
         })
         "
       `)
+    })
+  })
+
+  describe("cross-file tokens", () => {
+    it("rewrites imported token files to the { value } shape", async () => {
+      const files = {
+        "colors.ts": `export const colors = {
+  brand: {
+    50: '#e6f2ff',
+    500: '#0066cc',
+  },
+}
+`,
+        "spacing.ts": `export const spacing = {
+  sm: '8px',
+  md: '16px',
+}
+`,
+        "theme.ts": `import { extendTheme } from '@chakra-ui/react'
+import { colors } from './colors'
+import { spacing } from './spacing'
+
+const theme = extendTheme({
+  colors,
+  space: spacing,
+})
+
+export default theme
+`,
+      }
+
+      const out = await applyTransformFiles(transform, files, "theme.ts")
+
+      // sibling token files are statically rewritten to { value }
+      expect(out["colors.ts"]).toContain("value: '#0066cc'")
+      expect(out["colors.ts"]).toContain("value: '#e6f2ff'")
+      expect(out["spacing.ts"]).toContain("value: '8px'")
+
+      // the theme keeps its references; no runtime helper is injected
+      expect(out["theme.ts"]).not.toContain("toTokens")
+      expect(out["theme.ts"]).toContain("createSystem(defaultConfig")
+      expect(out["theme.ts"]).toContain("tokens: {")
+
+      // theme -> system rename reaches the default export
+      expect(out["theme.ts"]).toContain("export default system")
+      expect(out["theme.ts"]).not.toContain("export default theme")
+    })
+
+    it("warns and skips when a token import can't be resolved", async () => {
+      const files = {
+        "theme.ts": `import { extendTheme } from '@chakra-ui/react'
+import { colors } from 'some-external-pkg'
+
+const theme = extendTheme({
+  colors,
+})
+
+export default theme
+`,
+      }
+
+      // Should not throw; the unresolved import is left untouched.
+      const out = await applyTransformFiles(transform, files, "theme.ts")
+      expect(out["theme.ts"]).toContain("createSystem(defaultConfig")
+      expect(out["theme.ts"]).not.toContain("toTokens")
     })
   })
 })

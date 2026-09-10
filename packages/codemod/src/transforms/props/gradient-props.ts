@@ -1,51 +1,49 @@
-import type { API, FileInfo, JSXAttribute, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxAttribute } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   isTrackedJsx,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+  const openings = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
 
-  root.find(j.JSXElement).forEach((elPath) => {
-    const opening = elPath.node.openingElement
-    if (!isTrackedJsx(opening, chakraLocalNames)) return
-    const attrs = opening.attributes || []
-    const bgAttrIndex = attrs.findIndex(
-      (a) =>
-        a.type === "JSXAttribute" &&
-        a.name.type === "JSXIdentifier" &&
-        a.name.name === "bgGradient",
-    )
-    if (bgAttrIndex === -1) return
-    const attr = attrs[bgAttrIndex] as JSXAttribute
-    if (!attr.value || attr.value.type !== "Literal") return
+  for (const opening of openings) {
+    if (!isTrackedJsx(opening, chakraLocalNames)) continue
 
-    const value = attr.value.value as string
+    const bgAttr = opening
+      .getAttributes()
+      .find(
+        (a): a is JsxAttribute =>
+          Node.isJsxAttribute(a) &&
+          Node.isIdentifier(a.getNameNode()) &&
+          a.getNameNode().getText() === "bgGradient",
+      )
+    if (!bgAttr) continue
 
+    const init = bgAttr.getInitializer()
+    if (!init || !Node.isStringLiteral(init)) continue
+
+    const value = init.getLiteralValue()
     const match = value.match(/(\w+)\(([^,]+),\s*([^,]+),\s*([^)]+)\)/)
-    if (!match) return
+    if (!match) continue
 
-    const [, _type, direction, from, to] = match
+    const [, , direction, from, to] = match
 
-    const newAttributes: JSXAttribute[] = [
-      j.jsxAttribute(j.jsxIdentifier("gradient"), j.literal(direction.trim())),
-      j.jsxAttribute(j.jsxIdentifier("gradientFrom"), j.literal(from.trim())),
-      j.jsxAttribute(j.jsxIdentifier("gradientTo"), j.literal(to.trim())),
-    ]
-
-    opening.attributes = attrs.filter((a) => a !== attr)
-    opening.attributes.push(...newAttributes)
-  })
-
-  return root.toSource({ quote: "single" })
+    bgAttr.remove()
+    opening.addAttributes([
+      { name: "gradient", initializer: JSON.stringify(direction.trim()) },
+      { name: "gradientFrom", initializer: JSON.stringify(from.trim()) },
+      { name: "gradientTo", initializer: JSON.stringify(to.trim()) },
+    ])
+  }
 }
+
+export default transform

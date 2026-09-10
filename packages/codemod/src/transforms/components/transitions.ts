@@ -1,428 +1,210 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type {
+  JsxAttribute,
+  JsxElement,
+  JsxOpeningElement,
+  JsxSelfClosingElement,
+  SourceFile,
+} from "ts-morph"
+import type { Transform } from "../../transform"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 
-/**
- * Transforms transition components (Fade, ScaleFade, Slide, SlideFade) to Presence
- *
- * @example
- * // Fade
- * <Fade in={isOpen}>content</Fade>
- * // becomes
- * <Presence present={isOpen} animationName={{ _open: "fade-in", _closed: "fade-out" }} animationDuration="moderate">content</Presence>
- *
- * @example
- * // ScaleFade
- * <ScaleFade in={isOpen} initialScale={0.9}>content</ScaleFade>
- * // becomes
- * <Presence present={isOpen} animationStyle={{ _open: "scale-fade-in", _closed: "scale-fade-out" }} animationDuration="moderate">content</Presence>
- *
- * @example
- * // Slide
- * <Slide direction='bottom' in={isOpen}>content</Slide>
- * // becomes
- * <Presence position="fixed" bottom="0" insetX="0" present={isOpen} animationName={{ _open: "slide-from-bottom-full", _closed: "slide-to-bottom-full" }} animationDuration="moderate">content</Presence>
- *
- * @example
- * // SlideFade
- * <SlideFade in={isOpen} offsetY='20px'>content</SlideFade>
- * // becomes
- * <Presence present={isOpen} animationName={{ _open: "slide-from-bottom, fade-in", _closed: "slide-to-bottom, fade-out" }} animationDuration="moderate">content</Presence>
- */
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+const TRANSITIONS = ["Fade", "ScaleFade", "Slide", "SlideFade"] as const
+type TransitionName = (typeof TRANSITIONS)[number]
 
-  if (chakraLocalNames.size === 0) return file.source
-
-  const transformedComponents = new Set<string>()
-
-  // Transform Fade
-  if (chakraLocalNames.has("Fade")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "Fade" } },
-      })
-      .forEach((path) => {
-        transformFadeToPresence(j, path)
-        transformedComponents.add("Fade")
-      })
-  }
-
-  // Transform ScaleFade
-  if (chakraLocalNames.has("ScaleFade")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "ScaleFade" } },
-      })
-      .forEach((path) => {
-        transformScaleFadeToPresence(j, path)
-        transformedComponents.add("ScaleFade")
-      })
-  }
-
-  // Transform Slide
-  if (chakraLocalNames.has("Slide")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "Slide" } },
-      })
-      .forEach((path) => {
-        transformSlideToPresence(j, path)
-        transformedComponents.add("Slide")
-      })
-  }
-
-  // Transform SlideFade
-  if (chakraLocalNames.has("SlideFade")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "SlideFade" } },
-      })
-      .forEach((path) => {
-        transformSlideFadeToPresence(j, path)
-        transformedComponents.add("SlideFade")
-      })
-  }
-
-  // Update imports
-  if (transformedComponents.size > 0) {
-    updateImportsForTransitions(j, root, transformedComponents)
-  }
-
-  return root.toSource({ quote: "single" })
+const SLIDE_CONFIG: Record<
+  string,
+  { positioning: Array<[string, string]>; open: string; closed: string }
+> = {
+  top: {
+    positioning: [
+      ["position", "fixed"],
+      ["top", "0"],
+      ["insetX", "0"],
+    ],
+    open: "slide-from-top-full",
+    closed: "slide-to-top-full",
+  },
+  bottom: {
+    positioning: [
+      ["position", "fixed"],
+      ["bottom", "0"],
+      ["insetX", "0"],
+    ],
+    open: "slide-from-bottom-full",
+    closed: "slide-to-bottom-full",
+  },
+  left: {
+    positioning: [
+      ["position", "fixed"],
+      ["left", "0"],
+      ["insetY", "0"],
+    ],
+    open: "slide-from-left-full",
+    closed: "slide-to-left-full",
+  },
+  right: {
+    positioning: [
+      ["position", "fixed"],
+      ["right", "0"],
+      ["insetY", "0"],
+    ],
+    open: "slide-from-right-full",
+    closed: "slide-to-right-full",
+  },
 }
 
-/**
- * Creates an animation name object expression for Presence component
- * @example { _open: "fade-in", _closed: "fade-out" }
- */
-function createAnimationNameObject(
-  j: any,
-  openValue: string,
-  closedValue: string,
-) {
-  return j.jsxExpressionContainer(
-    j.objectExpression([
-      j.property("init", j.identifier("_open"), j.stringLiteral(openValue)),
-      j.property("init", j.identifier("_closed"), j.stringLiteral(closedValue)),
-    ]),
-  )
-}
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-/**
- * Creates JSX attribute with string value
- */
-function createStringAttribute(j: any, name: string, value: string) {
-  return j.jsxAttribute(j.jsxIdentifier(name), j.stringLiteral(value))
-}
+  const transformed = new Set<TransitionName>()
 
-/**
- * Get configuration for Slide component based on direction
- */
-function getSlideDirectionConfig(direction: string) {
-  const configs: Record<
-    string,
-    {
-      positioning: Array<[string, string]>
-      animationOpen: string
-      animationClosed: string
-    }
-  > = {
-    top: {
-      positioning: [
-        ["position", "fixed"],
-        ["top", "0"],
-        ["insetX", "0"],
-      ],
-      animationOpen: "slide-from-top-full",
-      animationClosed: "slide-to-top-full",
-    },
-    bottom: {
-      positioning: [
-        ["position", "fixed"],
-        ["bottom", "0"],
-        ["insetX", "0"],
-      ],
-      animationOpen: "slide-from-bottom-full",
-      animationClosed: "slide-to-bottom-full",
-    },
-    left: {
-      positioning: [
-        ["position", "fixed"],
-        ["left", "0"],
-        ["insetY", "0"],
-      ],
-      animationOpen: "slide-from-left-full",
-      animationClosed: "slide-to-left-full",
-    },
-    right: {
-      positioning: [
-        ["position", "fixed"],
-        ["right", "0"],
-        ["insetY", "0"],
-      ],
-      animationOpen: "slide-from-right-full",
-      animationClosed: "slide-to-right-full",
-    },
+  // Collect targets first, then rewrite deepest/last-first so captured nodes
+  // earlier in the file stay valid across text replacements.
+  const targets: Array<{
+    node: JsxElement | JsxSelfClosingElement
+    name: TransitionName
+  }> = []
+
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    const name = matchTransition(el.getOpeningElement(), chakraLocalNames)
+    if (name) targets.push({ node: el, name })
   }
-  return configs[direction] || configs.bottom // default to bottom
-}
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    const name = matchTransition(el, chakraLocalNames)
+    if (name) targets.push({ node: el, name })
+  }
 
-/**
- * Transform Fade component to Presence
- */
-function transformFadeToPresence(j: any, path: any) {
-  const attrs = path.node.openingElement.attributes || []
-  const children = path.node.children || []
+  targets.sort((a, b) => b.node.getStart() - a.node.getStart())
 
-  const newAttrs = attrs.flatMap((attr: any) => {
-    if (attr.type !== "JSXAttribute") return attr
-
-    // Rename 'in' to 'present'
-    if (attr.name.name === "in") {
-      attr.name.name = "present"
-      return attr
-    }
-
-    return attr
-  })
-
-  // Add animation props
-  newAttrs.push(
-    j.jsxAttribute(
-      j.jsxIdentifier("animationName"),
-      createAnimationNameObject(j, "fade-in", "fade-out"),
-    ),
-  )
-  newAttrs.push(createStringAttribute(j, "animationDuration", "moderate"))
-
-  // Create new Presence element
-  const presenceElement = j.jsxElement(
-    j.jsxOpeningElement(j.jsxIdentifier("Presence"), newAttrs),
-    j.jsxClosingElement(j.jsxIdentifier("Presence")),
-    children,
-  )
-
-  j(path).replaceWith(presenceElement)
-}
-
-/**
- * Transform ScaleFade component to Presence
- */
-function transformScaleFadeToPresence(j: any, path: any) {
-  const attrs = path.node.openingElement.attributes || []
-  const children = path.node.children || []
-
-  const newAttrs = attrs.flatMap((attr: any) => {
-    if (attr.type !== "JSXAttribute") return attr
-
-    // Rename 'in' to 'present'
-    if (attr.name.name === "in") {
-      attr.name.name = "present"
-      return attr
-    }
-
-    // Remove initialScale prop (no longer customizable)
-    if (attr.name.name === "initialScale") {
-      return []
-    }
-
-    return attr
-  })
-
-  // Add animation props
-  newAttrs.push(
-    j.jsxAttribute(
-      j.jsxIdentifier("animationStyle"),
-      createAnimationNameObject(j, "scale-fade-in", "scale-fade-out"),
-    ),
-  )
-  newAttrs.push(createStringAttribute(j, "animationDuration", "moderate"))
-
-  // Create new Presence element
-  const presenceElement = j.jsxElement(
-    j.jsxOpeningElement(j.jsxIdentifier("Presence"), newAttrs),
-    j.jsxClosingElement(j.jsxIdentifier("Presence")),
-    children,
-  )
-
-  j(path).replaceWith(presenceElement)
-}
-
-/**
- * Transform Slide component to Presence
- */
-function transformSlideToPresence(j: any, path: any) {
-  const attrs = path.node.openingElement.attributes || []
-  const children = path.node.children || []
-
-  let direction = "bottom" // default direction
-  let hasNonStaticDirection = false
-
-  const newAttrs = attrs.flatMap((attr: any) => {
-    if (attr.type !== "JSXAttribute") return attr
-
-    // Rename 'in' to 'present'
-    if (attr.name.name === "in") {
-      attr.name.name = "present"
-      return attr
-    }
-
-    // Extract direction value
-    if (attr.name.name === "direction") {
-      if (
-        attr.value?.type === "StringLiteral" ||
-        (attr.value?.type === "Literal" && typeof attr.value.value === "string")
-      ) {
-        direction = attr.value.value
-      } else if (attr.value?.type === "JSXExpressionContainer") {
-        // Dynamic direction - can't determine at compile time
-        hasNonStaticDirection = true
-      }
-      return [] // Remove direction prop
-    }
-
-    return attr
-  })
-
-  // Get direction-specific configuration
-  const config = getSlideDirectionConfig(direction)
-
-  // Add positioning props
-  config.positioning.forEach(([propName, propValue]) => {
-    newAttrs.push(createStringAttribute(j, propName, propValue))
-  })
-
-  // Add animation props
-  newAttrs.push(
-    j.jsxAttribute(
-      j.jsxIdentifier("animationName"),
-      createAnimationNameObject(
-        j,
-        config.animationOpen,
-        config.animationClosed,
-      ),
-    ),
-  )
-  newAttrs.push(createStringAttribute(j, "animationDuration", "moderate"))
-
-  // Create new Presence element
-  const presenceElement = j.jsxElement(
-    j.jsxOpeningElement(j.jsxIdentifier("Presence"), newAttrs),
-    j.jsxClosingElement(j.jsxIdentifier("Presence")),
-    children,
-  )
-
-  j(path).replaceWith(presenceElement)
-
-  // Add TODO comment if direction was dynamic
-  if (hasNonStaticDirection) {
-    const comment = j.commentLine(
-      " TODO: Dynamic Slide direction detected. Please review and adjust positioning/animations manually.",
+  for (const { node, name } of targets) {
+    const opening = Node.isJsxElement(node) ? node.getOpeningElement() : node
+    const childrenText = Node.isJsxElement(node)
+      ? node
+          .getJsxChildren()
+          .map((c) => c.getText())
+          .join("")
+      : ""
+    const attrsText = buildAttrs(opening, name)
+    node.replaceWithText(
+      `<Presence\n${attrsText.join("\n")}\n>${childrenText}</Presence>`,
     )
-    path.insertBefore(comment)
+    transformed.add(name)
   }
+
+  if (transformed.size > 0) updateImports(sourceFile, transformed)
 }
 
-/**
- * Transform SlideFade component to Presence
- */
-function transformSlideFadeToPresence(j: any, path: any) {
-  const attrs = path.node.openingElement.attributes || []
-  const children = path.node.children || []
-
-  const newAttrs = attrs.flatMap((attr: any) => {
-    if (attr.type !== "JSXAttribute") return attr
-
-    // Rename 'in' to 'present'
-    if (attr.name.name === "in") {
-      attr.name.name = "present"
-      return attr
-    }
-
-    // Remove offsetY/offsetX props (no longer customizable)
-    if (attr.name.name === "offsetY" || attr.name.name === "offsetX") {
-      return []
-    }
-
-    return attr
-  })
-
-  // Add animation props
-  newAttrs.push(
-    j.jsxAttribute(
-      j.jsxIdentifier("animationName"),
-      createAnimationNameObject(
-        j,
-        "slide-from-bottom, fade-in",
-        "slide-to-bottom, fade-out",
-      ),
-    ),
-  )
-  newAttrs.push(createStringAttribute(j, "animationDuration", "moderate"))
-
-  // Create new Presence element
-  const presenceElement = j.jsxElement(
-    j.jsxOpeningElement(j.jsxIdentifier("Presence"), newAttrs),
-    j.jsxClosingElement(j.jsxIdentifier("Presence")),
-    children,
-  )
-
-  j(path).replaceWith(presenceElement)
+function matchTransition(
+  opening: JsxOpeningElement | JsxSelfClosingElement,
+  chakraLocalNames: Set<string>,
+): TransitionName | undefined {
+  const base = getJsxBaseName(opening.getTagNameNode())
+  const name = TRANSITIONS.find((t) => t === base)
+  if (name && chakraLocalNames.has(name)) return name
+  return undefined
 }
 
-/**
- * Update imports to replace transition component imports with Presence
- */
-function updateImportsForTransitions(
-  j: any,
-  root: any,
-  transformedComponents: Set<string>,
+const ANIMATION_OBJECT = (open: string, closed: string) =>
+  `{\n_open: '${open}',\n_closed: '${closed}',\n}`
+
+function buildAttrs(
+  opening: JsxOpeningElement | JsxSelfClosingElement,
+  name: TransitionName,
+): string[] {
+  const attrs = opening.getAttributes()
+  const kept: string[] = []
+  let direction = "bottom"
+
+  for (const attr of attrs) {
+    if (!Node.isJsxAttribute(attr)) {
+      kept.push(attr.getText())
+      continue
+    }
+    const attrName = attr.getNameNode().getText()
+
+    if (attrName === "in") {
+      const init = attr.getInitializer()
+      kept.push(`present${init ? `=${init.getText()}` : ""}`)
+      continue
+    }
+
+    if (name === "ScaleFade" && attrName === "initialScale") continue
+    if (
+      name === "SlideFade" &&
+      (attrName === "offsetX" || attrName === "offsetY")
+    )
+      continue
+    if (name === "Slide" && attrName === "direction") {
+      const val = stringValue(attr)
+      if (val) direction = val
+      continue
+    }
+
+    kept.push(attr.getText())
+  }
+
+  const trailing: string[] = []
+
+  if (name === "Slide") {
+    const config = SLIDE_CONFIG[direction] ?? SLIDE_CONFIG.bottom
+    for (const [prop, value] of config.positioning) {
+      trailing.push(`${prop}="${value}"`)
+    }
+    trailing.push(
+      `animationName={${ANIMATION_OBJECT(config.open, config.closed)}}`,
+    )
+  } else if (name === "ScaleFade") {
+    trailing.push(
+      `animationStyle={${ANIMATION_OBJECT("scale-fade-in", "scale-fade-out")}}`,
+    )
+  } else if (name === "SlideFade") {
+    trailing.push(
+      `animationName={${ANIMATION_OBJECT("slide-from-bottom, fade-in", "slide-to-bottom, fade-out")}}`,
+    )
+  } else {
+    trailing.push(`animationName={${ANIMATION_OBJECT("fade-in", "fade-out")}}`)
+  }
+
+  trailing.push(`animationDuration="moderate"`)
+
+  return [...kept, ...trailing]
+}
+
+function stringValue(attr: JsxAttribute): string | undefined {
+  const init = attr.getInitializer()
+  if (!init) return undefined
+  if (Node.isStringLiteral(init)) return init.getLiteralValue()
+  if (Node.isJsxExpression(init)) {
+    const expr = init.getExpression()
+    if (expr && Node.isStringLiteral(expr)) return expr.getLiteralValue()
+  }
+  return undefined
+}
+
+function updateImports(
+  sourceFile: SourceFile,
+  transformed: Set<TransitionName>,
 ) {
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    .forEach((path: any) => {
-      const specifiers = path.node.specifiers
-      if (!specifiers) return
+  const importDecl = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
+  )
+  if (!importDecl) return
 
-      let hasPresence = false
-      const filteredSpecifiers: any[] = []
+  for (const named of importDecl.getNamedImports()) {
+    if (transformed.has(named.getName() as TransitionName)) named.remove()
+  }
 
-      // Check if Presence is already imported
-      specifiers.forEach((spec: any) => {
-        if (
-          spec.type === "ImportSpecifier" &&
-          spec.imported.name === "Presence"
-        ) {
-          hasPresence = true
-        }
-      })
-
-      // Filter out transformed components and track what to keep
-      specifiers.forEach((spec: any) => {
-        if (spec.type === "ImportSpecifier") {
-          const importName = spec.imported.name
-          if (transformedComponents.has(importName)) {
-            // Skip - this component was transformed
-            return
-          }
-        }
-        filteredSpecifiers.push(spec)
-      })
-
-      // Add Presence if not already present
-      if (!hasPresence) {
-        filteredSpecifiers.push(j.importSpecifier(j.identifier("Presence")))
-      }
-
-      path.node.specifiers = filteredSpecifiers
-    })
+  const hasPresence = importDecl
+    .getNamedImports()
+    .some((n) => n.getName() === "Presence")
+  if (!hasPresence) importDecl.addNamedImport("Presence")
 }
+
+export default transform

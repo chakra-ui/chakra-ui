@@ -1,240 +1,177 @@
-import type { Collection, JSCodeshift } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type {
+  JsxOpeningElement,
+  JsxSelfClosingElement,
+  SourceFile,
+} from "ts-morph"
 
-export function collectChakraLocalNames(j: JSCodeshift, root: Collection<any>) {
+type JsxOpening = JsxOpeningElement | JsxSelfClosingElement
+
+export interface ChakraTrackerResult {
+  chakraLocalNames: Set<string>
+  svgComponents: Set<string>
+  componentAliases: Map<string, string>
+}
+
+function isChakraSource(source: string): boolean {
+  return source.includes("@chakra-ui/react")
+}
+
+function isChakraFactory(name: string): boolean {
+  return name === "chakra" || name === "styled"
+}
+
+/**
+ * Collect the local names that resolve to Chakra components in a file:
+ * direct imports, `chakra("div")` / `chakra.div` factories, aliases, and
+ * re-exports.
+ */
+export function collectChakraLocalNames(
+  sourceFile: SourceFile,
+): ChakraTrackerResult {
   const chakraLocalNames = new Set<string>()
   const svgComponents = new Set<string>()
   const componentAliases = new Map<string, string>()
 
-  root.find(j.ImportDeclaration).forEach((path) => {
-    const source = path.node.source.value
-    if (typeof source === "string" && source.includes("@chakra-ui/react")) {
-      path.node.specifiers?.forEach((spec) => {
-        if (spec.local && spec.local.type === "Identifier") {
-          chakraLocalNames.add(spec.local.name)
-        }
-      })
+  // 1. Imports from @chakra-ui/react
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (!isChakraSource(importDecl.getModuleSpecifierValue())) continue
+    const defaultImport = importDecl.getDefaultImport()
+    if (defaultImport) chakraLocalNames.add(defaultImport.getText())
+    const namespaceImport = importDecl.getNamespaceImport()
+    if (namespaceImport) chakraLocalNames.add(namespaceImport.getText())
+    for (const named of importDecl.getNamedImports()) {
+      chakraLocalNames.add(named.getAliasNode()?.getText() ?? named.getName())
     }
-  })
+  }
 
-  root.find(j.VariableDeclarator).forEach((path) => {
-    const declarator = path.node
-    if (declarator.type !== "VariableDeclarator") return
-    const id = declarator.id
-    const init = declarator.init
-    if (id.type !== "Identifier") return
-    const varName = id.name
+  // 2. Variable declarations (chakra factories, aliases, SVG components)
+  for (const decl of sourceFile.getVariableDeclarations()) {
+    const varName = decl.getName()
+    const typeNode = decl.getTypeNode()
 
-    if (id.typeAnnotation?.typeAnnotation?.type === "TSTypeReference") {
-      const typeName = (id.typeAnnotation.typeAnnotation.typeName as any).name
-      if (
-        typeName === "SVGElement" ||
-        typeName === "SVGSVGElement" ||
-        typeName?.includes("SVG")
-      ) {
-        svgComponents.add(varName)
-      }
+    if (typeNode && Node.isTypeReference(typeNode)) {
+      const typeName = typeNode.getTypeName().getText()
+      if (typeName.includes("SVG")) svgComponents.add(varName)
+      const typeArgText = typeNode
+        .getTypeArguments()
+        .map((t) => t.getText())
+        .join(",")
+      if (typeArgText.includes("SVG")) svgComponents.add(varName)
     }
 
-    if (
-      init?.type === "ArrowFunctionExpression" ||
-      init?.type === "FunctionExpression"
-    ) {
-      if (id.typeAnnotation) {
-        const typeAnnotation = id.typeAnnotation.typeAnnotation
-        if (typeAnnotation?.type === "TSTypeReference") {
-          const typeNode = typeAnnotation as any
-          if (typeNode.typeParameters?.params) {
-            typeNode.typeParameters.params.forEach((param: any) => {
-              if (param.type === "TSTypeReference") {
-                const genericTypeName = param.typeName?.name
-                if (genericTypeName?.includes("SVG")) {
-                  svgComponents.add(varName)
-                }
-              }
-            })
-          }
-        }
-      }
-    }
+    const init = decl.getInitializer()
+    if (!init) continue
 
-    if (!init) return
-
-    if (init.type === "CallExpression") {
-      const callee = init.callee
-      if (callee.type === "Identifier" && callee.name === "chakra") {
+    if (Node.isCallExpression(init)) {
+      const callee = init.getExpression()
+      if (Node.isIdentifier(callee) && callee.getText() === "chakra") {
         chakraLocalNames.add(varName)
-        return
+        continue
       }
-      if (
-        callee.type === "MemberExpression" &&
-        callee.object.type === "Identifier" &&
-        (callee.object.name === "chakra" || callee.object.name === "styled")
-      ) {
-        chakraLocalNames.add(varName)
-        return
-      }
-      if (init.arguments.length > 0) {
-        const firstArg = init.arguments[0]
-        if (
-          firstArg.type === "Identifier" &&
-          chakraLocalNames.has(firstArg.name)
-        ) {
+      if (Node.isPropertyAccessExpression(callee)) {
+        const obj = callee.getExpression()
+        if (Node.isIdentifier(obj) && isChakraFactory(obj.getText())) {
           chakraLocalNames.add(varName)
-          componentAliases.set(varName, firstArg.name)
-          return
+          continue
         }
       }
-    }
-
-    if (init.type === "Identifier") {
-      if (chakraLocalNames.has(init.name)) {
-        chakraLocalNames.add(varName)
-        componentAliases.set(varName, init.name)
-      }
-    }
-
-    if (init.type === "MemberExpression") {
-      let current: any = init
-      while (current.object) {
-        if (
-          current.object.type === "Identifier" &&
-          chakraLocalNames.has(current.object.name)
-        ) {
-          chakraLocalNames.add(varName)
-          break
-        }
-        current = current.object
-      }
-    }
-  })
-
-  root.find(j.FunctionDeclaration).forEach((path) => {
-    const id = path.node.id
-    if (!id || id.type !== "Identifier") return
-    const returnStatements = j(path).find(j.ReturnStatement)
-    returnStatements.forEach((retPath) => {
-      const arg = retPath.node.argument
-      if (path.node.returnType?.typeAnnotation?.type === "TSTypeReference") {
-        const typeName = (path.node.returnType.typeAnnotation.typeName as any)
-          .name
-        if (
-          typeName === "SVGElement" ||
-          typeName === "SVGSVGElement" ||
-          typeName?.includes("SVG") ||
-          typeName === "ReactElement"
-        ) {
-          if (
-            arg?.type === "JSXElement" &&
-            (arg as any).openingElement?.name?.name === "svg"
-          ) {
-            svgComponents.add(id.name)
-          }
-        }
-      }
-      if (arg?.type === "JSXElement") {
-        const openingElement = (arg as any).openingElement
-        if (openingElement?.name?.type === "JSXIdentifier") {
-          const returnedComponentName = openingElement.name.name
-          if (chakraLocalNames.has(returnedComponentName)) {
-            chakraLocalNames.add(id.name)
-          }
-        }
-      }
-    })
-  })
-
-  root.find(j.ExportNamedDeclaration).forEach((path) => {
-    if (path.node.declaration?.type === "VariableDeclaration") {
-      path.node.declaration.declarations.forEach((decl) => {
-        if (
-          decl.type === "VariableDeclarator" &&
-          decl.id.type === "Identifier" &&
-          decl.init
-        ) {
-          const varName = decl.id.name
-          const init = decl.init
-          if (init.type === "CallExpression") {
-            const callee = init.callee
-            if (
-              (callee.type === "Identifier" &&
-                (callee.name === "chakra" || callee.name === "styled")) ||
-              (callee.type === "MemberExpression" &&
-                callee.object.type === "Identifier" &&
-                (callee.object.name === "chakra" ||
-                  callee.object.name === "styled"))
-            ) {
-              chakraLocalNames.add(varName)
-            }
-          }
-          if (init.type === "Identifier" && chakraLocalNames.has(init.name)) {
-            chakraLocalNames.add(varName)
-            componentAliases.set(varName, init.name)
-          }
-        }
-      })
-    }
-    if (!path.node.source) {
-      path.node.specifiers?.forEach((spec) => {
-        if (spec.type === "ExportSpecifier") {
-          if (!spec.local || !spec.exported) return
-          const localName =
-            spec.local.type === "Identifier" ? spec.local.name : null
-          const exportedName =
-            spec.exported.type === "Identifier" ? spec.exported.name : null
-          if (
-            localName &&
-            exportedName &&
-            chakraLocalNames.has(localName as string)
-          ) {
-            chakraLocalNames.add(exportedName)
-            componentAliases.set(exportedName, localName as string)
-          }
-        }
-      })
-    }
-  })
-
-  root.find(j.ExportDefaultDeclaration).forEach((path) => {
-    const declaration = path.node.declaration
-    if (
-      declaration.type === "Identifier" &&
-      chakraLocalNames.has(declaration.name)
-    ) {
-      chakraLocalNames.add("default")
-    }
-    if (declaration.type === "CallExpression") {
-      const callee = declaration.callee
+      const firstArg = init.getArguments()[0]
       if (
-        (callee.type === "Identifier" &&
-          (callee.name === "chakra" || callee.name === "styled")) ||
-        (callee.type === "MemberExpression" &&
-          callee.object.type === "Identifier" &&
-          (callee.object.name === "chakra" || callee.object.name === "styled"))
+        firstArg &&
+        Node.isIdentifier(firstArg) &&
+        chakraLocalNames.has(firstArg.getText())
       ) {
-        chakraLocalNames.add("default")
+        chakraLocalNames.add(varName)
+        componentAliases.set(varName, firstArg.getText())
+        continue
       }
     }
-  })
+
+    if (Node.isIdentifier(init) && chakraLocalNames.has(init.getText())) {
+      chakraLocalNames.add(varName)
+      componentAliases.set(varName, init.getText())
+      continue
+    }
+
+    if (Node.isPropertyAccessExpression(init)) {
+      let current: Node = init
+      while (Node.isPropertyAccessExpression(current)) {
+        current = current.getExpression()
+      }
+      if (
+        Node.isIdentifier(current) &&
+        chakraLocalNames.has(current.getText())
+      ) {
+        chakraLocalNames.add(varName)
+      }
+    }
+  }
+
+  // 3. Function declarations returning tracked JSX / SVG
+  for (const fn of sourceFile.getFunctions()) {
+    const name = fn.getName()
+    if (!name) continue
+    for (const ret of fn.getDescendantsOfKind(SyntaxKind.ReturnStatement)) {
+      const arg = ret.getExpression()
+      if (!arg) continue
+      const opening = getJsxOpening(arg)
+      if (opening) {
+        const returned = getJsxBaseName(opening.getTagNameNode())
+        if (chakraLocalNames.has(returned)) chakraLocalNames.add(name)
+        if (returned === "svg") {
+          const returnType = fn.getReturnTypeNode()?.getText() ?? ""
+          if (returnType.includes("SVG") || returnType === "ReactElement") {
+            svgComponents.add(name)
+          }
+        }
+      }
+    }
+  }
+
+  // 4. Re-exports: `export const X = chakra(...)`, `export { X as Y }`
+  for (const exportDecl of sourceFile.getExportDeclarations()) {
+    if (exportDecl.getModuleSpecifier()) continue
+    for (const spec of exportDecl.getNamedExports()) {
+      const localName = spec.getName()
+      const exportedName = spec.getAliasNode()?.getText() ?? localName
+      if (chakraLocalNames.has(localName)) {
+        chakraLocalNames.add(exportedName)
+        componentAliases.set(exportedName, localName)
+      }
+    }
+  }
 
   return { chakraLocalNames, svgComponents, componentAliases }
 }
 
-export function getJsxBaseName(nameNode: any) {
-  if (nameNode.type === "JSXIdentifier") {
-    return nameNode.name
+function getJsxOpening(node: Node): JsxOpening | undefined {
+  if (Node.isJsxElement(node)) return node.getOpeningElement()
+  if (Node.isJsxSelfClosingElement(node)) return node
+  if (Node.isParenthesizedExpression(node)) {
+    const inner = node.getExpression()
+    return inner ? getJsxOpening(inner) : undefined
   }
-  if (nameNode.type === "JSXMemberExpression") {
-    let current: any = nameNode
-    while (current.object) current = current.object
-    return current.name
-  }
-  return ""
+  return undefined
 }
 
+/** True when a JSX opening/self-closing element is a tracked Chakra component. */
 export function isTrackedJsx(
-  openingElement: any,
+  opening: JsxOpening,
   chakraLocalNames: Set<string>,
-) {
-  const baseName = getJsxBaseName(openingElement.name)
-  return chakraLocalNames.has(baseName)
+): boolean {
+  return chakraLocalNames.has(getJsxBaseName(opening.getTagNameNode()))
+}
+
+/** Base identifier of a JSX tag name (handles `Foo.Bar` member names). */
+export function getJsxBaseName(nameNode: Node): string {
+  if (Node.isIdentifier(nameNode)) return nameNode.getText()
+  if (Node.isPropertyAccessExpression(nameNode)) {
+    let current: Node = nameNode
+    while (Node.isPropertyAccessExpression(current)) {
+      current = current.getExpression()
+    }
+    return current.getText()
+  }
+  return nameNode.getText()
 }

@@ -1,16 +1,11 @@
 import * as p from "@clack/prompts"
-import { EventEmitter } from "events"
 import fs from "fs"
-import { createRequire } from "node:module"
 import path from "path"
 import color from "picocolors"
+import { format, resolveConfig } from "prettier"
+import { Project } from "ts-morph"
+import type { Diagnostic, Transform, TransformContext } from "./transform.js"
 import { transforms } from "./transforms.js"
-
-const require = createRequire(import.meta.url)
-const Runner = require("jscodeshift/src/Runner")
-
-process.setMaxListeners(Infinity)
-EventEmitter.defaultMaxListeners = 0
 
 interface RunTransformOptions {
   dry?: boolean
@@ -24,51 +19,55 @@ export interface TransformResult {
   errors: number
   files: string[]
   errorFiles: string[]
+  diagnostics: Diagnostic[]
 }
 
-const ANSI = /\x1b\[[0-9;]*m/g
+const DEFAULT_IGNORE = [
+  "node_modules",
+  ".git",
+  ".next",
+  ".turbo",
+  "dist",
+  "build",
+  "out",
+  "coverage",
+]
 
-function extractPaths(output: string, tag: "OKK" | "ERR"): string[] {
-  const marker = ` ${tag} `
-  return output
-    .replace(ANSI, "")
-    .split("\n")
-    .filter((line) => line.includes(marker))
-    .map((line) => line.slice(line.lastIndexOf(marker) + marker.length).trim())
-    .filter(Boolean)
-    .map((file) => path.relative(process.cwd(), file))
+function isIgnored(filePath: string, ignore: string[]): boolean {
+  return ignore.some((pattern) => filePath.split(path.sep).includes(pattern))
 }
 
-process.once("SIGINT", () => {
-  p.cancel("Upgrade cancelled.")
-  process.exit(0)
-})
+async function formatSource(filePath: string, source: string): Promise<string> {
+  try {
+    const config = await resolveConfig(filePath)
+    return await format(source, { ...config, filepath: filePath })
+  } catch {
+    return source
+  }
+}
+
+async function loadTransform(transformPath: string): Promise<Transform> {
+  const mod = await import(transformPath)
+  return mod.default as Transform
+}
 
 export async function runTransform(
   transformName: string,
   targetPath: string,
   options: RunTransformOptions = {},
 ): Promise<TransformResult> {
-  const { dry = false, print = false, upgrade = false } = options
-  const defaultIgnore = [
-    "node_modules",
-    ".git",
-    ".next",
-    ".turbo",
-    "dist",
-    "build",
-    "out",
-    "coverage",
+  const { dry = false, upgrade = false } = options
+  const ignore = [
+    ...new Set([...DEFAULT_IGNORE, ...(options.ignorePattern || [])]),
   ]
-  const ignorePattern = [
-    ...new Set([...defaultIgnore, ...(options.ignorePattern || [])]),
-  ]
-  const transform = transforms[transformName]
 
-  if (!transform)
+  const info = transforms[transformName]
+  if (!info)
     throw new Error(color.red(`Transform "${transformName}" not found.`))
   if (!fs.existsSync(targetPath))
     throw new Error(color.red(`Target path "${targetPath}" not found.`))
+
+  const transform = await loadTransform(info.path)
 
   let s: ReturnType<typeof p.spinner> | undefined
   if (!upgrade) {
@@ -81,50 +80,104 @@ export async function runTransform(
     s.start(`Running codemod: ${transformName}`)
   }
 
-  const capturing = !print
-  const chunks: string[] = []
-  const originalWrite = process.stdout.write.bind(process.stdout)
-  if (capturing) {
-    process.stdout.write = ((chunk: any) => {
-      chunks.push(chunk.toString())
-      return true
-    }) as typeof process.stdout.write
+  const project = new Project({
+    skipAddingFilesFromTsConfig: true,
+    compilerOptions: { allowJs: true },
+  })
+
+  const stat = fs.statSync(targetPath)
+  if (stat.isDirectory()) {
+    project.addSourceFilesAtPaths(path.join(targetPath, "**/*.{ts,tsx,js,jsx}"))
+  } else {
+    project.addSourceFileAtPath(targetPath)
   }
 
-  try {
-    const result = await Runner.run(transform.path, [targetPath], {
-      extensions: "tsx,ts,jsx,js",
-      parser: "tsx",
-      runInBand: true,
-      babel: true,
-      silent: false,
-      verbose: capturing ? 2 : 0,
-      dry,
-      print,
-      ignorePattern,
-    })
+  const changed: string[] = []
+  const errorFiles: string[] = []
+  const diagnostics: Diagnostic[] = []
 
-    const output = chunks.join("")
-    if (capturing) process.stdout.write = originalWrite
+  for (const sourceFile of project.getSourceFiles()) {
+    const filePath = sourceFile.getFilePath()
+    if (isIgnored(filePath, ignore)) continue
 
-    if (!upgrade && s) {
-      s.stop(
-        dry
-          ? color.green("Dry run complete")
-          : color.green("Transformations complete"),
-      )
-      p.outro(`${color.cyan("Done!")} Your theme/code has been migrated.`)
+    const before = sourceFile.getFullText()
+    try {
+      const ctx: TransformContext = {
+        project,
+        filePath,
+        dry,
+        report(d) {
+          diagnostics.push({ ...d, file: d.file ?? filePath })
+        },
+      }
+      transform(sourceFile, ctx)
+    } catch (err) {
+      errorFiles.push(path.relative(process.cwd(), filePath))
+      continue
     }
 
-    return {
-      changed: result?.ok ?? 0,
-      errors: result?.error ?? 0,
-      files: capturing ? extractPaths(output, "OKK") : [],
-      errorFiles: capturing ? extractPaths(output, "ERR") : [],
+    if (sourceFile.getFullText() !== before) {
+      changed.push(path.relative(process.cwd(), filePath))
     }
-  } catch (err) {
-    if (capturing) process.stdout.write = originalWrite
-    s?.stop(color.red("Transformation failed"))
-    throw err instanceof Error ? err : new Error(String(err))
+  }
+
+  if (!dry) {
+    await saveChanged(project, changed)
+  }
+
+  if (!upgrade && s) {
+    s.stop(
+      dry
+        ? color.green("Dry run complete")
+        : color.green("Transformations complete"),
+    )
+    printReport(changed, errorFiles, diagnostics)
+    p.outro(`${color.cyan("Done!")} Your theme/code has been migrated.`)
+  }
+
+  return {
+    changed: changed.length,
+    errors: errorFiles.length,
+    files: changed,
+    errorFiles,
+    diagnostics,
+  }
+}
+
+async function saveChanged(project: Project, changed: string[]) {
+  const changedSet = new Set(changed)
+  for (const sourceFile of project.getSourceFiles()) {
+    const rel = path.relative(process.cwd(), sourceFile.getFilePath())
+    if (!changedSet.has(rel)) continue
+    const formatted = await formatSource(
+      sourceFile.getFilePath(),
+      sourceFile.getFullText(),
+    )
+    fs.writeFileSync(sourceFile.getFilePath(), formatted)
+  }
+}
+
+function printReport(
+  changed: string[],
+  errorFiles: string[],
+  diagnostics: Diagnostic[],
+) {
+  if (changed.length) {
+    p.log.success(`${changed.length} file(s) changed`)
+  } else {
+    p.log.info("No files changed")
+  }
+  if (errorFiles.length) {
+    p.log.error(
+      `${errorFiles.length} file(s) errored:\n${errorFiles.join("\n")}`,
+    )
+  }
+  const warnings = diagnostics.filter((d) => d.level !== "error")
+  if (warnings.length) {
+    const lines = warnings.map(
+      (d) =>
+        `- ${path.relative(process.cwd(), d.file)}: ${d.message}${d.action ? `\n  → ${d.action}` : ""}`,
+    )
+    p.log.warn(`Manual follow-ups:\n${lines.join("\n")}`)
   }
 }

@@ -1,4 +1,6 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxAttributeLike, SourceFile } from "ts-morph"
+import type { Transform } from "../../transform"
 
 /**
  * Codemod to migrate StackDivider to Stack.Separator
@@ -10,154 +12,148 @@ import type { API, FileInfo, Options } from "jscodeshift"
  * - Transform spacing prop to gap prop
  */
 
-export default function transformer(
-  file: FileInfo,
-  api: API,
-  _options: Options,
-) {
-  const j = api.jscodeshift
-  const root = j(file.source)
+const STACK_COMPONENTS = ["Stack", "VStack", "HStack"]
+
+function attrName(attr: JsxAttributeLike): string | undefined {
+  return Node.isJsxAttribute(attr) ? attr.getNameNode().getText() : undefined
+}
+
+const transform: Transform = (sourceFile) => {
   let hasChanges = false
+  let usedStackSeparator = false
 
-  // Remove StackDivider from imports
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    .forEach((path) => {
-      const specifiers = path.node.specifiers?.filter((spec) => {
-        if (
-          spec.type === "ImportSpecifier" &&
-          spec.imported.name === "StackDivider"
-        ) {
-          hasChanges = true
-          return false
-        }
-        return true
-      })
-
-      path.node.specifiers = specifiers
-    })
-
-  // Transform Stack components with divider prop
-  const stackComponents = ["Stack", "VStack", "HStack"]
-
-  stackComponents.forEach((stackName) => {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: stackName } },
-      })
-      .forEach((path) => {
-        const openingElement = path.node.openingElement
-        const attributes = openingElement.attributes || []
-
-        let dividerProp: any = null
-        const otherProps: any[] = []
-
-        attributes.forEach((attr) => {
-          if (attr.type !== "JSXAttribute") {
-            otherProps.push(attr)
-            return
-          }
-
-          const name = attr.name.name
-
-          if (name === "spacing") {
-            attr.name.name = "gap"
-            otherProps.push(attr)
-            hasChanges = true
-          } else if (name === "divider") {
-            dividerProp = attr.value
-            hasChanges = true
-          } else {
-            otherProps.push(attr)
-          }
-        })
-
-        if (dividerProp) {
-          openingElement.attributes = otherProps
-
-          let dividerElement: any = null
-          if (dividerProp.type === "JSXExpressionContainer") {
-            const expr = dividerProp.expression
-            if (expr.type === "JSXElement") {
-              const dividerAttrs = expr.openingElement.attributes || []
-
-              dividerElement = j.jsxElement(
-                j.jsxOpeningElement(
-                  j.jsxMemberExpression(
-                    j.jsxIdentifier("Stack"),
-                    j.jsxIdentifier("Separator"),
-                  ),
-                  dividerAttrs,
-                  true,
-                ),
-                null,
-                [],
-              )
-            }
-          }
-          if (!dividerElement) {
-            dividerElement = j.jsxElement(
-              j.jsxOpeningElement(
-                j.jsxMemberExpression(
-                  j.jsxIdentifier("Stack"),
-                  j.jsxIdentifier("Separator"),
-                ),
-                [],
-                true,
-              ),
-              null,
-              [],
-            )
-          }
-          const children = path.node.children || []
-          const newChildren: any[] = []
-          const meaningfulChildren = children.filter((child) => {
-            if (child.type === "JSXText") {
-              return child.value.trim().length > 0
-            }
-            return (
-              child.type === "JSXElement" ||
-              child.type === "JSXExpressionContainer"
-            )
-          })
-
-          meaningfulChildren.forEach((child, index) => {
-            newChildren.push(child)
-            if (index < meaningfulChildren.length - 1) {
-              newChildren.push(j.jsxText("\n  "))
-              newChildren.push(dividerElement)
-            }
-          })
-          path.node.children = newChildren
-        }
-      })
-  })
-
-  const hasStackSeparator =
-    root.find(j.JSXMemberExpression, {
-      object: { name: "Stack" },
-      property: { name: "Separator" },
-    }).length > 0
-
-  if (hasStackSeparator && hasChanges) {
-    root
-      .find(j.ImportDeclaration, {
-        source: { value: "@chakra-ui/react" },
-      })
-      .forEach((path) => {
-        const hasStack = path.node.specifiers?.some(
-          (spec) =>
-            spec.type === "ImportSpecifier" && spec.imported.name === "Stack",
-        )
-
-        if (!hasStack) {
-          path.node.specifiers = path.node.specifiers || []
-          path.node.specifiers.push(j.importSpecifier(j.identifier("Stack")))
-        }
-      })
+  // Remove StackDivider from @chakra-ui/react imports.
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (importDecl.getModuleSpecifierValue() !== "@chakra-ui/react") continue
+    const spec = importDecl
+      .getNamedImports()
+      .find((n) => n.getName() === "StackDivider")
+    if (spec) {
+      spec.remove()
+      hasChanges = true
+    }
   }
 
-  return hasChanges ? root.toSource() : file.source
+  // Self-closing stacks: just rename spacing -> gap and drop divider.
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    if (!STACK_COMPONENTS.includes(el.getTagNameNode().getText())) continue
+    for (const attr of el.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) continue
+      const name = attr.getNameNode().getText()
+      if (name === "spacing") {
+        attr.getNameNode().replaceWithText("gap")
+        hasChanges = true
+      } else if (name === "divider") {
+        attr.remove()
+        hasChanges = true
+      }
+    }
+  }
+
+  // JsxElements with children: process later positions first to keep earlier
+  // node positions valid when we do whole-element text replacements.
+  const elements = sourceFile
+    .getDescendantsOfKind(SyntaxKind.JsxElement)
+    .filter((el) =>
+      STACK_COMPONENTS.includes(
+        el.getOpeningElement().getTagNameNode().getText(),
+      ),
+    )
+    .reverse()
+
+  for (const el of elements) {
+    if (el.wasForgotten()) continue
+    const opening = el.getOpeningElement()
+    const attributes = opening.getAttributes()
+
+    // Rename spacing -> gap in place.
+    for (const attr of attributes) {
+      if (
+        Node.isJsxAttribute(attr) &&
+        attr.getNameNode().getText() === "spacing"
+      ) {
+        attr.getNameNode().replaceWithText("gap")
+        hasChanges = true
+      }
+    }
+
+    const dividerAttr = opening
+      .getAttributes()
+      .find((a) => attrName(a) === "divider")
+    if (!dividerAttr || !Node.isJsxAttribute(dividerAttr)) continue
+
+    hasChanges = true
+
+    // Build the Stack.Separator element text (copy divider's own attributes).
+    let dividerText = "<Stack.Separator />"
+    const dividerInit = dividerAttr.getInitializer()
+    if (dividerInit && Node.isJsxExpression(dividerInit)) {
+      const expr = dividerInit.getExpression()
+      if (
+        expr &&
+        (Node.isJsxElement(expr) || Node.isJsxSelfClosingElement(expr))
+      ) {
+        const innerOpening = Node.isJsxElement(expr)
+          ? expr.getOpeningElement()
+          : expr
+        const dividerAttrsText = innerOpening
+          .getAttributes()
+          .map((a) => a.getText())
+          .join(" ")
+        dividerText = dividerAttrsText
+          ? `<Stack.Separator ${dividerAttrsText} />`
+          : "<Stack.Separator />"
+      }
+    }
+    usedStackSeparator = true
+
+    // Opening-tag attributes (everything except divider, spacing already gap).
+    const attrsText = opening
+      .getAttributes()
+      .filter((a) => attrName(a) !== "divider")
+      .map((a) => a.getText())
+      .join(" ")
+
+    // Meaningful children get separators inserted between them.
+    const meaningfulChildren = el.getJsxChildren().filter((child) => {
+      if (Node.isJsxText(child)) return child.getText().trim().length > 0
+      return (
+        Node.isJsxElement(child) ||
+        Node.isJsxSelfClosingElement(child) ||
+        Node.isJsxExpression(child)
+      )
+    })
+
+    const parts: string[] = []
+    meaningfulChildren.forEach((child, index) => {
+      parts.push(child.getText())
+      if (index < meaningfulChildren.length - 1) {
+        parts.push("\n  ")
+        parts.push(dividerText)
+      }
+    })
+
+    const tagName = opening.getTagNameNode().getText()
+    const openingText = attrsText ? `<${tagName} ${attrsText}>` : `<${tagName}>`
+    el.replaceWithText(`${openingText}${parts.join("")}</${tagName}>`)
+  }
+
+  // Ensure Stack is imported when Stack.Separator is used.
+  if (usedStackSeparator && hasChanges) {
+    ensureStackImport(sourceFile)
+  }
 }
+
+function ensureStackImport(sourceFile: SourceFile) {
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (importDecl.getModuleSpecifierValue() !== "@chakra-ui/react") continue
+    const hasStack = importDecl
+      .getNamedImports()
+      .some((n) => n.getName() === "Stack")
+    if (!hasStack) importDecl.addNamedImport("Stack")
+  }
+}
+
+export default transform

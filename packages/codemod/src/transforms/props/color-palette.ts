@@ -1,79 +1,71 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   isTrackedJsx,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
-
-  root.find(j.JSXElement).forEach((elPath) => {
-    const opening = elPath.node.openingElement
-    if (!isTrackedJsx(opening, chakraLocalNames)) return
-
-    opening.attributes?.forEach((attr) => {
-      if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
-        return
-
-      if (attr.name.name === "colorScheme") {
-        attr.name.name = "colorPalette"
-      }
-      if (attr.name.name === "spacing") {
-        attr.name.name = "gap"
-      }
-    })
-  })
-
-  root.find(j.TSIndexedAccessType).forEach((path) => {
-    const { objectType, indexType } = path.node
-    if (
-      objectType.type === "TSTypeReference" &&
-      objectType.typeName.type === "Identifier" &&
-      indexType.type === "TSLiteralType" &&
-      indexType.literal.type === "StringLiteral"
-    ) {
-      const baseName = objectType.typeName.name.replace(/Props$/, "")
-      if (chakraLocalNames.has(baseName)) {
-        if (indexType.literal.value === "colorScheme") {
-          indexType.literal.value = "colorPalette"
-        }
-        if (indexType.literal.value === "spacing") {
-          indexType.literal.value = "gap"
-        }
-      }
+  // JSX attributes: colorScheme -> colorPalette, spacing -> gap
+  const openings = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+  for (const opening of openings) {
+    if (!isTrackedJsx(opening, chakraLocalNames)) continue
+    for (const attr of opening.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) continue
+      const nameNode = attr.getNameNode()
+      if (!Node.isIdentifier(nameNode)) continue
+      const name = nameNode.getText()
+      if (name === "colorScheme") nameNode.replaceWithText("colorPalette")
+      if (name === "spacing") nameNode.replaceWithText("gap")
     }
-  })
+  }
 
-  root.find(j.TSPropertySignature).forEach((path) => {
-    if (path.node.key.type !== "Identifier") return
-
-    const propName = path.node.key.name
-    const typeAnnotation = path.node.typeAnnotation?.typeAnnotation
-
-    if (
-      typeAnnotation?.type === "TSIndexedAccessType" &&
-      typeAnnotation.objectType.type === "TSTypeReference" &&
-      typeAnnotation.objectType.typeName.type === "Identifier"
-    ) {
-      const baseName = typeAnnotation.objectType.typeName.name.replace(
-        /Props$/,
-        "",
-      )
-      if (chakraLocalNames.has(baseName)) {
-        if (propName === "colorScheme") path.node.key.name = "colorPalette"
-        if (propName === "spacing") path.node.key.name = "gap"
-      }
+  // Indexed access types: Props["colorScheme"] / Props["spacing"]
+  for (const iat of sourceFile.getDescendantsOfKind(
+    SyntaxKind.IndexedAccessType,
+  )) {
+    const objectType = iat.getObjectTypeNode()
+    const indexType = iat.getIndexTypeNode()
+    if (!Node.isTypeReference(objectType)) continue
+    const typeName = objectType.getTypeName()
+    if (!Node.isIdentifier(typeName)) continue
+    if (!Node.isLiteralTypeNode(indexType)) continue
+    const literal = indexType.getLiteral()
+    if (!Node.isStringLiteral(literal)) continue
+    const baseName = typeName.getText().replace(/Props$/, "")
+    if (!chakraLocalNames.has(baseName)) continue
+    if (literal.getLiteralValue() === "colorScheme") {
+      literal.setLiteralValue("colorPalette")
     }
-  })
+    if (literal.getLiteralValue() === "spacing") {
+      literal.setLiteralValue("gap")
+    }
+  }
 
-  return root.toSource({ quote: "single" })
+  // Property signatures typed as an indexed access on a tracked Props type.
+  for (const ps of sourceFile.getDescendantsOfKind(
+    SyntaxKind.PropertySignature,
+  )) {
+    const nameNode = ps.getNameNode()
+    if (!Node.isIdentifier(nameNode)) continue
+    const propName = nameNode.getText()
+    const typeNode = ps.getTypeNode()
+    if (!typeNode || !Node.isIndexedAccessTypeNode(typeNode)) continue
+    const objectType = typeNode.getObjectTypeNode()
+    if (!Node.isTypeReference(objectType)) continue
+    const typeName = objectType.getTypeName()
+    if (!Node.isIdentifier(typeName)) continue
+    const baseName = typeName.getText().replace(/Props$/, "")
+    if (!chakraLocalNames.has(baseName)) continue
+    if (propName === "colorScheme") nameNode.replaceWithText("colorPalette")
+    if (propName === "spacing") nameNode.replaceWithText("gap")
+  }
 }
+
+export default transform

@@ -1,96 +1,65 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+  // 1. JSX attributes: spacing -> gap, divider -> separator
+  const openings = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+  for (const opening of openings) {
+    if (!chakraLocalNames.has(getJsxBaseName(opening.getTagNameNode())))
+      continue
+    for (const attr of opening.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) continue
+      const nameNode = attr.getNameNode()
+      if (!Node.isIdentifier(nameNode)) continue
+      const name = nameNode.getText()
+      if (name === "spacing") nameNode.replaceWithText("gap")
+      if (name === "divider") nameNode.replaceWithText("separator")
+    }
+  }
 
-  root
-    .find(j.JSXElement)
-    .filter((path) => {
-      const baseName = getJsxBaseName(path.node.openingElement.name)
-      return chakraLocalNames.has(baseName)
-    })
-    .forEach((path) => {
-      path.node.openingElement.attributes?.forEach((attr) => {
-        if (attr.type !== "JSXAttribute") return
-
-        if (attr.name.name === "spacing") {
-          attr.name.name = "gap"
-        }
-        if (attr.name.name === "divider") {
-          attr.name.name = "separator"
-        }
-      })
-    })
-
-  root.find(j.ObjectPattern).forEach((path) => {
-    path.node.properties.forEach((prop) => {
-      if (
-        prop.type === "Property" &&
-        prop.key.type === "Identifier" &&
-        prop.key.name === "spacing" &&
-        prop.value.type === "Identifier" &&
-        prop.value.name === "spacing" &&
-        prop.shorthand
-      ) {
-        // Change shorthand { spacing } to { gap: spacing }
-        prop.key.name = "gap"
-        prop.shorthand = false
+  // 2. Destructuring shorthand: { spacing } -> { gap: spacing }
+  for (const pattern of sourceFile.getDescendantsOfKind(
+    SyntaxKind.ObjectBindingPattern,
+  )) {
+    const elements = pattern.getElements()
+    for (let i = elements.length - 1; i >= 0; i--) {
+      const el = elements[i]
+      if (el.getDotDotDotToken()) continue
+      if (el.getPropertyNameNode()) continue
+      const nameNode = el.getNameNode()
+      if (Node.isIdentifier(nameNode) && nameNode.getText() === "spacing") {
+        el.replaceWithText("gap: spacing")
       }
-    })
-  })
+    }
+  }
 
-  root
-    .find(j.TSIndexedAccessType, {
-      indexType: { literal: { value: "spacing" } },
-    })
-    .forEach((path) => {
-      const objectType = path.node.objectType
-      if (
-        objectType.type === "TSTypeReference" &&
-        objectType.typeName.type === "Identifier" &&
-        chakraLocalNames.has(objectType.typeName.name.replace("Props", ""))
-      ) {
-        if (
-          path.node.indexType.type === "TSLiteralType" &&
-          path.node.indexType.literal.type === "StringLiteral"
-        ) {
-          path.node.indexType.literal.value = "gap"
-        }
-      }
-    })
-
-  root
-    .find(j.TSIndexedAccessType, {
-      indexType: { literal: { value: "divider" } },
-    })
-    .forEach((path) => {
-      const objectType = path.node.objectType
-      if (
-        objectType.type === "TSTypeReference" &&
-        objectType.typeName.type === "Identifier" &&
-        chakraLocalNames.has(objectType.typeName.name.replace("Props", ""))
-      ) {
-        if (
-          path.node.indexType.type === "TSLiteralType" &&
-          path.node.indexType.literal.type === "StringLiteral"
-        ) {
-          path.node.indexType.literal.value = "separator"
-        }
-      }
-    })
-
-  return root.toSource({ quote: "single" })
+  // 3. Indexed access types: Props["spacing"] -> gap, Props["divider"] -> separator
+  for (const iat of sourceFile.getDescendantsOfKind(
+    SyntaxKind.IndexedAccessType,
+  )) {
+    const objectType = iat.getObjectTypeNode()
+    const indexType = iat.getIndexTypeNode()
+    if (!Node.isTypeReference(objectType)) continue
+    const typeName = objectType.getTypeName()
+    if (!Node.isIdentifier(typeName)) continue
+    if (!chakraLocalNames.has(typeName.getText().replace("Props", ""))) continue
+    if (!Node.isLiteralTypeNode(indexType)) continue
+    const literal = indexType.getLiteral()
+    if (!Node.isStringLiteral(literal)) continue
+    const value = literal.getLiteralValue()
+    if (value === "spacing") literal.setLiteralValue("gap")
+    if (value === "divider") literal.setLiteralValue("separator")
+  }
 }
+
+export default transform
