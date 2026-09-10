@@ -24,13 +24,15 @@ const defaults = (conf: any): Required<RecipeDefinition> => ({
 
 interface Options {
   normalize: (styles: Dict) => Dict
+  /** Array → breakpoint only; must not rewrite CSS shorthand keys. */
+  normalizeProps: (props: Dict) => Dict
   css: CssFn
   conditions: Condition
   layers: Layers
 }
 
 export function createRecipeFn(options: Options): RecipeCreatorFn {
-  const { css, conditions, normalize, layers } = options
+  const { css, conditions, normalize, normalizeProps, layers } = options
 
   function cva(config: Dict = {}) {
     const defaultsConfig = defaults(config)
@@ -43,14 +45,14 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
 
     const getVariantCss = createCssFn({
       conditions,
-      normalize,
+      normalize: normalizeProps,
       transform(prop, value) {
         return variants[prop]?.[value]
       },
     })
 
     const resolve = memo(function resolve(props: Dict = {}) {
-      const variantSelections: Dict = normalize({
+      const variantSelections: Dict = normalizeProps({
         ...defaultVariants,
         ...compact(props),
       })

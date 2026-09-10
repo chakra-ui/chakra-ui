@@ -15,7 +15,7 @@ import { mergeConfigs } from "./config"
 import { createCssFn } from "./css"
 import { createRecipeFn } from "./cva"
 import { createLayers } from "./layers"
-import { createNormalizeFn } from "./normalize"
+import { createNormalizeFn, createNormalizePropsFn } from "./normalize"
 import { createPreflight } from "./preflight"
 import { createSerializeFn } from "./serialize"
 import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
@@ -117,6 +117,10 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     normalize: normalizeValue,
   })
 
+  const normalizeProps = createNormalizePropsFn({
+    normalize: normalizeValue,
+  })
+
   const serialize = createSerializeFn({
     conditions,
     isValidProperty,
@@ -132,6 +136,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     css: css as any,
     conditions,
     normalize: normalizeFn,
+    normalizeProps,
     layers,
   })
 
