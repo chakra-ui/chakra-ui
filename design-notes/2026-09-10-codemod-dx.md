@@ -1,8 +1,15 @@
 # Codemod DX
 
-**Date:** 2026-09-10 **Status:** Design approved, pre-implementation
-**Package:** `packages/codemod` (+ theming docs) **Related:**
+**Date:** 2026-09-10 **Status:** Scope A + B implemented; Scope C (docs parity)
+pending **Package:** `packages/codemod` (+ theming docs) **Related:**
 [ts-morph Codemod Port](./2026-09-10-ts-morph-codemod-port.md)
+
+> **Implemented:** `list` command; `--fail-on-warn` on `upgrade` and
+> `transform`; structured diagnostics (`ctx.report`) surfaced as "Manual
+> follow-ups" in both the single-transform report and the `upgrade` summary.
+> Still pending: `--dry-run` naming alias, per-transform `--transform` subset in
+> a single non-interactive run, `--dry-run` per-file diffs, and Scope C
+> (docs↔output parity in the theming docs).
 
 ## Problem
 

@@ -5,6 +5,7 @@ import path from "path"
 import picocolors from "picocolors"
 import semver from "semver"
 import { runTransform } from "./run-transform.js"
+import type { Diagnostic } from "./transform.js"
 import { transforms, upgradeTransforms } from "./transforms.js"
 import { getProjectInfo } from "./utils/get-project-info.js"
 import { isGitClean } from "./utils/git.js"
@@ -13,6 +14,7 @@ import { getPackageManager } from "./utils/package-manager.js"
 
 interface UpgradeOptions {
   dry?: boolean
+  failOnWarn?: boolean
 }
 
 process.once("SIGINT", () => {
@@ -29,7 +31,7 @@ export async function upgrade(
   revision: string = "latest",
   options: UpgradeOptions = {},
 ) {
-  const { dry = false } = options
+  const { dry = false, failOnWarn = false } = options
 
   if (revision === "latest") {
     revision = "^3.0.0"
@@ -219,6 +221,7 @@ export async function upgrade(
     // file -> transforms that touch it
     const byFile = new Map<string, Set<string>>()
     const errorsByFile = new Map<string, Set<string>>()
+    const diagnostics: Diagnostic[] = []
     let failed = 0
 
     const add = (map: Map<string, Set<string>>, file: string, name: string) => {
@@ -236,6 +239,7 @@ export async function upgrade(
         })
         res.files.forEach((f) => add(byFile, f, name))
         res.errorFiles.forEach((f) => add(errorsByFile, f, name))
+        diagnostics.push(...res.diagnostics)
       } catch (err) {
         failed++
         const msg = err instanceof Error ? err.message : String(err)
@@ -250,6 +254,11 @@ export async function upgrade(
     )
 
     reportChanges(byFile, errorsByFile, dry, failed)
+    reportDiagnostics(diagnostics)
+
+    if (failOnWarn && diagnostics.length > 0) {
+      process.exitCode = 1
+    }
   }
 
   if (dry) {
@@ -351,6 +360,32 @@ function reportChanges(
       `${errorsByFile.size} file(s) need manual attention`,
     )
   }
+}
+
+export function dedupeDiagnostics(diagnostics: Diagnostic[]): Diagnostic[] {
+  const seen = new Set<string>()
+  const out: Diagnostic[] = []
+  for (const d of diagnostics) {
+    const key = `${d.file}::${d.line ?? ""}::${d.message}`
+    if (seen.has(key)) continue
+    seen.add(key)
+    out.push(d)
+  }
+  return out
+}
+
+function reportDiagnostics(diagnostics: Diagnostic[]) {
+  const unique = dedupeDiagnostics(diagnostics)
+  if (unique.length === 0) return
+  const body = unique
+    .map((d) => {
+      const loc = path.relative(process.cwd(), d.file)
+      const where = d.line ? `${loc}:${d.line}` : loc
+      const action = d.action ? `\n  → ${d.action}` : ""
+      return `${where}\n  ${d.message}${action}`
+    })
+    .join("\n\n")
+  p.note(picocolors.yellow(body), `Manual follow-ups (${unique.length})`)
 }
 
 function writeReport(

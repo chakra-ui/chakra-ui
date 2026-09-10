@@ -1,6 +1,8 @@
 import { Command } from "commander"
 import { createRequire } from "node:module"
+import color from "picocolors"
 import { runTransform } from "../src/run-transform"
+import { transforms, upgradeTransforms } from "../src/transforms"
 import { upgrade } from "../src/upgrade"
 
 process.setMaxListeners(Infinity)
@@ -23,16 +25,41 @@ export async function run() {
     )
     .option("--verbose", "Show detailed output during upgrade")
     .option("--dry", "Do a dry-run without making changes")
+    .option(
+      "--fail-on-warn",
+      "Exit with a non-zero code if any warnings are emitted",
+    )
     .action(upgrade)
+
+  program
+    .command("list")
+    .description("List the available transforms")
+    .action(() => {
+      for (const name of upgradeTransforms) {
+        const info = transforms[name]
+        console.log(
+          `${color.cyan(name)}  ${color.dim(info?.description ?? "")}`,
+        )
+      }
+    })
 
   program
     .command("transform <transform> <path>")
     .description("Run a specific transform on files or directory")
     .option("--dry", "Do a dry-run, no code will be edited")
-    .option("--print", "Print the changed output for comparison")
     .option("-f, --force", "Bypass Git safety checks")
+    .option(
+      "--fail-on-warn",
+      "Exit with a non-zero code if any warnings are emitted",
+    )
     .action(async (transform, path, options) => {
-      await runTransform(transform, path, { ...options, upgrade: false })
+      const result = await runTransform(transform, path, {
+        ...options,
+        upgrade: false,
+      })
+      if (options.failOnWarn && result.diagnostics.length > 0) {
+        process.exitCode = 1
+      }
     })
 
   program.parse(process.argv)
