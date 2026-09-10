@@ -620,6 +620,7 @@ function App() {
                   <NumberInput.DecrementTrigger />
                 </NumberInput.Control>
               </NumberInput.Root>
+
               <NumberInput.Root size="sm" maxW={20} defaultValue="15" min={10}>
                 <NumberInput.Input />
                 <NumberInput.Control>
@@ -627,6 +628,7 @@ function App() {
                   <NumberInput.DecrementTrigger />
                 </NumberInput.Control>
               </NumberInput.Root>
+
               <NumberInput.Root size="md" maxW={24} defaultValue="15" min={10}>
                 <NumberInput.Input />
                 <NumberInput.Control>
@@ -634,6 +636,7 @@ function App() {
                   <NumberInput.DecrementTrigger />
                 </NumberInput.Control>
               </NumberInput.Root>
+
               <NumberInput.Root size="lg" maxW={32} defaultValue="15" min={10}>
                 <NumberInput.Input />
                 <NumberInput.Control>

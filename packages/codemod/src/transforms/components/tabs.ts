@@ -1,326 +1,162 @@
-import type { API, FileInfo, JSXElement, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type {
+  JsxAttribute,
+  JsxOpeningElement,
+  JsxSelfClosingElement,
+} from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
+const VARIANT_MAP: Record<string, string> = {
+  line: "line",
+  enclosed: "enclosed",
+  "enclosed-colored": "enclosed",
+  "soft-rounded": "subtle",
+  "solid-rounded": "outline",
+}
+
+const ALIGN_MAP: Record<string, string> = {
+  start: "flex-start",
+  end: "flex-end",
+  center: "center",
+}
+
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+
+  const isTabs = (tagNode: Node) =>
+    getJsxBaseName(tagNode) === "Tabs" && chakraLocalNames.has("Tabs")
+
+  // 1. Rename <Tabs> -> <Tabs.Root> and transform its props.
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    const opening = el.getOpeningElement()
+    if (!isTabs(opening.getTagNameNode())) continue
+    const attrsText = buildTabsAttrs(opening)
+    el.getClosingElement()?.getTagNameNode().replaceWithText("Tabs.Root")
+    opening.replaceWithText(`<Tabs.Root${attrsText}>`)
+  }
+
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    if (!isTabs(el.getTagNameNode())) continue
+    const attrsText = buildTabsAttrs(el)
+    el.replaceWithText(`<Tabs.Root${attrsText} />`)
+  }
+
+  // 2. Rename TabList -> Tabs.List.
+  renameTag(sourceFile, "TabList", "Tabs.List", chakraLocalNames)
+}
+
+function renameTag(
+  sourceFile: import("ts-morph").SourceFile,
+  from: string,
+  to: string,
+  chakraLocalNames: Set<string>,
 ) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames, componentAliases } = collectChakraLocalNames(
-    j,
-    root,
-  )
-  if (chakraLocalNames.size === 0) return file.source
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    const opening = el.getOpeningElement()
+    const base = getJsxBaseName(opening.getTagNameNode())
+    if (base !== from || !chakraLocalNames.has(from)) continue
+    el.getClosingElement()?.getTagNameNode().replaceWithText(to)
+    opening.getTagNameNode().replaceWithText(to)
+  }
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    const base = getJsxBaseName(el.getTagNameNode())
+    if (base !== from || !chakraLocalNames.has(from)) continue
+    el.getTagNameNode().replaceWithText(to)
+  }
+}
 
-  /**
-   * Rename <Tabs> → <Tabs.Root> and props
-   */
-  root.find(j.JSXOpeningElement).forEach((path) => {
-    const baseName = getJsxBaseName(path.node.name)
-    const isChakra =
-      chakraLocalNames.has(baseName) ||
-      (componentAliases.has(baseName) &&
-        chakraLocalNames.has(componentAliases.get(baseName) as string))
-    if (
-      !isChakra ||
-      !(baseName === "Tabs" || componentAliases.get(baseName) === "Tabs")
-    )
-      return
-    path.node.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Tabs"),
-      j.jsxIdentifier("Root"),
-    )
+function buildTabsAttrs(
+  opening: JsxOpeningElement | JsxSelfClosingElement,
+): string {
+  const attributes = opening.getAttributes()
 
-    const attrs = path.node.attributes ?? []
-
-    let hasUnmountOnExit = false
-    let variantValue: any = null
-
-    // First pass: check for lazyBehavior
-    attrs.forEach((attr) => {
-      if (attr.type === "JSXAttribute" && attr.name.type === "JSXIdentifier") {
-        if (attr.name.name === "lazyBehavior") {
-          if (
-            attr.value?.type === "Literal" &&
-            attr.value.value === "unmount"
-          ) {
-            hasUnmountOnExit = true
-          } else if (
-            attr.value?.type === "StringLiteral" &&
-            attr.value.value === "unmount"
-          ) {
-            hasUnmountOnExit = true
-          }
-        }
-      }
-    })
-
-    path.node.attributes = attrs.flatMap((attr) => {
-      if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
-        return attr
-
-      switch (attr.name.name) {
-        case "defaultIndex":
-          return j.jsxAttribute(j.jsxIdentifier("defaultValue"), attr.value)
-        case "index":
-          return j.jsxAttribute(j.jsxIdentifier("value"), attr.value)
-        case "onChange":
-          return j.jsxAttribute(
-            j.jsxIdentifier("onValueChange"),
-            wrapOnChange(j, attr.value),
-          )
-        case "isManual":
-          // if true, set activationMode='manual'
-          return j.jsxAttribute(
-            j.jsxIdentifier("activationMode"),
-            j.stringLiteral("manual"),
-          )
-        case "isLazy":
-          // Only add lazyMount
-          return j.jsxAttribute(j.jsxIdentifier("lazyMount"), attr.value)
-        case "lazyBehavior":
-          // If "unmount", unmountOnExit is added separately
-          return hasUnmountOnExit
-            ? [j.jsxAttribute(j.jsxIdentifier("unmountOnExit"))]
-            : []
-        case "isFitted":
-          return j.jsxAttribute(j.jsxIdentifier("fitted"), attr.value)
-        case "align":
-          // Map align to justifyContent
-          if (attr.value?.type === "Literal") {
-            const alignMap: Record<string, string> = {
-              start: "flex-start",
-              end: "flex-end",
-              center: "center",
-            }
-            const newValue = alignMap[attr.value.value as string]
-            if (newValue) {
-              return j.jsxAttribute(
-                j.jsxIdentifier("justifyContent"),
-                j.stringLiteral(newValue),
-              )
-            }
-          } else if (attr.value?.type === "StringLiteral") {
-            const alignMap: Record<string, string> = {
-              start: "flex-start",
-              end: "flex-end",
-              center: "center",
-            }
-            const newValue = alignMap[attr.value.value]
-            if (newValue) {
-              return j.jsxAttribute(
-                j.jsxIdentifier("justifyContent"),
-                j.stringLiteral(newValue),
-              )
-            }
-          }
-          return attr
-        case "variant":
-          // Map v2 variants to v3 variants
-          if (attr.value?.type === "Literal") {
-            variantValue = attr.value.value
-          } else if (attr.value?.type === "StringLiteral") {
-            variantValue = attr.value.value
-          }
-
-          if (variantValue === "unstyled") {
-            // unstyled variant becomes unstyled boolean prop
-            return [j.jsxAttribute(j.jsxIdentifier("unstyled"))]
-          }
-
-          const variantMap: Record<string, string> = {
-            line: "line",
-            enclosed: "enclosed",
-            "enclosed-colored": "enclosed",
-            "soft-rounded": "subtle",
-            "solid-rounded": "outline",
-          }
-
-          const newVariant = variantMap[variantValue]
-          if (newVariant) {
-            return j.jsxAttribute(
-              j.jsxIdentifier("variant"),
-              j.stringLiteral(newVariant),
-            )
-          }
-          return attr
-        default:
-          return attr
-      }
-    })
+  const hasUnmountOnExit = attributes.some((attr) => {
+    if (!Node.isJsxAttribute(attr)) return false
+    if (attr.getNameNode().getText() !== "lazyBehavior") return false
+    return literalValue(attr) === "unmount"
   })
 
-  /**
-   * Closing </Tabs> → </Tabs.Root>
-   */
-  root.find(j.JSXClosingElement).forEach((path) => {
-    const nameNode = path.node.name
-    if (nameNode.type !== "JSXIdentifier" || nameNode.name !== "Tabs") return
-    path.node.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Tabs"),
-      j.jsxIdentifier("Root"),
-    )
-  })
+  const parts: string[] = []
+  for (const attr of attributes) {
+    if (!Node.isJsxAttribute(attr)) {
+      parts.push(attr.getText())
+      continue
+    }
+    parts.push(...transformAttr(attr, hasUnmountOnExit))
+  }
 
-  /**
-   * TabList → Tabs.List
-   */
-  renameComponent(j, root, "TabList", "Tabs.List")
-
-  /**
-   * Transform Tabs children (Triggers + Panels)
-   */
-  root
-    .find(j.JSXElement, {
-      openingElement: {
-        name: {
-          type: "JSXMemberExpression",
-          object: { name: "Tabs" },
-          property: { name: "Root" },
-        },
-      },
-    })
-    .forEach((path) => {
-      const element = path.node
-
-      const tabList = findChild(element, "TabList")
-      const tabPanels = findChild(element, "TabPanels")
-
-      if (!tabList || !tabPanels) return
-
-      const tabs = getJSXElementChildren(tabList).filter(
-        isJSXElementNamed("Tab"),
-      )
-      const panels = getJSXElementChildren(tabPanels).filter(
-        isJSXElementNamed("TabPanel"),
-      )
-
-      const triggers = tabs.map((tab, i) =>
-        j.jsxElement(
-          j.jsxOpeningElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Tabs"),
-              j.jsxIdentifier("Trigger"),
-            ),
-            [
-              j.jsxAttribute(
-                j.jsxIdentifier("value"),
-                j.stringLiteral(`tab-${i}`),
-              ),
-            ],
-            false,
-          ),
-          j.jsxClosingElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Tabs"),
-              j.jsxIdentifier("Trigger"),
-            ),
-          ),
-          tab.children,
-        ),
-      )
-
-      const contents = panels.map((panel, i) =>
-        j.jsxElement(
-          j.jsxOpeningElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Tabs"),
-              j.jsxIdentifier("Content"),
-            ),
-            [
-              j.jsxAttribute(
-                j.jsxIdentifier("value"),
-                j.stringLiteral(`tab-${i}`),
-              ),
-            ],
-            false,
-          ),
-          j.jsxClosingElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Tabs"),
-              j.jsxIdentifier("Content"),
-            ),
-          ),
-          panel.children,
-        ),
-      )
-
-      element.children = [
-        j.jsxElement(
-          j.jsxOpeningElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Tabs"),
-              j.jsxIdentifier("List"),
-            ),
-            [],
-            false,
-          ),
-          j.jsxClosingElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Tabs"),
-              j.jsxIdentifier("List"),
-            ),
-          ),
-          triggers,
-        ),
-        ...contents,
-      ]
-    })
-
-  return root.toSource({ quote: "single" })
+  return parts.length ? ` ${parts.join(" ")}` : ""
 }
 
-function renameComponent(j: any, root: any, from: string, to: string) {
-  const parts = to.split(".")
+function transformAttr(
+  attr: JsxAttribute,
+  hasUnmountOnExit: boolean,
+): string[] {
+  const name = attr.getNameNode().getText()
+  const eq = valueSuffix(attr)
 
-  root
-    .find(j.JSXIdentifier, { name: from })
-    .replaceWith(() =>
-      j.jsxMemberExpression(
-        j.jsxIdentifier(parts[0]),
-        j.jsxIdentifier(parts[1]),
-      ),
-    )
+  switch (name) {
+    case "defaultIndex":
+      return [`defaultValue${eq}`]
+    case "index":
+      return [`value${eq}`]
+    case "onChange": {
+      const init = attr.getInitializer()
+      if (init && Node.isJsxExpression(init)) {
+        const expr = init.getExpression()?.getText() ?? ""
+        return [`onValueChange={({ value: value }) => ${expr}(value)}`]
+      }
+      return [`onValueChange${eq}`]
+    }
+    case "isManual":
+      return [`activationMode="manual"`]
+    case "isLazy":
+      return [`lazyMount${eq}`]
+    case "lazyBehavior":
+      return hasUnmountOnExit ? ["unmountOnExit"] : []
+    case "isFitted":
+      return [`fitted${eq}`]
+    case "align": {
+      const val = literalValue(attr)
+      if (val && ALIGN_MAP[val]) return [`justifyContent="${ALIGN_MAP[val]}"`]
+      return [attr.getText()]
+    }
+    case "variant": {
+      const val = literalValue(attr)
+      if (val === "unstyled") return ["unstyled"]
+      if (val && VARIANT_MAP[val]) return [`variant="${VARIANT_MAP[val]}"`]
+      return [attr.getText()]
+    }
+    default:
+      return [attr.getText()]
+  }
 }
 
-function wrapOnChange(j: any, value: any) {
-  if (!value || value.type !== "JSXExpressionContainer") return value
-
-  return j.jsxExpressionContainer(
-    j.arrowFunctionExpression(
-      [
-        j.objectPattern([
-          j.property("init", j.identifier("value"), j.identifier("value")),
-        ]),
-      ],
-      j.callExpression(value.expression, [j.identifier("value")]),
-    ),
-  )
+/** Suffix `=<value>` for an attribute, or "" when it's a boolean attribute. */
+function valueSuffix(attr: JsxAttribute): string {
+  const init = attr.getInitializer()
+  return init ? `=${init.getText()}` : ""
 }
 
-function findChild(parent: JSXElement, name: string): JSXElement | undefined {
-  return parent.children?.find(
-    (c): c is JSXElement =>
-      c.type === "JSXElement" &&
-      c.openingElement.name.type === "JSXIdentifier" &&
-      c.openingElement.name.name === name,
-  )
+/** String literal value of an attribute (handles both `x="y"` and `x={'y'}`). */
+function literalValue(attr: JsxAttribute): string | undefined {
+  const init = attr.getInitializer()
+  if (!init) return undefined
+  if (Node.isStringLiteral(init)) return init.getLiteralValue()
+  if (Node.isJsxExpression(init)) {
+    const expr = init.getExpression()
+    if (expr && Node.isStringLiteral(expr)) return expr.getLiteralValue()
+  }
+  return undefined
 }
 
-function getJSXElementChildren(el: JSXElement | undefined): JSXElement[] {
-  if (!el?.children) return []
-  return el.children.filter((c): c is JSXElement => c.type === "JSXElement")
-}
-
-function isJSXElementNamed(name: string) {
-  return (node: any): node is JSXElement =>
-    node.type === "JSXElement" &&
-    node.openingElement.name.type === "JSXIdentifier" &&
-    node.openingElement.name.name === name
-}
+export default transform

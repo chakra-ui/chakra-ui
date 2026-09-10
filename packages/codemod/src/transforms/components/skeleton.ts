@@ -1,127 +1,99 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxOpeningElement, JsxSelfClosingElement } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+function transformSkeleton(opening: JsxOpeningElement | JsxSelfClosingElement) {
+  // 1. isLoaded -> loading (inverted boolean)
+  for (const attr of opening.getAttributes()) {
+    if (!Node.isJsxAttribute(attr)) continue
+    if (attr.getNameNode().getText() !== "isLoaded") continue
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+    const init = attr.getInitializer()
+    let newInit: string
+    if (!init) {
+      newInit = "{false}"
+    } else if (Node.isJsxExpression(init)) {
+      newInit = `{!${init.getExpression()?.getText() ?? ""}}`
+    } else if (Node.isStringLiteral(init)) {
+      newInit = `{${!init.getLiteralValue()}}`
+    } else {
+      newInit = init.getText()
+    }
+    attr.setInitializer(newInit)
+    attr.getNameNode().replaceWithText("loading")
+    break
+  }
 
-  root.find(j.JSXElement).forEach((elPath) => {
-    const opening = elPath.node.openingElement
-    const baseName = getJsxBaseName(opening.name)
-    if (!chakraLocalNames.has(baseName)) return
-    if (baseName !== "Skeleton") return
+  // 2. startColor / endColor -> css custom properties
+  const cssProps: [string, string][] = []
+  let cssAttr: import("ts-morph").JsxAttribute | undefined
+  const toRemove: import("ts-morph").JsxAttribute[] = []
 
-    const attrs = opening.attributes || []
+  for (const attr of opening.getAttributes()) {
+    if (!Node.isJsxAttribute(attr)) continue
+    const name = attr.getNameNode().getText()
+    if (name === "css") {
+      cssAttr = attr
+      continue
+    }
+    if (name !== "startColor" && name !== "endColor") continue
 
-    // Collect CSS properties to add
-    const cssProps: Array<[string, any]> = []
+    const varName = name === "startColor" ? "--start-color" : "--end-color"
+    const init = attr.getInitializer()
+    let valueText: string | null = null
+    if (init && Node.isStringLiteral(init)) {
+      valueText = init.getText()
+    } else if (init && Node.isJsxExpression(init)) {
+      valueText = init.getExpression()?.getText() ?? null
+    }
+    if (valueText) cssProps.push([`'${varName}'`, valueText])
+    toRemove.push(attr)
+  }
 
-    opening.attributes = attrs
-      .map((attr) => {
-        if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
-          return attr
-        const name = attr.name.name
+  if (cssProps.length === 0) return
 
-        if (name === "isLoaded") {
-          attr.name.name = "loading"
-          if (!attr.value) {
-            attr.value = j.jsxExpressionContainer(j.literal(false))
-          } else if (attr.value.type === "Literal") {
-            const isTrue = Boolean(attr.value.value)
-            attr.value = j.jsxExpressionContainer(j.literal(!isTrue))
-          } else if (attr.value.type === "JSXExpressionContainer") {
-            attr.value = j.jsxExpressionContainer(
-              j.unaryExpression("!", attr.value.expression as any),
-            )
-          }
-          return attr
-        }
+  for (const attr of toRemove) attr.remove()
 
-        if (name === "startColor") {
-          const colorValue =
-            attr.value?.type === "Literal" ||
-            attr.value?.type === "StringLiteral"
-              ? attr.value.value
-              : attr.value?.type === "JSXExpressionContainer"
-                ? (attr.value.expression as any)
-                : null
+  const newEntries = cssProps.map(([k, v]) => `${k}: ${v}`)
 
-          if (colorValue) {
-            cssProps.push(["--start-color", colorValue])
-          }
-          return null as any
-        }
-
-        if (name === "endColor") {
-          const colorValue =
-            attr.value?.type === "Literal" ||
-            attr.value?.type === "StringLiteral"
-              ? attr.value.value
-              : attr.value?.type === "JSXExpressionContainer"
-                ? (attr.value.expression as any)
-                : null
-
-          if (colorValue) {
-            cssProps.push(["--end-color", colorValue])
-          }
-          return null as any
-        }
-
-        return attr
-      })
-      .filter(Boolean) as any
-
-    // Add or merge CSS properties
-    if (cssProps.length > 0) {
-      const cssAttr = opening.attributes!.find(
-        (a: any) =>
-          a.type === "JSXAttribute" &&
-          a.name.type === "JSXIdentifier" &&
-          a.name.name === "css",
-      ) as any
-
-      if (cssAttr && cssAttr.value?.type === "JSXExpressionContainer") {
-        const expr = cssAttr.value.expression
-        if (expr.type === "ObjectExpression") {
-          cssProps.forEach(([key, value]) => {
-            expr.properties.push(
-              j.objectProperty(
-                j.stringLiteral(key),
-                typeof value === "string" ? j.literal(value) : value,
-              ),
-            )
-          })
-        }
-      } else {
-        opening.attributes!.push(
-          j.jsxAttribute(
-            j.jsxIdentifier("css"),
-            j.jsxExpressionContainer(
-              j.objectExpression(
-                cssProps.map(([key, value]) =>
-                  j.objectProperty(
-                    j.stringLiteral(key),
-                    typeof value === "string" ? j.literal(value) : value,
-                  ),
-                ),
-              ),
-            ),
-          ),
+  if (cssAttr && !cssAttr.wasForgotten()) {
+    const init = cssAttr.getInitializer()
+    if (init && Node.isJsxExpression(init)) {
+      const obj = init.getExpression()
+      if (obj && Node.isObjectLiteralExpression(obj)) {
+        const existing = obj.getProperties().map((p) => p.getText())
+        cssAttr.setInitializer(
+          `{{\n${[...existing, ...newEntries].join(",\n")},\n}}`,
         )
       }
     }
-  })
-
-  return root.toSource({ quote: "single" })
+  } else {
+    opening.addAttribute({
+      name: "css",
+      initializer: `{{\n${newEntries.join(",\n")},\n}}`,
+    })
+  }
 }
+
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+  if (!chakraLocalNames.has("Skeleton")) return
+
+  const openings: (JsxOpeningElement | JsxSelfClosingElement)[] = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+  ].filter((o) => getJsxBaseName(o.getTagNameNode()) === "Skeleton")
+
+  // Process later elements first so earlier positions stay stable.
+  for (const opening of openings.reverse()) {
+    if (opening.wasForgotten()) continue
+    transformSkeleton(opening)
+  }
+}
+
+export default transform

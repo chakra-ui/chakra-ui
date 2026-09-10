@@ -1,187 +1,113 @@
-import type { API, FileInfo, JSXAttribute, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxElement, JsxSelfClosingElement } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
-
-  root.find(j.JSXElement).forEach((elPath) => {
-    const opening = elPath.node.openingElement
-    const baseName = getJsxBaseName(opening.name)
-    if (!chakraLocalNames.has(baseName)) return
-
-    // RangeSlider root → Slider.Root
-    if (baseName === "RangeSlider") {
-      const oldAttrs = opening.attributes ?? []
-      const newAttrs: JSXAttribute[] = []
-
-      // Transform props
-      oldAttrs.forEach((attr: any) => {
-        if (
-          attr.type !== "JSXAttribute" ||
-          attr.name.type !== "JSXIdentifier"
-        ) {
-          newAttrs.push(attr)
-          return
-        }
-
-        switch (attr.name.name) {
-          case "colorScheme":
-            // colorScheme -> colorPalette
-            newAttrs.push(
-              j.jsxAttribute(j.jsxIdentifier("colorPalette"), attr.value),
-            )
-            break
-          case "onChange":
-            // onChange -> onValueChange
-            newAttrs.push(
-              j.jsxAttribute(j.jsxIdentifier("onValueChange"), attr.value),
-            )
-            break
-          case "onChangeEnd":
-            // onChangeEnd -> onValueChangeEnd
-            newAttrs.push(
-              j.jsxAttribute(j.jsxIdentifier("onValueChangeEnd"), attr.value),
-            )
-            break
-          case "focusThumbOnChange":
-          case "reversed":
-            // Remove these props
-            break
-          default:
-            newAttrs.push(attr)
-        }
-      })
-
-      opening.attributes = newAttrs
-
-      const newName = j.jsxMemberExpression(
-        j.jsxIdentifier("Slider"),
-        j.jsxIdentifier("Root"),
-      )
-      opening.name = newName
-      if (elPath.node.closingElement) {
-        elPath.node.closingElement.name = newName
-      }
-
-      // Restructure children: separate track and thumbs, wrap in Control
-      const children = elPath.node.children ?? []
-      const trackElements: any[] = []
-      const thumbElements: any[] = []
-      const otherChildren: any[] = []
-
-      children.forEach((c) => {
-        if (c.type !== "JSXElement") {
-          otherChildren.push(c)
-          return
-        }
-
-        const childName = getJsxBaseName(c.openingElement.name)
-
-        if (childName === "RangeSliderTrack" || childName === "Slider.Track") {
-          // Transform track and add to trackElements
-          trackElements.push(c)
-        } else if (
-          childName === "RangeSliderThumb" ||
-          childName === "Slider.Thumb"
-        ) {
-          // Add HiddenInput to each thumb
-          const thumbChildren = c.children ?? []
-          const hiddenInput = j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Slider"),
-                j.jsxIdentifier("HiddenInput"),
-              ),
-              [],
-              true,
-            ),
-            null,
-            [],
-          )
-
-          // Create new thumb with HiddenInput as first child
-          const newThumb = j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Slider"),
-                j.jsxIdentifier("Thumb"),
-              ),
-              c.openingElement.attributes ?? [],
-              false,
-            ),
-            j.jsxClosingElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Slider"),
-                j.jsxIdentifier("Thumb"),
-              ),
-            ),
-            [hiddenInput, ...thumbChildren],
-          )
-          thumbElements.push(newThumb)
-        } else {
-          otherChildren.push(c)
-        }
-      })
-
-      // Create Control wrapper with Track and Thumbs
-      const controlChildren = [...trackElements, ...thumbElements]
-      if (controlChildren.length > 0) {
-        const controlElement = j.jsxElement(
-          j.jsxOpeningElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Slider"),
-              j.jsxIdentifier("Control"),
-            ),
-            [],
-            false,
-          ),
-          j.jsxClosingElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Slider"),
-              j.jsxIdentifier("Control"),
-            ),
-          ),
-          controlChildren,
-        )
-        elPath.node.children = [...otherChildren, controlElement]
-      }
-    }
-
-    // Transform RangeSlider sub-components
-    if (opening.name.type === "JSXIdentifier") {
-      const componentMap: Record<string, string> = {
-        RangeSliderTrack: "Track",
-        RangeSliderFilledTrack: "Range",
-        RangeSliderThumb: "Thumb",
-      }
-
-      const newComponent = componentMap[baseName]
-      if (newComponent) {
-        opening.name = j.jsxMemberExpression(
-          j.jsxIdentifier("Slider"),
-          j.jsxIdentifier(newComponent),
-        )
-        if (elPath.node.closingElement) {
-          elPath.node.closingElement.name = j.jsxMemberExpression(
-            j.jsxIdentifier("Slider"),
-            j.jsxIdentifier(newComponent),
-          )
-        }
-      }
-    }
-  })
-
-  return root.toSource({ quote: "single" })
+const ROOT_PROP_RENAMES: Record<string, string> = {
+  colorScheme: "colorPalette",
+  onChange: "onValueChange",
+  onChangeEnd: "onValueChangeEnd",
 }
+const ROOT_PROP_REMOVE = new Set(["focusThumbOnChange", "reversed"])
+
+function getAttrsText(el: JsxElement | JsxSelfClosingElement): string {
+  const opening = Node.isJsxElement(el) ? el.getOpeningElement() : el
+  return opening
+    .getAttributes()
+    .map((a) => a.getText())
+    .join(" ")
+}
+
+function getInner(el: JsxElement | JsxSelfClosingElement): string {
+  if (!Node.isJsxElement(el)) return ""
+  const full = el.getText()
+  const openText = el.getOpeningElement().getText()
+  const closeText = el.getClosingElement().getText()
+  return full.slice(openText.length, full.length - closeText.length)
+}
+
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+
+  const roots = sourceFile
+    .getDescendantsOfKind(SyntaxKind.JsxElement)
+    .filter((el) => {
+      const tag = el.getOpeningElement().getTagNameNode()
+      return (
+        Node.isIdentifier(tag) &&
+        tag.getText() === "RangeSlider" &&
+        chakraLocalNames.has("RangeSlider")
+      )
+    })
+
+  for (const el of roots.reverse()) {
+    const opening = el.getOpeningElement()
+
+    // Transform root props.
+    const rootAttrs = opening
+      .getAttributes()
+      .flatMap((attr) => {
+        if (!Node.isJsxAttribute(attr)) return [attr.getText()]
+        const name = attr.getNameNode().getText()
+        if (ROOT_PROP_REMOVE.has(name)) return []
+        const rename = ROOT_PROP_RENAMES[name]
+        if (rename) {
+          const init = attr.getInitializer()
+          return [init ? `${rename}=${init.getText()}` : rename]
+        }
+        return [attr.getText()]
+      })
+      .join(" ")
+
+    // Classify direct children.
+    const tracks: string[] = []
+    const thumbs: string[] = []
+    const others: string[] = []
+
+    for (const child of el.getJsxChildren()) {
+      if (Node.isJsxText(child)) {
+        if (child.getText().trim() !== "") others.push(child.getText())
+        continue
+      }
+      if (!Node.isJsxElement(child) && !Node.isJsxSelfClosingElement(child)) {
+        others.push(child.getText())
+        continue
+      }
+      const baseName = getJsxBaseName(
+        Node.isJsxElement(child)
+          ? child.getOpeningElement().getTagNameNode()
+          : child.getTagNameNode(),
+      )
+      if (baseName === "RangeSliderTrack") {
+        tracks.push(
+          child
+            .getText()
+            .replaceAll("RangeSliderFilledTrack", "Slider.Range")
+            .replaceAll("RangeSliderTrack", "Slider.Track"),
+        )
+      } else if (baseName === "RangeSliderThumb") {
+        const attrs = getAttrsText(child)
+        const thumbOpen = attrs ? `<Slider.Thumb ${attrs}>` : `<Slider.Thumb>`
+        thumbs.push(
+          `${thumbOpen}\n<Slider.HiddenInput />${getInner(child)}\n</Slider.Thumb>`,
+        )
+      } else {
+        others.push(child.getText())
+      }
+    }
+
+    const controlInner = [...tracks, ...thumbs].join("\n")
+    const control = `<Slider.Control>\n${controlInner}\n</Slider.Control>`
+    const rootOpen = rootAttrs ? `<Slider.Root ${rootAttrs}>` : `<Slider.Root>`
+
+    el.replaceWithText(
+      `${rootOpen}\n${others.join("")}${control}\n</Slider.Root>`,
+    )
+  }
+}
+
+export default transform

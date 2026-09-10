@@ -1,43 +1,41 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxOpeningElement, JsxSelfClosingElement } from "ts-morph"
+import type { Transform } from "../../transform"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
+
+const RENAME: Record<string, string> = {
+  thickness: "borderWidth",
+  speed: "animationDuration",
+}
 
 /**
  * Transforms Spinner component:
  * - thickness -> borderWidth
  * - speed -> animationDuration
  */
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+  if (!chakraLocalNames.has("Spinner")) return
 
-  root
-    .find(j.JSXElement, {
-      openingElement: { name: { name: "Spinner" } },
-    })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("Spinner")) return
-      const attrs = path.node.openingElement.attributes
-      if (!attrs) return
+  const openings: (JsxOpeningElement | JsxSelfClosingElement)[] = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+  ]
 
-      attrs.forEach((attr) => {
-        if (attr.type !== "JSXAttribute") return
-
-        if (attr.name.name === "thickness") {
-          attr.name.name = "borderWidth"
-        }
-
-        if (attr.name.name === "speed") {
-          attr.name.name = "animationDuration"
-        }
-      })
-    })
-
-  return root.toSource({ quote: "single" })
+  for (const opening of openings) {
+    if (getJsxBaseName(opening.getTagNameNode()) !== "Spinner") continue
+    const attrs = opening.getAttributes()
+    for (let i = attrs.length - 1; i >= 0; i--) {
+      const attr = attrs[i]
+      if (!Node.isJsxAttribute(attr)) continue
+      const newName = RENAME[attr.getNameNode().getText()]
+      if (newName) attr.getNameNode().replaceWithText(newName)
+    }
+  }
 }
+
+export default transform

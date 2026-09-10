@@ -1,186 +1,104 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
-  let hasChanges = false
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    .forEach((path) => {
-      const specifiers = path.node.specifiers?.map((spec) => {
-        if (
-          spec.type === "ImportSpecifier" &&
-          spec.imported.name === "CircularProgress"
-        ) {
-          hasChanges = true
-          return j.importSpecifier(j.identifier("ProgressCircle"))
-        }
-        return spec
-      })
+  // Rename `CircularProgress` -> `ProgressCircle` in @chakra-ui/react imports.
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (importDecl.getModuleSpecifierValue() !== "@chakra-ui/react") continue
+    const spec = importDecl
+      .getNamedImports()
+      .find((n) => n.getName() === "CircularProgress")
+    if (spec) spec.setName("ProgressCircle")
+  }
 
-      path.node.specifiers = specifiers
-    })
+  // Transform <CircularProgress ... /> into the ProgressCircle composition.
+  const elements = sourceFile
+    .getDescendantsOfKind(SyntaxKind.JsxElement)
+    .filter(
+      (el) =>
+        el.getOpeningElement().getTagNameNode().getText() ===
+        "CircularProgress",
+    )
+    .reverse()
 
-  root
-    .find(j.JSXElement, {
-      openingElement: { name: { name: "CircularProgress" } },
-    })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("CircularProgress")) return
-      const openingElement = path.node.openingElement
-      const attributes = openingElement.attributes || []
+  for (const el of elements) {
+    if (el.wasForgotten()) continue
+    if (!chakraLocalNames.has("CircularProgress")) continue
 
-      let value: any = null
-      let thickness: any = null
-      let color: any = null
-      let isIndeterminate = false
-      const otherProps: any[] = []
+    const opening = el.getOpeningElement()
 
-      attributes.forEach((attr) => {
-        if (attr.type !== "JSXAttribute") {
-          otherProps.push(attr)
-          return
-        }
+    let valueInit: string | undefined
+    let thicknessInit: string | undefined
+    let colorInit: string | undefined
+    let isIndeterminate = false
+    const otherProps: string[] = []
 
-        const name = attr.name.name
-        const attrValue = attr.value
+    for (const attr of opening.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) {
+        otherProps.push(attr.getText())
+        continue
+      }
 
-        if (name === "value") {
-          value = attrValue
-        } else if (name === "thickness") {
-          thickness = attrValue
-        } else if (name === "color") {
-          color = attrValue
-        } else if (name === "isIndeterminate") {
-          if (attrValue?.type === "JSXExpressionContainer") {
-            const expr = attrValue.expression
-            if (expr.type === "BooleanLiteral") {
-              isIndeterminate = expr.value === true
-            } else {
-              isIndeterminate = true
-            }
+      const name = attr.getNameNode().getText()
+      const init = attr.getInitializer()
+
+      if (name === "value") {
+        valueInit = init?.getText()
+      } else if (name === "thickness") {
+        thicknessInit = init?.getText()
+      } else if (name === "color") {
+        colorInit = init?.getText()
+      } else if (name === "isIndeterminate") {
+        if (init && Node.isJsxExpression(init)) {
+          const expr = init.getExpression()
+          if (expr && expr.getKind() === SyntaxKind.FalseKeyword) {
+            isIndeterminate = false
           } else {
             isIndeterminate = true
           }
         } else {
-          otherProps.push(attr)
+          isIndeterminate = true
         }
-      })
-
-      if (isIndeterminate) {
-        value = j.jsxExpressionContainer(j.identifier("null"))
+      } else {
+        otherProps.push(attr.getText())
       }
+    }
 
-      const rootProps = [
-        j.jsxAttribute(
-          j.jsxIdentifier("value"),
-          value || j.jsxExpressionContainer(j.numericLiteral(0)),
-        ),
-        ...otherProps,
-      ]
+    // Root props: value first, then the untouched other props.
+    const valueText = isIndeterminate
+      ? "value={null}"
+      : valueInit
+        ? `value=${valueInit}`
+        : "value={0}"
+    const rootPropsText = [valueText, ...otherProps].join(" ")
 
-      const circleProps = []
-      if (thickness) {
-        const thicknessValue =
-          thickness.type === "JSXExpressionContainer"
-            ? thickness.expression
-            : thickness
+    // Circle props: optional css custom property for thickness.
+    let circlePropsText = ""
+    if (thicknessInit) {
+      const thicknessValue =
+        thicknessInit.startsWith("{") && thicknessInit.endsWith("}")
+          ? thicknessInit.slice(1, -1).trim()
+          : thicknessInit
+      circlePropsText = ` css={{ "--thickness": ${thicknessValue} }}`
+    }
 
-        circleProps.push(
-          j.jsxAttribute(
-            j.jsxIdentifier("css"),
-            j.jsxExpressionContainer(
-              j.objectExpression([
-                j.property("init", j.literal("--thickness"), thicknessValue),
-              ]),
-            ),
-          ),
-        )
-      }
+    // Range props: optional stroke from color.
+    const rangePropsText = colorInit ? ` stroke=${colorInit}` : ""
 
-      const rangeProps = []
-      if (color) {
-        rangeProps.push(j.jsxAttribute(j.jsxIdentifier("stroke"), color))
-      }
+    const newText =
+      `<ProgressCircle.Root ${rootPropsText}>\n` +
+      `  <ProgressCircle.Circle${circlePropsText}>\n` +
+      `    <ProgressCircle.Track />\n` +
+      `    <ProgressCircle.Range${rangePropsText} />\n` +
+      `  </ProgressCircle.Circle>\n` +
+      `</ProgressCircle.Root>`
 
-      const newElement = j.jsxElement(
-        j.jsxOpeningElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("ProgressCircle"),
-            j.jsxIdentifier("Root"),
-          ),
-          rootProps,
-        ),
-        j.jsxClosingElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("ProgressCircle"),
-            j.jsxIdentifier("Root"),
-          ),
-        ),
-        [
-          j.jsxText("\n  "),
-          j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("ProgressCircle"),
-                j.jsxIdentifier("Circle"),
-              ),
-              circleProps,
-            ),
-            j.jsxClosingElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("ProgressCircle"),
-                j.jsxIdentifier("Circle"),
-              ),
-            ),
-            [
-              j.jsxText("\n    "),
-              j.jsxElement(
-                j.jsxOpeningElement(
-                  j.jsxMemberExpression(
-                    j.jsxIdentifier("ProgressCircle"),
-                    j.jsxIdentifier("Track"),
-                  ),
-                  [],
-                  true,
-                ),
-                null,
-                [],
-              ),
-              j.jsxText("\n    "),
-              j.jsxElement(
-                j.jsxOpeningElement(
-                  j.jsxMemberExpression(
-                    j.jsxIdentifier("ProgressCircle"),
-                    j.jsxIdentifier("Range"),
-                  ),
-                  rangeProps,
-                  true,
-                ),
-                null,
-                [],
-              ),
-              j.jsxText("\n  "),
-            ],
-          ),
-          j.jsxText("\n"),
-        ],
-      )
-
-      j(path).replaceWith(newElement)
-      hasChanges = true
-    })
-
-  return hasChanges ? root.toSource() : file.source
+    el.replaceWithText(newText)
+  }
 }
+
+export default transform

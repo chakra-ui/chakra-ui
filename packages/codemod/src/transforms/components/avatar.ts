@@ -1,241 +1,194 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import {
-  collectChakraLocalNames,
-  getJsxBaseName,
-} from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type {
+  JsxAttribute,
+  JsxChild,
+  JsxElement,
+  JsxSelfClosingElement,
+} from "ts-morph"
+import type { Transform } from "../../transform"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const IMAGE_ATTRS = new Set([
+  "src",
+  "alt",
+  "srcSet",
+  "sizes",
+  "loading",
+  "referrerPolicy",
+  "crossOrigin",
+])
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+const REMOVE_ATTRS = new Set(["max", "ignoreFallback", "showBorder"])
 
-  // Handle AvatarGroup - remove max prop
-  root.find(j.JSXElement).forEach((elPath) => {
-    const opening = elPath.node.openingElement
-    const baseName = getJsxBaseName(opening.name)
-    if (!chakraLocalNames.has(baseName)) return
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-    if (baseName === "AvatarGroup") {
-      const attrs = opening.attributes || []
-      opening.attributes = attrs
-        .filter((attr) => {
-          if (
-            attr.type !== "JSXAttribute" ||
-            attr.name.type !== "JSXIdentifier"
-          ) {
-            return true
-          }
-          return attr.name.name !== "max"
-        })
-        .map((attr) => {
-          if (
-            attr.type === "JSXAttribute" &&
-            attr.name.type === "JSXIdentifier" &&
-            attr.name.name === "spacing"
-          ) {
-            attr.name.name = "spaceX"
-          }
-          return attr
-        })
-      return
-    }
-
-    if (baseName !== "Avatar") return
-
-    const attrs = opening.attributes || []
-    const remainingAttrs: any[] = []
-    let nameAttr: any = null
-    let iconAttr: any = null
-    let getInitialsAttr: any = null
-    let iconLabelAttr: any = null
-    const imageAttrs: any[] = []
-
-    attrs.forEach((attr) => {
-      if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier") {
-        remainingAttrs.push(attr)
-        return
-      }
-      const name = attr.name.name
-      // Remove unsupported props
-      if (
-        name === "max" ||
-        name === "ignoreFallback" ||
-        name === "showBorder"
-      ) {
-        return
-      }
-      if (name === "name") {
-        nameAttr = attr
-        return
-      }
-      if (name === "icon") {
-        iconAttr = attr
-        return
-      }
-      if (name === "getInitials") {
-        getInitialsAttr = attr
-        return
-      }
-      if (name === "iconLabel") {
-        iconLabelAttr = attr
-        return
-      }
-      if (
-        name === "src" ||
-        name === "alt" ||
-        name === "srcSet" ||
-        name === "sizes" ||
-        name === "loading" ||
-        name === "referrerPolicy" ||
-        name === "crossOrigin"
-      ) {
-        imageAttrs.push(attr)
-        return
-      }
-      remainingAttrs.push(attr)
-    })
-    opening.attributes = remainingAttrs
-
-    // Convert <Avatar ...> to <Avatar.Root ...>
-    const newName = j.jsxMemberExpression(
-      j.jsxIdentifier("Avatar"),
-      j.jsxIdentifier("Root"),
-    )
-    opening.name = newName
-
-    // Inject parts for Fallback and Image
-    const children = elPath.node.children || []
-    const newChildren = []
-
-    // Always add Avatar.Fallback
-    const fallbackName = j.jsxMemberExpression(
-      j.jsxIdentifier("Avatar"),
-      j.jsxIdentifier("Fallback"),
-    )
-
-    const fallbackAttrs: any[] = []
-    const fallbackChildren: any[] = []
-
-    // Add name attribute if present
-    if (nameAttr) {
-      fallbackAttrs.push(
-        j.jsxAttribute(j.jsxIdentifier("name"), nameAttr.value || null),
-      )
-    }
-
-    // Add iconLabel as aria-label if present
-    if (iconLabelAttr) {
-      fallbackAttrs.push(
-        j.jsxAttribute(
-          j.jsxIdentifier("aria-label"),
-          iconLabelAttr.value || null,
-        ),
-      )
-    }
-
-    // Add icon as children if present
-    if (iconAttr) {
-      if (iconAttr.value?.type === "JSXExpressionContainer") {
-        fallbackChildren.push(
-          j.jsxExpressionContainer(iconAttr.value.expression),
+  // AvatarGroup: remove `max`, rename `spacing` -> `spaceX` (in place)
+  if (chakraLocalNames.has("AvatarGroup")) {
+    const openings = [
+      ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+      ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+    ]
+    for (const opening of openings) {
+      const tag = opening.getTagNameNode()
+      if (!Node.isIdentifier(tag) || tag.getText() !== "AvatarGroup") continue
+      const spacing = opening
+        .getAttributes()
+        .find(
+          (a): a is JsxAttribute =>
+            Node.isJsxAttribute(a) && a.getNameNode().getText() === "spacing",
         )
-      }
-    }
-
-    // Add TODO comment for getInitials
-    if (getInitialsAttr) {
-      const comment = j.commentLine(
-        " TODO: Handle getInitials function manually",
-        true,
-        false,
-      )
-      newChildren.push(comment)
-    }
-
-    const fallback = j.jsxElement(
-      j.jsxOpeningElement(
-        fallbackName,
-        fallbackAttrs,
-        fallbackChildren.length === 0,
-      ),
-      fallbackChildren.length > 0 ? j.jsxClosingElement(fallbackName) : null,
-      fallbackChildren,
-    )
-    newChildren.push(fallback)
-
-    if (imageAttrs.length > 0) {
-      const imageName = j.jsxMemberExpression(
-        j.jsxIdentifier("Avatar"),
-        j.jsxIdentifier("Image"),
-      )
-      const image = j.jsxElement(
-        j.jsxOpeningElement(imageName, imageAttrs, true),
-        null,
-        [],
-      )
-      newChildren.push(image)
-    }
-
-    // Handle AvatarBadge children - remove and add TODO comment with original code
-    const updatedChildren: any[] = []
-    for (const child of children) {
-      if (
-        child.type === "JSXElement" &&
-        getJsxBaseName(child.openingElement?.name) === "AvatarBadge"
-      ) {
-        const todoComment = j.commentLine(
-          " TODO [BREAKING]: AvatarBadge removed. Migrate to Float + Circle pattern.",
-          true,
-          false,
+      spacing?.getNameNode().replaceWithText("spaceX")
+      const max = opening
+        .getAttributes()
+        .find(
+          (a): a is JsxAttribute =>
+            Node.isJsxAttribute(a) && a.getNameNode().getText() === "max",
         )
-        updatedChildren.push(todoComment)
-        const linkComment = j.commentLine(
-          " See https://chakra-ui.com/docs/components/avatar#badge",
-          true,
-          false,
-        )
-        updatedChildren.push(linkComment)
-
-        // Add the original code as a comment
-        const originalCode = j(child).toSource()
-        const codeComment = j.commentLine(
-          ` Original: ${originalCode}`,
-          true,
-          false,
-        )
-        updatedChildren.push(codeComment)
-        // Don't include the AvatarBadge child - remove it to avoid build errors
-      } else {
-        updatedChildren.push(child)
-      }
+      max?.remove()
     }
+  }
 
-    newChildren.push(...updatedChildren)
-
-    // If we have new children, ensure we have a closing element
-    if (newChildren.length > 0) {
-      elPath.node.children = newChildren
-      if (!elPath.node.closingElement) {
-        elPath.node.closingElement = j.jsxClosingElement(newName)
-      } else {
-        elPath.node.closingElement.name = newName
-      }
-      // Make sure opening element is not self-closing
-      opening.selfClosing = false
-    } else {
-      // No children, keep as self-closing
-      if (elPath.node.closingElement) {
-        elPath.node.closingElement.name = newName
-      }
+  // Avatar: rebuild to Avatar.Root / Avatar.Fallback / Avatar.Image
+  if (chakraLocalNames.has("Avatar")) {
+    // Loop: each transform replaces `<Avatar>` with `<Avatar.Root>` (a member
+    // expression) which no longer matches, so this terminates.
+    while (transformNextAvatar(sourceFile)) {
+      // keep going until no plain <Avatar> remains
     }
-  })
-
-  return root.toSource({ quote: "single" })
+  }
 }
+
+function isPlainTag(tagNode: Node, name: string): boolean {
+  return Node.isIdentifier(tagNode) && tagNode.getText() === name
+}
+
+function transformNextAvatar(sourceFile: Node): boolean {
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    if (isPlainTag(el.getOpeningElement().getTagNameNode(), "Avatar")) {
+      rewriteAvatar(el)
+      return true
+    }
+  }
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    if (isPlainTag(el.getTagNameNode(), "Avatar")) {
+      rewriteAvatar(el)
+      return true
+    }
+  }
+  return false
+}
+
+function rewriteAvatar(el: JsxElement | JsxSelfClosingElement) {
+  const attributes = Node.isJsxElement(el)
+    ? el.getOpeningElement().getAttributes()
+    : el.getAttributes()
+
+  const remainingAttrs: string[] = []
+  const imageAttrs: string[] = []
+  let nameAttrText: string | undefined
+  let iconValueText: string | undefined
+  let iconLabelValueText: string | undefined
+  let hasGetInitials = false
+
+  for (const attr of attributes) {
+    if (!Node.isJsxAttribute(attr)) {
+      remainingAttrs.push(attr.getText())
+      continue
+    }
+    const name = attr.getNameNode().getText()
+    if (REMOVE_ATTRS.has(name)) continue
+    if (name === "name") {
+      nameAttrText = attr.getText()
+      continue
+    }
+    if (name === "icon") {
+      const init = attr.getInitializer()
+      if (init && Node.isJsxExpression(init)) {
+        iconValueText = init.getText()
+      }
+      continue
+    }
+    if (name === "getInitials") {
+      hasGetInitials = true
+      continue
+    }
+    if (name === "iconLabel") {
+      iconLabelValueText = attr.getInitializer()?.getText()
+      continue
+    }
+    if (IMAGE_ATTRS.has(name)) {
+      imageAttrs.push(attr.getText())
+      continue
+    }
+    remainingAttrs.push(attr.getText())
+  }
+
+  // Fallback
+  const fallbackAttrs: string[] = []
+  if (nameAttrText) fallbackAttrs.push(nameAttrText)
+  if (iconLabelValueText) fallbackAttrs.push(`aria-label=${iconLabelValueText}`)
+  const fallbackAttrStr = fallbackAttrs.length
+    ? " " + fallbackAttrs.join(" ")
+    : ""
+  const fallbackText = iconValueText
+    ? `<Avatar.Fallback${fallbackAttrStr}>${iconValueText}</Avatar.Fallback>`
+    : `<Avatar.Fallback${fallbackAttrStr} />`
+
+  const childParts: string[] = []
+  if (hasGetInitials) {
+    childParts.push("// TODO: Handle getInitials function manually")
+  }
+  childParts.push(fallbackText)
+
+  if (imageAttrs.length) {
+    childParts.push(`<Avatar.Image ${imageAttrs.join(" ")} />`)
+  }
+
+  // Existing children (drop whitespace-only text; replace AvatarBadge)
+  const existing: JsxChild[] = Node.isJsxElement(el) ? el.getJsxChildren() : []
+  for (const child of existing) {
+    if (Node.isJsxText(child)) {
+      if (child.getText().trim() === "") continue
+      childParts.push(child.getText())
+      continue
+    }
+    if (
+      Node.isJsxElement(child) &&
+      isPlainTag(child.getOpeningElement().getTagNameNode(), "AvatarBadge")
+    ) {
+      childParts.push(
+        "// TODO [BREAKING]: AvatarBadge removed. Migrate to Float + Circle pattern." +
+          "// See https://chakra-ui.com/docs/components/avatar#badge" +
+          "// Original: " +
+          child.getText(),
+      )
+      continue
+    }
+    if (
+      Node.isJsxSelfClosingElement(child) &&
+      isPlainTag(child.getTagNameNode(), "AvatarBadge")
+    ) {
+      childParts.push(
+        "// TODO [BREAKING]: AvatarBadge removed. Migrate to Float + Circle pattern." +
+          "// See https://chakra-ui.com/docs/components/avatar#badge" +
+          "// Original: " +
+          child.getText(),
+      )
+      continue
+    }
+    childParts.push(child.getText())
+  }
+
+  const rootAttrStr = remainingAttrs.length
+    ? " " + remainingAttrs.join(" ")
+    : ""
+  el.replaceWithText(
+    `<Avatar.Root${rootAttrStr}>\n${childParts.join("\n")}\n</Avatar.Root>`,
+  )
+}
+
+export default transform

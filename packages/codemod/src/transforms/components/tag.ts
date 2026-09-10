@@ -1,50 +1,46 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { SyntaxKind } from "ts-morph"
+import type { Node } from "ts-morph"
+import type { Transform } from "../../transform"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+const MAPPING: Record<string, string> = {
+  Tag: "Tag.Root",
+  TagLeftIcon: "Tag.StartElement",
+  TagRightIcon: "Tag.EndElement",
+  TagLabel: "Tag.Label",
+  TagCloseButton: "Tag.CloseTrigger",
+}
 
-  const mapping: Record<string, string> = {
-    Tag: "Tag.Root",
-    TagLeftIcon: "Tag.StartElement",
-    TagRightIcon: "Tag.EndElement",
-    TagLabel: "Tag.Label",
-    TagCloseButton: "Tag.CloseTrigger",
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+
+  const resolve = (tagNode: Node): string | undefined => {
+    const base = getJsxBaseName(tagNode)
+    if (!chakraLocalNames.has(base)) return undefined
+    return MAPPING[base]
   }
 
-  Object.entries(mapping).forEach(([from, to]) => {
-    const parts = to.split(".")
-    root.find(j.JSXElement).forEach((path) => {
-      const opening = path.node.openingElement
-      if (opening.name.type !== "JSXIdentifier" || opening.name.name !== from)
-        return
-      if (!chakraLocalNames.has(from)) return
-      opening.name =
-        parts.length === 1
-          ? j.jsxIdentifier(parts[0])
-          : j.jsxMemberExpression(
-              j.jsxIdentifier(parts[0]),
-              j.jsxIdentifier(parts[1]),
-            )
-      if (path.node.closingElement) {
-        path.node.closingElement.name =
-          parts.length === 1
-            ? j.jsxIdentifier(parts[0])
-            : j.jsxMemberExpression(
-                j.jsxIdentifier(parts[0]),
-                j.jsxIdentifier(parts[1]),
-              )
-      }
-    })
-  })
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    const opening = el.getOpeningElement()
+    const to = resolve(opening.getTagNameNode())
+    if (!to) continue
+    // Rename the closing tag first (later position) so the opening tag's
+    // position stays stable.
+    el.getClosingElement()?.getTagNameNode().replaceWithText(to)
+    opening.getTagNameNode().replaceWithText(to)
+  }
 
-  return root.toSource({ quote: "single" })
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    const to = resolve(el.getTagNameNode())
+    if (!to) continue
+    el.getTagNameNode().replaceWithText(to)
+  }
 }
+
+export default transform
