@@ -102,7 +102,6 @@ export async function runTransform(
     project.addSourceFileAtPath(targetPath)
   }
 
-  const changed: string[] = []
   const errorFiles: string[] = []
   const diagnostics: Diagnostic[] = []
   const reExports: ReExportLocation[] = []
@@ -118,7 +117,6 @@ export async function runTransform(
       }
     }
 
-    const before = sourceFile.getFullText()
     try {
       const ctx: TransformContext = {
         project,
@@ -132,13 +130,15 @@ export async function runTransform(
       transform(sourceFile, ctx)
     } catch (err) {
       errorFiles.push(path.relative(process.cwd(), filePath))
-      continue
-    }
-
-    if (sourceFile.getFullText() !== before) {
-      changed.push(path.relative(process.cwd(), filePath))
     }
   }
+
+  const errorSet = new Set(errorFiles)
+  const changed = project
+    .getSourceFiles()
+    .filter((sf) => !sf.isSaved() && !isIgnored(sf.getFilePath(), ignore))
+    .map((sf) => path.relative(process.cwd(), sf.getFilePath()))
+    .filter((rel) => !errorSet.has(rel))
 
   if (!dry) {
     await saveChanged(project, changed)
