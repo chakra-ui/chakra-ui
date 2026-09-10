@@ -1,12 +1,11 @@
 /// <reference types="vite/client" />
 import { describe, expect, test } from "vitest"
+import type { Transform } from "../src/transform"
 import { upgradeTransforms } from "../src/transforms"
 import { applyTransform } from "./test-utils"
 
-type TransformFn = (file: any, api: any, options: any) => string
-
 // Load all transforms via glob - automatically includes new transforms
-const transformModules = import.meta.glob<{ default: TransformFn }>(
+const transformModules = import.meta.glob<{ default: Transform }>(
   "../src/transforms/**/*.ts",
   { eager: true },
 )
@@ -15,11 +14,11 @@ const transformModules = import.meta.glob<{ default: TransformFn }>(
 const transformMap = Object.fromEntries(
   Object.entries(transformModules).map(([path, mod]) => {
     const name = path.split("/").pop()?.replace(/\.ts$/, "") ?? ""
-    return [name, (mod as { default?: TransformFn }).default]
+    return [name, (mod as { default?: Transform }).default]
   }),
 )
 
-function getTransform(name: string): TransformFn | undefined {
+function getTransform(name: string): Transform | undefined {
   return transformMap[name]
 }
 
