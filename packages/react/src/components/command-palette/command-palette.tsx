@@ -271,6 +271,10 @@ const CommandPaletteRootBase = (props: CommandPaletteRootProps) => {
   }
 
   const hotkeys = hotkeysProp ?? defaultHotkeys
+  // ponytail: hand-rolled hotkey registry. Swap to Ark's `useHotkeys` from
+  // `@ark-ui/react/hotkeys` once it's importable — the published package ships
+  // dist/providers/hotkeys/* but its clean-package config drops the `./hotkeys`
+  // export (missing through 5.39.1), so the entrypoint can't be imported yet.
   useHotkeys(
     hotkeys,
     () => dialog.setOpen(!dialog.open),
