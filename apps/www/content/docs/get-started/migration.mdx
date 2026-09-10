@@ -324,7 +324,7 @@ Before:
 ```tsx
 import { Icon } from "@chakra-ui/react"
 
-<Icon viewBox="0 0 24 24" color="red.500" boxSize={6}>
+;<Icon viewBox="0 0 24 24" color="red.500" boxSize={6}>
   <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
 </Icon>
 ```
@@ -334,7 +334,7 @@ After:
 ```tsx
 import { Icon } from "@chakra-ui/react"
 
-<Icon color="red.500" size="md" asChild>
+;<Icon color="red.500" size="md" asChild>
   <svg viewBox="0 0 24 24">
     <path d="M12 2L2 22h20L12 2z" fill="currentColor" />
   </svg>
@@ -454,9 +454,9 @@ Before:
 After:
 
 ```tsx
-import { Separator, VStack, Box } from "@chakra-ui/react";
+import { Box, Separator, VStack } from "@chakra-ui/react"
 
-<VStack gap={4}>
+;<VStack gap={4}>
   <Box>Item 1</Box>
   <Separator borderColor="gray.200" />
   <Box>Item 2</Box>

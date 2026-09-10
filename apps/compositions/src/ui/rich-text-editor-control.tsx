@@ -52,8 +52,10 @@ export interface BaseControlConfig {
   getProps?: (editor: Editor) => Record<string, any>
 }
 
-export interface ButtonControlProps
-  extends Omit<IconButtonProps, "aria-label"> {
+export interface ButtonControlProps extends Omit<
+  IconButtonProps,
+  "aria-label"
+> {
   icon: React.ReactNode
   label: string
 }
