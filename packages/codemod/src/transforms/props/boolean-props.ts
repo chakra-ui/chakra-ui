@@ -21,7 +21,9 @@ const BOOLEAN_PROP_MAP: Record<string, string> = {
 }
 
 const transform: Transform = (sourceFile) => {
-  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile, {
+    crossFile: true,
+  })
   if (chakraLocalNames.size === 0) return
 
   const renameObjectProps = (obj: ObjectLiteralExpression) => {

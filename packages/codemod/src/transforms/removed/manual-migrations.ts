@@ -85,9 +85,40 @@ const transform: Transform = (sourceFile, ctx) => {
         )
       }
     }
+
+    if (
+      chakraLocalNames.has(baseName) &&
+      opening.getAttributes().some((a) => Node.isJsxSpreadAttribute(a))
+    ) {
+      const comp = enclosingComponent(opening)
+      if (comp) {
+        flag(
+          comp.node,
+          `${comp.name} wraps <${baseName}> and spreads props — review v3 prop changes (colorScheme, isOpen, spacing, …) at its call sites; the codemod can't migrate them through the wrapper.`,
+        )
+      }
+    }
   }
 
   applyFlags(sourceFile, full, flags)
+}
+
+function enclosingComponent(
+  node: Node,
+): { node: Node; name: string } | undefined {
+  let current = node.getParent()
+  while (current) {
+    if (Node.isVariableDeclaration(current)) {
+      const name = current.getName()
+      if (/^[A-Z]/.test(name)) return { node: current, name }
+    }
+    if (Node.isFunctionDeclaration(current)) {
+      const name = current.getName()
+      if (name && /^[A-Z]/.test(name)) return { node: current, name }
+    }
+    current = current.getParent()
+  }
+  return undefined
 }
 
 function hasAttr(opening: Node, name: string): boolean {

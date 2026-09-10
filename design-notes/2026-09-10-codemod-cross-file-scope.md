@@ -1,8 +1,17 @@
 # Codemod Cross-File Resolution — Scope
 
-**Date:** 2026-09-10 **Status:** Scope / pre-design **Package:**
-`packages/codemod` **Related:**
+**Date:** 2026-09-10 **Status:** Phase 1 + 2 implemented; Phase 3 intentionally
+not built **Package:** `packages/codemod` **Related:**
 [ts-morph port](./2026-09-10-ts-morph-codemod-port.md)
+
+> **Implemented:** Phase 1 — opt-in project-aware
+> `collectChakraLocalNames(sourceFile, { crossFile: true })` resolves
+> barrels/re-exports (direct, transitive, aliased, import-then-reexport);
+> enabled for attribute-only prop transforms, where it can't leave a dangling
+> import. Phase 2 — wrapper detection (a component spreading props into a Chakra
+> element) is flagged by `manual-migrations`. Phase 3 (auto-rewriting wrapper
+> props behind `--unsafe-wrappers`) is deliberately NOT built: rewriting
+> unvalidated forwarded props into a migration tool is debt, not a safe default.
 
 ## Problem
 

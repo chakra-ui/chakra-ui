@@ -64,6 +64,19 @@ const a = (
     `)
   })
 
+  it("flags a wrapper component that spreads props into a Chakra component", async () => {
+    const input = `
+import { Button } from '@chakra-ui/react'
+const MyButton = (props) => <Button {...props} colorScheme="blue" />
+`
+    expect(await applyTransform(transform, input)).toMatchInlineSnapshot(`
+      "import { Button } from '@chakra-ui/react'
+      // TODO(chakra-v3): MyButton wraps <Button> and spreads props — review v3 prop changes (colorScheme, isOpen, spacing, …) at its call sites; the codemod can't migrate them through the wrapper.
+      const MyButton = (props) => <Button {...props} colorScheme="blue" />
+      "
+    `)
+  })
+
   it("is idempotent (does not stack duplicate TODOs)", async () => {
     const input = `
 import { FocusLock } from '@chakra-ui/react'

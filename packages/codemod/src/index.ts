@@ -25,6 +25,8 @@ export async function run() {
     )
     .option("--verbose", "Show detailed output during upgrade")
     .option("--dry", "Do a dry-run without making changes")
+    .option("--dry-run", "Alias for --dry")
+    .option("--transform <names...>", "Run only the named transforms")
     .option(
       "--fail-on-warn",
       "Exit with a non-zero code if any warnings are emitted",
@@ -47,6 +49,7 @@ export async function run() {
     .command("transform <transform> <path>")
     .description("Run a specific transform on files or directory")
     .option("--dry", "Do a dry-run, no code will be edited")
+    .option("--dry-run", "Alias for --dry")
     .option("-f, --force", "Bypass Git safety checks")
     .option(
       "--fail-on-warn",
@@ -55,6 +58,7 @@ export async function run() {
     .action(async (transform, path, options) => {
       const result = await runTransform(transform, path, {
         ...options,
+        dry: Boolean(options.dry || options.dryRun),
         upgrade: false,
       })
       if (options.failOnWarn && result.diagnostics.length > 0) {

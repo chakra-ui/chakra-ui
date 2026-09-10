@@ -14,7 +14,9 @@ import { getPackageManager } from "./utils/package-manager.js"
 
 interface UpgradeOptions {
   dry?: boolean
+  dryRun?: boolean
   failOnWarn?: boolean
+  transform?: string[]
 }
 
 process.once("SIGINT", () => {
@@ -31,7 +33,13 @@ export async function upgrade(
   revision: string = "latest",
   options: UpgradeOptions = {},
 ) {
-  const { dry = false, failOnWarn = false } = options
+  const { failOnWarn = false } = options
+  const dry = Boolean(options.dry || options.dryRun)
+  const transformFilter = options.transform?.filter((name) => {
+    if (transforms[name]) return true
+    p.log.warn(picocolors.yellow(`Unknown transform "${name}" — skipping.`))
+    return false
+  })
 
   if (revision === "latest") {
     revision = "^3.0.0"
@@ -176,40 +184,48 @@ export async function upgrade(
 
   section("Code Transforms")
 
-  const preset = await p.select({
-    message: "Upgrade depth:",
-    options: [
-      { label: "Full migration (recommended)", value: "full" },
-      { label: "Custom (select transforms manually)", value: "custom" },
-    ],
-  })
-
-  if (p.isCancel(preset)) {
-    return abort()
-  }
-
   let transformsToRun: string[] = []
 
-  if (preset === "full") {
-    transformsToRun = upgradeTransforms
+  if (transformFilter) {
+    if (transformFilter.length === 0) {
+      return abort("No valid transforms selected. Upgrade cancelled.")
+    }
+    transformsToRun = transformFilter
+    p.log.info(`Running ${transformFilter.length} selected transform(s).`)
   } else {
-    const customSelection = await p.multiselect({
-      message: "Choose the transforms to run:",
-      options: Object.keys(transforms).map((name, i) => ({
-        label: `${(i + 1).toString().padStart(2, "0")}-${name}`,
-        value: name,
-      })),
+    const preset = await p.select({
+      message: "Upgrade depth:",
+      options: [
+        { label: "Full migration (recommended)", value: "full" },
+        { label: "Custom (select transforms manually)", value: "custom" },
+      ],
     })
 
-    if (p.isCancel(customSelection)) {
+    if (p.isCancel(preset)) {
       return abort()
     }
 
-    if (customSelection.length === 0) {
-      return abort("No transforms selected. Upgrade cancelled.")
-    }
+    if (preset === "full") {
+      transformsToRun = upgradeTransforms
+    } else {
+      const customSelection = await p.multiselect({
+        message: "Choose the transforms to run:",
+        options: Object.keys(transforms).map((name, i) => ({
+          label: `${(i + 1).toString().padStart(2, "0")}-${name}`,
+          value: name,
+        })),
+      })
 
-    transformsToRun = customSelection
+      if (p.isCancel(customSelection)) {
+        return abort()
+      }
+
+      if (customSelection.length === 0) {
+        return abort("No transforms selected. Upgrade cancelled.")
+      }
+
+      transformsToRun = customSelection
+    }
   }
 
   if (transformsToRun.length > 0) {
@@ -218,7 +234,6 @@ export async function upgrade(
 
     const { componentsDir } = getProjectInfo(process.cwd())
 
-    // file -> transforms that touch it
     const byFile = new Map<string, Set<string>>()
     const errorsByFile = new Map<string, Set<string>>()
     const diagnostics: Diagnostic[] = []

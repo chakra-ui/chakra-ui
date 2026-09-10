@@ -4,12 +4,14 @@
 pending **Package:** `packages/codemod` (+ theming docs) **Related:**
 [ts-morph Codemod Port](./2026-09-10-ts-morph-codemod-port.md)
 
-> **Implemented:** `list` command; `--fail-on-warn` on `upgrade` and
-> `transform`; structured diagnostics (`ctx.report`) surfaced as "Manual
-> follow-ups" in both the single-transform report and the `upgrade` summary.
-> Still pending: `--dry-run` naming alias, per-transform `--transform` subset in
-> a single non-interactive run, `--dry-run` per-file diffs, and Scope C
-> (docs↔output parity in the theming docs).
+> **Implemented:** `list` command; `--dry-run` alias; non-interactive
+> `--transform <names...>` subset on `upgrade`; `--fail-on-warn` on `upgrade`
+> and `transform`; structured diagnostics (`ctx.report`) surfaced as "Manual
+> follow-ups" in both the single-transform report and the `upgrade` summary;
+> Scope C docs↔output parity added to the theming tokens docs (`defineTokens`
+> is-a-type-helper note + separate-token-files section). `--dry-run` per-file
+> diffs are intentionally deferred to `git diff` on a clean branch (which the
+> tool already recommends) rather than reimplementing a diff in the CLI.
 
 ## Problem
 

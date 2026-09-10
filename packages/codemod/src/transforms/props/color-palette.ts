@@ -6,7 +6,9 @@ import {
 } from "../../utils/chakra-tracker"
 
 const transform: Transform = (sourceFile) => {
-  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile, {
+    crossFile: true,
+  })
   if (chakraLocalNames.size === 0) return
 
   // JSX attributes: colorScheme -> colorPalette, spacing -> gap
