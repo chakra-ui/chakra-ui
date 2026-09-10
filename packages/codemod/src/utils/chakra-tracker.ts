@@ -219,6 +219,34 @@ function reExportsChakra(
   return false
 }
 
+export interface CrossFileReExport {
+  name: string
+  from: string
+  line: number
+}
+
+export function findCrossFileReExports(
+  sourceFile: SourceFile,
+): CrossFileReExport[] {
+  const out: CrossFileReExport[] = []
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    const from = importDecl.getModuleSpecifierValue()
+    if (isChakraSource(from)) continue
+    const target = importDecl.getModuleSpecifierSourceFile()
+    if (!target) continue
+    for (const named of importDecl.getNamedImports()) {
+      if (reExportsChakra(target, named.getName(), new Set(), 0)) {
+        out.push({
+          name: named.getAliasNode()?.getText() ?? named.getName(),
+          from,
+          line: named.getStartLineNumber(),
+        })
+      }
+    }
+  }
+  return out
+}
+
 function getJsxOpening(node: Node): JsxOpening | undefined {
   if (Node.isJsxElement(node)) return node.getOpeningElement()
   if (Node.isJsxSelfClosingElement(node)) return node

@@ -20,9 +20,9 @@ const BOOLEAN_PROP_MAP: Record<string, string> = {
   isCentered: "placement",
 }
 
-const transform: Transform = (sourceFile) => {
+const transform: Transform = (sourceFile, ctx) => {
   const { chakraLocalNames } = collectChakraLocalNames(sourceFile, {
-    crossFile: true,
+    crossFile: ctx.crossFile,
   })
   if (chakraLocalNames.size === 0) return
 

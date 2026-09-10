@@ -13,6 +13,8 @@ export interface TransformContext {
   filePath: string
   /** When true, transforms must not perform side effects (installs, shell). */
   dry?: boolean
+  /** When true, resolve components imported through local barrels/re-exports. */
+  crossFile?: boolean
   /** Push a diagnostic to surface in the migration report. */
   report(diagnostic: Omit<Diagnostic, "file"> & { file?: string }): void
 }

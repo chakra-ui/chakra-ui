@@ -6,9 +6,9 @@ import {
   isTrackedJsx,
 } from "../../utils/chakra-tracker"
 
-const transform: Transform = (sourceFile) => {
+const transform: Transform = (sourceFile, ctx) => {
   const { chakraLocalNames } = collectChakraLocalNames(sourceFile, {
-    crossFile: true,
+    crossFile: ctx.crossFile,
   })
   if (chakraLocalNames.size === 0) return
 

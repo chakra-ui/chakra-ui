@@ -28,6 +28,10 @@ export async function run() {
     .option("--dry-run", "Alias for --dry")
     .option("--transform <names...>", "Run only the named transforms")
     .option(
+      "--cross-file",
+      "Resolve components imported through barrels/re-exports (slower)",
+    )
+    .option(
       "--fail-on-warn",
       "Exit with a non-zero code if any warnings are emitted",
     )
@@ -50,6 +54,10 @@ export async function run() {
     .description("Run a specific transform on files or directory")
     .option("--dry", "Do a dry-run, no code will be edited")
     .option("--dry-run", "Alias for --dry")
+    .option(
+      "--cross-file",
+      "Resolve components imported through barrels/re-exports (slower)",
+    )
     .option("-f, --force", "Bypass Git safety checks")
     .option(
       "--fail-on-warn",

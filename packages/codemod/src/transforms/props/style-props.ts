@@ -14,9 +14,9 @@ const STYLE_PROP_MAP: Record<string, string> = {
   _mediaLight: "_osLight",
 }
 
-const transform: Transform = (sourceFile) => {
+const transform: Transform = (sourceFile, ctx) => {
   const { chakraLocalNames } = collectChakraLocalNames(sourceFile, {
-    crossFile: true,
+    crossFile: ctx.crossFile,
   })
   if (chakraLocalNames.size === 0) return
 

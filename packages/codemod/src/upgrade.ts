@@ -5,6 +5,7 @@ import path from "path"
 import picocolors from "picocolors"
 import semver from "semver"
 import { runTransform } from "./run-transform.js"
+import type { ReExportLocation } from "./run-transform.js"
 import type { Diagnostic } from "./transform.js"
 import { transforms, upgradeTransforms } from "./transforms.js"
 import { getProjectInfo } from "./utils/get-project-info.js"
@@ -17,6 +18,7 @@ interface UpgradeOptions {
   dryRun?: boolean
   failOnWarn?: boolean
   transform?: string[]
+  crossFile?: boolean
 }
 
 process.once("SIGINT", () => {
@@ -184,6 +186,17 @@ export async function upgrade(
 
   section("Code Transforms")
 
+  let crossFile = options.crossFile ?? false
+  if (options.crossFile === undefined) {
+    const ans = await p.confirm({
+      message:
+        "Resolve components imported through barrels/re-exports? Scans cross-file imports across your project — slower, but migrates props on re-exported components.",
+      initialValue: false,
+    })
+    if (p.isCancel(ans)) return abort()
+    crossFile = ans
+  }
+
   let transformsToRun: string[] = []
 
   if (transformFilter) {
@@ -237,6 +250,7 @@ export async function upgrade(
     const byFile = new Map<string, Set<string>>()
     const errorsByFile = new Map<string, Set<string>>()
     const diagnostics: Diagnostic[] = []
+    const reExports = new Map<string, ReExportLocation>()
     let failed = 0
 
     const add = (map: Map<string, Set<string>>, file: string, name: string) => {
@@ -250,11 +264,15 @@ export async function upgrade(
         const res = await runTransform(name, process.cwd(), {
           dry,
           upgrade: true,
+          crossFile,
           ignorePattern: ["node_modules", componentsDir],
         })
         res.files.forEach((f) => add(byFile, f, name))
         res.errorFiles.forEach((f) => add(errorsByFile, f, name))
         diagnostics.push(...res.diagnostics)
+        for (const r of res.reExports) {
+          reExports.set(`${r.file}:${r.line}:${r.name}`, r)
+        }
       } catch (err) {
         failed++
         const msg = err instanceof Error ? err.message : String(err)
@@ -269,6 +287,7 @@ export async function upgrade(
     )
 
     reportChanges(byFile, errorsByFile, dry, failed)
+    reportReExports([...reExports.values()])
     reportDiagnostics(diagnostics)
 
     if (failOnWarn && diagnostics.length > 0) {
@@ -387,6 +406,18 @@ export function dedupeDiagnostics(diagnostics: Diagnostic[]): Diagnostic[] {
     out.push(d)
   }
   return out
+}
+
+function reportReExports(reExports: ReExportLocation[]) {
+  if (reExports.length === 0) return
+  const body = reExports
+    .sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)
+    .map(
+      (r) =>
+        `${picocolors.cyan(`${r.file}:${r.line}`)}  ${r.name} ${picocolors.dim(`(via ${r.from})`)}`,
+    )
+    .join("\n")
+  p.note(body, `Cross-file re-exports resolved (${reExports.length})`)
 }
 
 function reportDiagnostics(diagnostics: Diagnostic[]) {

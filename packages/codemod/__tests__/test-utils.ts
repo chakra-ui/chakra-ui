@@ -71,6 +71,7 @@ export async function applyTransformFiles(
     project,
     filePath: entry,
     dry: true,
+    crossFile: true,
     report(d) {
       diagnostics.push({ ...d, file: d.file ?? entry })
     },

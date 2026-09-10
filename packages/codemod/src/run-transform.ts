@@ -6,12 +6,21 @@ import { format, resolveConfig } from "prettier"
 import { Project } from "ts-morph"
 import type { Diagnostic, Transform, TransformContext } from "./transform.js"
 import { transforms } from "./transforms.js"
+import { findCrossFileReExports } from "./utils/chakra-tracker.js"
 
 interface RunTransformOptions {
   dry?: boolean
   print?: boolean
   upgrade?: boolean
+  crossFile?: boolean
   ignorePattern?: string[]
+}
+
+export interface ReExportLocation {
+  file: string
+  name: string
+  from: string
+  line: number
 }
 
 export interface TransformResult {
@@ -20,6 +29,7 @@ export interface TransformResult {
   files: string[]
   errorFiles: string[]
   diagnostics: Diagnostic[]
+  reExports: ReExportLocation[]
 }
 
 const DEFAULT_IGNORE = [
@@ -56,7 +66,7 @@ export async function runTransform(
   targetPath: string,
   options: RunTransformOptions = {},
 ): Promise<TransformResult> {
-  const { dry = false, upgrade = false } = options
+  const { dry = false, upgrade = false, crossFile = false } = options
   const ignore = [
     ...new Set([...DEFAULT_IGNORE, ...(options.ignorePattern || [])]),
   ]
@@ -95,10 +105,18 @@ export async function runTransform(
   const changed: string[] = []
   const errorFiles: string[] = []
   const diagnostics: Diagnostic[] = []
+  const reExports: ReExportLocation[] = []
 
   for (const sourceFile of project.getSourceFiles()) {
     const filePath = sourceFile.getFilePath()
     if (isIgnored(filePath, ignore)) continue
+
+    if (crossFile) {
+      const rel = path.relative(process.cwd(), filePath)
+      for (const r of findCrossFileReExports(sourceFile)) {
+        reExports.push({ file: rel, ...r })
+      }
+    }
 
     const before = sourceFile.getFullText()
     try {
@@ -106,6 +124,7 @@ export async function runTransform(
         project,
         filePath,
         dry,
+        crossFile,
         report(d) {
           diagnostics.push({ ...d, file: d.file ?? filePath })
         },
@@ -132,6 +151,7 @@ export async function runTransform(
         : color.green("Transformations complete"),
     )
     printReport(changed, errorFiles, diagnostics)
+    printReExports(reExports)
     p.outro(`${color.cyan("Done!")} Your theme/code has been migrated.`)
   }
 
@@ -141,7 +161,18 @@ export async function runTransform(
     files: changed,
     errorFiles,
     diagnostics,
+    reExports,
   }
+}
+
+function printReExports(reExports: ReExportLocation[]) {
+  if (reExports.length === 0) return
+  const body = reExports
+    .map(
+      (r) => `${r.file}:${r.line}  ${r.name}  ${color.dim(`(via ${r.from})`)}`,
+    )
+    .join("\n")
+  p.note(body, `Cross-file re-exports resolved (${reExports.length})`)
 }
 
 async function saveChanged(project: Project, changed: string[]) {
