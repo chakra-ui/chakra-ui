@@ -1,3 +1,5 @@
+"use client"
+
 import { ButtonGroup, IconButton, Pagination } from "@chakra-ui/react"
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 
@@ -7,7 +9,7 @@ export const PaginationWithCustomFormat = () => {
       <ButtonGroup variant="ghost" size="sm" w="full">
         <Pagination.PageText
           flex="1"
-          format={({ page, totalPages }) => `Page ${page} de ${totalPages}`}
+          format={({ page, totalPages }) => `صفحه ${page} از ${totalPages}`}
         />
         <Pagination.PrevTrigger asChild>
           <IconButton>
