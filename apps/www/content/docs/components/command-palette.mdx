@@ -94,17 +94,58 @@ states distinct feedback. `Loading` and `Empty` never render at the same time.
 
 <ExampleTabs name="command-palette-with-async-content" />
 
-### Aliases and Groups
+### Groups
 
-Search across labels, descriptions, and aliases while preserving useful command
-groups.
+Organize commands into labeled groups with `ItemGroup` and `ItemGroupLabel`, and
+divide them with `Separator`.
+
+<ExampleTabs name="command-palette-with-groups" />
+
+### Selection Mode
+
+Set `selectionMode="multiple"` to build a picker where selection persists and
+several items can be chosen, instead of running a command and closing.
+
+<ExampleTabs name="command-palette-multiple" />
+
+### Controlled
+
+Own the selected value with `value` and `onValueChange` to drive selection from
+outside the palette.
+
+<ExampleTabs name="command-palette-controlled" />
+
+### Controlled Search
+
+Own the query with `onInputValueChange` to sync it with external state, URL
+params, or analytics.
+
+<ExampleTabs name="command-palette-controlled-search" />
+
+### Custom Filter
+
+Search across labels, descriptions, and aliases with your own filter function
+while preserving useful command groups.
 
 <ExampleTabs name="command-palette-with-custom-filter" />
 
+### Prefix Search
+
+Match only from the start of each command, so short queries stay predictable.
+
+<ExampleTabs name="command-palette-with-prefix-search" />
+
+### Highlight Matches
+
+Use `Highlight` to emphasize the matched portion of each result as the user
+types.
+
+<ExampleTabs name="command-palette-with-highlight" />
+
 ### Nested
 
-Build nested pages by swapping the collection as the user drills in. Backspace
-Use item-level `closeOnSelect={false}` for actions that open a child page.
+Build nested pages by swapping the collection as the user drills in. Use
+item-level `closeOnSelect={false}` for actions that open a child page.
 
 <ExampleTabs name="command-palette-nested" />
 
@@ -134,6 +175,44 @@ Show a preview panel for the highlighted item next to the list.
 
 <ExampleTabs name="command-palette-with-preview" />
 
+### Tabs
+
+Scope results to a category with `Tabs`, filtering the collection by the active
+tab.
+
+<ExampleTabs name="command-palette-with-tabs" />
+
+### Footer Actions
+
+Add a `Footer` with shortcut hints or actions that stay visible below the list.
+
+<ExampleTabs name="command-palette-with-footer-actions" />
+
+### With Avatar
+
+Render an avatar next to each item for people or workspace pickers.
+
+<ExampleTabs name="command-palette-with-avatar" />
+
+### With Description
+
+Give each item a secondary line of description text alongside its label.
+
+<ExampleTabs name="command-palette-with-description" />
+
+### With Status
+
+Show a status indicator per item and drive a `selectionMode="single"` picker
+from it.
+
+<ExampleTabs name="command-palette-with-status" />
+
+### Empty State
+
+Customize the `Empty` view shown when the query matches no commands.
+
+<ExampleTabs name="command-palette-with-empty-state" />
+
 ### Virtualized
 
 Handle large datasets efficiently by virtualizing the list.
@@ -160,6 +239,14 @@ size and on narrow screens.
 ### Input
 
 <PropTable component="CommandPalette" part="Input" />
+
+### Control
+
+<PropTable component="CommandPalette" part="Control" />
+
+### Indicator
+
+<PropTable component="CommandPalette" part="Indicator" />
 
 ### List
 
@@ -189,6 +276,18 @@ size and on narrow screens.
 
 <PropTable component="CommandPalette" part="ItemGroupLabel" />
 
+### ItemCommand
+
+<PropTable component="CommandPalette" part="ItemCommand" />
+
+### Empty
+
+<PropTable component="CommandPalette" part="Empty" />
+
 ### Separator
 
 <PropTable component="CommandPalette" part="Separator" />
+
+### Footer
+
+<PropTable component="CommandPalette" part="Footer" />
