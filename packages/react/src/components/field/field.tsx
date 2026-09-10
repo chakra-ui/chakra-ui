@@ -114,7 +114,7 @@ export const FieldRequiredIndicator = forwardRef<
       ref={ref}
       aria-hidden="true"
       {...restProps}
-      className={cx(classNames.requiredIndicator, props.className)}
+      className={cx(classNames?.requiredIndicator, props.className)}
       css={[styles.requiredIndicator, props.css]}
     >
       {children}
