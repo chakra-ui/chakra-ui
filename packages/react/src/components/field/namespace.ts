@@ -1,6 +1,7 @@
 export {
   FieldRoot as Root,
   FieldPropsProvider as PropsProvider,
+  FieldInputElement as InputElement,
   FieldLabel as Label,
   FieldHelperText as HelperText,
   FieldErrorText as ErrorText,
@@ -10,6 +11,7 @@ export {
 
 export type {
   FieldRootProps as RootProps,
+  FieldInputElementProps as InputElementProps,
   FieldLabelProps as LabelProps,
   FieldHelperTextProps as HelperTextProps,
   FieldErrorTextProps as ErrorTextProps,
