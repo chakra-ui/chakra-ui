@@ -1,3 +1,5 @@
+"use client"
+
 import { Clipboard, Field, IconButton, PinInput, Stack } from "@chakra-ui/react"
 
 export const PinInputWithSanitizedValue = () => {
