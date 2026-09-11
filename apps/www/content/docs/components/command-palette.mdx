@@ -1,0 +1,293 @@
+---
+title: Command Palette
+description:
+  Used to build searchable command menus, search dialogs, and pickers.
+links:
+  source: components/command-palette
+  storybook: components-commandpalette--basic
+  recipe: command-palette
+---
+
+<ExampleTabs name="command-palette-basic" />
+
+## Usage
+
+```jsx
+import { CommandPalette, Portal } from "@chakra-ui/react"
+```
+
+```jsx
+<CommandPalette.Root>
+  <CommandPalette.Trigger />
+  <Portal>
+    <CommandPalette.Backdrop />
+    <CommandPalette.Positioner>
+      <CommandPalette.Panel>
+        <CommandPalette.Label />
+        <CommandPalette.Control>
+          <CommandPalette.Indicator />
+          <CommandPalette.Input />
+          <CommandPalette.ClearTrigger />
+        </CommandPalette.Control>
+        <CommandPalette.List>
+          <CommandPalette.Loading />
+          <CommandPalette.ItemGroup>
+            <CommandPalette.ItemGroupLabel />
+            <CommandPalette.Item>
+              <CommandPalette.ItemText />
+              <CommandPalette.ItemCommand />
+              <CommandPalette.ItemIndicator />
+            </CommandPalette.Item>
+          </CommandPalette.ItemGroup>
+          <CommandPalette.Separator />
+          <CommandPalette.Empty />
+        </CommandPalette.List>
+        <CommandPalette.Footer />
+      </CommandPalette.Panel>
+    </CommandPalette.Positioner>
+  </Portal>
+</CommandPalette.Root>
+```
+
+To setup the command palette, use `useListCollection` to manage the
+[list collection](https://ark-ui.com/docs/collections/list-collection), and
+`useFilter` to filter the items as the user types.
+
+By default the palette runs commands. Add `onSelect` to an item to execute its
+action; the palette closes after the action and no selected state persists. Set
+`closeOnSelect={false}` on a root or item when an action should keep the palette
+open. To build a picker where selection persists, set `selectionMode` to
+`single` or `multiple`.
+
+The palette is a dialog. `Root` owns the open state and binds `⌘K` (`Ctrl+K` off
+macOS) by default. Use `hotkeys={["mod+k", "mod+p"]}` for alternatives, pass
+`hotkeys={[]}` to opt out, or configure editable targets and default prevention
+with `hotkeyOptions`. When multiple palettes register the same shortcut, the
+most recently mounted enabled palette handles it. `Trigger` is optional.
+
+Search is wired through `onInputValueChange` on `Root` rather than an `onChange`
+on the input, so filtering stays in one place.
+
+### Coming from cmdk
+
+| cmdk                            | Chakra UI                                         |
+| ------------------------------- | ------------------------------------------------- |
+| `<Command>`                     | `<CommandPalette.Root collection={collection}>`   |
+| `<Command.Input>`               | `<CommandPalette.Input>` + `useFilter`            |
+| `<Command.List>`                | `<CommandPalette.List>`                           |
+| `<Command.Item onSelect={fn}>`  | `<CommandPalette.Item item={item} onSelect={fn}>` |
+| `<Command.Group heading="...">` | `<CommandPalette.ItemGroup>` + `ItemGroupLabel`   |
+| `<Command.Empty>`               | `<CommandPalette.Empty>`                          |
+| `<Command.Dialog>`              | `<CommandPalette.Root>` is already a dialog       |
+
+The key difference: `cmdk` owns filtering and ranking internally, while the
+command palette treats data as userland. You own the collection and how it
+shrinks — swap in fuzzy matching, server search, or debouncing without fighting
+a built-in filter.
+
+## Examples
+
+### Async Content
+
+Debounce requests, cancel stale work, and give loading, error, retry, and empty
+states distinct feedback. `Loading` and `Empty` never render at the same time.
+
+<ExampleTabs name="command-palette-with-async-content" />
+
+### Groups
+
+Organize commands into labeled groups with `ItemGroup` and `ItemGroupLabel`, and
+divide them with `Separator`.
+
+<ExampleTabs name="command-palette-with-groups" />
+
+### Selection Mode
+
+Set `selectionMode="multiple"` to build a picker where selection persists and
+several items can be chosen, instead of running a command and closing.
+
+<ExampleTabs name="command-palette-multiple" />
+
+### Controlled
+
+Own the selected value with `value` and `onValueChange` to drive selection from
+outside the palette.
+
+<ExampleTabs name="command-palette-controlled" />
+
+### Controlled Search
+
+Own the query with `onInputValueChange` to sync it with external state, URL
+params, or analytics.
+
+<ExampleTabs name="command-palette-controlled-search" />
+
+### Custom Filter
+
+Search across labels, descriptions, and aliases with your own filter function
+while preserving useful command groups.
+
+<ExampleTabs name="command-palette-with-custom-filter" />
+
+### Prefix Search
+
+Match only from the start of each command, so short queries stay predictable.
+
+<ExampleTabs name="command-palette-with-prefix-search" />
+
+### Highlight Matches
+
+Use `Highlight` to emphasize the matched portion of each result as the user
+types.
+
+<ExampleTabs name="command-palette-with-highlight" />
+
+### Nested
+
+Build nested pages by swapping the collection as the user drills in. Use
+item-level `closeOnSelect={false}` for actions that open a child page.
+
+<ExampleTabs name="command-palette-nested" />
+
+### Links
+
+Render items as real anchors for navigation palettes, so middle-click and
+keyboard semantics work as expected.
+
+<ExampleTabs name="command-palette-with-links" />
+
+### Recent Items
+
+Track recently used commands and surface them in a dedicated group.
+
+<ExampleTabs name="command-palette-with-recent-items" />
+
+### Disabled Items
+
+Disable specific items to indicate unavailable commands while keeping them
+visible for context.
+
+<ExampleTabs name="command-palette-with-disabled-items" />
+
+### Preview
+
+Show a preview panel for the highlighted item next to the list.
+
+<ExampleTabs name="command-palette-with-preview" />
+
+### Tabs
+
+Scope results to a category with `Tabs`, filtering the collection by the active
+tab.
+
+<ExampleTabs name="command-palette-with-tabs" />
+
+### Footer Actions
+
+Add a `Footer` with shortcut hints or actions that stay visible below the list.
+
+<ExampleTabs name="command-palette-with-footer-actions" />
+
+### With Avatar
+
+Render an avatar next to each item for people or workspace pickers.
+
+<ExampleTabs name="command-palette-with-avatar" />
+
+### With Description
+
+Give each item a secondary line of description text alongside its label.
+
+<ExampleTabs name="command-palette-with-description" />
+
+### With Status
+
+Show a status indicator per item and drive a `selectionMode="single"` picker
+from it.
+
+<ExampleTabs name="command-palette-with-status" />
+
+### Empty State
+
+Customize the `Empty` view shown when the query matches no commands.
+
+<ExampleTabs name="command-palette-with-empty-state" />
+
+### Virtualized
+
+Handle large datasets efficiently by virtualizing the list.
+
+<ExampleTabs name="command-palette-virtualized" />
+
+### Sizes
+
+Use the `size` prop to change density. The dialog remains viewport-aware at each
+size and on narrow screens.
+
+<ExampleTabs name="command-palette-with-sizes" />
+
+## Props
+
+### Root
+
+<PropTable component="CommandPalette" part="Root" />
+
+### Label
+
+<PropTable component="CommandPalette" part="Label" />
+
+### Input
+
+<PropTable component="CommandPalette" part="Input" />
+
+### Control
+
+<PropTable component="CommandPalette" part="Control" />
+
+### Indicator
+
+<PropTable component="CommandPalette" part="Indicator" />
+
+### List
+
+<PropTable component="CommandPalette" part="List" />
+
+### Loading
+
+<PropTable component="CommandPalette" part="Loading" />
+
+### Item
+
+<PropTable component="CommandPalette" part="Item" />
+
+### ItemText
+
+<PropTable component="CommandPalette" part="ItemText" />
+
+### ItemIndicator
+
+<PropTable component="CommandPalette" part="ItemIndicator" />
+
+### ItemGroup
+
+<PropTable component="CommandPalette" part="ItemGroup" />
+
+### ItemGroupLabel
+
+<PropTable component="CommandPalette" part="ItemGroupLabel" />
+
+### ItemCommand
+
+<PropTable component="CommandPalette" part="ItemCommand" />
+
+### Empty
+
+<PropTable component="CommandPalette" part="Empty" />
+
+### Separator
+
+<PropTable component="CommandPalette" part="Separator" />
+
+### Footer
+
+<PropTable component="CommandPalette" part="Footer" />

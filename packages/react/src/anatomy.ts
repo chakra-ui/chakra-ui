@@ -156,6 +156,29 @@ export const comboboxAnatomy = arkComboboxAnatomy.extendWith(
   "empty",
 )
 
+export const commandPaletteAnatomy = createAnatomy("command-palette").parts(
+  "trigger",
+  "backdrop",
+  "positioner",
+  "panel",
+  "label",
+  "control",
+  "indicator",
+  "input",
+  "clearTrigger",
+  "list",
+  "itemGroup",
+  "itemGroupLabel",
+  "item",
+  "itemText",
+  "itemCommand",
+  "itemIndicator",
+  "empty",
+  "loading",
+  "separator",
+  "footer",
+)
+
 export const sliderAnatomy = arkSliderAnatomy.extendWith(
   "markerIndicator",
   "markerLabel",
