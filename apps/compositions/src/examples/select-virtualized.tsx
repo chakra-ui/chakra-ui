@@ -52,38 +52,35 @@ export const SelectVirtualized = () => {
         </Select.Trigger>
       </Select.Control>
       <Select.Positioner>
-        <Select.Content ref={contentRef}>
-          <div
-            style={{
-              height: `${virtualizer.getTotalSize()}px`,
-              width: "100%",
-              position: "relative",
-            }}
-          >
-            {virtualizer.getVirtualItems().map((virtualItem) => {
-              const item = items[virtualItem.index]
-              return (
-                <Select.Item
-                  key={item.value}
-                  item={item}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: `${virtualItem.size}px`,
-                    transform: `translateY(${virtualItem.start}px)`,
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  <Select.ItemText>{item.label}</Select.ItemText>
-                  <Select.ItemIndicator />
-                </Select.Item>
-              )
-            })}
-          </div>
+        <Select.Content
+          ref={contentRef}
+          height={`${virtualizer.getTotalSize()}px`}
+          width={"100%"}
+          position={"relative"}
+        >
+          {virtualizer.getVirtualItems().map((virtualItem) => {
+            const item = items[virtualItem.index]
+            return (
+              <Select.Item
+                key={item.value}
+                item={item}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: `${virtualItem.size}px`,
+                  transform: `translateY(${virtualItem.start}px)`,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                <Select.ItemText>{item.label}</Select.ItemText>
+                <Select.ItemIndicator />
+              </Select.Item>
+            )
+          })}
         </Select.Content>
       </Select.Positioner>
       <Select.HiddenSelect />
