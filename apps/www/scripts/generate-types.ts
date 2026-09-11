@@ -223,7 +223,6 @@ async function writeIndexFile(outDir: string) {
 
 const arkPropsMap: Record<string, string> = {
   drawer: "dialog",
-  "action-bar": "popover",
   "radio-card": "radio-group",
   "checkbox-card": "checkbox",
 }

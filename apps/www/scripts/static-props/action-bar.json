@@ -1,0 +1,66 @@
+{
+  "Root": {
+    "props": {
+      "autoFocus": {
+        "type": "boolean",
+        "defaultValue": false,
+        "description": "Whether to automatically move focus into the action bar when it opens."
+      },
+      "closeOnEscape": {
+        "type": "boolean",
+        "defaultValue": true,
+        "description": "Whether to close the action bar when the Escape key is pressed."
+      },
+      "closeOnInteractOutside": {
+        "type": "boolean",
+        "defaultValue": true,
+        "description": "Whether to close the action bar when the user interacts outside of it."
+      },
+      "defaultOpen": {
+        "type": "boolean",
+        "description": "The initial open state of the action bar when it is uncontrolled."
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "defaultValue": true,
+        "description": "Whether to defer mounting the action bar content until it is opened."
+      },
+      "onExitComplete": {
+        "type": "VoidFunction",
+        "description": "Callback invoked when the action bar's exit animation completes."
+      },
+      "onOpenChange": {
+        "type": "(details: OpenChangeDetails) => void",
+        "description": "Callback invoked when the action bar opens or closes."
+      },
+      "open": {
+        "type": "boolean",
+        "description": "The controlled open state of the action bar."
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "defaultValue": true,
+        "description": "Whether to unmount the action bar content when it is closed."
+      }
+    }
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UseActionBarReturn",
+        "isRequired": true,
+        "description": "The action bar store returned by `useActionBar`."
+      },
+      "lazyMount": {
+        "type": "boolean",
+        "defaultValue": true,
+        "description": "Whether to defer mounting the action bar content until it is opened."
+      },
+      "unmountOnExit": {
+        "type": "boolean",
+        "defaultValue": true,
+        "description": "Whether to unmount the action bar content when it is closed."
+      }
+    }
+  }
+}
