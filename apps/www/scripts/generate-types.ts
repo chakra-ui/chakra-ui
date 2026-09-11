@@ -223,12 +223,28 @@ async function writeIndexFile(outDir: string) {
 
 const arkPropsMap: Record<string, string> = {
   drawer: "dialog",
+  "action-bar": "popover",
   "radio-card": "radio-group",
   "checkbox-card": "checkbox",
 }
 
 const omittedParts: Record<string, string[]> = {
+  "action-bar": [
+    "Anchor",
+    "Arrow",
+    "ArrowTip",
+    "Description",
+    "Indicator",
+    "Title",
+    "Trigger",
+  ],
   toast: ["Store"],
+}
+
+const omittedProps: Record<string, Record<string, string[]>> = {
+  "action-bar": {
+    Root: ["positioning"],
+  },
 }
 
 function getValueExports(code: string) {
@@ -319,6 +335,15 @@ async function extractComponents(components?: string[]) {
 
     omittedParts[dir]?.forEach((part) => {
       Reflect.deleteProperty(json, part)
+    })
+
+    Object.entries(omittedProps[dir] ?? {}).forEach(([part, props]) => {
+      const partProps = json[part]?.props
+      if (!partProps) return
+
+      props.forEach((prop) => {
+        Reflect.deleteProperty(partProps, prop)
+      })
     })
 
     const componentMainPath = join(componentDir, dir)
