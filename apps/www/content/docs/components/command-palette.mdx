@@ -62,8 +62,9 @@ open. To build a picker where selection persists, set `selectionMode` to
 The palette is a dialog. `Root` owns the open state and binds `⌘K` (`Ctrl+K` off
 macOS) by default. Use `hotkeys={["mod+k", "mod+p"]}` for alternatives, pass
 `hotkeys={[]}` to opt out, or configure editable targets and default prevention
-with `hotkeyOptions`. When multiple palettes register the same shortcut, the
-most recently mounted enabled palette handles it. `Trigger` is optional.
+with `hotkeyOptions`. Each palette registers its shortcut independently, so if
+two enabled palettes share one, both respond — give them distinct `hotkeys` when
+more than one can be mounted at once. `Trigger` is optional.
 
 Search is wired through `onInputValueChange` on `Root` rather than an `onChange`
 on the input, so filtering stays in one place.

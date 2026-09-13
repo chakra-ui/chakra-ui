@@ -1,22 +1,17 @@
 "use client"
 
-import {
-  type Assign,
-  type CollectionItem,
-  useEnvironmentContext,
-} from "@ark-ui/react"
+import { type Assign, type CollectionItem, dataAttr } from "@ark-ui/react"
 import { Combobox as ArkCombobox } from "@ark-ui/react/combobox"
 import { Dialog as ArkDialog, useDialog } from "@ark-ui/react/dialog"
+import { useHotkeys } from "@ark-ui/react/hotkeys"
 import { type JSX, forwardRef, useCallback, useEffect, useRef } from "react"
 import { createContext } from "../../create-context"
-import { useCallbackRef } from "../../hooks"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { dataAttr } from "../../utils"
 import { CheckIcon, SearchIcon } from "../icons"
 import { Spinner } from "../spinner"
 
@@ -131,80 +126,7 @@ export interface CommandPaletteRootProps<
   children: React.ReactNode
 }
 
-function matchesHotkey(event: KeyboardEvent, hotkey: string) {
-  const parts = hotkey.toLowerCase().split("+")
-  const key = parts.at(-1)
-  if (event.key.toLowerCase() !== key) return false
-
-  const hasMod = parts.includes("mod")
-  const hasMeta = parts.includes("meta") || parts.includes("cmd")
-  const hasControl = parts.includes("ctrl") || parts.includes("control")
-  if (hasMod) {
-    if (!event.metaKey && !event.ctrlKey) return false
-  } else if (event.metaKey !== hasMeta || event.ctrlKey !== hasControl) {
-    return false
-  }
-  if (parts.includes("shift") !== event.shiftKey) return false
-  if (parts.includes("alt") !== event.altKey) return false
-  return true
-}
-
-function isEditableTarget(target: EventTarget | null, doc: Document) {
-  const HTMLElement = doc.defaultView?.HTMLElement
-  if (!HTMLElement || !(target instanceof HTMLElement)) return false
-  return (
-    target.isContentEditable ||
-    ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)
-  )
-}
-
-const hotkeyRegistrations = new WeakMap<Document, symbol[]>()
 const defaultHotkeys = ["mod+k"]
-
-function useHotkeys(
-  hotkeys: string[],
-  toggle: () => void,
-  options: CommandPaletteHotkeyOptions,
-  open: boolean,
-) {
-  const env = useEnvironmentContext()
-  const toggleRef = useCallbackRef(toggle)
-  const registration = useRef(Symbol("command-palette-hotkeys"))
-  const {
-    enabled = true,
-    preventDefault = true,
-    allowInEditable = false,
-  } = options
-
-  useEffect(() => {
-    if (!enabled || !hotkeys.length) return
-
-    const doc = env.getDocument()
-    const registrationId = registration.current
-    const registrations = hotkeyRegistrations.get(doc) ?? []
-    registrations.push(registrationId)
-    hotkeyRegistrations.set(doc, registrations)
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.repeat) return
-      if (registrations.at(-1) !== registrationId) return
-      if (!open && !allowInEditable && isEditableTarget(event.target, doc)) {
-        return
-      }
-      if (!hotkeys.some((hotkey) => matchesHotkey(event, hotkey))) return
-      if (preventDefault) event.preventDefault()
-      toggleRef()
-    }
-
-    doc.addEventListener("keydown", onKeyDown)
-    return () => {
-      doc.removeEventListener("keydown", onKeyDown)
-      const index = registrations.indexOf(registrationId)
-      if (index !== -1) registrations.splice(index, 1)
-      if (!registrations.length) hotkeyRegistrations.delete(doc)
-    }
-  }, [env, hotkeys, open, allowInEditable, enabled, preventDefault, toggleRef])
-}
 
 const CommandPaletteRootBase = (props: CommandPaletteRootProps) => {
   const {
@@ -271,16 +193,24 @@ const CommandPaletteRootBase = (props: CommandPaletteRootProps) => {
   }
 
   const hotkeys = hotkeysProp ?? defaultHotkeys
-  // ponytail: hand-rolled hotkey registry. Swap to Ark's `useHotkeys` from
-  // `@ark-ui/react/hotkeys` once it's importable — the published package ships
-  // dist/providers/hotkeys/* but its clean-package config drops the `./hotkeys`
-  // export (missing through 5.39.1), so the entrypoint can't be imported yet.
-  useHotkeys(
-    hotkeys,
-    () => dialog.setOpen(!dialog.open),
-    hotkeyOptions ?? {},
-    dialog.open,
-  )
+  const {
+    enabled = true,
+    preventDefault = true,
+    allowInEditable = false,
+  } = hotkeyOptions ?? {}
+  useHotkeys({
+    commands: hotkeys.map((hotkey) => ({
+      hotkey,
+      enabled,
+      action: () => dialog.setOpen(!dialog.open),
+      options: {
+        preventDefault,
+        requireReset: true,
+        enableOnFormTags: dialog.open || allowInEditable,
+        enableOnContentEditable: dialog.open || allowInEditable,
+      },
+    })),
+  })
 
   return (
     <CommandPaletteConfigProvider
