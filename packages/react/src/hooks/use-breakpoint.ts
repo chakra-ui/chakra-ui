@@ -69,7 +69,7 @@ export function useBreakpoint(options: UseBreakpointOptions = {}) {
 
   const values = useMediaQuery(
     breakpoints.map((bp) => bp.query),
-    { fallback, ssr: options.ssr },
+    { fallback, ssr: options.ssr, getWindow: options.getWindow },
   )
 
   // find highest matched breakpoint

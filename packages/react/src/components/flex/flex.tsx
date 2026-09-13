@@ -38,17 +38,19 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
       <chakra.div
         ref={ref}
         {...rest}
-        css={{
-          display: inline ? "inline-flex" : "flex",
-          flexDirection: direction,
-          alignItems: align,
-          justifyContent: justify,
-          flexWrap: wrap,
-          flexBasis: basis,
-          flexGrow: grow,
-          flexShrink: shrink,
-          ...props.css,
-        }}
+        css={[
+          {
+            display: inline ? "inline-flex" : "flex",
+            flexDirection: direction,
+            alignItems: align,
+            justifyContent: justify,
+            flexWrap: wrap,
+            flexBasis: basis,
+            flexGrow: grow,
+            flexShrink: shrink,
+          },
+          props.css,
+        ]}
       />
     )
   },

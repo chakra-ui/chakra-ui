@@ -14,8 +14,10 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       borderRadius: "l2",
       flex: "1",
       focusVisibleRing: "outside",
+      cursor: "checkbox",
       _disabled: {
         opacity: "0.8",
+        cursor: "disabled",
       },
       _invalid: {
         outline: "2px solid",

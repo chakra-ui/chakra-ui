@@ -142,4 +142,24 @@ describe("cva", () => {
         }
       `)
   })
+
+  test("resolves each variant prop order independently", () => {
+    const recipe = cva({
+      variants: {
+        size: { md: { mt: "20px" } },
+        tone: { solid: { mt: "30px", color: "pink.400" } },
+      },
+    })
+
+    // Both calls pass the same variants, so they only get separate memo
+    // entries if prop order is part of the cache key. The later prop wins,
+    // so a shared entry would hand the second call the first one's "30px".
+    expect(recipe({ size: "md", tone: "solid" })).toMatchObject({
+      "@layer recipes": { marginTop: "30px" },
+    })
+
+    expect(recipe({ tone: "solid", size: "md" })).toMatchObject({
+      "@layer recipes": { marginTop: "20px" },
+    })
+  })
 })

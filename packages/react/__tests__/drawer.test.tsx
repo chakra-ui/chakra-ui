@@ -16,4 +16,24 @@ describe("Drawer", () => {
     )
     expect(getByTestId("action-trigger")).toHaveAttribute("type", "button")
   })
+
+  it("calls the user's onClick on ActionTrigger", async () => {
+    const onClick = vi.fn()
+    const { getByTestId, user } = render(
+      <Drawer.Root open>
+        <Drawer.Positioner>
+          <Drawer.Content>
+            <Drawer.ActionTrigger
+              data-testid="action-trigger"
+              onClick={onClick}
+            >
+              Cancel
+            </Drawer.ActionTrigger>
+          </Drawer.Content>
+        </Drawer.Positioner>
+      </Drawer.Root>,
+    )
+    await user.click(getByTestId("action-trigger"))
+    expect(onClick).toHaveBeenCalledTimes(1)
+  })
 })

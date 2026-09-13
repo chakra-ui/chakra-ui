@@ -1,0 +1,152 @@
+---
+title: Introducing DateInput
+description:
+  "Chakra UI v3.37 introduces DateInput, a segmented date field for typing dates
+  without a calendar, plus new component APIs, a faster upgrade codemod, and a
+  round of bug fixes"
+type: release
+version: "3.37"
+authors: ["lope"]
+publishedAt: "2026-08-22"
+---
+
+Today we're shipping Chakra UI v3.37, headlined by a new component:
+**[DateInput](/docs/components/date-input)**.
+
+Calendars are great until someone just wants to type a date. DateInput is the
+field for that. You fill it in part by part, day, month, year, and time if you
+need it, and each part is its own keyboard-navigable segment, ordered and
+formatted for the user's locale.
+
+<ExampleTabs name="date-input-basic" />
+
+What you get:
+
+- Type segment by segment. `ArrowUp`/`ArrowDown` increment, and focus
+  auto-advances as each part fills.
+- Order and format come from `locale`, so `MM/DD/YYYY` and `DD.MM.YYYY` both
+  work with no extra config.
+- Native numerals when typing, not just ASCII digits. Arabic-Indic `٠-٩` and
+  Devanagari `०-९` are covered.
+- `HiddenInput` submits the value cleanly inside a native `<form>`.
+
+### Ranges
+
+Set `selectionMode="range"` and a single field captures a start and end date,
+each with its own segments.
+
+<ExampleTabs name="date-input-range" />
+
+### Time
+
+Need a time too? Set `granularity` and DateInput adds hour and minute segments
+alongside the date. Pass a `formatter` for full control over how it reads.
+
+<ExampleTabs name="date-input-granularity" />
+
+DateInput was contributed by [@kalisaNkevin](https://github.com/kalisaNkevin).
+Thank you.
+
+The rest of the release is worth a look too.
+
+## New APIs
+
+We updated our headless foundation to [Ark UI](https://ark-ui.com) 5.39.0, which
+brings a few APIs that make existing components do more:
+
+- **`hideMode`** on Accordion, Collapsible, Dialog, Drawer, and TreeView. Choose
+  how content that stays mounted is hidden when closed. The default keeps
+  effects running, so a video keeps playing. `"activity"` uses React 19's
+  `Activity` to pause them.
+
+  ```tsx
+  <Dialog.Root hideMode="activity" />
+  ```
+
+- **Dialog and Drawer autofocus.** Mark the target with `data-autofocus`, or
+  skip chrome like the close button with `data-no-autofocus`. No
+  `initialFocusEl` ref needed.
+
+  ```tsx
+  <Dialog.Content>
+    <Dialog.CloseTrigger data-no-autofocus />
+    <input data-autofocus />
+    <button>Save</button>
+  </Dialog.Content>
+  ```
+
+- **`largeStep` and `smallStep`** on NumberInput and Slider. Hold `Shift` for
+  large, `Alt` for small. Defaults match what the arrow keys already did, so
+  existing inputs behave the same until you set them.
+
+  ```tsx
+  <NumberInput.Root step={1} largeStep={20} smallStep={0.5} />
+  ```
+
+- **`createOverlay` return types.** A new `TReturn` generic, so awaiting
+  `open()` returns the value you passed to `close()` instead of `any`.
+
+## The codemod is a lot faster
+
+The upgrade codemod used to be slow. Every transform spawned its own Node
+process, and a full upgrade runs a whole stack of them, so you paid startup cost
+over and over. A full run took around 30 seconds.
+
+The transforms now run in-process. Same jscodeshift, same transforms, no
+per-process overhead. A full upgrade drops to a few seconds.
+
+```bash
+npx @chakra-ui/codemod upgrade
+```
+
+`--dry` is a real preview now. It used to print nothing. Today it lists the
+files that would change and, for each one, the components and props it touches:
+
+```bash
+npx @chakra-ui/codemod upgrade --dry
+```
+
+```
+Files that would change (3)
+src/components/toolbar.tsx
+  Button, color palette
+src/pages/settings.tsx
+  Color mode
+```
+
+Big projects get the full breakdown written to `chakra-codemod-report.md`; small
+ones print inline.
+
+## Bug fixes
+
+Sage ([@segunadebayo](https://github.com/segunadebayo)) landed a deep round of
+fixes this release. A few you'll want to know about:
+
+- **Next.js 15 production builds compile again.** React's optional `Activity`
+  export was imported statically, so webpack rejected the build with
+  `Attempted import error: 'Activity' is not exported from 'react'`, even on
+  React versions that have it. It resolves at runtime now and falls back when
+  the export isn't there.
+- **`Escape` right after opening an overlay works.** Dialog, Drawer, Menu, and
+  Popover registered their key handler a frame late, so a fast `Escape` got
+  swallowed. Under CPU load the gap grew. Handlers register on time now.
+- **Scroll-lock works when `<html>` is the scroll container.** The lock targeted
+  `<body>`, so on those layouts the page kept scrolling behind an open dialog.
+- **TagsInput XSS patch.** The hidden element that measures input width set the
+  tag value with `innerHTML`, so a value with markup could execute. It uses
+  `textContent` now, and its hidden input stays in sync with `FormData` after
+  you add, remove, or clear tags.
+
+See the [full changelog](https://github.com/chakra-ui/chakra-ui/releases) for
+the complete list, including DatePicker, Menu, Splitter, and Steps fixes.
+
+## Upgrading
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+This release is backward compatible, so you can upgrade and start using
+DateInput right away. Try it out and tell us what you build in
+[Discord](https://chakra-ui.com/discord) or on
+[Twitter](https://twitter.com/chakra_ui).

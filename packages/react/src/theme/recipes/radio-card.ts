@@ -19,11 +19,13 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       userSelect: "none",
       position: "relative",
       borderRadius: "l2",
+      cursor: "radio",
       _focus: {
         bg: "colorPalette.muted/20",
       },
       _disabled: {
         opacity: "0.5",
+        cursor: "disabled",
       },
       _checked: {
         zIndex: "1",
