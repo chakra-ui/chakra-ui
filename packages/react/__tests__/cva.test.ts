@@ -151,15 +151,66 @@ describe("cva", () => {
       },
     })
 
-    // Both calls pass the same variants, so they only get separate memo
-    // entries if prop order is part of the cache key. The later prop wins,
-    // so a shared entry would hand the second call the first one's "30px".
+    // Same variants either way, so a memo key that ignored prop order would
+    // hand the second call the first one's "30px". The later prop wins.
     expect(recipe({ size: "md", tone: "solid" })).toMatchObject({
       "@layer recipes": { marginTop: "30px" },
     })
 
     expect(recipe({ tone: "solid", size: "md" })).toMatchObject({
       "@layer recipes": { marginTop: "20px" },
+    })
+  })
+
+  test("keeps variant keys that collide with CSS shorthands", () => {
+    const sys = createSystem({
+      theme: {
+        breakpoints: { sm: "30em" },
+      },
+      utilities: {
+        borderRadius: { shorthand: "rounded" },
+        background: { shorthand: "bg" },
+        padding: { shorthand: "p" },
+      },
+    })
+
+    const recipe = sys.cva({
+      base: { color: "red" },
+      variants: {
+        rounded: {
+          true: {
+            borderWidth: "2px",
+            borderStyle: "solid",
+          },
+        },
+        bg: {
+          solid: { background: "blue" },
+        },
+        p: {
+          sm: { padding: "4px" },
+        },
+      },
+      compoundVariants: [
+        {
+          rounded: true,
+          bg: "solid",
+          css: { borderColor: "green" },
+        },
+      ],
+      defaultVariants: {
+        rounded: true,
+      },
+    })
+
+    expect(recipe({ bg: "solid", p: "sm" })).toMatchObject({
+      "@layer recipes": {
+        color: "red",
+        borderWidth: "2px",
+        borderStyle: "solid",
+        background: "blue",
+        padding: "4px",
+        borderColor: "green",
+      },
     })
   })
 })
