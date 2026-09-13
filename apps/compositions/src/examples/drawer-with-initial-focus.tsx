@@ -1,5 +1,3 @@
-"use client"
-
 import {
   Button,
   CloseButton,
@@ -8,12 +6,10 @@ import {
   Portal,
   Stack,
 } from "@chakra-ui/react"
-import { useRef } from "react"
 
 export const DrawerWithInitialFocus = () => {
-  const ref = useRef<HTMLInputElement | null>(null)
   return (
-    <Drawer.Root initialFocusEl={() => ref.current}>
+    <Drawer.Root>
       <Drawer.Trigger asChild>
         <Button variant="outline" size="sm">
           Open Drawer
@@ -33,14 +29,14 @@ export const DrawerWithInitialFocus = () => {
               </p>
               <Stack mt="5">
                 <Input defaultValue="Naruto" placeholder="First name" />
-                <Input ref={ref} placeholder="Email" />
+                <Input data-autofocus placeholder="Email" />
               </Stack>
             </Drawer.Body>
             <Drawer.Footer>
               <Button variant="outline">Cancel</Button>
               <Button>Save</Button>
             </Drawer.Footer>
-            <Drawer.CloseTrigger asChild>
+            <Drawer.CloseTrigger data-no-autofocus asChild>
               <CloseButton size="sm" />
             </Drawer.CloseTrigger>
           </Drawer.Content>
