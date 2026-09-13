@@ -8,11 +8,12 @@ import {
   omit,
   splitProps,
   uniq,
+  walkObject,
 } from "../utils"
 import { createCssFn } from "./css"
 import type { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
 import { EMPTY_OBJECT } from "./singleton"
-import type { Condition, CssFn, Layers } from "./types"
+import type { Condition, CssFn, Layers, SystemContext } from "./types"
 
 const defaults = (conf: any): Required<RecipeDefinition> => ({
   base: EMPTY_OBJECT,
@@ -24,19 +25,48 @@ const defaults = (conf: any): Required<RecipeDefinition> => ({
 
 interface Options {
   normalize: (styles: Dict) => Dict
-  /** Array → breakpoint only; must not rewrite CSS shorthand keys. */
-  normalizeProps: (props: Dict) => Dict
+  normalizeValue: SystemContext["normalizeValue"]
   css: CssFn
   conditions: Condition
   layers: Layers
 }
 
 export function createRecipeFn(options: Options): RecipeCreatorFn {
-  const { css, conditions, normalize, normalizeProps, layers } = options
+  const { css, conditions, normalize, normalizeValue, layers } = options
+
+  // Variant names are not CSS properties: normalizing them would rewrite
+  // a `rounded` variant to `borderRadius`.
+  const normalizeSelections = (selections: Dict) =>
+    walkObject(selections, normalizeValue, {
+      stop: (value) => Array.isArray(value),
+    })
+
+  function createCompoundVariantFn(compoundVariants: any[]) {
+    const rules = compoundVariants.map((compoundVariant) => ({
+      styles: compoundVariant.css,
+      match: Object.entries(omit(compoundVariant, ["css"])).map(
+        ([name, value]) =>
+          [name, Array.isArray(value) ? value : [value]] as const,
+      ),
+    }))
+
+    return function matchCompoundVariants(selections: Dict) {
+      let result = EMPTY_OBJECT
+      for (const { styles, match } of rules) {
+        const matches = match.every(([name, values]) =>
+          values.includes(selections[name]),
+        )
+        if (matches) result = css(result, styles)
+      }
+      return result
+    }
+  }
 
   function cva(config: Dict = {}) {
     const defaultsConfig = defaults(config)
     const { base, defaultVariants, compoundVariants } = defaultsConfig
+
+    const matchCompoundVariants = createCompoundVariantFn(compoundVariants)
 
     const variants = mapEntries(defaultsConfig.variants, (key, obj) => [
       key,
@@ -45,28 +75,22 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
 
     const getVariantCss = createCssFn({
       conditions,
-      normalize: normalizeProps,
+      normalize: normalizeSelections,
       transform(prop, value) {
         return variants[prop]?.[value]
       },
     })
 
     const resolve = memo(function resolve(props: Dict = {}) {
-      const variantSelections: Dict = normalizeProps({
-        ...defaultVariants,
-        ...compact(props),
-      })
+      const selections = { ...defaultVariants, ...compact(props) }
 
-      let variantCss = { ...normalize(base) }
+      const variantCss = normalize(base)
+      mergeWith(variantCss, getVariantCss(selections))
 
-      mergeWith(variantCss, getVariantCss(variantSelections))
-
-      const compoundVariantCss = getCompoundVariantCss(
-        compoundVariants,
-        variantSelections,
+      return layers.wrap(
+        "recipes",
+        css(variantCss, matchCompoundVariants(selections)),
       )
-
-      return layers.wrap("recipes", css(variantCss, compoundVariantCss))
     })
 
     const variantKeys = Object.keys(variants)
@@ -110,22 +134,6 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
         return cva(mergeCva(this, other))
       },
     })
-  }
-
-  function getCompoundVariantCss(cvs: any[], vm: any) {
-    let result = EMPTY_OBJECT
-    cvs.forEach((cv) => {
-      const isMatching = Object.entries(cv).every(([key, value]) => {
-        if (key === "css") return true
-        const values = Array.isArray(value) ? value : [value]
-        return values.some((value) => vm[key] === value)
-      })
-      if (isMatching) {
-        result = css(result, cv.css)
-      }
-    })
-
-    return result
   }
 
   //@ts-expect-error

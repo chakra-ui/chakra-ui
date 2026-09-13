@@ -151,9 +151,8 @@ describe("cva", () => {
       },
     })
 
-    // Both calls pass the same variants, so they only get separate memo
-    // entries if prop order is part of the cache key. The later prop wins,
-    // so a shared entry would hand the second call the first one's "30px".
+    // Same variants either way, so a memo key that ignored prop order would
+    // hand the second call the first one's "30px". The later prop wins.
     expect(recipe({ size: "md", tone: "solid" })).toMatchObject({
       "@layer recipes": { marginTop: "30px" },
     })
@@ -164,7 +163,7 @@ describe("cva", () => {
   })
 
   test("keeps variant keys that collide with CSS shorthands", () => {
-    const { cva: cvaWithShorthand } = createSystem({
+    const sys = createSystem({
       theme: {
         breakpoints: { sm: "30em" },
       },
@@ -175,7 +174,7 @@ describe("cva", () => {
       },
     })
 
-    const recipe = cvaWithShorthand({
+    const recipe = sys.cva({
       base: { color: "red" },
       variants: {
         rounded: {
