@@ -62,7 +62,8 @@ export function useBreakpoint(options: UseBreakpointOptions = {}) {
     })
     .filter(
       ({ breakpoint }) =>
-        options.breakpoints?.includes(breakpoint as BreakpointName) ?? true,
+        !options.breakpoints ||
+        options.breakpoints.includes(breakpoint as BreakpointName),
     )
 
   const fallback = breakpoints.map(({ fallback }) => fallback)
