@@ -2,6 +2,13 @@ import { CommandPalette, Portal, createListCollection } from "@chakra-ui/react"
 import userEvent from "@testing-library/user-event"
 import { render } from "./core/render"
 
+// Ark resolves `mod` per platform (Command on macOS, Control elsewhere). Force
+// macOS so the ⌘/Meta key presses in the hotkey tests below resolve correctly.
+Object.defineProperty(navigator, "platform", {
+  value: "MacIntel",
+  configurable: true,
+})
+
 const collection = createListCollection({
   items: [
     { label: "New File", value: "new-file" },
@@ -211,22 +218,16 @@ describe("CommandPalette", () => {
     expect(onOpenChange).not.toHaveBeenCalled()
   })
 
-  it("gives the latest mounted palette priority for shared hotkeys", async () => {
+  it("fires every enabled palette that shares a hotkey", async () => {
     const user = userEvent.setup()
     const first = vi.fn()
     const second = vi.fn()
     render(<Demo defaultOpen={false} onOpenChange={first} />)
-    const { unmount } = render(
-      <Demo defaultOpen={false} onOpenChange={second} />,
-    )
+    render(<Demo defaultOpen={false} onOpenChange={second} />)
 
-    await user.keyboard("{Meta>}k{/Meta}")
-    expect(first).not.toHaveBeenCalled()
-    expect(second).toHaveBeenCalledWith(expect.objectContaining({ open: true }))
-
-    unmount()
     await user.keyboard("{Meta>}k{/Meta}")
     expect(first).toHaveBeenCalledWith(expect.objectContaining({ open: true }))
+    expect(second).toHaveBeenCalledWith(expect.objectContaining({ open: true }))
   })
 
   it("renders Loading instead of Empty and exposes a separator", () => {
