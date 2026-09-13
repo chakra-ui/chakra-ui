@@ -6,6 +6,7 @@ import { Dialog as ArkDialog, useDialog } from "@ark-ui/react/dialog"
 import { useHotkeys } from "@ark-ui/react/hotkeys"
 import { type JSX, forwardRef, useCallback, useEffect, useRef } from "react"
 import { createContext } from "../../create-context"
+import { useCallbackRef } from "../../hooks"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -429,10 +430,14 @@ const CommandPaletteItemBase = forwardRef<
   const { comboboxProps, registerItemAction } = useCommandPaletteConfig()
   const itemValue = comboboxProps.collection?.getItemValue(item)
 
+  const onSelectRef = useCallbackRef(onSelect)
   useEffect(() => {
-    if (itemValue == null) return
-    return registerItemAction(itemValue, { onSelect, closeOnSelect })
-  }, [closeOnSelect, itemValue, onSelect, registerItemAction])
+    if (itemValue === null || itemValue === undefined) return
+    return registerItemAction(itemValue, {
+      onSelect: onSelectRef,
+      closeOnSelect,
+    })
+  }, [closeOnSelect, itemValue, onSelectRef, registerItemAction])
 
   return (
     <ArkCombobox.Item
