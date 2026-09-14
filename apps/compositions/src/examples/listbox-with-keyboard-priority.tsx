@@ -9,11 +9,11 @@ export const ListboxWithKeyboardPriority = () => {
       <Listbox.Input
         as={Input}
         keyboardPriority="navigate"
-        placeholder="Use Home, End, or Arrow keys"
+        placeholder="Press Home or End"
       />
       <Text color="fg.muted" textStyle="xs">
-        The navigation keys highlight listbox items instead of moving the text
-        caret.
+        Home and End highlight the first and last item instead of moving the
+        text caret.
       </Text>
       <Listbox.Content>
         {frameworks.items.map((framework) => (

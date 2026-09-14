@@ -1,6 +1,6 @@
 "use client"
 
-import { Span, TagsInput } from "@chakra-ui/react"
+import { TagsInput, Text } from "@chakra-ui/react"
 
 export const TagsInputWithSanitizedValue = () => {
   return (
@@ -10,9 +10,9 @@ export const TagsInputWithSanitizedValue = () => {
         <TagsInput.Items />
         <TagsInput.Input placeholder={'Try " React "'} />
       </TagsInput.Control>
-      <Span color="fg.muted" textStyle="xs" ms="auto">
+      <Text color="fg.muted" textStyle="xs">
         Tags are trimmed and converted to lowercase.
-      </Span>
+      </Text>
       <TagsInput.HiddenInput />
     </TagsInput.Root>
   )

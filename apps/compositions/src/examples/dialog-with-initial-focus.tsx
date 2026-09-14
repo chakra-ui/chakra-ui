@@ -1,16 +1,12 @@
-import {
-  Button,
-  CloseButton,
-  Dialog,
-  Field,
-  Input,
-  Portal,
-  Stack,
-} from "@chakra-ui/react"
+"use client"
+
+import { Button, Dialog, Field, Input, Portal, Stack } from "@chakra-ui/react"
+import { useRef } from "react"
 
 export const DialogWithInitialFocus = () => {
+  const ref = useRef<HTMLInputElement | null>(null)
   return (
-    <Dialog.Root>
+    <Dialog.Root initialFocusEl={() => ref.current}>
       <Dialog.Trigger asChild>
         <Button variant="outline">Open</Button>
       </Dialog.Trigger>
@@ -29,7 +25,7 @@ export const DialogWithInitialFocus = () => {
                 </Field.Root>
                 <Field.Root>
                   <Field.Label>Last Name</Field.Label>
-                  <Input data-autofocus placeholder="Focus First" />
+                  <Input ref={ref} placeholder="Focus First" />
                 </Field.Root>
               </Stack>
             </Dialog.Body>
@@ -39,9 +35,6 @@ export const DialogWithInitialFocus = () => {
               </Dialog.ActionTrigger>
               <Button>Save</Button>
             </Dialog.Footer>
-            <Dialog.CloseTrigger data-no-autofocus asChild>
-              <CloseButton size="sm" />
-            </Dialog.CloseTrigger>
           </Dialog.Content>
         </Dialog.Positioner>
       </Portal>
