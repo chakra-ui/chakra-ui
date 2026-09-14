@@ -74,6 +74,14 @@ Use the `initialFocusEl` prop to set the initial focus of the drawer component.
 
 <ExampleTabs name="drawer-with-initial-focus" />
 
+Without `initialFocusEl`, focus moves to the first element marked
+`data-autofocus`, falling back to the first tabbable element that is not marked
+`data-no-autofocus`.
+
+```tsx
+<Input data-autofocus />
+```
+
 ### Custom Container
 
 Here's an example of how to render the drawer component in a custom container.
