@@ -132,6 +132,7 @@ export function createSystem(...configs: SystemConfig[]): SystemContext {
     css: css as any,
     conditions,
     normalize: normalizeFn,
+    normalizeValue,
     layers,
   })
 
