@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,9 +14,7 @@
     "jsx": "preserve",
     "jsxImportSource": "react",
     "incremental": true,
-    "customConditions": [
-      "dev"
-    ],
+    "customConditions": ["dev"],
     "baseUrl": ".",
     "plugins": [
       {
@@ -28,18 +22,10 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@chakra-ui/react": [
-        "../../packages/react/src"
-      ],
-      "@chakra-ui/charts": [
-        "../../packages/charts/src"
-      ],
-      "compositions/*": [
-        "../compositions/src/*"
-      ]
+      "@/*": ["./*"],
+      "@chakra-ui/react": ["../../packages/react/src"],
+      "@chakra-ui/charts": ["../../packages/charts/src"],
+      "compositions/*": ["../compositions/src/*"]
     }
   },
   "include": [
@@ -51,7 +37,5 @@
     "../compositions",
     "next.config.mjs"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
