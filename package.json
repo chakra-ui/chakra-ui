@@ -21,6 +21,7 @@
     "typedocs": "pnpm www generate:types",
     "typecheck": "tsgo --noEmit",
     "test": "vitest",
+    "bench": "vitest bench --run",
     "react": "pnpm --filter=@chakra-ui/react",
     "www": "pnpm --filter=./apps/www",
     "mcp": "pnpm --filter=./apps/mcp",

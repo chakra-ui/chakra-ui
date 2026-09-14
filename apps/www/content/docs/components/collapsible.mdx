@@ -65,6 +65,18 @@ Use the `unmountOnExit` prop to make the content unmount when collapsed.
 
 <ExampleTabs name="collapsible-lazy-mounted" />
 
+### Hide Mode
+
+Use `hideMode="activity"` to keep collapsed content mounted while React pauses
+the effects in its subtree. The default, `display-none`, hides the content but
+leaves its effects running.
+
+<ExampleTabs name="collapsible-with-hide-mode" />
+
+This mode requires React 19.2 or later and falls back to `display-none` on
+earlier versions. It also has no effect alongside `unmountOnExit`, which removes
+the subtree instead of hiding it.
+
 ## Guides
 
 ### Accessing collapsible context

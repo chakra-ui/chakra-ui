@@ -8,8 +8,7 @@ interface StepInfoProps {
 }
 
 export interface StepsItemProps
-  extends Omit<ChakraSteps.ItemProps, "title">,
-    StepInfoProps {
+  extends Omit<ChakraSteps.ItemProps, "title">, StepInfoProps {
   completedIcon?: React.ReactNode
   icon?: React.ReactNode
 }
