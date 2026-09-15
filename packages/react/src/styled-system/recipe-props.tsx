@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext } from "../create-context"
-import type { RecipeProps } from "./generated/recipes.gen"
+import type { RecipeProps } from "./register"
 import type { RecipeKey } from "./use-recipe"
 import type { SlotRecipeKey } from "./use-slot-recipe"
 
