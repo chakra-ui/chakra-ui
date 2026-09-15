@@ -1,88 +1,68 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxOpeningElement, JsxSelfClosingElement } from "ts-morph"
+import type { Transform } from "../../transform"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+type JsxOpening = JsxOpeningElement | JsxSelfClosingElement
 
-  const chakraLinkNames: string[] = []
+const transform: Transform = (sourceFile) => {
+  const importDecl = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
+  )
 
-  root
-    .find(j.ImportDeclaration, { source: { value: "@chakra-ui/react" } })
-    .forEach((path) => {
-      path.node.specifiers?.forEach((spec) => {
-        if (
-          spec.type === "ImportSpecifier" &&
-          (spec.imported.name === "Link" ||
-            spec.imported.name === "LinkOverlay") &&
-          spec.local?.name
-        ) {
-          chakraLinkNames.push(spec.local.name as string)
-        }
-      })
-    })
-
-  if (chakraLinkNames.length === 0) {
-    return root.toSource({ quote: "single" })
+  const linkNames = new Set<string>()
+  if (importDecl) {
+    for (const spec of importDecl.getNamedImports()) {
+      const imported = spec.getName()
+      if (imported === "Link" || imported === "LinkOverlay") {
+        linkNames.add(spec.getAliasNode()?.getText() ?? imported)
+      }
+    }
   }
 
-  root
-    .find(j.JSXElement, {
-      openingElement: (el) =>
-        el.name.type === "JSXIdentifier" &&
-        chakraLinkNames.includes(el.name.name),
-    })
-    .forEach((path) => {
-      const attrs = path.node.openingElement.attributes
-      if (!attrs) return
+  if (linkNames.size === 0) return
 
-      const attrsToRemove: number[] = []
-      let hasIsExternal = false
+  const openings: JsxOpening[] = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
 
-      attrs.forEach((attr, index) => {
-        if (attr.type !== "JSXAttribute") return
-        if (attr.name.name === "isExternal") {
-          hasIsExternal = true
-          attrsToRemove.push(index)
-        }
-      })
+  for (const opening of openings) {
+    if (opening.wasForgotten()) continue
+    const tagNode = opening.getTagNameNode()
+    if (!Node.isIdentifier(tagNode)) continue
+    if (!linkNames.has(tagNode.getText())) continue
 
-      attrsToRemove.reverse().forEach((index) => {
-        attrs.splice(index, 1)
-      })
-
-      if (hasIsExternal) {
-        const hasTarget = attrs.some(
-          (attr) => attr.type === "JSXAttribute" && attr.name.name === "target",
-        )
-
-        if (!hasTarget) {
-          attrs.push(
-            j.jsxAttribute(
-              j.jsxIdentifier("target"),
-              j.stringLiteral("_blank"),
-            ),
-          )
-        }
-
-        const hasRel = attrs.some(
-          (attr) => attr.type === "JSXAttribute" && attr.name.name === "rel",
-        )
-
-        if (!hasRel) {
-          attrs.push(
-            j.jsxAttribute(
-              j.jsxIdentifier("rel"),
-              j.stringLiteral("noopener noreferrer"),
-            ),
-          )
-        }
+    let hasIsExternal = false
+    for (const attr of opening.getAttributes()) {
+      if (
+        Node.isJsxAttribute(attr) &&
+        attr.getNameNode().getText() === "isExternal"
+      ) {
+        hasIsExternal = true
+        attr.remove()
       }
-    })
+    }
 
-  return root.toSource({ quote: "single" })
+    if (!hasIsExternal) continue
+
+    const attrs = opening.getAttributes()
+    const hasTarget = attrs.some(
+      (a) => Node.isJsxAttribute(a) && a.getNameNode().getText() === "target",
+    )
+    const hasRel = attrs.some(
+      (a) => Node.isJsxAttribute(a) && a.getNameNode().getText() === "rel",
+    )
+
+    if (!hasTarget) {
+      opening.addAttribute({ name: "target", initializer: '"_blank"' })
+    }
+    if (!hasRel) {
+      opening.addAttribute({
+        name: "rel",
+        initializer: '"noopener noreferrer"',
+      })
+    }
+  }
 }
+
+export default transform

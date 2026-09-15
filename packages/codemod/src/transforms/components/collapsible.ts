@@ -1,102 +1,79 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 
 /**
- * Transforms Collapse to Collapsible
+ * Transforms Collapse to Collapsible.Root > Collapsible.Content
  */
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  root
-    .find(j.JSXElement, {
-      openingElement: { name: { name: "Collapse" } },
-    })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("Collapse")) return
-      const attrs = path.node.openingElement.attributes || []
-      const children = path.node.children || []
+  const isCollapse = (tagNode: Node) =>
+    getJsxBaseName(tagNode) === "Collapse" && chakraLocalNames.has("Collapse")
 
-      const newAttrs = attrs.flatMap((attr) => {
-        if (attr.type !== "JSXAttribute") return attr
+  const targets: Node[] = []
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    if (isCollapse(el.getOpeningElement().getTagNameNode())) targets.push(el)
+  }
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    if (isCollapse(el.getTagNameNode())) targets.push(el)
+  }
 
-        if (attr.name.name === "in") {
-          attr.name.name = "open"
-          return attr
-        }
+  if (targets.length === 0) return
 
-        if (attr.name.name === "animateOpacity") {
-          return []
-        }
+  // Edit later-in-file nodes first to keep earlier positions stable.
+  targets.sort((a, b) => b.getStart() - a.getStart())
 
-        return attr
-      })
+  for (const el of targets) {
+    const opening = Node.isJsxElement(el) ? el.getOpeningElement() : (el as any)
 
-      const collapsibleRoot = j.jsxElement(
-        j.jsxOpeningElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("Collapsible"),
-            j.jsxIdentifier("Root"),
-          ),
-          newAttrs,
-        ),
-        j.jsxClosingElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("Collapsible"),
-            j.jsxIdentifier("Root"),
-          ),
-        ),
-        [
-          j.jsxText("\n  "),
-          j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Collapsible"),
-                j.jsxIdentifier("Content"),
-              ),
-              [],
-            ),
-            j.jsxClosingElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Collapsible"),
-                j.jsxIdentifier("Content"),
-              ),
-            ),
-            children,
-          ),
-          j.jsxText("\n"),
-        ],
-      )
+    const attrParts: string[] = []
+    for (const attr of opening.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) {
+        attrParts.push(attr.getText())
+        continue
+      }
+      const name = attr.getNameNode().getText()
+      if (name === "in") {
+        const init = attr.getInitializer()
+        attrParts.push(init ? `open=${init.getText()}` : "open")
+      } else if (name === "animateOpacity") {
+        // remove
+      } else {
+        attrParts.push(attr.getText())
+      }
+    }
 
-      j(path).replaceWith(collapsibleRoot)
-    })
+    const childrenText = Node.isJsxElement(el)
+      ? el
+          .getJsxChildren()
+          .map((c) => c.getText())
+          .join("")
+      : ""
 
-  // Update imports
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    .forEach((path) => {
-      const specifiers = path.node.specifiers
-      if (!specifiers) return
+    const attrsStr = attrParts.length ? " " + attrParts.join(" ") : ""
+    el.replaceWithText(
+      `<Collapsible.Root${attrsStr}>\n` +
+        `<Collapsible.Content>${childrenText}</Collapsible.Content>\n` +
+        `</Collapsible.Root>`,
+    )
+  }
 
-      path.node.specifiers = specifiers.map((spec) => {
-        if (
-          spec.type === "ImportSpecifier" &&
-          spec.imported.name === "Collapse"
-        ) {
-          return j.importSpecifier(j.identifier("Collapsible"))
-        }
-        return spec
-      })
-    })
-
-  return root.toSource({ quote: "single" })
+  // Update imports: Collapse -> Collapsible
+  const importDecl = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
+  )
+  importDecl
+    ?.getNamedImports()
+    .find((n) => n.getName() === "Collapse")
+    ?.getNameNode()
+    .replaceWithText("Collapsible")
 }
+
+export default transform

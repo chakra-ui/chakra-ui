@@ -48,6 +48,31 @@ export const system = createSystem(defaultConfig, config)
 
 :::
 
+## Defining Tokens in Separate Files
+
+As your token set grows, you can move tokens into their own files and import
+them into your system config. Each token must already be authored in the
+`{ value: ... }` shape in that file.
+
+```ts title="theme/colors.ts"
+export const colors = {
+  brand: {
+    500: { value: "#0066cc" },
+  },
+}
+```
+
+```ts title="theme/index.ts"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { colors } from "./colors"
+
+const config = defineConfig({
+  theme: { tokens: { colors } },
+})
+
+export const system = createSystem(defaultConfig, config)
+```
+
 ## Using Tokens
 
 After defining tokens, run the Chakra CLI to generate theme typings. This
@@ -132,6 +157,16 @@ export default createSystem(defaultConfig, config)
 ```
 
 ## Token Types
+
+:::note
+
+`defineTokens` is a type helper. It's an identity function that returns its
+argument unchanged, so it only provides autocomplete and type-safety — it does
+**not** transform or reshape values at runtime. Your tokens must already be
+authored in the `{ value: ... }` shape; `defineTokens({...})` won't wrap raw
+values for you.
+
+:::
 
 ### Colors
 

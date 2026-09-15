@@ -375,6 +375,7 @@ export default function App() {
                   23.36%
                 </Stat.HelpText>
               </Stat.Root>
+
               <Stat.Root>
                 <Stat.Label>Clicked</Stat.Label>
                 <Stat.ValueText>45</Stat.ValueText>

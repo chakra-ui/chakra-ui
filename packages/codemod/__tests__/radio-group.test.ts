@@ -912,7 +912,7 @@ describe("RadioGroup Transform", async () => {
             <RadioGroup.Item value="3">
               <RadioGroup.ItemHiddenInput />
               <RadioGroup.ItemIndicator />
-              <RadioGroup.ItemText>Option {3}with expression</RadioGroup.ItemText>
+              <RadioGroup.ItemText>Option {3} with expression</RadioGroup.ItemText>
             </RadioGroup.Item>
           </RadioGroup.Root>
         )
