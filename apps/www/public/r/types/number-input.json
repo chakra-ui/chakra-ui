@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "DecrementTrigger": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "IncrementTrigger": {
     "props": {
@@ -42,7 +44,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Input": {
     "props": {
@@ -57,7 +60,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   },
   "Label": {
     "props": {
@@ -72,7 +76,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "Root": {
     "props": {
@@ -155,6 +160,12 @@
         "isRequired": false,
         "description": "Whether the number input value is invalid."
       },
+      "largeStep": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "10 * step",
+        "description": "The amount to increment or decrement the value by when the `Shift` key is held."
+      },
       "locale": {
         "type": "string",
         "isRequired": false,
@@ -214,6 +225,12 @@
         "isRequired": false,
         "description": "Whether the number input is required"
       },
+      "smallStep": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "step / 10",
+        "description": "The amount to increment or decrement the value by when the `Alt` key is held."
+      },
       "spinOnPress": {
         "type": "boolean",
         "isRequired": false,
@@ -255,7 +272,8 @@
         "description": "The variant of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -274,7 +292,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Scrubber": {
     "props": {
@@ -289,7 +308,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ValueText": {
     "props": {
@@ -304,6 +324,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   }
 }

@@ -86,6 +86,13 @@ component.
 
 <ExampleTabs name="dialog-controlled" />
 
+### Multiple Triggers
+
+Don't mount a dialog per row. Put `value` on each `Trigger` under one `Root`.
+Read `triggerValue` from context to fill the title and body.
+
+<ExampleTabs name="dialog-with-multiple-triggers" />
+
 ### Store
 
 An alternative way to control the dialog is to use the `RootProvider` component
@@ -128,6 +135,14 @@ confirmation.
 Use the `initialFocusEl` prop to set the initial focus of the dialog component.
 
 <ExampleTabs name="dialog-with-initial-focus" />
+
+Without `initialFocusEl`, focus moves to the first element marked
+`data-autofocus`, falling back to the first tabbable element that is not marked
+`data-no-autofocus`.
+
+```tsx
+<Input data-autofocus />
+```
 
 ### Inside Scroll
 
@@ -186,3 +201,7 @@ component.
 ### Root
 
 <PropTable component="Dialog" part="Root" />
+
+### Trigger
+
+<PropTable component="Dialog" part="Trigger" />

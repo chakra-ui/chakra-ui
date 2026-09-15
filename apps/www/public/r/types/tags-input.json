@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Input": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   },
   "Item": {
     "props": {
@@ -54,7 +56,8 @@
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Items": {
     "props": {
@@ -83,7 +86,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "ItemDeleteTrigger": {
     "props": {
@@ -98,7 +102,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Label": {
     "props": {
@@ -113,7 +118,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "Root": {
     "props": {
@@ -137,6 +143,12 @@
         "isRequired": false,
         "defaultValue": false,
         "description": "Whether to add a tag when you paste values into the tag input"
+      },
+      "allowDuplicates": {
+        "type": "boolean",
+        "isRequired": false,
+        "defaultValue": false,
+        "description": "Whether to allow duplicate tags."
       },
       "allowOverflow": {
         "type": "boolean",
@@ -271,6 +283,12 @@
         "isRequired": false,
         "description": "Whether the tags input is required"
       },
+      "sanitizeValue": {
+        "type": "(value: string) => string",
+        "isRequired": false,
+        "defaultValue": "(value) => value.trim()",
+        "description": "Function to sanitize the tag value before adding.\nUseful for trimming whitespace, normalizing case, or stripping special characters."
+      },
       "translations": {
         "type": "IntlTranslations",
         "isRequired": false,
@@ -305,7 +323,8 @@
         "description": "The variant of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -324,7 +343,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ClearTrigger": {
     "props": {
@@ -339,7 +359,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "HiddenInput": {
     "props": {
@@ -349,7 +370,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   },
   "ItemInput": {
     "props": {
@@ -359,7 +381,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   },
   "ItemPreview": {
     "props": {
@@ -369,6 +392,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   }
 }

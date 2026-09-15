@@ -28,7 +28,8 @@
         "description": "The size of the component"
       }
     },
-    "element": "HTMLFieldSetElement"
+    "element": "HTMLFieldSetElement",
+    "tag": "fieldset"
   },
   "ErrorText": {
     "props": {
@@ -43,7 +44,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "HelperText": {
     "props": {
@@ -58,7 +60,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "Legend": {
     "props": {
@@ -73,7 +76,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLegendElement"
+    "element": "HTMLLegendElement",
+    "tag": "legend"
   },
   "Content": {
     "props": {
@@ -101,6 +105,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLFieldSetElement"
+    "element": "HTMLFieldSetElement",
+    "tag": "fieldset"
   }
 }

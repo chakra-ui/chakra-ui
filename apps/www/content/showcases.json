@@ -18,22 +18,22 @@
     "image": "showcases/udacity.jpg"
   },
   {
-    "title": "Ethereum",
-    "description": "Blockchain community",
-    "url": "https://ethereum.org/",
-    "image": "showcases/ethereum.jpg"
+    "title": "Lattice",
+    "description": "HR platform",
+    "url": "https://lattice.com/",
+    "image": "showcases/lattice.png"
   },
   {
-    "title": "Suno",
-    "description": "Music platform SaaS",
-    "url": "https://suno.com/",
-    "image": "showcases/suno.png"
+    "title": "Gamma",
+    "description": "AI presentation SaaS",
+    "url": "https://gamma.app/",
+    "image": "showcases/gamma.png"
   },
   {
-    "title": "Socket",
-    "description": "Developer-first security platform",
-    "url": "https://socket.dev",
-    "image": "showcases/socketdev.png"
+    "title": "Plotly",
+    "description": "Data visualization platform",
+    "url": "https://plotly.com/",
+    "image": "showcases/plotly.png"
   },
   {
     "title": "Stately.ai",
@@ -41,7 +41,7 @@
     "url": "https://stately.ai/registry/new",
     "image": "showcases/Stately.jpg"
   },
-   {
+  {
     "title": "Vemetric",
     "description": "Product Analytics",
     "url": "https://vemetric.com/",
@@ -64,6 +64,12 @@
     "description": "Blockchain language",
     "url": "https://soliditylang.org/",
     "image": "showcases/solidity.png"
+  },
+  {
+    "title": "Blockscout",
+    "description": "Blockchain explorer",
+    "url": "https://eth.blockscout.com/",
+    "image": "showcases/blockscout.png"
   },
   {
     "title": "Prepin",
@@ -114,10 +120,10 @@
     "image": "showcases/weforum.jpg"
   },
   {
-    "title": "iFixit",
-    "description": "Repair guide platform",
-    "url": "https://ifixit.com/",
-    "image": "showcases/ifixit.jpg"
+    "title": "The Infatuation",
+    "description": "Restaurant guide",
+    "url": "https://www.theinfatuation.com/",
+    "image": "showcases/the-infatuation.png"
   },
   {
     "title": "BrandBird",
@@ -142,12 +148,6 @@
     "description": "Docs website",
     "url": "https://www.apollographql.com/tutorials/",
     "image": "showcases/Apollo-Odyssey.jpg"
-  },
-  {
-    "title": "UI Foundations",
-    "description": "Education website",
-    "url": "https://www.uifoundations.com/",
-    "image": "showcases/UI-Foundations.jpg"
   },
   {
     "title": "Tweetpik",

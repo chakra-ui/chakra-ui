@@ -9,7 +9,11 @@ interface DialogProps {
   content?: React.ReactNode
 }
 
-const dialog = createOverlay<DialogProps>((props) => {
+interface DialogResult {
+  message: string
+}
+
+const dialog = createOverlay<DialogProps, DialogResult>((props) => {
   const { title, description, content, ...rest } = props
   return (
     <Dialog.Root {...rest}>
@@ -46,8 +50,7 @@ export const OverlayWithReturnValue = () => {
             content: (
               <Button
                 onClick={() => {
-                  const returnValue = { message: "Welcome" }
-                  dialog.close("a", returnValue)
+                  dialog.close("a", { message: "Welcome" })
                 }}
               >
                 Close
@@ -56,6 +59,8 @@ export const OverlayWithReturnValue = () => {
           })
 
           await dialog.waitForExit("a")
+
+          if (!returnValue) return
 
           dialog.open("b", {
             title: returnValue.message,

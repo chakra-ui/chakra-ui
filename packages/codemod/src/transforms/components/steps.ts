@@ -21,6 +21,31 @@ export default function transformer(
   const { chakraLocalNames } = collectChakraLocalNames(j, root)
   if (chakraLocalNames.size === 0) return file.source
 
+  const oldStepsComponents = [
+    "Stepper",
+    "Step",
+    "StepDescription",
+    "StepIcon",
+    "StepIndicator",
+    "StepNumber",
+    "StepSeparator",
+    "StepStatus",
+    "StepTitle",
+  ]
+
+  const stepsNames = new Set([...oldStepsComponents, "Steps", "useSteps"])
+  const usesSteps = root
+    .find(j.ImportDeclaration, { source: { value: "@chakra-ui/react" } })
+    .paths()
+    .some((path) =>
+      (path.node.specifiers || []).some(
+        (spec) =>
+          spec.type === "ImportSpecifier" &&
+          stepsNames.has(spec.imported.name as string),
+      ),
+    )
+  if (!usesSteps) return file.source
+
   // Track if we're using useSteps (for Steps.RootProvider)
   let usesStepsHook = false
   let stepsVariableName = "stepsApi"
@@ -61,19 +86,6 @@ export default function transformer(
 
   // Track if StepIcon was imported (to add LuCheck from react-icons/lu)
   let hadStepIcon = false
-
-  // Remove old Steps component imports except Steps and useSteps
-  const oldStepsComponents = [
-    "Stepper",
-    "Step",
-    "StepDescription",
-    "StepIcon",
-    "StepIndicator",
-    "StepNumber",
-    "StepSeparator",
-    "StepStatus",
-    "StepTitle",
-  ]
 
   // Track if we've added Steps to avoid adding to every import when file has multiple @chakra-ui/react imports
   let stepsAddedToFile = false

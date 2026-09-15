@@ -54,5 +54,30 @@
         "description": "The date to format"
       }
     }
+  },
+  "Time": {
+    "props": {
+      "value": {
+        "type": "string | Date",
+        "isRequired": true,
+        "description": "The time to format"
+      },
+      "amLabel": {
+        "type": "string",
+        "isRequired": false
+      },
+      "format": {
+        "type": "TimeFormat",
+        "isRequired": false
+      },
+      "pmLabel": {
+        "type": "string",
+        "isRequired": false
+      },
+      "withSeconds": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    }
   }
 }

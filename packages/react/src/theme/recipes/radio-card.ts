@@ -19,11 +19,13 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       userSelect: "none",
       position: "relative",
       borderRadius: "l2",
+      cursor: "radio",
       _focus: {
         bg: "colorPalette.muted/20",
       },
       _disabled: {
         opacity: "0.5",
+        cursor: "disabled",
       },
       _checked: {
         zIndex: "1",
@@ -155,6 +157,11 @@ export const radioCardSlotRecipe = defineSlotRecipe({
             boxShadow: "inset 0 0 0 1px var(--shadow-color)",
             boxShadowColor: "colorPalette.solid",
             borderColor: "colorPalette.solid",
+          },
+        },
+        itemControl: {
+          _disabled: {
+            bg: "unset",
           },
         },
         itemIndicator: radiomarkRecipe.variants?.variant.solid,

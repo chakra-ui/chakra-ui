@@ -102,6 +102,9 @@ export function createPreflight(options: PreflightConfig) {
     "b, strong": {
       fontWeight: "bolder",
     },
+    "i, em": {
+      fontStyle: "italic",
+    },
     "code, kbd, samp, pre": {
       fontSize: "1em",
       "--font-mono-fallback":

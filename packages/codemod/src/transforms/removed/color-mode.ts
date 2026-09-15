@@ -7,7 +7,7 @@ import { getProjectInfo } from "../../utils/get-project-info"
 export default function transformer(
   file: FileInfo,
   api: API,
-  _options: Options,
+  options: Options,
 ) {
   const j = api.jscodeshift
   const root = j(file.source)
@@ -75,14 +75,15 @@ export default function transformer(
       fs.existsSync(path.join(componentsDir, `${componentName}${ext}`)),
     )
 
-    if (!snippetExists) {
+    if (!snippetExists && !options.dry) {
       try {
-        // Install snippet
-        execSync("npx @chakra-ui/cli snippet add color-mode --yes", {
-          stdio: "inherit",
+        execSync("npx --yes @chakra-ui/cli snippet add color-mode", {
+          stdio: "ignore",
         })
-      } catch (e) {
-        console.error("Failed to install color-mode snippet", e)
+      } catch {
+        console.error(
+          "Could not auto-install the color-mode snippet. Run `npx @chakra-ui/cli snippet add color-mode` manually.",
+        )
       }
     }
 
