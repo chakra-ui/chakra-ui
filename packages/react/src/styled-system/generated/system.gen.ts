@@ -227,6 +227,7 @@ export interface SystemProperties {
   containerType?: ConditionalValue<CssProperties["containerType"] | undefined | AnyString> | undefined
   content?: ConditionalValue<CssProperties["content"] | undefined | AnyString> | undefined
   contentVisibility?: ConditionalValue<CssProperties["contentVisibility"] | undefined | AnyString> | undefined
+  cornerShape?: ConditionalValue<CssProperties["cornerShape"] | undefined | AnyString> | undefined
   counterIncrement?: ConditionalValue<CssProperties["counterIncrement"] | undefined | AnyString> | undefined
   counterReset?: ConditionalValue<CssProperties["counterReset"] | undefined | AnyString> | undefined
   counterSet?: ConditionalValue<CssProperties["counterSet"] | undefined | AnyString> | undefined
