@@ -1,131 +1,81 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxOpeningElement, JsxSelfClosingElement } from "ts-morph"
+import type { Transform } from "../../transform"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 
-/**
- * Transforms Image/Img component
- *
- * @example
- * // Rename Img to Image
- * import { Img } from '@chakra-ui/react'
- * <Img src="..." />
- * // becomes
- * import { Image } from '@chakra-ui/react'
- * <Image src="..." />
- *
- * @example
- * // Transform props
- * <Image fit="cover" align="center" fallbackSrc="..." />
- * // becomes
- * <Image objectFit="cover" objectPosition="center" />
- */
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+type JsxOpening = JsxOpeningElement | JsxSelfClosingElement
 
-  if (chakraLocalNames.size === 0) return file.source
+const FALLBACK_PROPS = [
+  "fallback",
+  "fallbackSrc",
+  "ignoreFallback",
+  "fallbackStrategy",
+]
 
-  // Track if we need to update imports
-  let hasImgImport = false
-  let hasImageImport = false
-
-  // Transform Img components
-  if (chakraLocalNames.has("Img")) {
-    hasImgImport = true
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "Img" } },
-      })
-      .forEach((path) => {
-        transformImageProps(j, path)
-        // Rename Img to Image
-        path.node.openingElement.name = j.jsxIdentifier("Image")
-        if (path.node.closingElement) {
-          path.node.closingElement.name = j.jsxIdentifier("Image")
-        }
-      })
+function transformImageProps(opening: JsxOpening) {
+  for (const attr of opening.getAttributes()) {
+    if (!Node.isJsxAttribute(attr)) continue
+    const name = attr.getNameNode().getText()
+    if (name === "fit") {
+      attr.getNameNode().replaceWithText("objectFit")
+    } else if (name === "align") {
+      attr.getNameNode().replaceWithText("objectPosition")
+    } else if (FALLBACK_PROPS.includes(name)) {
+      attr.remove()
+    }
   }
-
-  // Transform Image components
-  if (chakraLocalNames.has("Image")) {
-    hasImageImport = true
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "Image" } },
-      })
-      .forEach((path) => {
-        transformImageProps(j, path)
-      })
-  }
-
-  // Update imports: Img -> Image
-  if (hasImgImport) {
-    root
-      .find(j.ImportDeclaration, {
-        source: { value: "@chakra-ui/react" },
-      })
-      .forEach((path) => {
-        const specifiers = path.node.specifiers
-        if (!specifiers) return
-
-        path.node.specifiers = specifiers
-          .map((spec) => {
-            if (
-              spec.type === "ImportSpecifier" &&
-              spec.imported.name === "Img"
-            ) {
-              // If Image is already imported, remove Img
-              if (hasImageImport) {
-                return null
-              }
-              // Otherwise rename Img to Image
-              return j.importSpecifier(j.identifier("Image"))
-            }
-            return spec
-          })
-          .filter(Boolean) as any[]
-      })
-  }
-
-  return root.toSource({ quote: "single" })
 }
 
-/**
- * Transform Image/Img component props
- */
-function transformImageProps(_j: any, path: any) {
-  const attrs = path.node.openingElement.attributes || []
-
-  path.node.openingElement.attributes = attrs.flatMap((attr: any) => {
-    if (attr.type !== "JSXAttribute") return attr
-
-    // fit -> objectFit
-    if (attr.name.name === "fit") {
-      attr.name.name = "objectFit"
-      return attr
-    }
-
-    // align -> objectPosition
-    if (attr.name.name === "align") {
-      attr.name.name = "objectPosition"
-      return attr
-    }
-
-    // Remove fallback-related props
-    if (
-      attr.name.name === "fallback" ||
-      attr.name.name === "fallbackSrc" ||
-      attr.name.name === "ignoreFallback" ||
-      attr.name.name === "fallbackStrategy"
-    ) {
-      return []
-    }
-
-    return attr
-  })
+function renameTag(opening: JsxOpening, newText: string) {
+  if (Node.isJsxSelfClosingElement(opening)) {
+    opening.getTagNameNode().replaceWithText(newText)
+    return
+  }
+  const el = opening.getParentIfKind(SyntaxKind.JsxElement)
+  el?.getClosingElement()?.getTagNameNode().replaceWithText(newText)
+  opening.getTagNameNode().replaceWithText(newText)
 }
+
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+
+  const hasImg = chakraLocalNames.has("Img")
+  const hasImage = chakraLocalNames.has("Image")
+  if (!hasImg && !hasImage) return
+
+  const openings: JsxOpening[] = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+
+  for (const opening of openings) {
+    if (opening.wasForgotten()) continue
+    const baseName = getJsxBaseName(opening.getTagNameNode())
+    if (baseName === "Img" && hasImg) {
+      transformImageProps(opening)
+      renameTag(opening, "Image")
+    } else if (baseName === "Image" && hasImage) {
+      transformImageProps(opening)
+    }
+  }
+
+  // Update imports: Img -> Image (or remove Img if Image already imported)
+  if (hasImg) {
+    const importDecl = sourceFile.getImportDeclaration(
+      (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
+    )
+    const imgSpec = importDecl
+      ?.getNamedImports()
+      .find((n) => n.getName() === "Img")
+    if (imgSpec) {
+      if (hasImage) imgSpec.remove()
+      else imgSpec.setName("Image")
+    }
+  }
+}
+
+export default transform
