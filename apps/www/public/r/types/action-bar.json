@@ -191,11 +191,6 @@
         "defaultValue": true,
         "description": "Whether the popover is portalled. This will proxy the tabbing behavior regardless of the DOM position\nof the popover content."
       },
-      "positioning": {
-        "type": "PositioningOptions",
-        "isRequired": false,
-        "description": "The user provided options used to position the popover content"
-      },
       "present": {
         "type": "boolean",
         "isRequired": false,
@@ -321,87 +316,5 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     }
-  },
-  "Anchor": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Arrow": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "ArrowTip": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Description": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Indicator": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Title": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Trigger": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "value": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The value that identifies this specific trigger"
-      }
-    },
-    "element": "HTMLButtonElement",
-    "tag": "button"
   }
 }
