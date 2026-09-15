@@ -27,7 +27,8 @@ const { withContext } = createRecipeContext({
 })
 
 interface ButtonProps
-  extends HTMLChakraProps<"button", RecipeVariantProps<typeof buttonRecipe>>,
+  extends
+    HTMLChakraProps<"button", RecipeVariantProps<typeof buttonRecipe>>,
     UnstyledProp {}
 
 const Button = withContext<HTMLButtonElement, ButtonProps>("button")

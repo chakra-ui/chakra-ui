@@ -136,6 +136,14 @@ Use the `initialFocusEl` prop to set the initial focus of the dialog component.
 
 <ExampleTabs name="dialog-with-initial-focus" />
 
+Without `initialFocusEl`, focus moves to the first element marked
+`data-autofocus`, falling back to the first tabbable element that is not marked
+`data-no-autofocus`.
+
+```tsx
+<Input data-autofocus />
+```
+
 ### Inside Scroll
 
 Use the `scrollBehavior=inside` prop to change the scroll behavior of the dialog

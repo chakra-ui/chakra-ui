@@ -29,5 +29,6 @@ export { ListboxWithDialog as Dialog } from "compositions/examples/listbox-with-
 export { ListboxWithEmojiGrid as EmojiGrid } from "compositions/examples/listbox-with-emoji-grid"
 export { ListboxWithIcon as Icon } from "compositions/examples/listbox-with-icon"
 export { ListboxWithInput as Input } from "compositions/examples/listbox-with-input"
+export { ListboxWithKeyboardPriority as KeyboardPriority } from "compositions/examples/listbox-with-keyboard-priority"
 export { ListboxWithPopover as Popover } from "compositions/examples/listbox-with-popover"
 export { ListboxWithStore as Store } from "compositions/examples/listbox-with-store"
