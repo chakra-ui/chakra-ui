@@ -9,10 +9,11 @@ import {
   useListCollection,
 } from "@chakra-ui/react"
 import { useVirtualizer } from "@tanstack/react-virtual"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 export const CommandPaletteVirtualized = () => {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const [open, setOpen] = useState(false)
 
   const { contains } = useFilter({ sensitivity: "base" })
 
@@ -31,6 +32,8 @@ export const CommandPaletteVirtualized = () => {
   return (
     <CommandPalette.Root
       collection={collection}
+      open={open}
+      onOpenChange={(e) => setOpen(e.open)}
       scrollToIndexFn={(details) => {
         virtualizer.scrollToIndex(details.index, { align: "auto" })
       }}
