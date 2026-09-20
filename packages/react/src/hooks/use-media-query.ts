@@ -29,6 +29,7 @@ export function useMediaQuery(
   const getWin = useCallbackRef(getWindow)
 
   const queries = Array.isArray(query) ? query : [query]
+  const queryKey = queries.join(",")
 
   const fallback = _fallback?.filter((v) => v != null) as boolean[]
 
@@ -50,10 +51,11 @@ export function useMediaQuery(
         return { media, matches }
       })
 
-      return prev.every(
-        (v, i) =>
-          v.matches === current[i].matches && v.media === current[i].media,
-      )
+      return prev.length === current.length &&
+        prev.every(
+          (v, i) =>
+            v.matches === current[i].matches && v.media === current[i].media,
+        )
         ? prev
         : current
     })
@@ -73,7 +75,7 @@ export function useMediaQuery(
     return () => cleanups.forEach((fn) => fn())
 
     // eslint-disable-next-line
-  }, [getWin])
+  }, [getWin, queryKey])
 
   return value.map((item) => item.matches)
 }
