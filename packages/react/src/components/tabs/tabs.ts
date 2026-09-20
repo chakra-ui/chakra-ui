@@ -52,7 +52,10 @@ export interface TabsRootProps extends HTMLChakraProps<
 export const TabsRoot = withProvider<HTMLDivElement, TabsRootProps>(
   ArkTabs.Root,
   "root",
-  { forwardAsChild: true },
+  {
+    forwardAsChild: true,
+    defaultProps: { navigate: () => {} },
+  },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
