@@ -20,7 +20,8 @@ export type {
   TabsTriggerProps,
 } from "./tabs"
 
-export { useTabs, useTabsContext, TabsContext } from "@ark-ui/react/tabs"
+export { useTabs } from "./tabs"
+export { useTabsContext, TabsContext } from "@ark-ui/react/tabs"
 
 export type {
   UseTabsProps,

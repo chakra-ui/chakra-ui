@@ -1,7 +1,12 @@
 "use client"
 
 import type { Assign } from "@ark-ui/react"
-import { Tabs as ArkTabs } from "@ark-ui/react/tabs"
+import {
+  Tabs as ArkTabs,
+  type UseTabsProps,
+  type UseTabsReturn,
+  useTabs as useArkTabs,
+} from "@ark-ui/react/tabs"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -19,6 +24,11 @@ const {
 } = createSlotRecipeContext({ key: "tabs" })
 
 export { useTabsStyles }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export const useTabs = (props?: UseTabsProps): UseTabsReturn =>
+  useArkTabs({ navigate: () => {}, ...props })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
