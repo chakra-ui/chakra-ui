@@ -1,437 +1,252 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import {
-  collectChakraLocalNames,
-  getJsxBaseName,
-} from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxAttribute, JsxElement, JsxSelfClosingElement } from "ts-morph"
+import type { Transform } from "../../transform"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames, componentAliases } = collectChakraLocalNames(
-    j,
-    root,
-  )
-  if (chakraLocalNames.size === 0) return file.source
+type JsxAnyElement = JsxElement | JsxSelfClosingElement
 
-  let needsUseAccordionItemContext = false
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+
+  // 1. AccordionPanel -> Accordion.ItemContent > Accordion.ItemBody
+  //    (run first, while the enclosing <Accordion> still carries reduceMotion)
+  eachNamed("AccordionPanel", (el) => transformPanel(el))
+
+  // 2. AccordionButton -> Accordion.ItemTrigger
+  eachNamed("AccordionButton", (el) => renameTag(el, "Accordion.ItemTrigger"))
+
+  // 3. AccordionIcon -> Accordion.ItemIndicator
+  eachNamed("AccordionIcon", (el) => renameTag(el, "Accordion.ItemIndicator"))
+
+  // 4. AccordionItem -> Accordion.Item (+ value bookkeeping)
   let itemCounter = 0
-  const accordionsWithReduceMotion = new Set<any>()
-
-  /**
-   * Rename <Accordion> → <Accordion.Root> and props
-   */
-  root.find(j.JSXOpeningElement).forEach((path) => {
-    const baseName = getJsxBaseName(path.node.name)
-    const isChakra =
-      chakraLocalNames.has(baseName) ||
-      (componentAliases.has(baseName) &&
-        chakraLocalNames.has(componentAliases.get(baseName) as string))
-    if (
-      !isChakra ||
-      !(
-        baseName === "Accordion" ||
-        componentAliases.get(baseName) === "Accordion"
-      )
-    )
-      return
-
-    path.node.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Accordion"),
-      j.jsxIdentifier("Root"),
-    )
-
-    const attrs = path.node.attributes ?? []
-    let hasReduceMotion = false
-
-    path.node.attributes = attrs.flatMap((attr) => {
-      if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
-        return attr
-
-      switch (attr.name.name) {
-        case "allowMultiple":
-          return j.jsxAttribute(j.jsxIdentifier("multiple"), attr.value)
-
-        case "allowToggle":
-          return j.jsxAttribute(j.jsxIdentifier("collapsible"), attr.value)
-
-        case "index":
-          return j.jsxAttribute(
-            j.jsxIdentifier("value"),
-            normalizeIndexValue(j, attr.value),
-          )
-
-        case "defaultIndex":
-          return j.jsxAttribute(
-            j.jsxIdentifier("defaultValue"),
-            normalizeIndexValue(j, attr.value),
-          )
-
-        case "onChange":
-          return j.jsxAttribute(
-            j.jsxIdentifier("onValueChange"),
-            wrapOnChange(j, attr.value),
-          )
-
-        case "reduceMotion":
-          hasReduceMotion = true
-          // Remove from root, will add animation="none" to ItemContent
-          return []
-
-        default:
-          return attr
-      }
-    })
-
-    // Track this accordion element for adding animation="none" to its ItemContent children
-    if (hasReduceMotion) {
-      accordionsWithReduceMotion.add(path.parent.value)
-    }
+  eachNamed("AccordionItem", (el) => {
+    itemCounter = transformItem(el, itemCounter)
   })
 
-  /**
-   * Closing </Accordion> → </Accordion.Root>
-   */
-  root.find(j.JSXClosingElement).forEach((path) => {
-    const nameNode = path.node.name
-    if (nameNode.type !== "JSXIdentifier" || nameNode.name !== "Accordion")
-      return
-    path.node.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Accordion"),
-      j.jsxIdentifier("Root"),
-    )
-  })
+  // 5. Accordion -> Accordion.Root (+ prop transforms)
+  eachNamed("Accordion", (el) => transformRoot(el))
 
-  /**
-   * Transform <AccordionItem> to <Accordion.Item>
-   * Handle render prop children
-   * Add value prop if missing
-   */
-  root
-    .find(j.JSXElement, {
-      openingElement: { name: { name: "AccordionItem" } },
-    })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("AccordionItem")) return
-
-      const element = path.node
-      const openingElement = element.openingElement
-      const closingElement = element.closingElement
-
-      // Rename to Accordion.Item
-      openingElement.name = j.jsxMemberExpression(
-        j.jsxIdentifier("Accordion"),
-        j.jsxIdentifier("Item"),
-      )
-      if (closingElement) {
-        closingElement.name = j.jsxMemberExpression(
-          j.jsxIdentifier("Accordion"),
-          j.jsxIdentifier("Item"),
-        )
-      }
-
-      // Transform props and ensure value prop exists
-      const attrs = openingElement.attributes ?? []
-      let hasValue = false
-      let hasId = false
-
-      // Transform props
-      openingElement.attributes = attrs.flatMap((attr) => {
-        if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier")
-          return attr
-
-        switch (attr.name.name) {
-          case "value":
-            hasValue = true
-            return attr
-
-          case "id":
-            hasId = true
-            // Transform id → value
-            return j.jsxAttribute(j.jsxIdentifier("value"), attr.value)
-
-          case "isDisabled":
-            // Transform isDisabled → disabled
-            return j.jsxAttribute(j.jsxIdentifier("disabled"), attr.value)
-
-          case "isFocusable":
-            // Remove isFocusable entirely
-            return []
-
-          default:
-            return attr
-        }
-      })
-
-      // Add auto-generated value if no value or id was present
-      if (!hasValue && !hasId) {
-        openingElement.attributes.push(
-          j.jsxAttribute(
-            j.jsxIdentifier("value"),
-            j.stringLiteral(`item-${itemCounter++}`),
-          ),
-        )
-      } else if (hasId) {
-        itemCounter++
-      }
-
-      // Check for render prop (function as child)
-      if (element.children && element.children.length === 1) {
-        const child = element.children[0]
-        if (
-          child.type === "JSXExpressionContainer" &&
-          (child.expression.type === "ArrowFunctionExpression" ||
-            child.expression.type === "FunctionExpression")
-        ) {
-          needsUseAccordionItemContext = true
-          const funcExpr = child.expression
-
-          // Extract parameter name (e.g., isExpanded from ({ isExpanded }) => ...)
-          let paramName = "context"
-          if (
-            funcExpr.params.length > 0 &&
-            funcExpr.params[0].type === "Identifier"
-          ) {
-            paramName = funcExpr.params[0].name
-          }
-
-          // Create the component wrapper
-          const componentName = `AccordionItemContent${itemCounter - 1}`
-          const hookCall = j.variableDeclaration("const", [
-            j.variableDeclarator(
-              funcExpr.params[0] || j.identifier(paramName),
-              j.callExpression(j.identifier("useAccordionItemContext"), []),
-            ),
-          ])
-
-          // Get the function body
-          const body =
-            funcExpr.body.type === "BlockStatement"
-              ? funcExpr.body.body
-              : [j.returnStatement(funcExpr.body)]
-
-          // Replace the render prop with the component
-          element.children = [
-            j.jsxExpressionContainer(
-              j.jsxElement(
-                j.jsxOpeningElement(j.jsxIdentifier(componentName), [], true),
-              ),
-            ),
-          ]
-
-          // Add the component definition before the Accordion
-          const accordionRoot = path.parentPath.parentPath
-          if (accordionRoot) {
-            const componentDecl = j.variableDeclaration("const", [
-              j.variableDeclarator(
-                j.identifier(componentName),
-                j.arrowFunctionExpression(
-                  [],
-                  j.blockStatement([hookCall, ...body]),
-                ),
-              ),
-            ])
-
-            // Find the statement containing the accordion
-            let statementPath = path
-            while (
-              statementPath.parentPath &&
-              statementPath.parentPath.value.type !== "Program" &&
-              statementPath.parentPath.value.type !== "BlockStatement"
-            ) {
-              statementPath = statementPath.parentPath
-            }
-
-            // Insert before the statement
-            if (statementPath.parentPath) {
-              j(statementPath).insertBefore(componentDecl)
-            }
-          }
-        }
-      }
-    })
-
-  /**
-   * AccordionButton → Accordion.ItemTrigger
-   */
-  renameComponent(j, root, "AccordionButton", "Accordion.ItemTrigger")
-
-  /**
-   * AccordionIcon → Accordion.ItemIndicator
-   */
-  renameComponent(j, root, "AccordionIcon", "Accordion.ItemIndicator")
-
-  /**
-   * AccordionPanel → Accordion.ItemContent + Accordion.ItemBody
-   */
-  root
-    .find(j.JSXElement, {
-      openingElement: { name: { name: "AccordionPanel" } },
-    })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("AccordionPanel")) return
-
-      const panel = path.node
-
-      // Check if this panel is inside an accordion with reduceMotion
-      let currentParent = path.parent
-      let hasReduceMotion = false
-      while (currentParent) {
-        if (accordionsWithReduceMotion.has(currentParent.value)) {
-          hasReduceMotion = true
-          break
-        }
-        currentParent = currentParent.parent
-      }
-
-      // Create ItemBody with the panel's children
-      const itemBody = j.jsxElement(
-        j.jsxOpeningElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("Accordion"),
-            j.jsxIdentifier("ItemBody"),
-          ),
-          [],
-          false,
-        ),
-        j.jsxClosingElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("Accordion"),
-            j.jsxIdentifier("ItemBody"),
-          ),
-        ),
-        panel.children,
-      )
-
-      // Add animation="none" to ItemContent attributes if reduceMotion was set
-      const itemContentAttrs = [...(panel.openingElement.attributes || [])]
-      if (hasReduceMotion) {
-        itemContentAttrs.push(
-          j.jsxAttribute(j.jsxIdentifier("animation"), j.stringLiteral("none")),
-        )
-      }
-
-      // Create ItemContent wrapping ItemBody
-      const itemContent = j.jsxElement(
-        j.jsxOpeningElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("Accordion"),
-            j.jsxIdentifier("ItemContent"),
-          ),
-          itemContentAttrs,
-          false,
-        ),
-        j.jsxClosingElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("Accordion"),
-            j.jsxIdentifier("ItemContent"),
-          ),
-        ),
-        [itemBody],
-      )
-
-      j(path).replaceWith(itemContent)
-    })
-
-  /**
-   * Clean up imports - remove old component names that are no longer used
-   */
-  const componentsToRemove = [
-    "AccordionItem",
-    "AccordionButton",
-    "AccordionIcon",
-    "AccordionPanel",
-  ]
-
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    .forEach((path) => {
-      const specifiers = path.node.specifiers || []
-
-      // Filter out old accordion component imports
-      path.node.specifiers = specifiers.filter((spec) => {
-        if (spec.type !== "ImportSpecifier") return true
-        if (spec.imported.type !== "Identifier") return true
-        return !componentsToRemove.includes(spec.imported.name)
-      })
-
-      // Add useAccordionItemContext if needed
-      if (needsUseAccordionItemContext) {
-        const hasHook = path.node.specifiers?.some(
-          (spec) =>
-            spec.type === "ImportSpecifier" &&
-            spec.imported.type === "Identifier" &&
-            spec.imported.name === "useAccordionItemContext",
-        )
-
-        if (!hasHook && path.node.specifiers) {
-          path.node.specifiers.push(
-            j.importSpecifier(j.identifier("useAccordionItemContext")),
-          )
-        }
-      }
-    })
-
-  return root.toSource({ quote: "single" })
-}
-
-function renameComponent(j: any, root: any, from: string, to: string) {
-  const parts = to.split(".")
-
-  root
-    .find(j.JSXIdentifier, { name: from })
-    .replaceWith(() =>
-      j.jsxMemberExpression(
-        j.jsxIdentifier(parts[0]),
-        j.jsxIdentifier(parts[1]),
-      ),
-    )
-}
-
-function normalizeIndexValue(j: any, value: any) {
-  if (!value) return value
-
-  if (value.type === "JSXExpressionContainer") {
-    const expr = value.expression
-
-    if (expr.type === "NumericLiteral") {
-      return j.jsxExpressionContainer(
-        j.arrayExpression([j.stringLiteral(String(expr.value))]),
-      )
-    }
-
-    if (expr.type === "ArrayExpression") {
-      return j.jsxExpressionContainer(
-        j.arrayExpression(
-          expr.elements.map((el: any) =>
-            el?.type === "NumericLiteral"
-              ? j.stringLiteral(String(el.value))
-              : el,
-          ),
-        ),
-      )
+  // 6. Clean up imports
+  const importDecl = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
+  )
+  if (importDecl) {
+    for (const name of [
+      "AccordionItem",
+      "AccordionButton",
+      "AccordionIcon",
+      "AccordionPanel",
+    ]) {
+      importDecl
+        .getNamedImports()
+        .find((n) => n.getName() === name)
+        ?.remove()
     }
   }
 
-  return value
+  /** Process every tracked element whose plain-identifier tag === `name`,
+   *  one at a time with a fresh query, in document order. The callback must
+   *  rename the element so it no longer matches (avoids infinite loops and
+   *  stale nodes). */
+  function eachNamed(name: string, cb: (el: JsxAnyElement) => void) {
+    if (!chakraLocalNames.has(name)) return
+    while (true) {
+      const el = findFirst(name)
+      if (!el) break
+      cb(el)
+    }
+  }
+
+  function findFirst(name: string): JsxAnyElement | undefined {
+    const matches: JsxAnyElement[] = []
+    for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+      const tag = el.getOpeningElement().getTagNameNode()
+      if (Node.isIdentifier(tag) && tag.getText() === name) matches.push(el)
+    }
+    for (const el of sourceFile.getDescendantsOfKind(
+      SyntaxKind.JsxSelfClosingElement,
+    )) {
+      const tag = el.getTagNameNode()
+      if (Node.isIdentifier(tag) && tag.getText() === name) matches.push(el)
+    }
+    matches.sort((a, b) => a.getStart() - b.getStart())
+    return matches[0]
+  }
 }
 
-function wrapOnChange(j: any, value: any) {
-  if (!value || value.type !== "JSXExpressionContainer") return value
-  return j.jsxExpressionContainer(
-    j.arrowFunctionExpression(
-      [
-        j.objectPattern([
-          j.property("init", j.identifier("value"), j.identifier("value")),
-        ]),
-      ],
-      j.callExpression(value.expression, [j.identifier("value")]),
-    ),
+function openingOf(el: JsxAnyElement) {
+  return Node.isJsxSelfClosingElement(el) ? el : el.getOpeningElement()
+}
+
+/** Simple tag rename, preserving attributes and children. */
+function renameTag(el: JsxAnyElement, newTag: string) {
+  if (Node.isJsxSelfClosingElement(el)) {
+    el.getTagNameNode().replaceWithText(newTag)
+    return
+  }
+  el.getClosingElement()?.getTagNameNode().replaceWithText(newTag)
+  el.getOpeningElement().getTagNameNode().replaceWithText(newTag)
+}
+
+/** Replace the opening tag (and closing, for elements) with a new tag +
+ *  rebuilt attribute list. Closing is edited first so the opening's position
+ *  stays valid. */
+function replaceOpening(el: JsxAnyElement, newTag: string, attrs: string[]) {
+  const attrsPart = attrs.length ? " " + attrs.join(" ") : ""
+  if (Node.isJsxSelfClosingElement(el)) {
+    el.replaceWithText(`<${newTag}${attrsPart} />`)
+    return
+  }
+  el.getClosingElement()?.getTagNameNode().replaceWithText(newTag)
+  el.getOpeningElement().replaceWithText(`<${newTag}${attrsPart}>`)
+}
+
+function renameAttr(attr: JsxAttribute, newName: string): string {
+  const init = attr.getInitializer()
+  return init ? `${newName}=${init.getText()}` : newName
+}
+
+function normalizeIndex(attr: JsxAttribute): string {
+  const init = attr.getInitializer()
+  if (!init || !Node.isJsxExpression(init)) {
+    return init ? init.getText() : ""
+  }
+  const expr = init.getExpression()
+  if (!expr) return init.getText()
+  if (Node.isNumericLiteral(expr)) return `{['${expr.getText()}']}`
+  if (Node.isArrayLiteralExpression(expr)) {
+    const els = expr
+      .getElements()
+      .map((e) => (Node.isNumericLiteral(e) ? `'${e.getText()}'` : e.getText()))
+    return `{[${els.join(", ")}]}`
+  }
+  return init.getText()
+}
+
+function wrapOnChange(attr: JsxAttribute): string {
+  const init = attr.getInitializer()
+  if (!init || !Node.isJsxExpression(init)) {
+    return init ? init.getText() : ""
+  }
+  const expr = init.getExpression()
+  if (!expr) return init.getText()
+  return `{({ value: value }) => ${expr.getText()}(value)}`
+}
+
+function transformRoot(el: JsxAnyElement) {
+  const opening = openingOf(el)
+  const attrs: string[] = []
+  for (const attr of opening.getAttributes()) {
+    if (!Node.isJsxAttribute(attr)) {
+      attrs.push(attr.getText())
+      continue
+    }
+    const name = attr.getNameNode().getText()
+    switch (name) {
+      case "allowMultiple":
+        attrs.push(renameAttr(attr, "multiple"))
+        break
+      case "allowToggle":
+        attrs.push(renameAttr(attr, "collapsible"))
+        break
+      case "index":
+        attrs.push(`value=${normalizeIndex(attr)}`)
+        break
+      case "defaultIndex":
+        attrs.push(`defaultValue=${normalizeIndex(attr)}`)
+        break
+      case "onChange":
+        attrs.push(`onValueChange=${wrapOnChange(attr)}`)
+        break
+      case "reduceMotion":
+        // removed; handled on ItemContent via animation="none"
+        break
+      default:
+        attrs.push(attr.getText())
+    }
+  }
+  replaceOpening(el, "Accordion.Root", attrs)
+}
+
+function transformItem(el: JsxAnyElement, counter: number): number {
+  const opening = openingOf(el)
+  const attrs: string[] = []
+  let hasValue = false
+  let hasId = false
+  for (const attr of opening.getAttributes()) {
+    if (!Node.isJsxAttribute(attr)) {
+      attrs.push(attr.getText())
+      continue
+    }
+    const name = attr.getNameNode().getText()
+    switch (name) {
+      case "value":
+        hasValue = true
+        attrs.push(attr.getText())
+        break
+      case "id":
+        hasId = true
+        attrs.push(renameAttr(attr, "value"))
+        break
+      case "isDisabled":
+        attrs.push(renameAttr(attr, "disabled"))
+        break
+      case "isFocusable":
+        break
+      default:
+        attrs.push(attr.getText())
+    }
+  }
+  if (!hasValue && !hasId) {
+    attrs.push(`value="item-${counter}"`)
+    counter++
+  } else if (hasId) {
+    counter++
+  }
+  replaceOpening(el, "Accordion.Item", attrs)
+  return counter
+}
+
+function transformPanel(el: JsxAnyElement) {
+  const opening = openingOf(el)
+  const attrs = opening.getAttributes().map((a) => a.getText())
+  if (panelHasReduceMotion(el)) attrs.push('animation="none"')
+  const attrsPart = attrs.length ? " " + attrs.join(" ") : ""
+  const inner = innerText(el)
+  el.replaceWithText(
+    `<Accordion.ItemContent${attrsPart}>\n<Accordion.ItemBody>${inner}</Accordion.ItemBody>\n</Accordion.ItemContent>`,
   )
 }
+
+function innerText(el: JsxAnyElement): string {
+  if (Node.isJsxSelfClosingElement(el)) return ""
+  const open = el.getOpeningElement()
+  const close = el.getClosingElement()
+  if (!close) return ""
+  return el.getSourceFile().getFullText().slice(open.getEnd(), close.getStart())
+}
+
+function panelHasReduceMotion(el: JsxAnyElement): boolean {
+  for (const anc of el.getAncestors()) {
+    if (!Node.isJsxElement(anc)) continue
+    const opening = anc.getOpeningElement()
+    const tag = opening.getTagNameNode()
+    if (!Node.isIdentifier(tag) || tag.getText() !== "Accordion") continue
+    if (
+      opening
+        .getAttributes()
+        .some(
+          (a) =>
+            Node.isJsxAttribute(a) &&
+            a.getNameNode().getText() === "reduceMotion",
+        )
+    ) {
+      return true
+    }
+  }
+  return false
+}
+
+export default transform

@@ -1,65 +1,55 @@
-import type {
-  API,
-  FileInfo,
-  Node,
-  ObjectExpression,
-  Property,
-} from "jscodeshift"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { ObjectLiteralExpression } from "ts-morph"
+import type { Transform } from "../../transform"
 
-function isObjectExpression(node: Node): node is ObjectExpression {
-  return node.type === "ObjectExpression"
+function keyName(node: Node): string {
+  if (Node.isIdentifier(node)) return node.getText()
+  if (Node.isStringLiteral(node)) return node.getLiteralValue()
+  if (Node.isNumericLiteral(node)) return node.getText()
+  return ""
 }
 
-function wrapColorValues(j: any, obj: Node) {
-  if (!isObjectExpression(obj) || !Array.isArray(obj.properties)) return
-
-  obj.properties.forEach((prop: Node) => {
-    if (prop.type !== "Property") return
-    const property = prop as Property
-
-    if (!property.value) return
-
-    if (isObjectExpression(property.value)) {
-      wrapColorValues(j, property.value)
+function wrapColorValues(obj: ObjectLiteralExpression) {
+  const props = obj.getProperties()
+  // Edit later-in-file nodes first to avoid stale-node errors.
+  for (let i = props.length - 1; i >= 0; i--) {
+    const prop = props[i]
+    if (!Node.isPropertyAssignment(prop)) continue
+    const init = prop.getInitializer()
+    if (!init) continue
+    if (Node.isObjectLiteralExpression(init)) {
+      wrapColorValues(init)
     } else {
-      property.value = j.objectExpression([
-        j.property("init", j.identifier("value"), property.value),
-      ])
+      prop.setInitializer(`{ value: ${init.getText()} }`)
     }
-  })
+  }
 
-  const keys = obj.properties
-    .filter((p): p is Property => p.type === "Property")
-    .map((p) =>
-      p.key.type === "Identifier"
-        ? p.key.name
-        : p.key.type === "Literal"
-          ? String(p.key.value)
-          : "",
-    )
+  const keys = obj
+    .getProperties()
+    .filter(Node.isPropertyAssignment)
+    .map((p) => keyName(p.getNameNode()))
 
   if (keys.includes("50") && keys.includes("900") && !keys.includes("950")) {
-    obj.properties.push(
-      j.property(
-        "init",
-        j.literal("950"),
-        j.objectExpression([
-          j.property("init", j.identifier("value"), j.literal("#09090b")),
-        ]),
-      ),
-    )
+    obj.addPropertyAssignment({
+      name: "'950'",
+      initializer: "{ value: '#09090b' }",
+    })
   }
 }
 
-export default function transformer(file: FileInfo, _api: API) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const transform: Transform = (sourceFile) => {
+  // Process root object literals only; nested ones are reached via recursion.
+  const objects = sourceFile
+    .getDescendantsOfKind(SyntaxKind.ObjectLiteralExpression)
+    .filter(
+      (obj) =>
+        obj.getFirstAncestorByKind(SyntaxKind.ObjectLiteralExpression) ===
+        undefined,
+    )
 
-  // Process all ObjectExpressions
-  root.find(j.ObjectExpression).forEach((path) => {
-    wrapColorValues(j, path.node)
-  })
-
-  return root.toSource({ quote: "single" })
+  for (const obj of objects) {
+    wrapColorValues(obj)
+  }
 }
+
+export default transform

@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 import { resolve } from "path"
 import { defineConfig } from "vite"
+import { defaultExclude } from "vitest/config"
 
 export default defineConfig({
   resolve: {
@@ -15,13 +16,14 @@ export default defineConfig({
     watch: false,
     environment: "jsdom",
     include: ["**/*test.{ts,tsx}"],
+    exclude: [...defaultExclude, "**/dist/**", "**/.claude/**"],
     setupFiles: ["vitest.setup.ts"],
     coverage: {
       include: ["packages"],
     },
     benchmark: {
       include: ["**/*.bench.{ts,tsx}"],
-      exclude: ["node_modules", "dist"],
+      exclude: [...defaultExclude, "**/dist/**", "**/.claude/**"],
     },
   },
 })

@@ -16,7 +16,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ResizeTriggerIndicator": {
     "props": {
@@ -31,7 +32,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ResizeTriggerSeparator": {
     "props": {
@@ -60,7 +62,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       },
       "id": {
-        "type": "`${string}:${string}`",
+        "type": "ResizeTriggerId",
         "isRequired": true
       },
       "disabled": {
@@ -68,7 +70,8 @@
         "isRequired": false
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Root": {
     "props": {
@@ -93,7 +96,7 @@
         "description": "The size constraints of the panels."
       },
       "defaultSize": {
-        "type": "number[]",
+        "type": "PanelSize[]",
         "isRequired": false,
         "description": "The initial size of the panels when rendered.\nUse when you don't need to control the size of the panels."
       },
@@ -148,13 +151,19 @@
         "defaultValue": "horizontal",
         "description": "The orientation of the splitter. Can be `horizontal` or `vertical`"
       },
+      "registry": {
+        "type": "SplitterRegistry",
+        "isRequired": false,
+        "description": "The splitter registry to use for multi-drag support.\nWhen provided, enables dragging at the intersection of multiple splitters."
+      },
       "size": {
-        "type": "number[]",
+        "type": "PanelSize[]",
         "isRequired": false,
         "description": "The controlled size data of the panels"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -173,6 +182,21 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Registry": {
+    "props": {
+      "hitAreaMargins": {
+        "type": "HitAreaMargins",
+        "isRequired": false,
+        "description": "The hit area margins for resize handles.\nLarger margins make it easier to grab handles, especially on touch devices."
+      },
+      "nonce": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The nonce for the injected cursor stylesheet (for CSP compliance)."
+      }
+    }
   }
 }

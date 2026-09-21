@@ -17,7 +17,8 @@
         "description": "Whether to disable the click event on the dropzone"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Item": {
     "props": {
@@ -36,7 +37,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLLIElement"
+    "element": "HTMLLIElement",
+    "tag": "li"
   },
   "Trigger": {
     "props": {
@@ -51,7 +53,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Root": {
     "props": {
@@ -192,7 +195,8 @@
         "description": "Function to validate a file"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -211,7 +215,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Label": {
     "props": {
@@ -226,7 +231,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "ItemPreview": {
     "props": {
@@ -247,7 +253,8 @@
         "description": "The file type to match against. Matches all file types by default."
       }
     },
-    "element": "HTMLImageElement"
+    "element": "HTMLImageElement",
+    "tag": "div"
   },
   "ItemPreviewImage": {
     "props": {
@@ -262,7 +269,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLImageElement"
+    "element": "HTMLImageElement",
+    "tag": "img"
   },
   "ItemSizeText": {
     "props": {
@@ -277,7 +285,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemName": {
     "props": {
@@ -292,7 +301,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "FileText": {
     "props": {
@@ -329,7 +339,8 @@
         "isRequired": false
       }
     },
-    "element": "HTMLUListElement"
+    "element": "HTMLUListElement",
+    "tag": "ul"
   },
   "ItemContent": {
     "props": {
@@ -372,7 +383,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Items": {
     "props": {
@@ -413,7 +425,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "List": {
     "props": {
@@ -449,6 +462,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   }
 }

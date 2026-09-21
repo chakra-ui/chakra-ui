@@ -14,3 +14,7 @@ export default {
 
 export { ToggleTipBasic as Basic } from "compositions/examples/toggle-tip-basic"
 export { ToggleTipInfoTip as InfoTip } from "compositions/examples/toggle-tip-info-tip"
+export { ToggleTipSizes as Sizes } from "compositions/examples/toggle-tip-sizes"
+export { ToggleTipArrow as Arrow } from "compositions/examples/toggle-tip-arrow"
+export { ToggleTipCloseOnEscape as CloseOnEscape } from "compositions/examples/toggle-tip-close-on-escape"
+export { ToggleTipCloseOnInteractOutside as CloseOnInteractOutside } from "compositions/examples/toggle-tip-close-on-interact-outside"

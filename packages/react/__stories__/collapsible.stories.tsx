@@ -19,3 +19,4 @@ export { CollapsibleInitialOpen as InitialOpen } from "compositions/examples/col
 export { CollapsibleWithDisabled as Disabled } from "compositions/examples/collapsible-with-disabled"
 export { CollapsibleControlled as Controlled } from "compositions/examples/collapsible-controlled"
 export { CollapsibleWithStore as Store } from "compositions/examples/collapsible-with-store"
+export { CollapsibleWithHideMode as HideMode } from "compositions/examples/collapsible-with-hide-mode"

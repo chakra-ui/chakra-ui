@@ -105,16 +105,16 @@ export default function App() {
 
       const output = await applyTransform(transform, input)
       expect(output).toMatchInlineSnapshot(`
-        "
-        import '@chakra-ui/react';
+        "import '@chakra-ui/react'
 
         export default function App() {
           return (
-
-              
-          );
+            <>
+              <div>App Content</div>
+            </>
+          )
         }
-              "
+        "
       `)
     })
 
@@ -134,16 +134,17 @@ export default function App() {
 
       const output = await applyTransform(transform, input)
       expect(output).toMatchInlineSnapshot(`
-        "
-        import '@chakra-ui/react';
+        "import '@chakra-ui/react'
 
         export default function App() {
-                  return (
-
-                      
-                  );
+          return (
+            <>
+              <div>Child 1</div>
+              <div>Child 2</div>
+            </>
+          )
         }
-              "
+        "
       `)
     })
 
@@ -186,16 +187,18 @@ export default function App() {
 
       const output = await applyTransform(transform, input)
       expect(output).toMatchInlineSnapshot(`
-        "
-        import { Portal } from '@chakra-ui/react';
+        "import { Portal } from '@chakra-ui/react'
 
         export default function App() {
           return (
-
-              
-          );
+            <>
+              <Portal>
+                <div>Portal Content</div>
+              </Portal>
+            </>
+          )
         }
-              "
+        "
       `)
     })
 
