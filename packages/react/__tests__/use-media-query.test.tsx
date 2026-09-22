@@ -68,4 +68,22 @@ describe("useMediaQuery", () => {
 
     expect(result.current).toEqual([false])
   })
+
+  test("should re-evaluate when a comma splits one query into two", () => {
+    const { result, rerender } = renderHook(
+      ({ queries }: { queries: string[] }) =>
+        useMediaQuery(queries, { ssr: false }),
+      {
+        initialProps: {
+          queries: ["(min-width: 0px),(min-width: 48rem)"],
+        },
+      },
+    )
+
+    expect(result.current).toEqual([false])
+
+    rerender({ queries: ["(min-width: 0px)", "(min-width: 48rem)"] })
+
+    expect(result.current).toEqual([true, true])
+  })
 })

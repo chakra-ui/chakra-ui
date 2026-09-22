@@ -29,7 +29,7 @@ export function useMediaQuery(
   const getWin = useCallbackRef(getWindow)
 
   const queries = Array.isArray(query) ? query : [query]
-  const queryKey = queries.join(",")
+  const queryKey = JSON.stringify(queries)
 
   const fallback = _fallback?.filter((v) => v != null) as boolean[]
 
