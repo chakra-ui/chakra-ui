@@ -72,10 +72,14 @@ describe("useBreakpointValue", () => {
       ) as any
 
     try {
+      const initialProps: { value: Record<string, number> } = {
+        value: { base: 1, md: 3 },
+      }
+
       const { result, rerender } = renderHook(
         ({ value }: { value: Record<string, number> }) =>
           useBreakpointValue(value, { ssr: false }),
-        { wrapper, initialProps: { value: { base: 1, md: 3 } } },
+        { wrapper, initialProps },
       )
 
       expect(result.current).toBe(3)
