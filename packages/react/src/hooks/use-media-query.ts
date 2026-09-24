@@ -1,17 +1,14 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useCallbackRef } from "./use-callback-ref"
+import { useState, useSyncExternalStore } from "react"
 
-type MediaQueryCallback = (event: MediaQueryListEvent) => void
-
-function listen(query: MediaQueryList, callback: MediaQueryCallback) {
+function listen(mql: MediaQueryList, callback: () => void) {
   try {
-    query.addEventListener("change", callback)
-    return () => query.removeEventListener("change", callback)
-  } catch (e) {
-    query.addListener(callback)
-    return () => query.removeListener(callback)
+    mql.addEventListener("change", callback)
+    return () => mql.removeEventListener("change", callback)
+  } catch {
+    mql.addListener(callback)
+    return () => mql.removeListener(callback)
   }
 }
 
@@ -21,59 +18,74 @@ export interface UseMediaQueryOptions {
   getWindow?: (() => typeof window | undefined) | undefined
 }
 
+function createMediaQueryStore(
+  queries: string[],
+  fallback: boolean[],
+  getWindow?: () => typeof window | undefined,
+) {
+  const getWin = () => getWindow?.() ?? window
+  const listeners = new Set<() => void>()
+  let cache: boolean[] = queries.map((_, i) => !!fallback[i])
+  let mqls: MediaQueryList[] | null = null
+
+  const getMqls = () => {
+    if (!mqls) mqls = queries.map((q) => getWin().matchMedia(q))
+    return mqls
+  }
+
+  const notify = () => {
+    for (const cb of listeners) cb()
+  }
+
+  const subscribe = (callback: () => void) => {
+    listeners.add(callback)
+    const cleanups = getMqls().map((mql) => listen(mql, notify))
+    return () => {
+      listeners.delete(callback)
+      cleanups.forEach((fn) => fn())
+    }
+  }
+
+  const getSnapshot = (): boolean[] => {
+    if (typeof document === "undefined") return cache
+    const next = getMqls().map((mql) => mql.matches)
+    if (cache.length === next.length && cache.every((v, i) => v === next[i])) {
+      return cache
+    }
+    cache = next
+    return next
+  }
+
+  const getServerSnapshot = (): boolean[] => cache
+
+  return { subscribe, getSnapshot, getServerSnapshot }
+}
+
 export function useMediaQuery(
   query: string[],
   options: UseMediaQueryOptions = {},
 ): boolean[] {
-  const { fallback: _fallback = [], ssr = true, getWindow } = options
-  const getWin = useCallbackRef(getWindow)
+  const { fallback: _fallback = [], getWindow } = options
 
   const queries = Array.isArray(query) ? query : [query]
-
   const fallback = _fallback?.filter((v) => v != null) as boolean[]
 
-  const [value, setValue] = useState(() => {
-    return queries.map((query, index) => {
-      if (!ssr) {
-        const { media, matches } = (getWindow?.() ?? window).matchMedia(query)
-        return { media, matches }
-      }
-      return { media: query, matches: !!fallback[index] }
-    })
-  })
+  const queryKey = queries.join("\0")
 
-  useEffect(() => {
-    const win = getWin() ?? window
-    setValue((prev) => {
-      const current = queries.map((query) => {
-        const { media, matches } = win.matchMedia(query)
-        return { media, matches }
-      })
+  const [store, setStore] = useState(() =>
+    createMediaQueryStore(queries, fallback, getWindow),
+  )
 
-      return prev.every(
-        (v, i) =>
-          v.matches === current[i].matches && v.media === current[i].media,
-      )
-        ? prev
-        : current
-    })
+  const [prevQueryKey, setPrevQueryKey] = useState(queryKey)
 
-    const mql = queries.map((query) => win.matchMedia(query))
+  if (queryKey !== prevQueryKey) {
+    setStore(createMediaQueryStore(queries, fallback, getWindow))
+    setPrevQueryKey(queryKey)
+  }
 
-    const handler = (evt: MediaQueryListEvent) => {
-      setValue((prev) => {
-        return prev.slice().map((item) => {
-          if (item.media === evt.media) return { ...item, matches: evt.matches }
-          return item
-        })
-      })
-    }
-
-    const cleanups = mql.map((v) => listen(v, handler))
-    return () => cleanups.forEach((fn) => fn())
-
-    // eslint-disable-next-line
-  }, [getWin])
-
-  return value.map((item) => item.matches)
+  return useSyncExternalStore(
+    store.subscribe,
+    store.getSnapshot,
+    store.getServerSnapshot,
+  )
 }

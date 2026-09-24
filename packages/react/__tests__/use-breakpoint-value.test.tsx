@@ -90,4 +90,33 @@ describe("useBreakpointValue", () => {
       window.matchMedia = originalMatchMedia
     }
   })
+
+  test("re-evaluates when the value object gains a breakpoint", () => {
+    const mockMatchMedia = vi.fn().mockImplementation((query: string) => ({
+      matches: true,
+      media: query,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    }))
+
+    const originalMatchMedia = window.matchMedia
+    window.matchMedia = mockMatchMedia
+
+    try {
+      const { result, rerender } = renderHook(
+        ({ value }: { value: Record<string, number> }) =>
+          useBreakpointValue(value, { ssr: false }),
+        {
+          wrapper,
+          initialProps: { value: { base: 1, md: 3 } as Record<string, number> },
+        },
+      )
+      expect(result.current).toBe(3)
+
+      rerender({ value: { base: 1, sm: 2, md: 3 } })
+      expect(result.current).toBe(3)
+    } finally {
+      window.matchMedia = originalMatchMedia
+    }
+  })
 })
