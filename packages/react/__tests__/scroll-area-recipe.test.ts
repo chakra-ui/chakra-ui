@@ -1,11 +1,6 @@
 import { scrollAreaSlotRecipe as pandaSlotRecipe } from "../../panda-preset/src/slot-recipes/scroll-area"
 import { scrollAreaSlotRecipe } from "../src/theme/recipes/scroll-area"
 
-/**
- * Zag stamps `data-overflow-x` and `data-overflow-y` on both scrollbars, so a
- * bar that doesn't belong to the overflowing axis has to hide itself. Pinned
- * for both recipes so they can't drift apart.
- */
 const scrollbarVisibility = (base: Record<string, any>) => {
   const { scrollbar } = base
   return {
