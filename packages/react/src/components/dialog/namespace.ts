@@ -14,7 +14,7 @@ export {
   DialogDescription as Description,
   DialogContext as Context,
   DialogActionTrigger as ActionTrigger,
-} from "./dialog"
+} from "./dialog.tsx"
 
 export type {
   DialogBackdropProps as BackdropProps,
@@ -31,7 +31,7 @@ export type {
   DialogDescriptionProps as DescriptionProps,
   DialogOpenChangeDetails as OpenChangeDetails,
   DialogActionTriggerProps as ActionTriggerProps,
-} from "./dialog"
+} from "./dialog.tsx"
 
 export type {
   DialogInteractOutsideEvent as InteractOutsideEvent,

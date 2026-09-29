@@ -1,5 +1,5 @@
-import { ratingGroupAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { ratingGroupAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const ratingGroupSlotRecipe = defineSlotRecipe({
   className: "chakra-rating-group",

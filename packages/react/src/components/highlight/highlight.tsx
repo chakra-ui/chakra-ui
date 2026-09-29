@@ -2,9 +2,9 @@
 
 import { type HighlightChunk, useHighlight } from "@ark-ui/react/highlight"
 import { Fragment, type JSX } from "react"
-import { type SystemStyleObject } from "../../styled-system"
-import { For } from "../for"
-import { Mark } from "../mark"
+import { type SystemStyleObject } from "../../styled-system/index.ts"
+import { For } from "../for/index.ts"
+import { Mark } from "../mark/index.tsx"
 
 export interface HighlightProps {
   query: string | string[]

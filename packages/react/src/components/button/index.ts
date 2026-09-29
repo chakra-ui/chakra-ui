@@ -1,11 +1,11 @@
-export { Button, ButtonPropsProvider } from "./button"
-export type { ButtonProps } from "./button"
+export { Button, ButtonPropsProvider } from "./button.tsx"
+export type { ButtonProps } from "./button.tsx"
 
-export { IconButton } from "./icon-button"
-export type { IconButtonProps } from "./icon-button"
+export { IconButton } from "./icon-button.tsx"
+export type { IconButtonProps } from "./icon-button.tsx"
 
-export { ButtonGroup } from "./button-group"
-export type { ButtonGroupProps } from "./button-group"
+export { ButtonGroup } from "./button-group.tsx"
+export type { ButtonGroupProps } from "./button-group.tsx"
 
-export { CloseButton } from "./close-button"
-export type { CloseButtonProps } from "./close-button"
+export { CloseButton } from "./close-button.tsx"
+export type { CloseButtonProps } from "./close-button.tsx"

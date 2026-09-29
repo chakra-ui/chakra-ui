@@ -1,2 +1,2 @@
-export { Spacer } from "./spacer"
-export type { SpacerProps } from "./spacer"
+export { Spacer } from "./spacer.tsx"
+export type { SpacerProps } from "./spacer.tsx"

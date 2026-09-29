@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import type { CodeBlockAdapter, CodeBlockHighlighter } from "./types"
+import type { CodeBlockAdapter, CodeBlockHighlighter } from "./types.ts"
 
 export interface UseCodeHighlightProps extends CodeBlockAdapter {}
 

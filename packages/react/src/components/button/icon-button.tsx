@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { Button, type ButtonProps } from "./button"
+import { Button, type ButtonProps } from "./button.tsx"
 
 export interface IconButtonProps extends ButtonProps {}
 

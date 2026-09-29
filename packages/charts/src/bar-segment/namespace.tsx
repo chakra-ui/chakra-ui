@@ -7,7 +7,7 @@ export {
   BarSegmentLegend as Legend,
   BarSegmentReference as Reference,
   BarSegmentTooltip as Tooltip,
-} from "./bar-segment"
+} from "./bar-segment.tsx"
 
 export type {
   BarSegmentData as Data,
@@ -18,4 +18,4 @@ export type {
   BarSegmentBarProps as BarProps,
   BarSegmentLabelProps as LabelProps,
   BarSegmentTooltipProps as TooltipProps,
-} from "./bar-segment"
+} from "./bar-segment.tsx"

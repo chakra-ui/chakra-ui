@@ -14,7 +14,7 @@ export {
   FloatingPanelStageTrigger as StageTrigger,
   FloatingPanelTitle as Title,
   FloatingPanelTrigger as Trigger,
-} from "./floating-panel"
+} from "./floating-panel.tsx"
 
 export type {
   FloatingPanelBodyProps as BodyProps,
@@ -30,7 +30,7 @@ export type {
   FloatingPanelStageTriggerProps as StageTriggerProps,
   FloatingPanelTitleProps as TitleProps,
   FloatingPanelTriggerProps as TriggerProps,
-} from "./floating-panel"
+} from "./floating-panel.tsx"
 
 export { FloatingPanelContext as Context } from "@ark-ui/react/floating-panel"
 

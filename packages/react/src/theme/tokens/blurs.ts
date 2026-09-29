@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "../../styled-system/index.ts"
 
 export const blurs = defineTokens.blurs({
   none: { value: " " },

@@ -9,23 +9,23 @@ import {
   mapObject,
   memo,
   walkObject,
-} from "../utils"
-import { cssVar } from "./css-var"
-import { esc } from "./esc"
-import { expandTokenReferences as _expandReferences } from "./expand-reference"
-import { mapToJson } from "./map-to-json"
+} from "../utils/index.ts"
+import { cssVar } from "./css-var.ts"
+import { esc } from "./esc.ts"
+import { expandTokenReferences as _expandReferences } from "./expand-reference.ts"
+import { mapToJson } from "./map-to-json.ts"
 import {
   TOKEN_PATH_REGEX,
   expandReferences,
   getReferences,
   hasReference,
-} from "./references"
+} from "./references.ts"
 import {
   resolveSemanticConditionValues,
   resolveTokenValue,
-} from "./resolve-token-value"
-import { tokenMiddlewares } from "./token-middleware"
-import { tokenTransforms } from "./token-transforms"
+} from "./resolve-token-value.ts"
+import { tokenMiddlewares } from "./token-middleware.ts"
+import { tokenTransforms } from "./token-transforms.ts"
 import type {
   SemanticTokenDefinition,
   Token,
@@ -35,7 +35,7 @@ import type {
   TokenEnforcePhase,
   TokenMiddleware,
   TokenTransformer,
-} from "./types"
+} from "./types.ts"
 
 interface Options {
   prefix?: string | undefined

@@ -9,7 +9,7 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
-} from "../../styled-system"
+} from "../../styled-system/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

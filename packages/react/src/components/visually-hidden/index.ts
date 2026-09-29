@@ -1,1 +1,1 @@
-export { VisuallyHidden, visuallyHiddenStyle } from "./visually-hidden"
+export { VisuallyHidden, visuallyHiddenStyle } from "./visually-hidden.tsx"

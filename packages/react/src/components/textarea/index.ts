@@ -1,2 +1,2 @@
-export { Textarea, TextareaPropsProvider } from "./textarea"
-export type { TextareaProps } from "./textarea"
+export { Textarea, TextareaPropsProvider } from "./textarea.tsx"
+export type { TextareaProps } from "./textarea.tsx"

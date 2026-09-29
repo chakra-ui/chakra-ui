@@ -7,8 +7,8 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { CheckIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { CheckIcon } from "../icons.tsx"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

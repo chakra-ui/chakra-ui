@@ -10,7 +10,7 @@ export {
   CheckboxCardRootPropsProvider as RootPropsProvider,
   CheckboxCardRootProvider as RootProvider,
   CheckboxCardDescription as Description,
-} from "./checkbox-card"
+} from "./checkbox-card.tsx"
 
 export type {
   CheckboxCardAddonProps as AddonProps,
@@ -22,4 +22,4 @@ export type {
   CheckboxCardRootProps as RootProps,
   CheckboxCardRootProviderProps as RootProviderProps,
   CheckboxCardDescriptionProps as DescriptionProps,
-} from "./checkbox-card"
+} from "./checkbox-card.tsx"

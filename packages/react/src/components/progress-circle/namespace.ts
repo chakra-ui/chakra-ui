@@ -7,7 +7,7 @@ export {
   ProgressCircleTrack as Track,
   ProgressCircleRange as Range,
   ProgressCircleValueText as ValueText,
-} from "./progress-circle"
+} from "./progress-circle.ts"
 
 export type {
   ProgressCircleRootProps as RootProps,
@@ -17,4 +17,4 @@ export type {
   ProgressCircleTrackProps as TrackProps,
   ProgressCircleRangeProps as RangeProps,
   ProgressCircleValueTextProps as ValueTextProps,
-} from "./progress-circle"
+} from "./progress-circle.ts"

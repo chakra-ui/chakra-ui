@@ -11,9 +11,9 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { Box } from "../box"
-import { ChevronLeftIcon, ChevronRightIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { Box } from "../box/index.ts"
+import { ChevronLeftIcon, ChevronRightIcon } from "../icons.tsx"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

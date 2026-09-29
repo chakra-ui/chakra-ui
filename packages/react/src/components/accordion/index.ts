@@ -10,7 +10,7 @@ export {
   useAccordionStyles,
   AccordionContext,
   AccordionItemContext,
-} from "./accordion"
+} from "./accordion.tsx"
 
 export type {
   AccordionItemBodyProps,
@@ -22,7 +22,7 @@ export type {
   AccordionRootProviderProps,
   AccordionFocusChangeDetails,
   AccordionValueChangeDetails,
-} from "./accordion"
+} from "./accordion.tsx"
 
 export {
   useAccordion,
@@ -35,4 +35,4 @@ export type {
   UseAccordionReturn,
 } from "@ark-ui/react/accordion"
 
-export * as Accordion from "./namespace"
+export * as Accordion from "./namespace.ts"

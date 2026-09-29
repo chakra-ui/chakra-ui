@@ -1,5 +1,5 @@
-import { menuAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { menuAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const menuSlotRecipe = defineSlotRecipe({
   className: "chakra-menu",

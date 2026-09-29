@@ -5,13 +5,13 @@ export {
   DataListRoot,
   DataListPropsProvider,
   useDataListStyles,
-} from "./data-list"
+} from "./data-list.ts"
 
 export type {
   DataListItemLabelProps,
   DataListItemProps,
   DataListItemValueProps,
   DataListRootProps,
-} from "./data-list"
+} from "./data-list.ts"
 
-export * as DataList from "./namespace"
+export * as DataList from "./namespace.ts"

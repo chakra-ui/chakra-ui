@@ -1,6 +1,6 @@
-export { useChart } from "./use-chart"
-export type { UseChartProps, UseChartReturn } from "./use-chart"
+export { useChart } from "./use-chart.ts"
+export type { UseChartProps, UseChartReturn } from "./use-chart.ts"
 
-export * from "./chart"
-export * from "./bar-list"
-export * from "./bar-segment"
+export * from "./chart/index.ts"
+export * from "./bar-list/index.ts"
+export * from "./bar-segment/index.ts"

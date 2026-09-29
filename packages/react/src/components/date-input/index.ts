@@ -9,7 +9,7 @@ export {
   DateInputSegmentGroup,
   DateInputSegments,
   useDateInputStyles,
-} from "./date-input"
+} from "./date-input.tsx"
 
 export type {
   DateInputControlProps,
@@ -22,7 +22,7 @@ export type {
   DateInputSegmentGroupProps,
   DateInputSegmentProps,
   DateInputSegmentsProps,
-} from "./date-input"
+} from "./date-input.tsx"
 
 export {
   DateInputContext,
@@ -40,4 +40,4 @@ export type {
   UseDateInputReturn,
 } from "@ark-ui/react/date-input"
 
-export * as DateInput from "./namespace"
+export * as DateInput from "./namespace.ts"

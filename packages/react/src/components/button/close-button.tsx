@@ -1,6 +1,6 @@
 import * as React from "react"
-import { CloseIcon } from "../icons"
-import { IconButton, type IconButtonProps } from "./icon-button"
+import { CloseIcon } from "../icons.tsx"
+import { IconButton, type IconButtonProps } from "./icon-button.tsx"
 
 export interface CloseButtonProps extends IconButtonProps {}
 

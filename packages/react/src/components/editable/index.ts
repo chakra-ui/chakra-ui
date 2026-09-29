@@ -12,7 +12,7 @@ export {
   EditableCancelTrigger,
   EditableSubmitTrigger,
   useEditableStyles,
-} from "./editable"
+} from "./editable.tsx"
 
 export type {
   EditableInputProps,
@@ -25,7 +25,7 @@ export type {
   EditableEditTriggerProps,
   EditableCancelTriggerProps,
   EditableSubmitTriggerProps,
-} from "./editable"
+} from "./editable.tsx"
 
 export { useEditable, useEditableContext } from "@ark-ui/react/editable"
 
@@ -39,4 +39,4 @@ export type {
   EditablePointerDownOutsideEvent,
 } from "@ark-ui/react/editable"
 
-export * as Editable from "./namespace"
+export * as Editable from "./namespace.ts"

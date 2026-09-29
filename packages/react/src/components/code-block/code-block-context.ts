@@ -1,6 +1,6 @@
 import { type UseClipboardReturn } from "@ark-ui/react/clipboard"
-import { createContext } from "../../create-context"
-import type { CodeBlockHighlighterProps } from "./types"
+import { createContext } from "../../create-context.ts"
+import type { CodeBlockHighlighterProps } from "./types.ts"
 
 export interface CodeBlockCollapsible {
   contentId: string

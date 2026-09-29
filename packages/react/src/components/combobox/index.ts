@@ -20,7 +20,7 @@ export {
   ComboboxRootProvider,
   ComboboxTrigger,
   useComboboxStyles,
-} from "./combobox"
+} from "./combobox.tsx"
 
 export type {
   ComboboxClearTriggerProps,
@@ -44,7 +44,7 @@ export type {
   ComboboxRootProviderProps,
   ComboboxTriggerProps,
   ComboboxValueChangeDetails,
-} from "./combobox"
+} from "./combobox.tsx"
 
 export {
   useCombobox,
@@ -61,4 +61,4 @@ export type {
   UseComboboxReturn,
 } from "@ark-ui/react/combobox"
 
-export * as Combobox from "./namespace"
+export * as Combobox from "./namespace.ts"

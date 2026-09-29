@@ -1,5 +1,8 @@
-import type { ConditionalValue, SystemStyleObject } from "../../styled-system"
-import { mapObject } from "../../utils"
+import type {
+  ConditionalValue,
+  SystemStyleObject,
+} from "../../styled-system/index.ts"
+import { mapObject } from "../../utils/index.ts"
 
 export type StackDirection = ConditionalValue<
   "row" | "column" | "row-reverse" | "column-reverse"

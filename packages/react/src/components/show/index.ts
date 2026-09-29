@@ -1,2 +1,2 @@
-export { Show } from "./show"
-export type { ShowProps } from "./show"
+export { Show } from "./show.tsx"
+export type { ShowProps } from "./show.tsx"

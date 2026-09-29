@@ -14,7 +14,7 @@ export {
   DrawerDescription as Description,
   DrawerContext as Context,
   DrawerActionTrigger as ActionTrigger,
-} from "./drawer"
+} from "./drawer.tsx"
 
 export type {
   DrawerBackdropProps as BackdropProps,
@@ -31,7 +31,7 @@ export type {
   DrawerTitleProps as TitleProps,
   DrawerOpenChangeDetails as OpenChangeDetails,
   DrawerActionTriggerProps as ActionTriggerProps,
-} from "./drawer"
+} from "./drawer.tsx"
 
 export type {
   DialogInteractOutsideEvent as InteractOutsideEvent,

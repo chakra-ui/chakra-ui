@@ -12,7 +12,7 @@ export {
   EditableRootProvider as RootProvider,
   EditableSubmitTrigger as SubmitTrigger,
   EditableTextarea as Textarea,
-} from "./editable"
+} from "./editable.tsx"
 
 export type {
   EditableAreaProps as AreaProps,
@@ -26,7 +26,7 @@ export type {
   EditableRootProviderProps as RootProviderProps,
   EditableSubmitTriggerProps as SubmitTriggerProps,
   EditableTextareaProps as TextareaProps,
-} from "./editable"
+} from "./editable.tsx"
 
 export type {
   EditableEditChangeDetails as EditChangeDetails,

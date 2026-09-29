@@ -1,5 +1,5 @@
-import { type Dict, isObject, memo, walkObject } from "../utils"
-import type { SystemContext } from "./types"
+import { type Dict, isObject, memo, walkObject } from "../utils/index.ts"
+import type { SystemContext } from "./types.ts"
 
 export function createSerializeFn(
   options: Pick<SystemContext, "conditions" | "isValidProperty">,

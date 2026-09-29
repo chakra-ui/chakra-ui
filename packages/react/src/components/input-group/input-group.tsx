@@ -1,10 +1,10 @@
 "use client"
 
 import { Children, cloneElement, forwardRef } from "react"
-import type { BoxProps } from "../box"
-import { Group } from "../group"
-import { InputAddon, type InputAddonProps } from "../input-addon"
-import { InputElement, type InputElementProps } from "../input-element"
+import type { BoxProps } from "../box/index.ts"
+import { Group } from "../group/index.ts"
+import { InputAddon, type InputAddonProps } from "../input-addon/index.ts"
+import { InputElement, type InputElementProps } from "../input-element/index.ts"
 
 export interface InputGroupProps extends BoxProps {
   /**

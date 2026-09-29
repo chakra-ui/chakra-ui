@@ -5,7 +5,7 @@ export {
   ToastRoot as Root,
   ToastTitle as Title,
   ToastIndicator as Indicator,
-} from "./toast"
+} from "./toast.tsx"
 export type {
   ToastActionTriggerProps as ActionTriggerProps,
   ToastCloseTriggerProps as CloseTriggerProps,
@@ -13,4 +13,4 @@ export type {
   ToastRootProps as RootProps,
   ToastTitleProps as TitleProps,
   ToastIndicatorProps as IndicatorProps,
-} from "./toast"
+} from "./toast.tsx"

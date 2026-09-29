@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "../../styled-system/index.ts"
 
 export const radii = defineTokens.radii({
   none: { value: "0" },

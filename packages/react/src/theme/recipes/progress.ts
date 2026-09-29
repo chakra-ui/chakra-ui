@@ -1,5 +1,5 @@
-import { progressAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { progressAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const progressSlotRecipe = defineSlotRecipe({
   slots: progressAnatomy.keys(),

@@ -4,12 +4,12 @@ export {
   NativeSelectIndicator,
   NativeSelectPropsProvider,
   useNativeSelectStyles,
-} from "./native-select"
+} from "./native-select.tsx"
 
 export type {
   NativeSelectRootProps,
   NativeSelectFieldProps,
   NativeSelectIndicatorProps,
-} from "./native-select"
+} from "./native-select.tsx"
 
-export * as NativeSelect from "./namespace"
+export * as NativeSelect from "./namespace.ts"

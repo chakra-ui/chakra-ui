@@ -1,5 +1,5 @@
-import { treeViewAnatomy } from "../../anatomy"
-import { defineSlotRecipe, defineStyle } from "../../styled-system"
+import { treeViewAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe, defineStyle } from "../../styled-system/index.ts"
 
 const baseItemStyle = defineStyle({
   display: "flex",

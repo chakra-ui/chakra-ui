@@ -8,7 +8,7 @@ export {
   TooltipPropsProvider as PropsProvider,
   TooltipTrigger as Trigger,
   TooltipContext as Context,
-} from "./tooltip"
+} from "./tooltip.tsx"
 
 export type {
   TooltipArrowProps as ArrowProps,
@@ -19,4 +19,4 @@ export type {
   TooltipRootProviderProps as RootProviderProps,
   TooltipTriggerProps as TriggerProps,
   TooltipOpenChangeDetails as OpenChangeDetails,
-} from "./tooltip"
+} from "./tooltip.tsx"

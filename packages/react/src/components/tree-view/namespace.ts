@@ -15,7 +15,7 @@ export {
   TreeViewRoot as Root,
   TreeViewRootProvider as RootProvider,
   TreeViewTree as Tree,
-} from "./tree-view"
+} from "./tree-view.tsx"
 export type {
   TreeViewBranchContentProps as BranchContentProps,
   TreeViewBranchControlProps as BranchControlProps,
@@ -34,7 +34,7 @@ export type {
   TreeViewRootProps as RootProps,
   TreeViewRootProviderProps as RootProviderProps,
   TreeViewTreeProps as TreeProps,
-} from "./tree-view"
+} from "./tree-view.tsx"
 
 export {
   TreeViewContext as Context,

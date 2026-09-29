@@ -8,7 +8,7 @@ export {
   BreadcrumbPropsProvider,
   BreadcrumbSeparator,
   useBreadcrumbStyles,
-} from "./breadcrumb"
+} from "./breadcrumb.tsx"
 
 export type {
   BreadcrumbCurrentLinkProps,
@@ -18,6 +18,6 @@ export type {
   BreadcrumbListProps,
   BreadcrumbRootProps,
   BreadcrumbSeparatorProps,
-} from "./breadcrumb"
+} from "./breadcrumb.tsx"
 
-export * as Breadcrumb from "./namespace"
+export * as Breadcrumb from "./namespace.ts"

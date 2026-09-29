@@ -6,7 +6,7 @@ export {
   CollapsibleRoot as Root,
   CollapsibleRootProvider as RootProvider,
   CollapsibleTrigger as Trigger,
-} from "./collapsible"
+} from "./collapsible.tsx"
 
 export type {
   CollapsibleContentProps as ContentProps,
@@ -15,4 +15,4 @@ export type {
   CollapsibleRootProps as RootProps,
   CollapsibleRootProviderProps as RootProviderProps,
   CollapsibleTriggerProps as TriggerProps,
-} from "./collapsible"
+} from "./collapsible.tsx"

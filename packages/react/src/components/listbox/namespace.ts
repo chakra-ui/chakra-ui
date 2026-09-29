@@ -14,7 +14,7 @@ export {
   ListboxContext as Context,
   ListboxPropsProvider as PropsProvider,
   ListboxValueText as ValueText,
-} from "./listbox"
+} from "./listbox.tsx"
 
 export type {
   ListboxContentProps as ContentProps,
@@ -32,7 +32,7 @@ export type {
   ListboxValueTextProps as ValueTextProps,
   ListboxRootComponent as RootComponent,
   ListboxEmptyProps as EmptyProps,
-} from "./listbox"
+} from "./listbox.tsx"
 
 export type {
   ListboxScrollToIndexDetails as ScrollToIndexDetails,

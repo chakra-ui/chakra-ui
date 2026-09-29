@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Show } from "../show"
+import { Show } from "../show/index.ts"
 
 export interface ClientOnlyProps {
   /**

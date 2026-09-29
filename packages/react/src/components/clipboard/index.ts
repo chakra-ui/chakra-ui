@@ -11,7 +11,7 @@ export {
   ClipboardContext,
   ClipboardCopyText,
   useClipboardStyles,
-} from "./clipboard"
+} from "./clipboard.tsx"
 
 export type {
   ClipboardControlProps,
@@ -23,7 +23,7 @@ export type {
   ClipboardTriggerProps,
   ClipboardInputProps,
   ClipboardCopyStatusDetails,
-} from "./clipboard"
+} from "./clipboard.tsx"
 
 export { useClipboard, useClipboardContext } from "@ark-ui/react/clipboard"
 
@@ -32,4 +32,4 @@ export type {
   UseClipboardReturn,
 } from "@ark-ui/react/clipboard"
 
-export * as Clipboard from "./namespace"
+export * as Clipboard from "./namespace.ts"

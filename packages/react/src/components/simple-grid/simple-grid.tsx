@@ -5,9 +5,9 @@ import {
   type ConditionalValue,
   type SystemContext,
   useChakraContext,
-} from "../../styled-system"
-import { mapObject } from "../../utils"
-import { Grid, type GridProps } from "../grid"
+} from "../../styled-system/index.ts"
+import { mapObject } from "../../utils/index.ts"
+import { Grid, type GridProps } from "../grid/index.ts"
 
 interface SimpleGridBaseProps {
   /**

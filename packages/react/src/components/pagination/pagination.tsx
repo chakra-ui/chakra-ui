@@ -11,11 +11,11 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { Box, type BoxProps } from "../box"
-import { IconButton } from "../button"
-import { For } from "../for"
-import { EllipsisIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { Box, type BoxProps } from "../box/index.ts"
+import { IconButton } from "../button/index.ts"
+import { For } from "../for/index.ts"
+import { EllipsisIcon } from "../icons.tsx"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

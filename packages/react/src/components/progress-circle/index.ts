@@ -9,7 +9,7 @@ export {
   ProgressCircleValueText,
   ProgressCircleContext,
   useProgressCircleStyles,
-} from "./progress-circle"
+} from "./progress-circle.ts"
 
 export type {
   ProgressCircleCircleProps,
@@ -19,6 +19,6 @@ export type {
   ProgressCircleRootProviderProps,
   ProgressCircleTrackProps,
   ProgressCircleValueTextProps,
-} from "./progress-circle"
+} from "./progress-circle.ts"
 
-export * as ProgressCircle from "./namespace"
+export * as ProgressCircle from "./namespace.ts"

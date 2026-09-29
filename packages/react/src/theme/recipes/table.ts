@@ -1,5 +1,5 @@
-import { tableAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { tableAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const tableSlotRecipe = defineSlotRecipe({
   className: "chakra-table",

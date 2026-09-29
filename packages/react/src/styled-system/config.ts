@@ -1,16 +1,16 @@
-import type { CompositionStyles } from "./composition"
+import type { CompositionStyles } from "./composition.ts"
 import type {
   GlobalStyleIdentityFn,
   KeyframeIdentityFn,
   SystemStyleIdentityFn,
-} from "./css.types"
-import type { RecipeIdentityFn, SlotRecipeIdentityFn } from "./recipe.types"
+} from "./css.types.ts"
+import type { RecipeIdentityFn, SlotRecipeIdentityFn } from "./recipe.types.ts"
 import type {
   ConditionRecord,
   SemanticTokenDefinition,
   SystemConfig,
   TokenDefinition,
-} from "./types"
+} from "./types.ts"
 
 /* -----------------------------------------------------------------------------
  * Core creators
@@ -67,4 +67,4 @@ export const defineSemanticTokens =
 
 export const defineConfig = (v: SystemConfig) => v
 
-export { mergeConfigs } from "./merge-config"
+export { mergeConfigs } from "./merge-config.ts"

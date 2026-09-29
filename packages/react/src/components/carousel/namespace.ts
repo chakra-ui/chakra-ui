@@ -14,7 +14,7 @@ export {
   CarouselIndicators as Indicators,
   CarouselAutoplayIndicator as AutoplayIndicator,
   CarouselProgressText as ProgressText,
-} from "./carousel"
+} from "./carousel.tsx"
 
 export type {
   CarouselAutoplayTriggerProps as AutoplayTriggerProps,
@@ -33,4 +33,4 @@ export type {
   CarouselIndicatorsProps as IndicatorsProps,
   CarouselAutoplayIndicatorProps as AutoplayIndicatorProps,
   CarouselProgressTextProps as ProgressTextProps,
-} from "./carousel"
+} from "./carousel.tsx"

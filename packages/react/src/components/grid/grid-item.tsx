@@ -5,9 +5,9 @@ import {
   type ConditionalValue,
   type SystemStyleObject,
   chakra,
-} from "../../styled-system"
-import { compact, mapObject } from "../../utils"
-import type { BoxProps } from "../box"
+} from "../../styled-system/index.ts"
+import { compact, mapObject } from "../../utils/index.ts"
+import type { BoxProps } from "../box/index.ts"
 
 export interface GridItemProps extends BoxProps {
   area?: SystemStyleObject["gridArea"] | undefined

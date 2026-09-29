@@ -6,7 +6,7 @@ import {
   type RecipeProps,
   type UnstyledProp,
   createRecipeContext,
-} from "../../styled-system"
+} from "../../styled-system/index.ts"
 
 const { withContext, PropsProvider } = createRecipeContext({
   key: "input",

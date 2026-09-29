@@ -1,2 +1,2 @@
-export { ClientOnly } from "./client-only"
-export type { ClientOnlyProps } from "./client-only"
+export { ClientOnly } from "./client-only.tsx"
+export type { ClientOnlyProps } from "./client-only.tsx"

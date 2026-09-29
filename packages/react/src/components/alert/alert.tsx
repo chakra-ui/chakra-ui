@@ -1,7 +1,7 @@
 "use client"
 
 import { Fragment, forwardRef } from "react"
-import { createContext } from "../../create-context"
+import { createContext } from "../../create-context.ts"
 import {
   type ConditionalValue,
   type HTMLChakraProps,
@@ -9,8 +9,8 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { CheckCircleIcon, InfoIcon, WarningIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { CheckCircleIcon, InfoIcon, WarningIcon } from "../icons.tsx"
 
 interface StatusProps {
   status: ConditionalValue<"info" | "warning" | "success" | "error" | "neutral">

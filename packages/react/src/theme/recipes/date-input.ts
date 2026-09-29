@@ -1,5 +1,5 @@
-import { dateInputAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { dateInputAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const dateInputSlotRecipe = defineSlotRecipe({
   className: "chakra-date-input",

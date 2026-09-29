@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "../../styled-system/index.ts"
 
 export const easings = defineTokens.easings({
   "ease-in": { value: "cubic-bezier(0.42, 0, 1, 1)" },

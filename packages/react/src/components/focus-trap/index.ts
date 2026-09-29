@@ -1,2 +1,2 @@
-export { FocusTrap } from "./focus-trap"
-export type { FocusTrapProps } from "./focus-trap"
+export { FocusTrap } from "./focus-trap.tsx"
+export type { FocusTrapProps } from "./focus-trap.tsx"

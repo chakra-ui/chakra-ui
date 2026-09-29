@@ -16,7 +16,7 @@ export {
   PopoverCloseTrigger as CloseTrigger,
   PopoverContext as Context,
   usePopoverStyles,
-} from "./popover"
+} from "./popover.tsx"
 
 export type {
   PopoverRootProps as RootProps,
@@ -34,7 +34,7 @@ export type {
   PopoverFooterProps as FooterProps,
   PopoverCloseTriggerProps as CloseTriggerProps,
   PopoverOpenChangeDetails as OpenChangeDetails,
-} from "./popover"
+} from "./popover.tsx"
 
 export type {
   PopoverInteractOutsideEvent as InteractOutsideEvent,

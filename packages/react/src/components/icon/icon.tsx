@@ -6,8 +6,8 @@ import {
   type RecipeProps,
   chakra,
   createRecipeContext,
-} from "../../styled-system"
-import { cx } from "../../utils"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
 
 const { useRecipeResult, PropsProvider } = createRecipeContext({ key: "icon" })
 

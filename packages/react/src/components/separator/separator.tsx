@@ -7,8 +7,8 @@ import {
   type UnstyledProp,
   chakra,
   createRecipeContext,
-} from "../../styled-system"
-import { cx, isString, omit } from "../../utils"
+} from "../../styled-system/index.ts"
+import { cx, isString, omit } from "../../utils/index.ts"
 
 const { useRecipeResult, PropsProvider } = createRecipeContext({
   key: "separator",

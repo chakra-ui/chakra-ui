@@ -6,17 +6,17 @@ import {
   useColorPickerContext,
 } from "@ark-ui/react/color-picker"
 import { forwardRef } from "react"
-import { mergeProps } from "../../merge-props"
+import { mergeProps } from "../../merge-props.ts"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { IconButton, type IconButtonProps } from "../button"
-import { PipetteIcon } from "../icons"
-import type { StackProps } from "../stack"
-import { Stack } from "../stack"
+} from "../../styled-system/index.ts"
+import { IconButton, type IconButtonProps } from "../button/index.ts"
+import { PipetteIcon } from "../icons.tsx"
+import type { StackProps } from "../stack/index.ts"
+import { Stack } from "../stack/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

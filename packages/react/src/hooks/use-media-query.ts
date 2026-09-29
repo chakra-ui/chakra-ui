@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useCallbackRef } from "./use-callback-ref"
+import { useCallbackRef } from "./use-callback-ref.ts"
 
 type MediaQueryCallback = (event: MediaQueryListEvent) => void
 

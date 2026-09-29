@@ -1,5 +1,5 @@
-import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
-import type { ConditionalValue } from "../css.types"
+import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types.ts"
+import type { ConditionalValue } from "../css.types.ts"
 
 export interface BadgeVariant {
   /** @default "subtle" */

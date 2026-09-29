@@ -7,7 +7,7 @@ export {
   SplitterResizeTrigger as ResizeTrigger,
   SplitterRoot as Root,
   SplitterRootProvider as RootProvider,
-} from "./splitter"
+} from "./splitter.tsx"
 
 export type {
   SplitterExpandCollapseDetails as ExpandCollapseDetails,
@@ -22,4 +22,4 @@ export type {
   SplitterRootProps as RootProps,
   SplitterRootProviderBaseProps as RootProviderBaseProps,
   SplitterRootProviderProps as RootProviderProps,
-} from "./splitter"
+} from "./splitter.tsx"

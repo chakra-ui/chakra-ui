@@ -8,7 +8,7 @@ export {
   ProgressTrack,
   ProgressValueText,
   useProgressStyles,
-} from "./progress"
+} from "./progress.ts"
 
 export type {
   ProgressLabelProps,
@@ -17,9 +17,9 @@ export type {
   ProgressRootProviderProps,
   ProgressTrackProps,
   ProgressValueTextProps,
-} from "./progress"
+} from "./progress.ts"
 
-export * as Progress from "./namespace"
+export * as Progress from "./namespace.ts"
 
 export { useProgress, useProgressContext } from "@ark-ui/react/progress"
 

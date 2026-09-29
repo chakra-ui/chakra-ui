@@ -1,5 +1,5 @@
-import { timelineAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { timelineAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const timelineSlotRecipe = defineSlotRecipe({
   slots: timelineAnatomy.keys(),

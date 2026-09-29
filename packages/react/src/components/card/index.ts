@@ -7,7 +7,7 @@ export {
   CardTitle,
   CardDescription,
   useCardStyles,
-} from "./card"
+} from "./card.tsx"
 
 export type {
   CardBodyProps,
@@ -16,6 +16,6 @@ export type {
   CardHeaderProps,
   CardTitleProps,
   CardDescriptionProps,
-} from "./card"
+} from "./card.tsx"
 
-export * as Card from "./namespace"
+export * as Card from "./namespace.ts"

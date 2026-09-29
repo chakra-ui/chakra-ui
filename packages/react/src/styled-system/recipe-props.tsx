@@ -1,9 +1,9 @@
 "use client"
 
-import { createContext } from "../create-context"
-import type { RecipeProps } from "./generated/recipes.gen"
-import type { RecipeKey } from "./use-recipe"
-import type { SlotRecipeKey } from "./use-slot-recipe"
+import { createContext } from "../create-context.ts"
+import type { RecipeProps } from "./generated/recipes.gen.ts"
+import type { RecipeKey } from "./use-recipe.ts"
+import type { SlotRecipeKey } from "./use-slot-recipe.ts"
 
 const [RecipePropsContextProvider, useParentRecipeProps] = createContext<
   RecipeProps<string>

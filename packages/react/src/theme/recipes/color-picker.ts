@@ -1,7 +1,7 @@
-import { colorPickerAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
-import { colorSwatchRecipe } from "./color-swatch"
-import { inputRecipe } from "./input"
+import { colorPickerAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
+import { colorSwatchRecipe } from "./color-swatch.ts"
+import { inputRecipe } from "./input.ts"
 
 export const colorPickerSlotRecipe = defineSlotRecipe({
   className: "colorPicker",
