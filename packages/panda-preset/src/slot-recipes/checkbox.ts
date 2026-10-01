@@ -95,7 +95,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       outline: {
         control: {
           borderColor: "border",
-          "&:is([data-state=checked], [data-state=indeterminate])": {
+          "&:where([data-state=checked], [data-state=indeterminate])": {
             color: "colorPalette.fg",
             borderColor: "colorPalette.solid",
           },
@@ -104,7 +104,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       solid: {
         control: {
           borderColor: "border.emphasized",
-          "&:is([data-state=checked], [data-state=indeterminate])": {
+          "&:where([data-state=checked], [data-state=indeterminate])": {
             bg: "colorPalette.solid",
             color: "colorPalette.contrast",
             borderColor: "colorPalette.solid",
@@ -115,7 +115,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
         control: {
           bg: "colorPalette.muted",
           borderColor: "colorPalette.muted",
-          "&:is([data-state=checked], [data-state=indeterminate])": {
+          "&:where([data-state=checked], [data-state=indeterminate])": {
             color: "colorPalette.fg",
           },
         },

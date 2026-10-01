@@ -45,7 +45,7 @@ export const checkmarkRecipe = defineRecipe({
     variant: {
       solid: {
         borderColor: "border.emphasized",
-        "&:is([data-state=checked], [data-state=indeterminate])": {
+        "&:where([data-state=checked], [data-state=indeterminate])": {
           bg: "colorPalette.solid",
           color: "colorPalette.contrast",
           borderColor: "colorPalette.solid",
@@ -53,7 +53,7 @@ export const checkmarkRecipe = defineRecipe({
       },
       outline: {
         borderColor: "border",
-        "&:is([data-state=checked], [data-state=indeterminate])": {
+        "&:where([data-state=checked], [data-state=indeterminate])": {
           color: "colorPalette.fg",
           borderColor: "colorPalette.solid",
         },
@@ -61,19 +61,19 @@ export const checkmarkRecipe = defineRecipe({
       subtle: {
         bg: "colorPalette.muted",
         borderColor: "colorPalette.muted",
-        "&:is([data-state=checked], [data-state=indeterminate])": {
+        "&:where([data-state=checked], [data-state=indeterminate])": {
           color: "colorPalette.fg",
         },
       },
       plain: {
-        "&:is([data-state=checked], [data-state=indeterminate])": {
+        "&:where([data-state=checked], [data-state=indeterminate])": {
           color: "colorPalette.fg",
         },
       },
       inverted: {
         borderColor: "border",
         color: "colorPalette.fg",
-        "&:is([data-state=checked], [data-state=indeterminate])": {
+        "&:where([data-state=checked], [data-state=indeterminate])": {
           borderColor: "colorPalette.solid",
         },
       },

@@ -164,7 +164,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
         },
         indicator: {
           borderColor: "border.emphasized",
-          "&:is([data-state=checked], [data-state=indeterminate])": {
+          "&:where([data-state=checked], [data-state=indeterminate])": {
             bg: "colorPalette.solid",
             color: "colorPalette.contrast",
             borderColor: "colorPalette.solid",
@@ -182,7 +182,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
           },
         },
         indicator: {
-          "&:is([data-state=checked], [data-state=indeterminate])": {
+          "&:where([data-state=checked], [data-state=indeterminate])": {
             color: "colorPalette.fg",
           },
         },
@@ -199,7 +199,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
         },
         indicator: {
           borderColor: "border.emphasized",
-          "&:is([data-state=checked], [data-state=indeterminate])": {
+          "&:where([data-state=checked], [data-state=indeterminate])": {
             bg: "colorPalette.solid",
             color: "colorPalette.contrast",
             borderColor: "colorPalette.solid",
@@ -218,7 +218,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
         indicator: {
           borderColor: "border",
           color: "colorPalette.fg",
-          "&:is([data-state=checked], [data-state=indeterminate])": {
+          "&:where([data-state=checked], [data-state=indeterminate])": {
             borderColor: "colorPalette.solid",
           },
         },
