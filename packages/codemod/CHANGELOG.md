@@ -1,5 +1,21 @@
 # @chakra-ui/codemod
 
+## 3.37.1
+
+### Patch Changes
+
+- [#10981](https://github.com/chakra-ui/chakra-ui/pull/10981)
+  [`1ff9873`](https://github.com/chakra-ui/chakra-ui/commit/1ff9873754e9913fc3d849d23c0844a628f5f20d)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - - **Codemod**
+  - Rewrite token files imported into a theme (e.g. `colors.ts`) to the v3
+    `{ value }` shape.
+  - Add transforms for `StackItem`, `Input`/`Textarea` border color props, and
+    custom SVG icons.
+  - Apply prop migrations to components imported through local barrel files.
+  - Add `list`, `--dry-run`, `--transform` and `--fail-on-warn`, plus a "Manual
+    follow-ups" report and `// TODO(chakra-v3)` comments for changes that need
+    review.
+
 ## 3.37.0
 
 ### Minor Changes
