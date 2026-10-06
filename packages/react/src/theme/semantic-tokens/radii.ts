@@ -1,4 +1,4 @@
-import { defineSemanticTokens } from "../../styled-system"
+import { defineSemanticTokens } from "../../styled-system/index.ts"
 
 export const semanticRadii = defineSemanticTokens.radii({
   l1: { value: "{radii.xs}" },

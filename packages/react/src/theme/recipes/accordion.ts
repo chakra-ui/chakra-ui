@@ -1,5 +1,5 @@
-import { accordionAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { accordionAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const accordionSlotRecipe = defineSlotRecipe({
   className: "chakra-accordion",

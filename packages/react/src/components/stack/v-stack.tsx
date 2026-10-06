@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { Stack, type StackProps } from "./stack"
+import { Stack, type StackProps } from "./stack.tsx"
 
 /**
  * A view that arranges its children in a vertical line.

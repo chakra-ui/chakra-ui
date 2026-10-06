@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "../../styled-system/index.ts"
 
 export const durations = defineTokens.durations({
   fastest: { value: "50ms" },

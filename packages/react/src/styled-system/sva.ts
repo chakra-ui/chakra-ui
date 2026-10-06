@@ -1,6 +1,12 @@
-import { type Dict, mapEntries, memo, omit, splitProps } from "../utils"
-import type { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
-import { EMPTY_ARRAY, EMPTY_OBJECT, createEmptyObject } from "./singleton"
+import {
+  type Dict,
+  mapEntries,
+  memo,
+  omit,
+  splitProps,
+} from "../utils/index.ts"
+import type { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types.ts"
+import { EMPTY_ARRAY, EMPTY_OBJECT, createEmptyObject } from "./singleton.ts"
 
 interface Options {
   cva: RecipeCreatorFn

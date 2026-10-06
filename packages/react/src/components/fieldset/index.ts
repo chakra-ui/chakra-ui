@@ -5,7 +5,7 @@ export {
   FieldsetLegend,
   FieldsetContent,
   FieldsetContext,
-} from "./fieldset"
+} from "./fieldset.ts"
 
 export type {
   FieldsetRootProps,
@@ -13,8 +13,8 @@ export type {
   FieldsetHelperTextProps,
   FieldsetLegendProps,
   FieldsetContentProps,
-} from "./fieldset"
+} from "./fieldset.ts"
 
 export { useFieldsetContext } from "@ark-ui/react/fieldset"
 
-export * as Fieldset from "./namespace"
+export * as Fieldset from "./namespace.ts"

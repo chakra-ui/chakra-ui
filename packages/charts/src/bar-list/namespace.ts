@@ -6,7 +6,7 @@ export {
   BarListTitle as Title,
   BarListLabel as Label,
   BarListTooltip as Tooltip,
-} from "./bar-list"
+} from "./bar-list.tsx"
 
 export type {
   BarListData as Data,
@@ -15,4 +15,4 @@ export type {
   BarListValueProps as ValueProps,
   BarListLabelProps as LabelProps,
   BarListTooltipProps as TooltipProps,
-} from "./bar-list"
+} from "./bar-list.tsx"

@@ -1,10 +1,10 @@
 "use client"
 
-import { CodeBlockAdapterContextProvider } from "./code-block-adapter-context"
+import { CodeBlockAdapterContextProvider } from "./code-block-adapter-context.ts"
 import {
   type UseCodeHighlightProps,
   useCodeHighlight,
-} from "./use-code-highlight"
+} from "./use-code-highlight.ts"
 
 export interface CodeBlockAdapterProviderProps {
   children: React.ReactNode

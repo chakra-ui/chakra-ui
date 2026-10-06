@@ -1,7 +1,7 @@
-import { numberInputAnatomy } from "../../anatomy"
-import { defineSlotRecipe, defineStyle } from "../../styled-system"
-import { mapEntries } from "../../utils"
-import { inputRecipe } from "./input"
+import { numberInputAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe, defineStyle } from "../../styled-system/index.ts"
+import { mapEntries } from "../../utils/index.ts"
+import { inputRecipe } from "./input.ts"
 
 const triggerStyle = defineStyle({
   display: "flex",

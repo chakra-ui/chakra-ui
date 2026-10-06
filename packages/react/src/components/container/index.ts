@@ -1,2 +1,2 @@
-export { Container, ContainerPropsProvider } from "./container"
-export type { ContainerProps } from "./container"
+export { Container, ContainerPropsProvider } from "./container.tsx"
+export type { ContainerProps } from "./container.tsx"

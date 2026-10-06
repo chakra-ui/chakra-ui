@@ -18,7 +18,7 @@ export {
   StepsTitle,
   StepsTrigger,
   useStepsStyles,
-} from "./steps"
+} from "./steps.tsx"
 
 export type {
   StepsChangeDetails,
@@ -37,7 +37,7 @@ export type {
   StepsStatusProps,
   StepsTitleProps,
   StepsTriggerProps,
-} from "./steps"
+} from "./steps.tsx"
 
 export {
   useSteps,
@@ -47,4 +47,4 @@ export {
 
 export type { UseStepsProps, UseStepsReturn } from "@ark-ui/react/steps"
 
-export * as Steps from "./namespace"
+export * as Steps from "./namespace.ts"

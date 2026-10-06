@@ -20,7 +20,7 @@ export {
   FileUploadClearTrigger as ClearTrigger,
   FileUploadItems as Items,
   FileUploadList as List,
-} from "./file-upload"
+} from "./file-upload.tsx"
 
 export type {
   FileUploadDropzoneProps as DropzoneProps,
@@ -43,7 +43,7 @@ export type {
   FileUploadFileRejectDetails as FileRejectDetails,
   FileUploadItemsProps as ItemsProps,
   FileUploadListProps as ListProps,
-} from "./file-upload"
+} from "./file-upload.tsx"
 
 export type {
   FileUploadFileError as FileError,

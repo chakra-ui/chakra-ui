@@ -6,7 +6,7 @@ export {
   QrCodeDownloadTrigger as DownloadTrigger,
   QrCodePropsProvider as PropsProvider,
   QrCodeRootProvider as RootProvider,
-} from "./qr-code"
+} from "./qr-code.tsx"
 export type {
   QrCodeRootProps as RootProps,
   QrCodeFrameProps as FrameProps,
@@ -14,5 +14,5 @@ export type {
   QrCodeOverlayProps as OverlayProps,
   QrCodeRootProviderProps as RootProviderProps,
   QrCodeDownloadTriggerProps as DownloadTriggerProps,
-} from "./qr-code"
+} from "./qr-code.tsx"
 export { QrCodeContext as Context } from "@ark-ui/react/qr-code"

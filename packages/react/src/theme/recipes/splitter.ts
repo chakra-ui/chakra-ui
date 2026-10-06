@@ -1,5 +1,5 @@
-import { splitterAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { splitterAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const splitterSlotRecipe = defineSlotRecipe({
   slots: splitterAnatomy.keys(),

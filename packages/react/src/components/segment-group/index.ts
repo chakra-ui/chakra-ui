@@ -10,7 +10,7 @@ export {
   SegmentGroupContext,
   useSegmentGroupStyles,
   SegmentGroupItems,
-} from "./segment-group"
+} from "./segment-group.tsx"
 
 export type {
   SegmentGroupRootProps,
@@ -20,7 +20,7 @@ export type {
   SegmentGroupIndicatorProps,
   SegmentGroupValueChangeDetails,
   SegmentGroupItemsProps,
-} from "./segment-group"
+} from "./segment-group.tsx"
 
 export {
   useSegmentGroup,
@@ -33,4 +33,4 @@ export type {
   UseSegmentGroupReturn,
 } from "@ark-ui/react/segment-group"
 
-export * as SegmentGroup from "./namespace"
+export * as SegmentGroup from "./namespace.ts"

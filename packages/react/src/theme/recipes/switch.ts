@@ -1,5 +1,5 @@
-import { switchAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { switchAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const switchSlotRecipe = defineSlotRecipe({
   slots: switchAnatomy.keys(),

@@ -1,2 +1,2 @@
-export { Wrap, WrapItem } from "./wrap"
-export type { WrapItemProps, WrapProps } from "./wrap"
+export { Wrap, WrapItem } from "./wrap.tsx"
+export type { WrapItemProps, WrapProps } from "./wrap.tsx"

@@ -1,5 +1,5 @@
-import { defineRecipe } from "../../styled-system"
-import { badgeRecipe } from "./badge"
+import { defineRecipe } from "../../styled-system/index.ts"
+import { badgeRecipe } from "./badge.ts"
 
 const { variants, defaultVariants } = badgeRecipe
 

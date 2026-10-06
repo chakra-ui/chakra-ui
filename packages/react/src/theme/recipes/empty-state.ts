@@ -1,5 +1,5 @@
-import { emptyStateAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { emptyStateAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const emptyStateSlotRecipe = defineSlotRecipe({
   slots: emptyStateAnatomy.keys(),

@@ -1,6 +1,6 @@
-import { defaultBaseConfig } from "./preset-base"
-import { createSystem, mergeConfigs } from "./styled-system"
-import { defaultThemeConfig } from "./theme"
+import { defaultBaseConfig } from "./preset-base.ts"
+import { createSystem, mergeConfigs } from "./styled-system/index.ts"
+import { defaultThemeConfig } from "./theme/index.ts"
 
 export const defaultConfig = mergeConfigs(defaultBaseConfig, defaultThemeConfig)
 

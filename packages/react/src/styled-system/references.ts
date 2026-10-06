@@ -1,5 +1,5 @@
-import { isString } from "../utils"
-import type { Token } from "./types"
+import { isString } from "../utils/index.ts"
+import type { Token } from "./types.ts"
 
 const REFERENCE_REGEX = /({([^}]*)})/g
 const CURLY_REGEX = /[{}]/g

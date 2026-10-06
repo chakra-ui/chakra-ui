@@ -1,15 +1,19 @@
 "use client"
 
 import { forwardRef, useMemo } from "react"
-import { createContext } from "../create-context"
-import { mergeProps } from "../merge-props"
-import { cx } from "../utils"
-import { getElementTypeDisplayName, upperFirst } from "./display-name"
-import { EMPTY_STYLES } from "./empty"
-import { chakra } from "./factory"
-import type { JsxFactoryOptions } from "./factory.types"
-import type { SystemRecipeFn } from "./recipe.types"
-import { type RecipeKey, type UseRecipeOptions, useRecipe } from "./use-recipe"
+import { createContext } from "../create-context.ts"
+import { mergeProps } from "../merge-props.ts"
+import { cx } from "../utils/index.ts"
+import { getElementTypeDisplayName, upperFirst } from "./display-name.ts"
+import { EMPTY_STYLES } from "./empty.ts"
+import { chakra } from "./factory.tsx"
+import type { JsxFactoryOptions } from "./factory.types.ts"
+import type { SystemRecipeFn } from "./recipe.types.ts"
+import {
+  type RecipeKey,
+  type UseRecipeOptions,
+  useRecipe,
+} from "./use-recipe.ts"
 
 export function createRecipeContext<K extends RecipeKey>(
   options: UseRecipeOptions<K>,

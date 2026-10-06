@@ -16,7 +16,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 import * as React from "react"
-import { type UseChartReturn } from "../use-chart"
+import { type UseChartReturn } from "../use-chart.ts"
 
 export interface BarListData {
   name: string

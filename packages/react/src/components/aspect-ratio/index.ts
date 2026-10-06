@@ -1,2 +1,2 @@
-export { AspectRatio } from "./aspect-ratio"
-export type { AspectRatioProps } from "./aspect-ratio"
+export { AspectRatio } from "./aspect-ratio.tsx"
+export type { AspectRatioProps } from "./aspect-ratio.tsx"

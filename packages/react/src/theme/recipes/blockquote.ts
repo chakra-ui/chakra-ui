@@ -1,5 +1,5 @@
-import { blockquoteAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { blockquoteAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const blockquoteSlotRecipe = defineSlotRecipe({
   className: "chakra-blockquote",

@@ -7,7 +7,7 @@ export {
   StatUpIndicator as UpIndicator,
   StatValueText as ValueText,
   StatValueUnit as ValueUnit,
-} from "./stat"
+} from "./stat.tsx"
 
 export type {
   StatDownIndicatorProps as DownIndicatorProps,
@@ -17,4 +17,4 @@ export type {
   StatUpIndicatorProps as UpIndicatorProps,
   StatValueTextProps as ValueTextProps,
   StatValueUnitProps as ValueUnitProps,
-} from "./stat"
+} from "./stat.tsx"

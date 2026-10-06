@@ -8,7 +8,7 @@ export {
   AvatarGroup,
   AvatarContext,
   useAvatarStyles,
-} from "./avatar"
+} from "./avatar.tsx"
 
 export type {
   AvatarRootProps,
@@ -17,10 +17,10 @@ export type {
   AvatarIconProps,
   AvatarStatusChangeDetails,
   AvatarGroupProps,
-} from "./avatar"
+} from "./avatar.tsx"
 
 export { useAvatar, useAvatarContext } from "@ark-ui/react/avatar"
 
 export type { UseAvatarProps, UseAvatarReturn } from "@ark-ui/react/avatar"
 
-export * as Avatar from "./namespace"
+export * as Avatar from "./namespace.ts"

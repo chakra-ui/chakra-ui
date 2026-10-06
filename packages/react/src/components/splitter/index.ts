@@ -8,7 +8,7 @@ export {
   SplitterRoot,
   SplitterRootProvider,
   useSplitterStyles,
-} from "./splitter"
+} from "./splitter.tsx"
 
 export type {
   SplitterExpandCollapseDetails,
@@ -23,7 +23,7 @@ export type {
   SplitterRootProps,
   SplitterRootProviderBaseProps,
   SplitterRootProviderProps,
-} from "./splitter"
+} from "./splitter.tsx"
 
 export {
   createSplitterRegistry,
@@ -40,4 +40,4 @@ export type {
   UseSplitterReturn,
 } from "@ark-ui/react/splitter"
 
-export * as Splitter from "./namespace"
+export * as Splitter from "./namespace.ts"

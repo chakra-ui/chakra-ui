@@ -7,7 +7,7 @@ export {
   ProgressTrack as Track,
   ProgressValueText as ValueText,
   ProgressContext as Context,
-} from "./progress"
+} from "./progress.ts"
 
 export type {
   ProgressRootProps as RootProps,
@@ -16,4 +16,4 @@ export type {
   ProgressRangeProps as RangeProps,
   ProgressTrackProps as TrackProps,
   ProgressValueTextProps as ValueTextProps,
-} from "./progress"
+} from "./progress.ts"

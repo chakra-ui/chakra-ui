@@ -1,5 +1,5 @@
-import type { CssProperties } from "../css.types"
-import type { Tokens } from "./token.gen"
+import type { CssProperties } from "../css.types.ts"
+import type { Tokens } from "./token.gen.ts"
 
 type WithColorOpacityModifier<T> = T extends string ? `${T}/${string}` : T
 type ImportantMark = "!" | "!important"

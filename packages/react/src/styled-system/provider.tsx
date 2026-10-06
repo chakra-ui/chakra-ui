@@ -1,8 +1,8 @@
 "use client"
 
 import { Global } from "@emotion/react"
-import { createContext } from "../create-context"
-import type { SystemContext } from "./types"
+import { createContext } from "../create-context.ts"
+import type { SystemContext } from "./types.ts"
 
 const [ChakraContextProvider, useChakraContext] = createContext<SystemContext>({
   name: "ChakraContext",

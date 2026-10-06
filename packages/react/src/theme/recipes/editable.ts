@@ -1,5 +1,5 @@
-import { editableAnatomy } from "../../anatomy"
-import { defineSlotRecipe, defineStyle } from "../../styled-system"
+import { editableAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe, defineStyle } from "../../styled-system/index.ts"
 
 const sharedStyles = defineStyle({
   fontSize: "inherit",

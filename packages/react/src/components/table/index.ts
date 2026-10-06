@@ -12,7 +12,7 @@ export {
   TableColumnGroup,
   TableColumn,
   useTableStyles,
-} from "./table"
+} from "./table.tsx"
 
 export type {
   TableRootProps,
@@ -26,6 +26,6 @@ export type {
   TableBodyProps,
   TableColumnProps,
   TableColumnGroupProps,
-} from "./table"
+} from "./table.tsx"
 
-export * as Table from "./namespace"
+export * as Table from "./namespace.ts"

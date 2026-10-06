@@ -5,7 +5,7 @@ export {
   AlertRoot as Root,
   AlertPropsProvider as RootPropsProvider,
   AlertContent as Content,
-} from "./alert"
+} from "./alert.tsx"
 
 export type {
   AlertRootProps as RootProps,
@@ -13,4 +13,4 @@ export type {
   AlertDescriptionProps as DescriptionProps,
   AlertContentProps as ContentProps,
   AlertIndicatorProps as IndicatorProps,
-} from "./alert"
+} from "./alert.tsx"

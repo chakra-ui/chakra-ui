@@ -5,7 +5,7 @@ export {
   TagCloseTrigger as CloseTrigger,
   TagStartElement as StartElement,
   TagEndElement as EndElement,
-} from "./tag"
+} from "./tag.tsx"
 
 export type {
   TagRootProps as RootProps,
@@ -13,4 +13,4 @@ export type {
   TagLabelProps as LabelProps,
   TagStartElementProps as StartElementProps,
   TagEndElementProps as EndElementProps,
-} from "./tag"
+} from "./tag.tsx"

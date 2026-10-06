@@ -35,7 +35,7 @@ export {
   ColorPickerEyeDropper,
   useColorPickerStyles,
   getColorChannels,
-} from "./color-picker"
+} from "./color-picker.tsx"
 
 export type {
   ColorPickerAreaBackgroundProps,
@@ -68,7 +68,7 @@ export type {
   ColorPickerChannelSliderLabelProps,
   ColorPickerChannelTextProps,
   ColorPickerEyeDropperProps,
-} from "./color-picker"
+} from "./color-picker.tsx"
 
 export {
   parseColor,
@@ -83,4 +83,4 @@ export type {
   UseColorPickerReturn,
 } from "@ark-ui/react/color-picker"
 
-export * as ColorPicker from "./namespace"
+export * as ColorPicker from "./namespace.ts"

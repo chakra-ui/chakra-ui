@@ -1,4 +1,4 @@
-import { isObject } from "../utils"
+import { isObject } from "../utils/index.ts"
 
 export type Operand = string | number | { reference: string }
 type Operator = "+" | "-" | "*" | "/"

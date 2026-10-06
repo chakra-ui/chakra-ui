@@ -11,7 +11,7 @@ export {
   NumberInputContext,
   useNumberInputStyles,
   NumberInputValueText,
-} from "./number-input"
+} from "./number-input.tsx"
 
 export type {
   NumberInputControlProps,
@@ -26,7 +26,7 @@ export type {
   NumberInputFocusChangeDetails,
   NumberInputValueChangeDetails,
   NumberInputValueInvalidDetails,
-} from "./number-input"
+} from "./number-input.tsx"
 
 export {
   useNumberInput,
@@ -38,4 +38,4 @@ export type {
   UseNumberInputReturn,
 } from "@ark-ui/react/number-input"
 
-export * as NumberInput from "./namespace"
+export * as NumberInput from "./namespace.ts"

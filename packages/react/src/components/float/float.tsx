@@ -6,8 +6,8 @@ import {
   type HTMLChakraProps,
   type SystemStyleObject,
   chakra,
-} from "../../styled-system"
-import { mapObject } from "../../utils"
+} from "../../styled-system/index.ts"
+import { mapObject } from "../../utils/index.ts"
 
 type Dict = Record<string, any>
 

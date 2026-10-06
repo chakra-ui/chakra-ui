@@ -4,8 +4,12 @@ export {
   ListItem,
   ListIndicator,
   useListStyles,
-} from "./list"
+} from "./list.tsx"
 
-export type { ListRootProps, ListItemProps, ListIndicatorProps } from "./list"
+export type {
+  ListRootProps,
+  ListItemProps,
+  ListIndicatorProps,
+} from "./list.tsx"
 
-export * as List from "./namespace"
+export * as List from "./namespace.ts"

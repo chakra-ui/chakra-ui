@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "../../styled-system/index.ts"
 
 export const fontSizes = defineTokens.fontSizes({
   "2xs": { value: "0.625rem" },

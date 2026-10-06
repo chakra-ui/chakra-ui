@@ -10,7 +10,7 @@ export {
   PaginationPageText,
   usePaginationStyles,
   PaginationItems,
-} from "./pagination"
+} from "./pagination.tsx"
 
 export type {
   PaginationRootProps,
@@ -25,7 +25,7 @@ export type {
   PaginationPageTextFormatDetails,
   PaginationPageTextFormatFn,
   PaginationItemsProps,
-} from "./pagination"
+} from "./pagination.tsx"
 
 export { usePagination, usePaginationContext } from "@ark-ui/react/pagination"
 
@@ -34,4 +34,4 @@ export type {
   UsePaginationReturn,
 } from "@ark-ui/react/pagination"
 
-export * as Pagination from "./namespace"
+export * as Pagination from "./namespace.ts"

@@ -1,4 +1,4 @@
-import { defineKeyframes } from "../../styled-system"
+import { defineKeyframes } from "../../styled-system/index.ts"
 
 export const keyframes = defineKeyframes({
   spin: {

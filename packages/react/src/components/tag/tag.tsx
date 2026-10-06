@@ -5,8 +5,8 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { CloseIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { CloseIcon } from "../icons.tsx"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

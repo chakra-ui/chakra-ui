@@ -9,7 +9,7 @@ export {
   SwitchThumbIndicator as ThumbIndicator,
   SwitchContext as Context,
   SwitchHiddenInput as HiddenInput,
-} from "./switch"
+} from "./switch.tsx"
 
 export type {
   SwitchRootProps as RootProps,
@@ -20,4 +20,4 @@ export type {
   SwitchIndicatorProps as IndicatorProps,
   SwitchThumbIndicatorProps as ThumbIndicatorProps,
   SwitchCheckedChangeDetails as CheckedChangeDetails,
-} from "./switch"
+} from "./switch.tsx"

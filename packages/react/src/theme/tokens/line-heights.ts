@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "../../styled-system/index.ts"
 
 export const lineHeights = defineTokens.lineHeights({
   shorter: { value: 1.25 },

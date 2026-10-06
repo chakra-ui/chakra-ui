@@ -4,23 +4,31 @@ import { type Assign, type HTMLArkProps, dataAttr } from "@ark-ui/react"
 import { useClipboard } from "@ark-ui/react/clipboard"
 import { ark } from "@ark-ui/react/factory"
 import { forwardRef, useId, useMemo } from "react"
-import { useControllableState } from "../../hooks"
-import { mergeProps } from "../../merge-props"
+import { useControllableState } from "../../hooks/index.ts"
+import { mergeProps } from "../../merge-props.ts"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { cx } from "../../utils"
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon, CopyIcon } from "../icons"
-import { useCodeBlockAdapterContext } from "./code-block-adapter-context"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  CopyIcon,
+} from "../icons.tsx"
+import { useCodeBlockAdapterContext } from "./code-block-adapter-context.ts"
 import {
   CodeBlockContextProvider,
   type UseCodeBlockContext,
   useCodeBlockContext,
-} from "./code-block-context"
-import type { CodeBlockColorScheme, CodeBlockHighlighterProps } from "./types"
+} from "./code-block-context.ts"
+import type {
+  CodeBlockColorScheme,
+  CodeBlockHighlighterProps,
+} from "./types.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

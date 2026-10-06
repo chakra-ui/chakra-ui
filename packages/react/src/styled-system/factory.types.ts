@@ -11,14 +11,14 @@ import type {
   DistributiveOmit,
   DistributiveUnion,
   Pretty,
-} from "../utils"
-import type { MinimalNested, SystemStyleObject } from "./css.types"
-import type { SystemProperties } from "./generated/system.gen"
+} from "../utils/index.ts"
+import type { MinimalNested, SystemStyleObject } from "./css.types.ts"
+import type { SystemProperties } from "./generated/system.gen.ts"
 import type {
   RecipeDefinition,
   RecipeSelection,
   RecipeVariantRecord,
-} from "./recipe.types"
+} from "./recipe.types.ts"
 
 export interface UnstyledProp {
   /**

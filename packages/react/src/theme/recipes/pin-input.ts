@@ -1,7 +1,7 @@
-import { pinInputAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
-import { mapEntries } from "../../utils"
-import { inputRecipe } from "./input"
+import { pinInputAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
+import { mapEntries } from "../../utils/index.ts"
+import { inputRecipe } from "./input.ts"
 
 const { variants, defaultVariants } = inputRecipe
 

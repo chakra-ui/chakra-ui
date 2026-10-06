@@ -1,6 +1,6 @@
-import { isObject } from "../utils"
-import type { CssProperties } from "./css.types"
-import type { PreflightConfig } from "./types"
+import { isObject } from "../utils/index.ts"
+import type { CssProperties } from "./css.types.ts"
+import type { PreflightConfig } from "./types.ts"
 
 export function createPreflight(options: PreflightConfig) {
   const { preflight } = options

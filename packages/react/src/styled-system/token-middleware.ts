@@ -1,7 +1,7 @@
-import { isString } from "../utils"
-import { calc } from "./calc"
-import type { Token, TokenMiddleware } from "./types"
-import { toPx } from "./unit-conversion"
+import { isString } from "../utils/index.ts"
+import { calc } from "./calc.ts"
+import type { Token, TokenMiddleware } from "./types.ts"
+import { toPx } from "./unit-conversion.ts"
 
 export const addNegativeTokens: TokenMiddleware = {
   enforce: "pre",

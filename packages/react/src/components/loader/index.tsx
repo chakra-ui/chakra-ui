@@ -1,4 +1,4 @@
-export { Loader } from "./loader"
-export type { LoaderProps } from "./loader"
-export { LoaderOverlay } from "./loader-overlay"
-export type { LoaderOverlayProps } from "./loader-overlay"
+export { Loader } from "./loader.tsx"
+export type { LoaderProps } from "./loader.tsx"
+export { LoaderOverlay } from "./loader-overlay.tsx"
+export type { LoaderOverlayProps } from "./loader-overlay.tsx"

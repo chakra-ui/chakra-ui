@@ -1,3 +1,3 @@
-export { Icon, IconPropsProvider } from "./icon"
-export type { IconProps } from "./icon"
-export { createIcon } from "./create-icon"
+export { Icon, IconPropsProvider } from "./icon.tsx"
+export type { IconProps } from "./icon.tsx"
+export { createIcon } from "./create-icon.tsx"

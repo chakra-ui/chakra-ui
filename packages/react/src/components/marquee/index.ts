@@ -7,7 +7,7 @@ export {
   MarqueeItem,
   MarqueeEdge,
   useMarqueeStyles,
-} from "./marquee"
+} from "./marquee.ts"
 
 export type {
   MarqueeContentProps,
@@ -16,9 +16,9 @@ export type {
   MarqueeViewportProps,
   MarqueeItemProps,
   MarqueeEdgeProps,
-} from "./marquee"
+} from "./marquee.ts"
 
-export * as Marquee from "./namespace"
+export * as Marquee from "./namespace.ts"
 
 export { useMarquee, useMarqueeContext } from "@ark-ui/react/marquee"
 

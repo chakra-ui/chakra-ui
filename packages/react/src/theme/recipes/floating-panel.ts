@@ -1,5 +1,5 @@
-import { floatingPanelAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { floatingPanelAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const floatingPanelSlotRecipe = defineSlotRecipe({
   slots: floatingPanelAnatomy.keys(),

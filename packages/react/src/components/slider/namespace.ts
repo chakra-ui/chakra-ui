@@ -17,7 +17,7 @@ export {
   SliderContext as Context,
   SliderHiddenInput as HiddenInput,
   SliderDraggingIndicator as DraggingIndicator,
-} from "./slider"
+} from "./slider.tsx"
 
 export type {
   SliderRootProps as RootProps,
@@ -35,4 +35,4 @@ export type {
   SliderDraggingIndicatorProps as DraggingIndicatorProps,
   SliderValueChangeDetails as ValueChangeDetails,
   SliderMarksProps as MarksProps,
-} from "./slider"
+} from "./slider.tsx"

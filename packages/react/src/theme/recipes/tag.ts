@@ -1,6 +1,6 @@
-import { tagAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
-import { badgeRecipe } from "./badge"
+import { tagAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
+import { badgeRecipe } from "./badge.ts"
 
 const badgeVariant = badgeRecipe.variants?.variant
 

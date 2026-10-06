@@ -15,7 +15,7 @@ export {
   DialogDescription,
   DialogActionTrigger,
   useDialogStyles,
-} from "./dialog"
+} from "./dialog.tsx"
 
 export type {
   DialogBackdropProps,
@@ -32,7 +32,7 @@ export type {
   DialogDescriptionProps,
   DialogOpenChangeDetails,
   DialogActionTriggerProps,
-} from "./dialog"
+} from "./dialog.tsx"
 
 export { useDialog, useDialogContext } from "@ark-ui/react/dialog"
 
@@ -44,4 +44,4 @@ export type {
   DialogPointerDownOutsideEvent,
 } from "@ark-ui/react/dialog"
 
-export * as Dialog from "./namespace"
+export * as Dialog from "./namespace.ts"

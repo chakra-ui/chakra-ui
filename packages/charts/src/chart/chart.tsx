@@ -13,10 +13,17 @@ import {
   defineStyle,
 } from "@chakra-ui/react"
 import { createContext, useContext, useMemo } from "react"
-import type { LegendPayload, LegendProps, TooltipContentProps } from "recharts"
-import type { Payload } from "recharts/types/component/DefaultTooltipContent"
-import type { PolarViewBoxRequired, ViewBox } from "recharts/types/util/types"
-import { type ChartColor, type UseChartReturn, getProp } from "../use-chart"
+import type {
+  LegendPayload,
+  LegendProps,
+  TooltipContentProps,
+  TooltipPayloadEntry,
+} from "recharts"
+import type {
+  PolarViewBoxRequired,
+  ViewBox,
+} from "recharts/types/util/types.js"
+import { type ChartColor, type UseChartReturn, getProp } from "../use-chart.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -207,7 +214,7 @@ export interface ChartTooltipProps extends Partial<
     value: any,
     name: any,
   ) => React.ReactNode | [React.ReactNode, React.ReactNode]
-  render?: (item: Payload<string, string>) => React.ReactNode
+  render?: (item: TooltipPayloadEntry<string, string>) => React.ReactNode
 }
 
 export function ChartTooltip(props: ChartTooltipProps) {

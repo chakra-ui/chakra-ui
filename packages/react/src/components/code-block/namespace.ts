@@ -1,4 +1,4 @@
-export { CodeBlockAdapterProvider as AdapterProvider } from "./code-block-adapter-provider"
+export { CodeBlockAdapterProvider as AdapterProvider } from "./code-block-adapter-provider.tsx"
 export {
   CodeBlockRoot as Root,
   CodeBlockContent as Content,
@@ -15,7 +15,7 @@ export {
   CodeBlockControl as Control,
   CodeBlockCollapseText as CollapseText,
   CodeBlockOverlay as Overlay,
-} from "./code-block"
+} from "./code-block.tsx"
 export type {
   CodeBlockRootProps as RootProps,
   CodeBlockContentProps as ContentProps,
@@ -32,4 +32,4 @@ export type {
   CodeBlockControlProps as ControlProps,
   CodeBlockCollapseTextProps as CollapseTextProps,
   CodeBlockOverlayProps as OverlayProps,
-} from "./code-block"
+} from "./code-block.tsx"

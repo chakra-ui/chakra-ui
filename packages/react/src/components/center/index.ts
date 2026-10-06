@@ -1,2 +1,2 @@
-export { Center } from "./center"
-export type { CenterProps } from "./center"
+export { Center } from "./center.tsx"
+export type { CenterProps } from "./center.tsx"

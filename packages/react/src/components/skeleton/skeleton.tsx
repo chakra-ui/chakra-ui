@@ -6,11 +6,11 @@ import {
   type RecipeProps,
   type UnstyledProp,
   createRecipeContext,
-} from "../../styled-system"
-import type { CircleProps } from "../circle"
-import { Circle } from "../circle"
-import type { StackProps } from "../stack"
-import { Stack } from "../stack"
+} from "../../styled-system/index.ts"
+import type { CircleProps } from "../circle/index.tsx"
+import { Circle } from "../circle/index.tsx"
+import type { StackProps } from "../stack/index.ts"
+import { Stack } from "../stack/index.ts"
 
 const { withContext, PropsProvider } = createRecipeContext({
   key: "skeleton",

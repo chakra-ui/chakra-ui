@@ -1,5 +1,5 @@
-import { isFunction } from "./is"
-import type { Dict } from "./types"
+import { isFunction } from "./is.ts"
+import type { Dict } from "./types.ts"
 
 type PredicateFn<T> = (key: T) => boolean
 

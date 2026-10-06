@@ -1,4 +1,4 @@
-import { callAll } from "./utils"
+import { callAll } from "./utils/index.ts"
 
 interface Props {
   [key: string]: any

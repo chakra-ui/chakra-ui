@@ -1,4 +1,4 @@
-import { defineSemanticTokens } from "../../styled-system"
+import { defineSemanticTokens } from "../../styled-system/index.ts"
 
 export const semanticShadows = defineSemanticTokens.shadows({
   xs: {

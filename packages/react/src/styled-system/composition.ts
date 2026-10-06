@@ -1,4 +1,4 @@
-import type { CompositionStyleObject } from "./css.types"
+import type { CompositionStyleObject } from "./css.types.ts"
 
 interface Token<T> {
   value: T

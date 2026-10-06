@@ -9,7 +9,7 @@ export {
   AccordionPropsProvider as PropsProvider,
   AccordionContext as Context,
   AccordionItemContext as ItemContext,
-} from "./accordion"
+} from "./accordion.tsx"
 
 export type {
   AccordionItemContentProps as ItemContentProps,
@@ -21,4 +21,4 @@ export type {
   AccordionRootProviderProps as RootProviderProps,
   AccordionFocusChangeDetails as FocusChangeDetails,
   AccordionValueChangeDetails as ValueChangeDetails,
-} from "./accordion"
+} from "./accordion.tsx"

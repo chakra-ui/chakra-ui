@@ -9,7 +9,7 @@ export {
   HoverCardRootProvider,
   HoverCardTrigger,
   useHoverCardStyles,
-} from "./hover-card"
+} from "./hover-card.tsx"
 
 export type {
   HoverCardArrowProps,
@@ -20,9 +20,9 @@ export type {
   HoverCardRootProps,
   HoverCardRootProviderProps,
   HoverCardTriggerProps,
-} from "./hover-card"
+} from "./hover-card.tsx"
 
-export * as HoverCard from "./namespace"
+export * as HoverCard from "./namespace.ts"
 
 export { useHoverCard, useHoverCardContext } from "@ark-ui/react/hover-card"
 

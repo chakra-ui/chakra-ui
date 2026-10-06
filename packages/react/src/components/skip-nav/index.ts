@@ -1,5 +1,5 @@
-export { SkipNavLink } from "./skip-nav-link"
-export type { SkipNavLinkProps } from "./skip-nav-link"
+export { SkipNavLink } from "./skip-nav-link.tsx"
+export type { SkipNavLinkProps } from "./skip-nav-link.tsx"
 
-export { SkipNavContent } from "./skip-nav-content"
-export type { SkipNavContentProps } from "./skip-nav-content"
+export { SkipNavContent } from "./skip-nav-content.tsx"
+export type { SkipNavContentProps } from "./skip-nav-content.tsx"

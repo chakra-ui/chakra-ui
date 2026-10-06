@@ -9,7 +9,7 @@ export {
   TooltipTrigger,
   TooltipContext,
   useTooltipStyles,
-} from "./tooltip"
+} from "./tooltip.tsx"
 
 export type {
   TooltipArrowProps,
@@ -20,9 +20,9 @@ export type {
   TooltipRootProviderProps,
   TooltipTriggerProps,
   TooltipOpenChangeDetails,
-} from "./tooltip"
+} from "./tooltip.tsx"
 
-export * as Tooltip from "./namespace"
+export * as Tooltip from "./namespace.ts"
 
 export { useTooltip, useTooltipContext } from "@ark-ui/react/tooltip"
 

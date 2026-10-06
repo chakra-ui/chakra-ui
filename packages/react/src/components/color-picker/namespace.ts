@@ -33,7 +33,7 @@ export {
   ColorPickerInput as Input,
   ColorPickerChannelText as ChannelText,
   ColorPickerEyeDropper as EyeDropper,
-} from "./color-picker"
+} from "./color-picker.tsx"
 
 export type {
   ColorPickerAreaBackgroundProps as AreaBackgroundProps,
@@ -66,6 +66,6 @@ export type {
   ColorPickerChannelSliderLabelProps as ChannelSliderLabelProps,
   ColorPickerChannelTextProps as ChannelTextProps,
   ColorPickerEyeDropperProps as EyeDropperProps,
-} from "./color-picker"
+} from "./color-picker.tsx"
 
 export type { ColorPickerColorFormat as ColorFormat } from "@ark-ui/react/color-picker"

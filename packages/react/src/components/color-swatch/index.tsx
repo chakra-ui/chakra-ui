@@ -8,9 +8,9 @@ import {
   type UnstyledProp,
   chakra,
   createRecipeContext,
-} from "../../styled-system"
-import { cx } from "../../utils"
-import { Grid } from "../grid"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
+import { Grid } from "../grid/index.ts"
 
 const { withPropsProvider, useRecipeResult } = createRecipeContext({
   key: "colorSwatch",

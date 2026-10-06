@@ -7,7 +7,7 @@ export {
   PinInputPropsProvider as PropsProvider,
   PinInputContext as Context,
   PinInputHiddenInput as HiddenInput,
-} from "./pin-input"
+} from "./pin-input.ts"
 
 export type {
   PinInputControlProps as ControlProps,
@@ -16,4 +16,4 @@ export type {
   PinInputRootProps as RootProps,
   PinInputRootProviderProps as RootProviderProps,
   PinInputValueChangeDetails as ValueChangeDetails,
-} from "./pin-input"
+} from "./pin-input.ts"

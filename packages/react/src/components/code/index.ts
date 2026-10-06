@@ -1,2 +1,2 @@
-export { Code, CodePropsProvider } from "./code"
-export type { CodeProps } from "./code"
+export { Code, CodePropsProvider } from "./code.tsx"
+export type { CodeProps } from "./code.tsx"
