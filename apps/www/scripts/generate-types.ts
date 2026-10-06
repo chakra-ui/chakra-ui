@@ -243,7 +243,12 @@ const omittedParts: Record<string, string[]> = {
 
 const omittedProps: Record<string, Record<string, string[]>> = {
   "action-bar": {
-    Root: ["positioning"],
+    Root: [
+      "positioning",
+      "triggerValue",
+      "defaultTriggerValue",
+      "onTriggerValueChange",
+    ],
   },
 }
 

@@ -87,11 +87,6 @@
         "isRequired": false,
         "description": "The initial open state of the popover when rendered.\nUse when you don't need to control the open state of the popover."
       },
-      "defaultTriggerValue": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value."
-      },
       "finalFocusEl": {
         "type": "() => MaybeElement",
         "isRequired": false,
@@ -170,11 +165,6 @@
         "isRequired": false,
         "description": "Function called when this layer is closed due to a parent layer being closed"
       },
-      "onTriggerValueChange": {
-        "type": "(details: TriggerValueChangeDetails) => void",
-        "isRequired": false,
-        "description": "Function called when the trigger value changes."
-      },
       "open": {
         "type": "boolean",
         "isRequired": false,
@@ -212,11 +202,6 @@
         "type": "IntlTranslations",
         "isRequired": false,
         "description": "Specifies the localized strings that identifies the accessibility elements and their states"
-      },
-      "triggerValue": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The controlled trigger value"
       },
       "unmountOnExit": {
         "type": "boolean",
