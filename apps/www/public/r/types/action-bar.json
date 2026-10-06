@@ -87,11 +87,6 @@
         "isRequired": false,
         "description": "The initial open state of the popover when rendered.\nUse when you don't need to control the open state of the popover."
       },
-      "defaultTriggerValue": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The initial trigger value when rendered.\nUse when you don't need to control the trigger value."
-      },
       "finalFocusEl": {
         "type": "() => MaybeElement",
         "isRequired": false,
@@ -170,11 +165,6 @@
         "isRequired": false,
         "description": "Function called when this layer is closed due to a parent layer being closed"
       },
-      "onTriggerValueChange": {
-        "type": "(details: TriggerValueChangeDetails) => void",
-        "isRequired": false,
-        "description": "Function called when the trigger value changes."
-      },
       "open": {
         "type": "boolean",
         "isRequired": false,
@@ -190,11 +180,6 @@
         "isRequired": false,
         "defaultValue": true,
         "description": "Whether the popover is portalled. This will proxy the tabbing behavior regardless of the DOM position\nof the popover content."
-      },
-      "positioning": {
-        "type": "PositioningOptions",
-        "isRequired": false,
-        "description": "The user provided options used to position the popover content"
       },
       "present": {
         "type": "boolean",
@@ -217,11 +202,6 @@
         "type": "IntlTranslations",
         "isRequired": false,
         "description": "Specifies the localized strings that identifies the accessibility elements and their states"
-      },
-      "triggerValue": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The controlled trigger value"
       },
       "unmountOnExit": {
         "type": "boolean",
@@ -321,87 +301,5 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     }
-  },
-  "Anchor": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Arrow": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "ArrowTip": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Description": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Indicator": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Title": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      }
-    },
-    "element": "HTMLDivElement",
-    "tag": "div"
-  },
-  "Trigger": {
-    "props": {
-      "asChild": {
-        "type": "boolean",
-        "isRequired": false,
-        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
-      },
-      "value": {
-        "type": "string",
-        "isRequired": false,
-        "description": "The value that identifies this specific trigger"
-      }
-    },
-    "element": "HTMLButtonElement",
-    "tag": "button"
   }
 }
