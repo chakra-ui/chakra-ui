@@ -1,181 +1,209 @@
+import { Node, SyntaxKind } from "ts-morph"
 import type {
-  API,
-  FileInfo,
-  JSXAttribute,
-  JSXSpreadAttribute,
-  Options,
-} from "jscodeshift"
+  JsxElement,
+  JsxOpeningElement,
+  JsxSelfClosingElement,
+} from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+const OLD_STEPS_COMPONENTS = [
+  "Stepper",
+  "Step",
+  "StepDescription",
+  "StepIcon",
+  "StepIndicator",
+  "StepNumber",
+  "StepSeparator",
+  "StepStatus",
+  "StepTitle",
+]
 
-  const oldStepsComponents = [
-    "Stepper",
-    "Step",
-    "StepDescription",
-    "StepIcon",
-    "StepIndicator",
-    "StepNumber",
-    "StepSeparator",
-    "StepStatus",
-    "StepTitle",
-  ]
+function renameTag(el: JsxElement | JsxSelfClosingElement, to: string) {
+  if (Node.isJsxElement(el)) {
+    el.getClosingElement()?.getTagNameNode().replaceWithText(to)
+    el.getOpeningElement().getTagNameNode().replaceWithText(to)
+  } else {
+    el.getTagNameNode().replaceWithText(to)
+  }
+}
 
-  const stepsNames = new Set([...oldStepsComponents, "Steps", "useSteps"])
-  const usesSteps = root
-    .find(j.ImportDeclaration, { source: { value: "@chakra-ui/react" } })
-    .paths()
-    .some((path) =>
-      (path.node.specifiers || []).some(
-        (spec) =>
-          spec.type === "ImportSpecifier" &&
-          stepsNames.has(spec.imported.name as string),
-      ),
-    )
-  if (!usesSteps) return file.source
+function isMemberTag(
+  opening: JsxOpeningElement | JsxSelfClosingElement,
+  object: string,
+  property: string,
+): boolean {
+  const tag = opening.getTagNameNode()
+  if (!Node.isPropertyAccessExpression(tag)) return false
+  const obj = tag.getExpression()
+  return (
+    Node.isIdentifier(obj) &&
+    obj.getText() === object &&
+    tag.getName() === property
+  )
+}
 
-  // Track if we're using useSteps (for Steps.RootProvider)
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+
+  const stepsNames = new Set([...OLD_STEPS_COMPONENTS, "Steps", "useSteps"])
+  const chakraImports = sourceFile
+    .getImportDeclarations()
+    .filter((d) => d.getModuleSpecifierValue() === "@chakra-ui/react")
+
+  const usesSteps = chakraImports.some((d) =>
+    d.getNamedImports().some((n) => stepsNames.has(n.getName())),
+  )
+  if (!usesSteps) return
+
+  // Detect useSteps hook usage and normalize destructured assignment.
   let usesStepsHook = false
   let stepsVariableName = "stepsApi"
-
-  // Check if useSteps is being used and convert destructured to full assignment
-  root
-    .find(j.VariableDeclarator, {
-      init: { type: "CallExpression", callee: { name: "useSteps" } },
-    })
-    .forEach((path) => {
-      usesStepsHook = true
-
-      // If it's a destructured pattern, convert to full identifier
-      if (path.node.id.type === "ObjectPattern") {
-        // Find a unique variable name (avoid naming conflicts)
-        let variableName = "stepsApi"
-        let counter = 1
-        while (
-          root
-            .find(j.Identifier, { name: variableName })
-            .some(
-              (p) =>
-                p.parent.node.type === "VariableDeclarator" &&
-                p.parent.node.id === p.node,
-            )
-        ) {
-          variableName = `stepsApi${counter++}`
-        }
-        stepsVariableName = variableName
-
-        // Replace destructured pattern with identifier
-        path.node.id = j.identifier(variableName)
-      } else if (path.node.id.type === "Identifier") {
-        // Already a full assignment, use that variable name
-        stepsVariableName = path.node.id.name
+  for (const decl of sourceFile.getDescendantsOfKind(
+    SyntaxKind.VariableDeclaration,
+  )) {
+    const init = decl.getInitializer()
+    if (
+      !init ||
+      !Node.isCallExpression(init) ||
+      !Node.isIdentifier(init.getExpression()) ||
+      init.getExpression().getText() !== "useSteps"
+    ) {
+      continue
+    }
+    usesStepsHook = true
+    const nameNode = decl.getNameNode()
+    if (Node.isObjectBindingPattern(nameNode)) {
+      let variableName = "stepsApi"
+      let counter = 1
+      while (sourceFile.getVariableDeclaration(variableName)) {
+        variableName = `stepsApi${counter++}`
       }
-    })
-
-  // Track if StepIcon was imported (to add LuCheck from react-icons/lu)
-  let hadStepIcon = false
-
-  // Track if we've added Steps to avoid adding to every import when file has multiple @chakra-ui/react imports
-  let stepsAddedToFile = false
-
-  root
-    .find(j.ImportDeclaration, { source: { value: "@chakra-ui/react" } })
-    .forEach((path) => {
-      const specifiers = path.node.specifiers || []
-
-      // Check if StepIcon was imported
-      if (
-        specifiers.some(
-          (spec) =>
-            spec.type === "ImportSpecifier" &&
-            spec.imported.name === "StepIcon",
-        )
-      ) {
-        hadStepIcon = true
-      }
-
-      const filteredSpecifiers = specifiers.filter((spec) => {
-        if (spec.type !== "ImportSpecifier") return true
-        return !oldStepsComponents.includes(spec.imported.name as string)
-      })
-
-      // Check if Steps import already exists in this import
-      const hasStepsImport = filteredSpecifiers.some(
-        (spec) =>
-          spec.type === "ImportSpecifier" && spec.imported.name === "Steps",
-      )
-
-      // Add Steps import only once per file (avoids duplicate when multiple @chakra-ui/react imports exist)
-      if (!hasStepsImport && !stepsAddedToFile) {
-        filteredSpecifiers.unshift(
-          j.importSpecifier(j.identifier("Steps"), j.identifier("Steps")),
-        )
-        stepsAddedToFile = true
-      }
-
-      path.node.specifiers = filteredSpecifiers
-    })
-
-  // Add LuCheck import from react-icons/lu if StepIcon was used
-  if (hadStepIcon) {
-    const reactIconsImport = root.find(j.ImportDeclaration, {
-      source: { value: "react-icons/lu" },
-    })
-
-    if (reactIconsImport.length > 0) {
-      // react-icons/lu import exists, add LuCheck if not already there
-      reactIconsImport.forEach((path) => {
-        const specifiers = path.node.specifiers || []
-        const hasLuCheck = specifiers.some(
-          (spec) =>
-            spec.type === "ImportSpecifier" && spec.imported.name === "LuCheck",
-        )
-
-        if (!hasLuCheck) {
-          specifiers.push(
-            j.importSpecifier(j.identifier("LuCheck"), j.identifier("LuCheck")),
-          )
-          path.node.specifiers = specifiers
-        }
-      })
-    } else {
-      // Create new react-icons/lu import with LuCheck
-      const firstImport = root.find(j.ImportDeclaration).at(0)
-      const luCheckImport = j.importDeclaration(
-        [j.importSpecifier(j.identifier("LuCheck"), j.identifier("LuCheck"))],
-        j.literal("react-icons/lu"),
-      )
-
-      if (firstImport.length > 0) {
-        firstImport.insertAfter(luCheckImport)
-      } else {
-        root.get().node.program.body.unshift(luCheckImport)
-      }
+      stepsVariableName = variableName
+      nameNode.replaceWithText(variableName)
+    } else if (Node.isIdentifier(nameNode)) {
+      stepsVariableName = nameNode.getText()
     }
   }
 
-  // Remove empty Chakra imports
-  root
-    .find(j.ImportDeclaration, { source: { value: "@chakra-ui/react" } })
-    .forEach((path) => {
-      if (!path.node.specifiers || path.node.specifiers.length === 0) {
-        j(path).remove()
-      }
-    })
+  // Imports: remove old step components, add Steps once, handle StepIcon.
+  const hadStepIcon = chakraImports.some((d) =>
+    d.getNamedImports().some((n) => n.getName() === "StepIcon"),
+  )
+  let stepsAddedToFile = chakraImports.some((d) =>
+    d.getNamedImports().some((n) => n.getName() === "Steps"),
+  )
 
-  // Component mappings
+  for (const importDecl of chakraImports) {
+    const named = importDecl.getNamedImports()
+    for (let i = named.length - 1; i >= 0; i--) {
+      if (OLD_STEPS_COMPONENTS.includes(named[i].getName())) named[i].remove()
+    }
+    const hasSteps = importDecl
+      .getNamedImports()
+      .some((n) => n.getName() === "Steps")
+    if (!stepsAddedToFile && !hasSteps) {
+      importDecl.insertNamedImport(0, "Steps")
+      stepsAddedToFile = true
+    }
+  }
+
+  // Remove empty chakra imports.
+  for (const importDecl of chakraImports) {
+    if (importDecl.wasForgotten()) continue
+    if (
+      importDecl.getNamedImports().length === 0 &&
+      !importDecl.getDefaultImport() &&
+      !importDecl.getNamespaceImport()
+    ) {
+      importDecl.remove()
+    }
+  }
+
+  // Add LuCheck import from react-icons/lu when StepIcon was used.
+  if (hadStepIcon) {
+    const reactIcons = sourceFile
+      .getImportDeclarations()
+      .find((d) => d.getModuleSpecifierValue() === "react-icons/lu")
+    if (reactIcons) {
+      if (
+        !reactIcons.getNamedImports().some((n) => n.getName() === "LuCheck")
+      ) {
+        reactIcons.addNamedImport("LuCheck")
+      }
+    } else {
+      const newImport = sourceFile.insertImportDeclaration(1, {
+        moduleSpecifier: "react-icons/lu",
+        namedImports: ["LuCheck"],
+      })
+      // Keep a blank line between the chakra import group and this one.
+      newImport.prependWhitespace("\n")
+    }
+  }
+
+  // Stepper props: index -> step (or removed when using the hook).
+  const openingsForProps: (JsxOpeningElement | JsxSelfClosingElement)[] = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+  for (const opening of openingsForProps) {
+    if (getJsxBaseName(opening.getTagNameNode()) !== "Stepper") continue
+    if (!chakraLocalNames.has("Stepper")) continue
+    const attrs = opening.getAttributes()
+    for (let i = attrs.length - 1; i >= 0; i--) {
+      const attr = attrs[i]
+      if (!Node.isJsxAttribute(attr)) continue
+      if (attr.getNameNode().getText() !== "index") continue
+      if (usesStepsHook) attr.remove()
+      else attr.getNameNode().replaceWithText("step")
+    }
+  }
+
+  // useSteps({ index }) -> useSteps({ defaultStep })
+  for (const call of sourceFile.getDescendantsOfKind(
+    SyntaxKind.CallExpression,
+  )) {
+    const expr = call.getExpression()
+    if (!Node.isIdentifier(expr) || expr.getText() !== "useSteps") continue
+    const arg = call.getArguments()[0]
+    if (!arg || !Node.isObjectLiteralExpression(arg)) continue
+    const prop = arg.getProperty("index")
+    if (prop && Node.isPropertyAssignment(prop)) {
+      prop.getNameNode().replaceWithText("defaultStep")
+    }
+  }
+
+  // Wrap Stepper children in Steps.List (only when not using the hook).
+  if (!usesStepsHook) {
+    const steppers = sourceFile
+      .getDescendantsOfKind(SyntaxKind.JsxElement)
+      .filter(
+        (el) =>
+          getJsxBaseName(el.getOpeningElement().getTagNameNode()) ===
+            "Stepper" && chakraLocalNames.has("Stepper"),
+      )
+    const withStart = steppers
+      .map((el) => ({ el, start: el.getStart() }))
+      .sort((a, b) => b.start - a.start)
+    for (const { el } of withStart) {
+      if (el.wasForgotten()) continue
+      const open = el.getOpeningElement()
+      const close = el.getClosingElement()
+      if (!close) continue
+      const inner = sourceFile
+        .getFullText()
+        .slice(open.getEnd(), close.getStart())
+      el.replaceWithText(
+        `${open.getText()}<Steps.List>${inner}</Steps.List>${close.getText()}`,
+      )
+    }
+  }
+
+  // Transform component names.
   const componentMap: Record<string, string> = {
     Stepper: usesStepsHook ? "Steps.RootProvider" : "Steps.Root",
     Step: "Steps.Item",
@@ -185,187 +213,62 @@ export default function transformer(
     StepDescription: "Steps.Description",
     StepSeparator: "Steps.Separator",
     StepNumber: "Steps.Number",
-    StepIcon: "LuCheck", // v3 uses LuCheck from react-icons/lu
+    StepIcon: "LuCheck",
   }
 
-  // Transform Stepper props: index -> step (if not using hook pattern)
-  root.find(j.JSXOpeningElement).forEach((path) => {
-    const baseName = getJsxBaseName(path.node.name)
-    if (!chakraLocalNames.has(baseName) || baseName !== "Stepper") return
+  const elements: (JsxElement | JsxSelfClosingElement)[] = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+  const withStart = elements
+    .map((e) => ({ e, start: e.getStart() }))
+    .sort((a, b) => b.start - a.start)
+  for (const { e } of withStart) {
+    if (e.wasForgotten()) continue
+    const opening = Node.isJsxElement(e) ? e.getOpeningElement() : e
+    const tag = opening.getTagNameNode()
+    if (!Node.isIdentifier(tag)) continue
+    const name = tag.getText()
+    if (!chakraLocalNames.has(name)) continue
+    const to = componentMap[name]
+    if (to) renameTag(e, to)
+  }
 
-    const attrs = path.node.attributes ?? []
-    const newAttrs = attrs.map((attr) => {
-      if (attr.type !== "JSXAttribute" || attr.name.type !== "JSXIdentifier") {
-        return attr
+  // StepStatus props: active -> current (now Steps.Status).
+  for (const opening of [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]) {
+    if (!isMemberTag(opening, "Steps", "Status")) continue
+    for (const attr of opening.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) continue
+      if (attr.getNameNode().getText() === "active") {
+        attr.getNameNode().replaceWithText("current")
       }
-
-      // index -> step (only if not using hook pattern)
-      if (attr.name.name === "index" && !usesStepsHook) {
-        return j.jsxAttribute(j.jsxIdentifier("step"), attr.value)
-      }
-
-      // Remove index prop if using hook pattern
-      if (attr.name.name === "index" && usesStepsHook) {
-        return null
-      }
-
-      return attr
-    })
-
-    path.node.attributes = newAttrs.filter(Boolean) as (
-      | JSXAttribute
-      | JSXSpreadAttribute
-    )[]
-  })
-
-  // Transform useSteps hook calls: index -> defaultStep, activeStep -> value
-  root
-    .find(j.CallExpression, { callee: { name: "useSteps" } })
-    .forEach((path) => {
-      if (path.node.arguments.length === 0) return
-      const arg = path.node.arguments[0]
-      if (arg.type !== "ObjectExpression") return
-
-      arg.properties = arg.properties.map((prop: any) => {
-        if (prop.type !== "Property" && prop.type !== "ObjectProperty") {
-          return prop
-        }
-
-        // index -> defaultStep
-        if (prop.key.type === "Identifier" && prop.key.name === "index") {
-          return j.property("init", j.identifier("defaultStep"), prop.value)
-        }
-
-        return prop
-      })
-    })
-
-  // Wrap Stepper content in Steps.List BEFORE transforming names
-  root.find(j.JSXElement).forEach((path) => {
-    const baseName = getJsxBaseName(path.node.openingElement.name)
-    if (baseName !== "Stepper") return
-    if (!chakraLocalNames.has(baseName)) return
-
-    // Only wrap if NOT using useSteps hook (when using hook, structure is different)
-    if (usesStepsHook) return
-
-    // Get all children
-    const children = path.node.children || []
-
-    // Create Steps.List wrapper
-    const listElement = j.jsxElement(
-      j.jsxOpeningElement(
-        j.jsxMemberExpression(
-          j.jsxIdentifier("Steps"),
-          j.jsxIdentifier("List"),
-        ),
-        [],
-      ),
-      j.jsxClosingElement(
-        j.jsxMemberExpression(
-          j.jsxIdentifier("Steps"),
-          j.jsxIdentifier("List"),
-        ),
-      ),
-      children,
-    )
-
-    // Replace children with Steps.List wrapper
-    path.node.children = [
-      j.jsxText("\n      "),
-      listElement,
-      j.jsxText("\n    "),
-    ]
-  })
-
-  // Transform component names
-  root.find(j.JSXIdentifier).forEach((path) => {
-    const name = path.node.name
-    if (!chakraLocalNames.has(name)) return
-    if (!componentMap[name]) return
-
-    const targetName = componentMap[name]
-
-    // StepIcon → LuCheck (simple identifier, not compound)
-    if (name === "StepIcon") {
-      path.replace(j.jsxIdentifier("LuCheck"))
-      return
     }
+  }
 
-    // StepNumber → Steps.Number and others → compound components
-    if (targetName.includes(".")) {
-      const [object, property] = targetName.split(".")
-      const memberExpression = j.jsxMemberExpression(
-        j.jsxIdentifier(object),
-        j.jsxIdentifier(property),
-      )
-      path.replace(memberExpression)
-    }
-  })
-
-  // Transform StepStatus props: active → current
-  root
-    .find(j.JSXOpeningElement, {
-      name: {
-        type: "JSXMemberExpression",
-        object: { name: "Steps" },
-        property: { name: "Status" },
-      },
-    })
-    .forEach((path) => {
-      const attrs = path.node.attributes ?? []
-      const newAttrs = attrs.map((attr) => {
-        if (
-          attr.type !== "JSXAttribute" ||
-          attr.name.type !== "JSXIdentifier"
-        ) {
-          return attr
-        }
-
-        // active → current
-        if (attr.name.name === "active") {
-          return j.jsxAttribute(j.jsxIdentifier("current"), attr.value)
-        }
-
-        return attr
-      })
-
-      path.node.attributes = newAttrs
-    })
-
-  // Add value prop to Steps.RootProvider when using hook pattern
+  // Add value={stepsApi} to Steps.RootProvider when using the hook.
   if (usesStepsHook) {
-    root
-      .find(j.JSXOpeningElement, {
-        name: {
-          type: "JSXMemberExpression",
-          object: { name: "Steps" },
-          property: { name: "RootProvider" },
-        },
-      })
-      .forEach((path) => {
-        const attrs = path.node.attributes ?? []
-
-        // Check if value prop already exists
-        const hasValueProp = attrs.some(
-          (attr) =>
-            attr.type === "JSXAttribute" &&
-            attr.name.type === "JSXIdentifier" &&
-            attr.name.name === "value",
+    for (const opening of [
+      ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+      ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+    ]) {
+      if (!isMemberTag(opening, "Steps", "RootProvider")) continue
+      const hasValue = opening
+        .getAttributes()
+        .some(
+          (a) =>
+            Node.isJsxAttribute(a) && a.getNameNode().getText() === "value",
         )
-
-        if (!hasValueProp) {
-          // Add value={stepsVariableName} prop
-          attrs.push(
-            j.jsxAttribute(
-              j.jsxIdentifier("value"),
-              j.jsxExpressionContainer(j.identifier(stepsVariableName)),
-            ),
-          )
-          path.node.attributes = attrs
-        }
-      })
+      if (!hasValue) {
+        opening.addAttribute({
+          name: "value",
+          initializer: `{${stepsVariableName}}`,
+        })
+      }
+    }
   }
-
-  return root.toSource({ quote: "single" })
 }
+
+export default transform

@@ -1,68 +1,55 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+  const isDivider = (tagNode: Node) => {
+    const baseName = getJsxBaseName(tagNode)
+    return baseName === "Divider" && chakraLocalNames.has(baseName)
+  }
 
   let hasDivider = false
 
-  root.find(j.JSXElement).forEach((elPath) => {
-    const opening = elPath.node.openingElement
-    const baseName = getJsxBaseName(opening.name)
-    if (!chakraLocalNames.has(baseName)) return
-    if (baseName !== "Divider") return
-
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    const opening = el.getOpeningElement()
+    if (!isDivider(opening.getTagNameNode())) continue
     hasDivider = true
-    const newName = j.jsxIdentifier("Separator")
-    opening.name = newName
-    if (elPath.node.closingElement) {
-      elPath.node.closingElement.name = newName
-    }
-  })
-
-  // Update imports
-  if (hasDivider) {
-    const chakraImports = root.find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-
-    if (chakraImports.size() > 0) {
-      chakraImports.forEach((path) => {
-        const specifiers = path.node.specifiers || []
-
-        // Remove Divider import
-        path.node.specifiers = specifiers.filter((spec) => {
-          if (spec.type !== "ImportSpecifier") return true
-          return spec.imported.name !== "Divider"
-        })
-
-        // Add Separator import if not already present
-        const hasSeparatorImport = path.node.specifiers.some(
-          (spec) =>
-            spec.type === "ImportSpecifier" &&
-            spec.imported.name === "Separator",
-        )
-
-        if (!hasSeparatorImport) {
-          path.node.specifiers.push(
-            j.importSpecifier(j.identifier("Separator")),
-          )
-        }
-      })
-    }
+    // Rename the closing tag first (later position) so the opening tag's
+    // position stays stable.
+    el.getClosingElement()?.getTagNameNode().replaceWithText("Separator")
+    opening.getTagNameNode().replaceWithText("Separator")
   }
 
-  return root.toSource({ quote: "single" })
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    if (!isDivider(el.getTagNameNode())) continue
+    hasDivider = true
+    el.getTagNameNode().replaceWithText("Separator")
+  }
+
+  if (!hasDivider) return
+
+  const importDecl = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
+  )
+  if (!importDecl) return
+
+  importDecl
+    .getNamedImports()
+    .find((n) => n.getName() === "Divider")
+    ?.remove()
+
+  const hasSeparator = importDecl
+    .getNamedImports()
+    .some((n) => n.getName() === "Separator")
+  if (!hasSeparator) importDecl.addNamedImport("Separator")
 }
+
+export default transform

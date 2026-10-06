@@ -1,213 +1,301 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { collectChakraLocalNames } from "../../utils/chakra-tracker"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxAttribute, JsxElement, SourceFile } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
-  processDialogProps,
-  renameToMemberExpression,
-  transformDialogContent,
-  updateDialogImports,
-} from "../../utils/dialog-utils"
-import { createParserFromPath } from "../../utils/parser"
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 
-/**
- * Transforms AlertDialog components to v3 Dialog compound component API
- *
- * @example
- * // Before
- * <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
- *   <AlertDialogOverlay>
- *     <AlertDialogContent>
- *       <AlertDialogHeader>Delete Customer</AlertDialogHeader>
- *       <AlertDialogBody>
- *         Are you sure? You can't undo this action afterwards.
- *       </AlertDialogBody>
- *       <AlertDialogFooter>
- *         <Button ref={cancelRef} onClick={onClose}>Cancel</Button>
- *         <Button colorScheme='red' onClick={onDelete} ml={3}>Delete</Button>
- *       </AlertDialogFooter>
- *     </AlertDialogContent>
- *   </AlertDialogOverlay>
- * </AlertDialog>
- *
- * // After
- * <Dialog.Root
- *   open={isOpen}
- *   initialFocusEl={() => cancelRef.current}
- *   onOpenChange={(e) => { if (!e.open) onClose() }}
- *   role="alertdialog"
- * >
- *   <Portal>
- *     <Dialog.Backdrop />
- *     <Dialog.Positioner>
- *       <Dialog.Content>
- *         <Dialog.Header>Delete Customer</Dialog.Header>
- *         <Dialog.Body>
- *           Are you sure? You can't undo this action afterwards.
- *         </Dialog.Body>
- *         <Dialog.Footer>
- *           <Button ref={cancelRef} onClick={onClose}>Cancel</Button>
- *           <Button colorScheme='red' onClick={onDelete} ml={3}>Delete</Button>
- *         </Dialog.Footer>
- *       </Dialog.Content>
- *     </Dialog.Positioner>
- *   </Portal>
- * </Dialog.Root>
- */
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+const ALERT_DIALOG_COMPONENTS = [
+  "AlertDialog",
+  "AlertDialogOverlay",
+  "AlertDialogContent",
+  "AlertDialogHeader",
+  "AlertDialogBody",
+  "AlertDialogFooter",
+  "AlertDialogCloseButton",
+]
 
-  if (chakraLocalNames.size === 0) return file.source
-
-  const transformedComponents = new Set<string>()
-
-  // Transform AlertDialog
-  if (chakraLocalNames.has("AlertDialog")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "AlertDialog" } },
-      })
-      .forEach((path) => {
-        transformAlertDialog(j, path)
-        transformedComponents.add("AlertDialog")
-      })
-  }
-
-  // Transform AlertDialogOverlay
-  if (chakraLocalNames.has("AlertDialogOverlay")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "AlertDialogOverlay" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Dialog", "Backdrop")
-        transformedComponents.add("AlertDialogOverlay")
-      })
-  }
-
-  // Transform AlertDialogContent
-  if (chakraLocalNames.has("AlertDialogContent")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "AlertDialogContent" } },
-      })
-      .forEach((path) => {
-        transformDialogContent(j, path, "Dialog")
-        transformedComponents.add("AlertDialogContent")
-      })
-  }
-
-  // Transform AlertDialogHeader
-  if (chakraLocalNames.has("AlertDialogHeader")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "AlertDialogHeader" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Dialog", "Header")
-        transformedComponents.add("AlertDialogHeader")
-      })
-  }
-
-  // Transform AlertDialogBody
-  if (chakraLocalNames.has("AlertDialogBody")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "AlertDialogBody" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Dialog", "Body")
-        transformedComponents.add("AlertDialogBody")
-      })
-  }
-
-  // Transform AlertDialogFooter
-  if (chakraLocalNames.has("AlertDialogFooter")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "AlertDialogFooter" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Dialog", "Footer")
-        transformedComponents.add("AlertDialogFooter")
-      })
-  }
-
-  // Transform AlertDialogCloseButton
-  if (chakraLocalNames.has("AlertDialogCloseButton")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "AlertDialogCloseButton" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Dialog", "CloseTrigger")
-        transformedComponents.add("AlertDialogCloseButton")
-      })
-  }
-
-  // Update imports
-  if (transformedComponents.size > 0) {
-    const alertDialogComponentNames = [
-      "AlertDialog",
-      "AlertDialogOverlay",
-      "AlertDialogContent",
-      "AlertDialogHeader",
-      "AlertDialogBody",
-      "AlertDialogFooter",
-      "AlertDialogCloseButton",
-    ]
-    updateDialogImports(
-      j,
-      root,
-      transformedComponents,
-      alertDialogComponentNames,
-    )
-  }
-
-  return root.toSource({ quote: "single" })
+const SIZE_MAP: Record<string, string> = {
+  xs: "xs",
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+  xl: "xl",
+  "2xl": "xl",
+  "3xl": "xl",
+  "4xl": "xl",
+  "5xl": "xl",
+  "6xl": "xl",
+  full: "full",
 }
 
-/**
- * Transform AlertDialog to Dialog.Root and wrap children in Portal
- * Adds role="alertdialog" attribute
- */
-function transformAlertDialog(j: any, path: any) {
-  const attrs = path.node.openingElement.attributes || []
-  const children = path.node.children || []
+const RENAME_PASSTHROUGH = new Set([
+  "motionPreset",
+  "scrollBehavior",
+  "trapFocus",
+])
 
-  // Process props with alertdialog role
-  const newAttrs = processDialogProps(j, attrs, {
-    componentType: "alertdialog",
-    additionalRole: "alertdialog",
-  })
+const REMOVE_PROPS = new Set([
+  "allowPinchZoom",
+  "autoFocus",
+  "lockFocusAcrossFrames",
+  "preserveScrollBarGap",
+  "returnFocusOnClose",
+  "useInert",
+  "portalProps",
+])
 
-  // Update component name to Dialog.Root
-  path.node.openingElement.name = j.jsxMemberExpression(
-    j.jsxIdentifier("Dialog"),
-    j.jsxIdentifier("Root"),
+const SIMPLE_RENAMES: Record<string, string> = {
+  closeOnOverlayClick: "closeOnInteractOutside",
+  closeOnEsc: "closeOnEscape",
+  blockScrollOnMount: "preventScroll",
+  onCloseComplete: "onExitComplete",
+  onEsc: "onEscapeKeyDown",
+  onOverlayClick: "onInteractOutside",
+}
+
+const REF_RENAMES: Record<string, string> = {
+  finalFocusRef: "finalFocusEl",
+  initialFocusRef: "initialFocusEl",
+  leastDestructiveRef: "initialFocusEl",
+}
+
+/** `name` or `name={init}` / `name="str"` preserving the original value text. */
+function keepAttr(newName: string, attr: JsxAttribute): string {
+  const init = attr.getInitializer()
+  return init ? `${newName}=${init.getText()}` : newName
+}
+
+/** The inner expression text of a JSX attribute value (drops `{}` / keeps a string). */
+function valueExprText(attr: JsxAttribute): string {
+  const init = attr.getInitializer()
+  if (!init) return "true"
+  if (Node.isJsxExpression(init))
+    return init.getExpression()?.getText() ?? "undefined"
+  return init.getText()
+}
+
+function handlerStatement(attr: JsxAttribute): string {
+  const init = attr.getInitializer()
+  const expr =
+    init && Node.isJsxExpression(init) ? init.getExpression() : undefined
+  if (!expr) return ""
+  if (Node.isArrowFunction(expr) || Node.isFunctionExpression(expr)) {
+    const body = expr.getBody()
+    if (Node.isBlock(body)) {
+      return body
+        .getStatements()
+        .map((s) => s.getText())
+        .join("\n")
+    }
+    return body.getText()
+  }
+  return `${expr.getText()}()`
+}
+
+/** Reproduce processDialogProps: returns the ordered list of attribute source strings. */
+function processDialogProps(el: JsxElement): string[] {
+  const attrs = el.getOpeningElement().getAttributes()
+  const out: string[] = []
+  let onCloseStmt: string | null = null
+
+  for (const attr of attrs) {
+    if (!Node.isJsxAttribute(attr)) {
+      out.push(attr.getText())
+      continue
+    }
+    const name = attr.getNameNode().getText()
+
+    if (name === "isOpen") {
+      out.push(keepAttr("open", attr))
+      continue
+    }
+    if (name === "onClose") {
+      onCloseStmt = handlerStatement(attr)
+      continue
+    }
+    if (name === "isCentered") {
+      out.push(`placement="center"`)
+      continue
+    }
+    if (SIMPLE_RENAMES[name]) {
+      out.push(keepAttr(SIMPLE_RENAMES[name], attr))
+      continue
+    }
+    if (REF_RENAMES[name]) {
+      out.push(`${REF_RENAMES[name]}={() => ${valueExprText(attr)}.current}`)
+      continue
+    }
+    if (name === "size") {
+      const init = attr.getInitializer()
+      if (init && Node.isStringLiteral(init)) {
+        const size = init.getLiteralValue()
+        out.push(`size="${SIZE_MAP[size] ?? size}"`)
+      } else {
+        out.push(attr.getText())
+      }
+      continue
+    }
+    if (RENAME_PASSTHROUGH.has(name)) {
+      out.push(attr.getText())
+      continue
+    }
+    if (REMOVE_PROPS.has(name)) {
+      continue
+    }
+    out.push(attr.getText())
+  }
+
+  // AlertDialog always adds role="alertdialog"
+  out.push(`role="alertdialog"`)
+
+  if (onCloseStmt !== null) {
+    out.push(`onOpenChange={(e) => {\nif (!e.open) {\n${onCloseStmt}\n}\n}}`)
+  }
+
+  return out
+}
+
+/** Raw inner text between an element's opening and closing tags. */
+function innerText(el: JsxElement): string {
+  const full = el.getText()
+  const open = el.getOpeningElement().getText()
+  const close = el.getClosingElement()?.getText() ?? ""
+  return full.slice(open.length, full.length - close.length)
+}
+
+function attrsPart(el: JsxElement): string {
+  const attrs = el.getOpeningElement().getAttributes()
+  return attrs.length ? " " + attrs.map((a) => a.getText()).join(" ") : ""
+}
+
+function findElement(
+  sourceFile: SourceFile,
+  name: string,
+): JsxElement | undefined {
+  return sourceFile
+    .getDescendantsOfKind(SyntaxKind.JsxElement)
+    .find(
+      (el) => getJsxBaseName(el.getOpeningElement().getTagNameNode()) === name,
+    )
+}
+
+function findSelfClosing(sourceFile: SourceFile, name: string) {
+  return sourceFile
+    .getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement)
+    .find((el) => getJsxBaseName(el.getTagNameNode()) === name)
+}
+
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+
+  const transformed = new Set<string>()
+
+  // 1. AlertDialog -> Dialog.Root (+ props, wrap children in Portal)
+  if (chakraLocalNames.has("AlertDialog")) {
+    let el: JsxElement | undefined
+    while ((el = findElement(sourceFile, "AlertDialog"))) {
+      const attrList = processDialogProps(el)
+      const attrText = attrList.length ? " " + attrList.join(" ") : ""
+      const children = innerText(el)
+      const inner = children.trim() ? `<Portal>${children}</Portal>` : children
+      el.replaceWithText(`<Dialog.Root${attrText}>${inner}</Dialog.Root>`)
+      transformed.add("AlertDialog")
+    }
+  }
+
+  // 2. AlertDialogOverlay -> Dialog.Backdrop (keep children)
+  renamePhase(
+    sourceFile,
+    chakraLocalNames,
+    transformed,
+    "AlertDialogOverlay",
+    "Dialog.Backdrop",
   )
 
-  if (path.node.closingElement) {
-    path.node.closingElement.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Dialog"),
-      j.jsxIdentifier("Root"),
-    )
+  // 3. AlertDialogContent -> Dialog.Positioner > Dialog.Content
+  if (chakraLocalNames.has("AlertDialogContent")) {
+    let el: JsxElement | undefined
+    while ((el = findElement(sourceFile, "AlertDialogContent"))) {
+      const part = attrsPart(el)
+      const children = innerText(el)
+      el.replaceWithText(
+        `<Dialog.Positioner><Dialog.Content${part}>${children}</Dialog.Content></Dialog.Positioner>`,
+      )
+      transformed.add("AlertDialogContent")
+    }
   }
 
-  path.node.openingElement.attributes = newAttrs
+  // 4. Simple renames
+  renamePhase(
+    sourceFile,
+    chakraLocalNames,
+    transformed,
+    "AlertDialogHeader",
+    "Dialog.Header",
+  )
+  renamePhase(
+    sourceFile,
+    chakraLocalNames,
+    transformed,
+    "AlertDialogBody",
+    "Dialog.Body",
+  )
+  renamePhase(
+    sourceFile,
+    chakraLocalNames,
+    transformed,
+    "AlertDialogFooter",
+    "Dialog.Footer",
+  )
+  renamePhase(
+    sourceFile,
+    chakraLocalNames,
+    transformed,
+    "AlertDialogCloseButton",
+    "Dialog.CloseTrigger",
+  )
 
-  // Wrap children in Portal (mimicking v2 behavior)
-  // In v2, AlertDialog automatically rendered backdrop/content in a portal
-  if (children.length > 0) {
-    const portalElement = j.jsxElement(
-      j.jsxOpeningElement(j.jsxIdentifier("Portal"), []),
-      j.jsxClosingElement(j.jsxIdentifier("Portal")),
-      [j.jsxText("\n    "), ...children, j.jsxText("\n  ")],
+  // 5. Update imports
+  if (transformed.size > 0) {
+    const importDecl = sourceFile.getImportDeclaration(
+      (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
     )
-    path.node.children = [j.jsxText("\n  "), portalElement, j.jsxText("\n")]
+    if (importDecl) {
+      for (const named of importDecl.getNamedImports()) {
+        if (ALERT_DIALOG_COMPONENTS.includes(named.getName())) named.remove()
+      }
+      const names = importDecl.getNamedImports().map((n) => n.getName())
+      if (!names.includes("Dialog")) importDecl.addNamedImport("Dialog")
+      if (!names.includes("Portal")) importDecl.addNamedImport("Portal")
+    }
   }
 }
+
+function renamePhase(
+  sourceFile: SourceFile,
+  chakraLocalNames: Set<string>,
+  transformed: Set<string>,
+  from: string,
+  to: string,
+) {
+  if (!chakraLocalNames.has(from)) return
+
+  let el: JsxElement | undefined
+  while ((el = findElement(sourceFile, from))) {
+    el.getClosingElement()?.getTagNameNode().replaceWithText(to)
+    el.getOpeningElement().getTagNameNode().replaceWithText(to)
+    transformed.add(from)
+  }
+
+  let sc = findSelfClosing(sourceFile, from)
+  while (sc) {
+    sc.getTagNameNode().replaceWithText(to)
+    transformed.add(from)
+    sc = findSelfClosing(sourceFile, from)
+  }
+}
+
+export default transform

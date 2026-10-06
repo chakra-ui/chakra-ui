@@ -1,201 +1,106 @@
-import type {
-  API,
-  FileInfo,
-  JSXAttribute,
-  JSXSpreadAttribute,
-  Options,
-} from "jscodeshift"
-import {
-  collectChakraLocalNames,
-  getJsxBaseName,
-} from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxElement, JsxSelfClosingElement } from "ts-morph"
+import type { Transform } from "../../transform"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+function getInner(el: JsxElement | JsxSelfClosingElement): string {
+  if (!Node.isJsxElement(el)) return ""
+  const full = el.getText()
+  const openText = el.getOpeningElement().getText()
+  const closeText = el.getClosingElement().getText()
+  return full.slice(openText.length, full.length - closeText.length)
+}
 
-  // Helper function to recursively transform Radio elements
-  function transformRadioElement(element: any): any {
-    if (element.type !== "JSXElement") return element
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-    const name = element.openingElement.name
-    const baseName = getJsxBaseName(name)
-
-    // Transform <Radio> → <RadioGroup.Item>
-    if (baseName === "Radio" && chakraLocalNames.has("Radio")) {
-      const radioAttrs = element.openingElement.attributes ?? []
-      const radioChildren = element.children ?? []
-
-      // Transform Radio props
-      const itemAttrs: JSXAttribute[] = []
-      let inputPropsAttr: JSXAttribute | null = null
-
-      radioAttrs.forEach((attr: any) => {
-        if (
-          attr.type !== "JSXAttribute" ||
-          attr.name.type !== "JSXIdentifier"
-        ) {
-          itemAttrs.push(attr)
-          return
-        }
-
-        switch (attr.name.name) {
-          case "isDisabled":
-            // isDisabled -> disabled
-            itemAttrs.push(
-              j.jsxAttribute(j.jsxIdentifier("disabled"), attr.value),
-            )
-            break
-          case "isInvalid":
-          case "isChecked":
-          case "defaultChecked":
-            // Remove these props - controlled from RadioGroup.Root
-            break
-          case "inputProps":
-            // inputProps will go on ItemHiddenInput
-            inputPropsAttr = attr
-            break
-          case "colorScheme":
-            // Remove colorScheme from individual items (should be on Root)
-            break
-          default:
-            itemAttrs.push(attr)
-        }
-      })
-
-      return j.jsxElement(
-        j.jsxOpeningElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("RadioGroup"),
-            j.jsxIdentifier("Item"),
-          ),
-          itemAttrs,
-          false,
-        ),
-        j.jsxClosingElement(
-          j.jsxMemberExpression(
-            j.jsxIdentifier("RadioGroup"),
-            j.jsxIdentifier("Item"),
-          ),
-        ),
-        [
-          j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("RadioGroup"),
-                j.jsxIdentifier("ItemHiddenInput"),
-              ),
-              inputPropsAttr ? [inputPropsAttr] : [],
-              true,
-            ),
-            null,
-            [],
-          ),
-          j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("RadioGroup"),
-                j.jsxIdentifier("ItemIndicator"),
-              ),
-              [],
-              true,
-            ),
-            null,
-            [],
-          ),
-          j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("RadioGroup"),
-                j.jsxIdentifier("ItemText"),
-              ),
-              [],
-              false,
-            ),
-            j.jsxClosingElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("RadioGroup"),
-                j.jsxIdentifier("ItemText"),
-              ),
-            ),
-            radioChildren,
-          ),
-        ],
-      )
-    }
-
-    // For other elements, recursively transform their children
-    if (element.children && element.children.length > 0) {
-      element.children = element.children.map(transformRadioElement)
-    }
-
-    return element
-  }
-
-  /**
-   * RadioGroup → RadioGroup.Root with proper prop transformations
-   */
-  root
-    .find(j.JSXElement, { openingElement: { name: { name: "RadioGroup" } } })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("RadioGroup")) return
-      const oldAttrs = path.node.openingElement.attributes ?? []
-      const children = path.node.children ?? []
-
-      // Transform RadioGroup props
-      const rootAttrs: (JSXAttribute | JSXSpreadAttribute)[] = []
-
-      oldAttrs.forEach((attr) => {
-        if (
-          attr.type !== "JSXAttribute" ||
-          attr.name.type !== "JSXIdentifier"
-        ) {
-          rootAttrs.push(attr)
-          return
-        }
-
-        switch (attr.name.name) {
-          case "onChange":
-            // onChange -> onValueChange
-            rootAttrs.push(
-              j.jsxAttribute(j.jsxIdentifier("onValueChange"), attr.value),
-            )
-            break
-          default:
-            rootAttrs.push(attr)
-        }
-      })
-
-      // Recursively transform all children (including nested Radio elements)
-      const transformedChildren = children.map(transformRadioElement)
-
-      path.replace(
-        j.jsxElement(
-          j.jsxOpeningElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("RadioGroup"),
-              j.jsxIdentifier("Root"),
-            ),
-            rootAttrs,
-            false,
-          ),
-          j.jsxClosingElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("RadioGroup"),
-              j.jsxIdentifier("Root"),
-            ),
-          ),
-          transformedChildren,
-        ),
-      )
+  // 1. Transform every tracked Radio into a RadioGroup.Item structure.
+  if (chakraLocalNames.has("Radio")) {
+    const radios: Array<JsxElement | JsxSelfClosingElement> = [
+      ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement),
+      ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+    ].filter((el) => {
+      const opening = Node.isJsxElement(el) ? el.getOpeningElement() : el
+      const tag = opening.getTagNameNode()
+      return Node.isIdentifier(tag) && tag.getText() === "Radio"
     })
 
-  return root.toSource({ quote: "single" })
+    for (const radio of radios.reverse()) {
+      const opening = Node.isJsxElement(radio)
+        ? radio.getOpeningElement()
+        : radio
+
+      let inputPropsAttr = ""
+      const itemAttrs = opening
+        .getAttributes()
+        .flatMap((attr) => {
+          if (!Node.isJsxAttribute(attr)) return [attr.getText()]
+          const name = attr.getNameNode().getText()
+          switch (name) {
+            case "isDisabled": {
+              const init = attr.getInitializer()
+              return [init ? `disabled=${init.getText()}` : "disabled"]
+            }
+            case "isInvalid":
+            case "isChecked":
+            case "defaultChecked":
+            case "colorScheme":
+              return []
+            case "inputProps":
+              inputPropsAttr = attr.getText()
+              return []
+            default:
+              return [attr.getText()]
+          }
+        })
+        .join(" ")
+
+      const itemOpen = itemAttrs
+        ? `<RadioGroup.Item ${itemAttrs}>`
+        : `<RadioGroup.Item>`
+      const hidden = inputPropsAttr
+        ? `<RadioGroup.ItemHiddenInput ${inputPropsAttr} />`
+        : `<RadioGroup.ItemHiddenInput />`
+
+      radio.replaceWithText(
+        `${itemOpen}\n` +
+          `${hidden}\n` +
+          `<RadioGroup.ItemIndicator />\n` +
+          `<RadioGroup.ItemText>${getInner(radio)}</RadioGroup.ItemText>\n` +
+          `</RadioGroup.Item>`,
+      )
+    }
+  }
+
+  // 2. Transform RadioGroup -> RadioGroup.Root (re-query after Radio edits).
+  if (chakraLocalNames.has("RadioGroup")) {
+    const roots = sourceFile
+      .getDescendantsOfKind(SyntaxKind.JsxElement)
+      .filter((el) => {
+        const tag = el.getOpeningElement().getTagNameNode()
+        return Node.isIdentifier(tag) && tag.getText() === "RadioGroup"
+      })
+
+    for (const root of roots.reverse()) {
+      const opening = root.getOpeningElement()
+      const onChange = opening
+        .getAttributes()
+        .find(
+          (a) =>
+            Node.isJsxAttribute(a) && a.getNameNode().getText() === "onChange",
+        )
+      if (onChange && Node.isJsxAttribute(onChange)) {
+        onChange.getNameNode().replaceWithText("onValueChange")
+      }
+
+      root
+        .getClosingElement()
+        .getTagNameNode()
+        .replaceWithText("RadioGroup.Root")
+      opening.getTagNameNode().replaceWithText("RadioGroup.Root")
+    }
+  }
 }
+
+export default transform

@@ -1,96 +1,76 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxElement, JsxSelfClosingElement } from "ts-morph"
+import type { Transform } from "../../transform"
 import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+const TAG_MAP: Record<string, string> = {
+  Table: "Table.Root",
+  Thead: "Table.Header",
+  Tbody: "Table.Body",
+  Tfoot: "Table.Footer",
+  Tr: "Table.Row",
+  Th: "Table.ColumnHeader",
+  Td: "Table.Cell",
+  TableCaption: "Table.Caption",
+  TableContainer: "Table.ScrollArea",
+}
 
-  renameComponent(j, root, "Table", "Table.Root")
-  renameComponent(j, root, "Thead", "Table.Header")
-  renameComponent(j, root, "Tbody", "Table.Body")
-  renameComponent(j, root, "Tfoot", "Table.Footer")
-  renameComponent(j, root, "Tr", "Table.Row")
-  renameComponent(j, root, "Th", "Table.ColumnHeader")
-  renameComponent(j, root, "Td", "Table.Cell")
-  renameComponent(j, root, "TableCaption", "Table.Caption")
-  renameComponent(j, root, "TableContainer", "Table.ScrollArea")
+function renameTag(el: JsxElement | JsxSelfClosingElement, to: string) {
+  if (Node.isJsxElement(el)) {
+    el.getClosingElement()?.getTagNameNode().replaceWithText(to)
+    el.getOpeningElement().getTagNameNode().replaceWithText(to)
+  } else {
+    el.getTagNameNode().replaceWithText(to)
+  }
+}
 
-  root
-    .find(j.JSXOpeningElement)
-    .filter((path) => {
-      const baseName =
-        path.node.name.type === "JSXMemberExpression" &&
-        path.node.name.object.type === "JSXIdentifier"
-          ? path.node.name.object.name
-          : null
-      if (!baseName || !chakraLocalNames.has(baseName)) return false
-      const name = path.node.name
-      return (
-        name.type === "JSXMemberExpression" &&
-        name.object.type === "JSXIdentifier" &&
-        name.object.name === "Table" &&
-        (name.property.name === "ColumnHeader" || name.property.name === "Cell")
-      )
-    })
-    .forEach((path) => {
-      const attrs = path.node.attributes ?? []
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-      const hasIsNumeric = attrs.some(
+  // Rename tags. Process later elements first to keep positions stable.
+  const elements: (JsxElement | JsxSelfClosingElement)[] = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+  const withStart = elements
+    .map((e) => ({ e, start: e.getStart() }))
+    .sort((a, b) => b.start - a.start)
+
+  for (const { e } of withStart) {
+    if (e.wasForgotten()) continue
+    const tag = Node.isJsxElement(e)
+      ? e.getOpeningElement().getTagNameNode()
+      : e.getTagNameNode()
+    if (!Node.isIdentifier(tag)) continue
+    const to = TAG_MAP[tag.getText()]
+    if (to) renameTag(e, to)
+  }
+
+  // isNumeric -> textAlign="end" on Table.ColumnHeader / Table.Cell.
+  const openings = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+  for (const opening of openings) {
+    const tag = opening.getTagNameNode()
+    if (!Node.isPropertyAccessExpression(tag)) continue
+    const obj = tag.getExpression()
+    if (!Node.isIdentifier(obj) || obj.getText() !== "Table") continue
+    if (!chakraLocalNames.has("Table")) continue
+    const prop = tag.getName()
+    if (prop !== "ColumnHeader" && prop !== "Cell") continue
+
+    const isNumeric = opening
+      .getAttributes()
+      .find(
         (a) =>
-          a.type === "JSXAttribute" &&
-          a.name.type === "JSXIdentifier" &&
-          a.name.name === "isNumeric",
+          Node.isJsxAttribute(a) && a.getNameNode().getText() === "isNumeric",
       )
-
-      if (!hasIsNumeric) return
-
-      path.node.attributes = [
-        ...attrs.filter(
-          (a) =>
-            !(
-              a.type === "JSXAttribute" &&
-              a.name.type === "JSXIdentifier" &&
-              a.name.name === "isNumeric"
-            ),
-        ),
-        j.jsxAttribute(j.jsxIdentifier("textAlign"), j.stringLiteral("end")),
-      ]
-    })
-
-  return root.toSource({ quote: "single" })
+    if (!isNumeric) continue
+    isNumeric.remove()
+    opening.addAttribute({ name: "textAlign", initializer: '"end"' })
+  }
 }
 
-function renameComponent(j: any, root: any, from: string, to: string) {
-  const parts = to.split(".")
-
-  const newName =
-    parts.length === 1
-      ? j.jsxIdentifier(parts[0])
-      : j.jsxMemberExpression(
-          j.jsxIdentifier(parts[0]),
-          j.jsxIdentifier(parts[1]),
-        )
-
-  root
-    .find(j.JSXOpeningElement, {
-      name: { type: "JSXIdentifier", name: from },
-    })
-    .forEach((p: any) => {
-      p.node.name = newName
-    })
-
-  root
-    .find(j.JSXClosingElement, {
-      name: { type: "JSXIdentifier", name: from },
-    })
-    .forEach((p: any) => {
-      p.node.name = newName
-    })
-}
+export default transform

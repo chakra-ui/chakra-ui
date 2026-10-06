@@ -1,294 +1,204 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, StructureKind, SyntaxKind } from "ts-morph"
+import type {
+  JsxAttributeStructure,
+  JsxAttributedNode,
+  JsxOpeningElement,
+  JsxSelfClosingElement,
+  JsxSpreadAttributeStructure,
+  OptionalKind,
+} from "ts-morph"
+import type { Transform } from "../../transform"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+type AttrStructure =
+  | OptionalKind<JsxAttributeStructure>
+  | OptionalKind<JsxSpreadAttributeStructure>
 
-  if (chakraLocalNames.size === 0) return file.source
+const PROP_RENAMES: Record<string, string> = {
+  isInvalid: "invalid",
+  isRequired: "required",
+  isDisabled: "disabled",
+  isReadOnly: "readOnly",
+}
 
-  const formControlComponents = [
-    "FormControl",
-    "FormLabel",
-    "FormHelperText",
-    "FormErrorMessage",
-  ]
+const FORM_COMPONENTS = [
+  "FormControl",
+  "FormLabel",
+  "FormHelperText",
+  "FormErrorMessage",
+]
 
-  const hasFormControl = formControlComponents.some((name) =>
-    chakraLocalNames.has(name),
-  )
+function getOpening(el: Node): JsxOpeningElement | JsxSelfClosingElement {
+  return Node.isJsxElement(el) ? el.getOpeningElement() : (el as any)
+}
 
-  if (!hasFormControl) return file.source
+function hasStringAttr(
+  opening: JsxAttributedNode,
+  name: string,
+  value: string,
+): boolean {
+  return opening.getAttributes().some((a) => {
+    if (!Node.isJsxAttribute(a)) return false
+    if (a.getNameNode().getText() !== name) return false
+    const init = a.getInitializer()
+    return (
+      init != null &&
+      Node.isStringLiteral(init) &&
+      init.getLiteralText() === value
+    )
+  })
+}
+
+function setAttributes(
+  opening: JsxAttributedNode,
+  structures: AttrStructure[],
+): void {
+  for (const attr of [...opening.getAttributes()].reverse()) attr.remove()
+  if (structures.length) opening.addAttributes(structures)
+}
+
+function renameTag(el: Node, newName: string): void {
+  if (Node.isJsxElement(el)) {
+    el.getClosingElement()?.getTagNameNode().replaceWithText(newName)
+    el.getOpeningElement().getTagNameNode().replaceWithText(newName)
+  } else if (Node.isJsxSelfClosingElement(el)) {
+    el.getTagNameNode().replaceWithText(newName)
+  }
+}
+
+function collectByName(
+  sourceFile: import("ts-morph").SourceFile,
+  predicate: (base: string) => boolean,
+): Node[] {
+  const out: Node[] = []
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    if (predicate(getJsxBaseName(el.getOpeningElement().getTagNameNode()))) {
+      out.push(el)
+    }
+  }
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    if (predicate(getJsxBaseName(el.getTagNameNode()))) out.push(el)
+  }
+  out.sort((a, b) => b.getStart() - a.getStart())
+  return out
+}
+
+function isInsideFieldset(el: Node): boolean {
+  let node = el.getParent()
+  while (node) {
+    if (Node.isJsxElement(node)) {
+      const tag = node.getOpeningElement().getTagNameNode().getText()
+      if (tag === "Fieldset.Root") return true
+    }
+    node = node.getParent()
+  }
+  return false
+}
+
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+  if (!FORM_COMPONENTS.some((name) => chakraLocalNames.has(name))) return
 
   let needsFieldImport = false
   let needsFieldsetImport = false
 
-  // Track which FormControls are fieldsets
-  const fieldsetPaths = new Set()
+  // Pass 1: FormControl -> Field.Root / Fieldset.Root
+  for (const el of collectByName(
+    sourceFile,
+    (base) => base === "FormControl" && chakraLocalNames.has("FormControl"),
+  )) {
+    const opening = getOpening(el)
+    const isFieldset = hasStringAttr(opening, "as", "fieldset")
+    const comp = isFieldset ? "Fieldset" : "Field"
+    if (isFieldset) needsFieldsetImport = true
+    else needsFieldImport = true
 
-  // First pass: identify fieldsets
-  root
-    .find(j.JSXElement, { openingElement: { name: { name: "FormControl" } } })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("FormControl")) return
-
-      const attributes = path.node.openingElement.attributes || []
-      const asAttr = attributes.find(
-        (attr) =>
-          attr.type === "JSXAttribute" &&
-          attr.name.name === "as" &&
-          attr.value?.type === "StringLiteral" &&
-          attr.value.value === "fieldset",
-      )
-
-      if (asAttr) {
-        fieldsetPaths.add(path)
+    const structures: AttrStructure[] = []
+    for (const attr of opening.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) {
+        structures.push({
+          kind: StructureKind.JsxSpreadAttribute,
+          expression: (attr as any).getExpression().getText(),
+        })
+        continue
       }
-    })
-
-  // Transform FormControl
-  root
-    .find(j.JSXElement, { openingElement: { name: { name: "FormControl" } } })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("FormControl")) return
-
-      const isFieldset = fieldsetPaths.has(path)
-      const attributes = path.node.openingElement.attributes || []
-
-      // Determine component name
-      const componentName = isFieldset ? "Fieldset" : "Field"
-      const rootName = j.jsxMemberExpression(
-        j.jsxIdentifier(componentName),
-        j.jsxIdentifier("Root"),
-      )
-
-      path.node.openingElement.name = rootName
-      if (path.node.closingElement) {
-        path.node.closingElement.name = rootName
+      const name = attr.getNameNode().getText()
+      const init = attr.getInitializer()
+      if (
+        name === "as" &&
+        init &&
+        Node.isStringLiteral(init) &&
+        init.getLiteralText() === "fieldset"
+      ) {
+        continue
       }
+      const newName = PROP_RENAMES[name] ?? name
+      structures.push({ name: newName, initializer: init?.getText() })
+    }
 
-      if (isFieldset) {
-        needsFieldsetImport = true
-        // Remove as="fieldset" attribute
-        const asAttrIndex = attributes.findIndex(
-          (attr) =>
-            attr.type === "JSXAttribute" &&
-            attr.name.name === "as" &&
-            attr.value?.type === "StringLiteral" &&
-            attr.value.value === "fieldset",
-        )
-        if (asAttrIndex !== -1) {
-          attributes.splice(asAttrIndex, 1)
-        }
-      } else {
-        needsFieldImport = true
-      }
-
-      // Transform props
-      attributes.forEach((attr) => {
-        if (attr.type !== "JSXAttribute") return
-
-        // isInvalid -> invalid
-        if (attr.name.name === "isInvalid") {
-          attr.name.name = "invalid"
-        }
-        // isRequired -> required
-        else if (attr.name.name === "isRequired") {
-          attr.name.name = "required"
-        }
-        // isDisabled -> disabled
-        else if (attr.name.name === "isDisabled") {
-          attr.name.name = "disabled"
-        }
-        // isReadOnly -> readOnly
-        else if (attr.name.name === "isReadOnly") {
-          attr.name.name = "readOnly"
-        }
-      })
-    })
-
-  // Transform FormLabel
-  root
-    .find(j.JSXElement, { openingElement: { name: { name: "FormLabel" } } })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("FormLabel")) return
-
-      // Check if we're inside a fieldset
-      let isInsideFieldset = false
-      let parent = path.parent
-      while (parent) {
-        if (
-          parent.value?.type === "JSXElement" &&
-          parent.value.openingElement?.name?.type === "JSXMemberExpression" &&
-          parent.value.openingElement.name.object?.name === "Fieldset" &&
-          parent.value.openingElement.name.property?.name === "Root"
-        ) {
-          isInsideFieldset = true
-          break
-        }
-        parent = parent.parent
-      }
-
-      // Check if it has as="legend"
-      const attributes = path.node.openingElement.attributes || []
-      const hasLegendAs = attributes.some(
-        (attr) =>
-          attr.type === "JSXAttribute" &&
-          attr.name.name === "as" &&
-          attr.value?.type === "StringLiteral" &&
-          attr.value.value === "legend",
-      )
-
-      const componentName =
-        isInsideFieldset || hasLegendAs ? "Fieldset" : "Field"
-      const subComponentName =
-        isInsideFieldset || hasLegendAs ? "Legend" : "Label"
-
-      const labelName = j.jsxMemberExpression(
-        j.jsxIdentifier(componentName),
-        j.jsxIdentifier(subComponentName),
-      )
-      path.node.openingElement.name = labelName
-      if (path.node.closingElement) {
-        path.node.closingElement.name = labelName
-      }
-
-      // Remove as="legend" attribute if present
-      if (hasLegendAs) {
-        const asAttrIndex = attributes.findIndex(
-          (attr) =>
-            attr.type === "JSXAttribute" &&
-            attr.name.name === "as" &&
-            attr.value?.type === "StringLiteral" &&
-            attr.value.value === "legend",
-        )
-        if (asAttrIndex !== -1) {
-          attributes.splice(asAttrIndex, 1)
-        }
-      }
-    })
-
-  // Transform FormHelperText
-  root
-    .find(j.JSXElement, {
-      openingElement: { name: { name: "FormHelperText" } },
-    })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("FormHelperText")) return
-
-      // Check if we're inside a fieldset
-      let isInsideFieldset = false
-      let parent = path.parent
-      while (parent) {
-        if (
-          parent.value?.type === "JSXElement" &&
-          parent.value.openingElement?.name?.type === "JSXMemberExpression" &&
-          parent.value.openingElement.name.object?.name === "Fieldset" &&
-          parent.value.openingElement.name.property?.name === "Root"
-        ) {
-          isInsideFieldset = true
-          break
-        }
-        parent = parent.parent
-      }
-
-      const componentName = isInsideFieldset ? "Fieldset" : "Field"
-      const helperTextName = j.jsxMemberExpression(
-        j.jsxIdentifier(componentName),
-        j.jsxIdentifier("HelperText"),
-      )
-      path.node.openingElement.name = helperTextName
-      if (path.node.closingElement) {
-        path.node.closingElement.name = helperTextName
-      }
-    })
-
-  // Transform FormErrorMessage
-  root
-    .find(j.JSXElement, {
-      openingElement: { name: { name: "FormErrorMessage" } },
-    })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("FormErrorMessage")) return
-
-      // Check if we're inside a fieldset
-      let isInsideFieldset = false
-      let parent = path.parent
-      while (parent) {
-        if (
-          parent.value?.type === "JSXElement" &&
-          parent.value.openingElement?.name?.type === "JSXMemberExpression" &&
-          parent.value.openingElement.name.object?.name === "Fieldset" &&
-          parent.value.openingElement.name.property?.name === "Root"
-        ) {
-          isInsideFieldset = true
-          break
-        }
-        parent = parent.parent
-      }
-
-      const componentName = isInsideFieldset ? "Fieldset" : "Field"
-      const errorTextName = j.jsxMemberExpression(
-        j.jsxIdentifier(componentName),
-        j.jsxIdentifier("ErrorText"),
-      )
-      path.node.openingElement.name = errorTextName
-      if (path.node.closingElement) {
-        path.node.closingElement.name = errorTextName
-      }
-    })
-
-  // Update imports
-  const chakraImports = root.find(j.ImportDeclaration, {
-    source: { value: "@chakra-ui/react" },
-  })
-
-  if (chakraImports.size() > 0) {
-    chakraImports.forEach((path) => {
-      const specifiers = path.node.specifiers || []
-      const componentsToRemove = [
-        "FormControl",
-        "FormLabel",
-        "FormHelperText",
-        "FormErrorMessage",
-      ]
-
-      // Remove old component names
-      path.node.specifiers = specifiers.filter((spec) => {
-        if (spec.type !== "ImportSpecifier") return true
-        return !componentsToRemove.includes(spec.imported.name as string)
-      })
-
-      // Add Field import if needed
-      if (needsFieldImport) {
-        const hasFieldImport = path.node.specifiers.some(
-          (spec) =>
-            spec.type === "ImportSpecifier" && spec.imported.name === "Field",
-        )
-        if (!hasFieldImport) {
-          path.node.specifiers.push(j.importSpecifier(j.identifier("Field")))
-        }
-      }
-
-      // Add Fieldset import if needed
-      if (needsFieldsetImport) {
-        const hasFieldsetImport = path.node.specifiers.some(
-          (spec) =>
-            spec.type === "ImportSpecifier" &&
-            spec.imported.name === "Fieldset",
-        )
-        if (!hasFieldsetImport) {
-          path.node.specifiers.push(j.importSpecifier(j.identifier("Fieldset")))
-        }
-      }
-    })
+    setAttributes(opening, structures)
+    renameTag(el, `${comp}.Root`)
   }
 
-  return root.toSource({ quote: "single" })
+  // Pass 2: FormLabel / FormHelperText / FormErrorMessage
+  for (const el of collectByName(
+    sourceFile,
+    (base) =>
+      (base === "FormLabel" ||
+        base === "FormHelperText" ||
+        base === "FormErrorMessage") &&
+      chakraLocalNames.has(base),
+  )) {
+    const opening = getOpening(el)
+    const base = getJsxBaseName(opening.getTagNameNode())
+    const inFieldset = isInsideFieldset(el)
+
+    if (base === "FormLabel") {
+      const hasLegend = hasStringAttr(opening, "as", "legend")
+      const comp = inFieldset || hasLegend ? "Fieldset" : "Field"
+      const sub = inFieldset || hasLegend ? "Legend" : "Label"
+      if (comp === "Fieldset") needsFieldsetImport = true
+      else needsFieldImport = true
+      if (hasLegend) {
+        const asAttr = opening
+          .getAttributes()
+          .find(
+            (a) => Node.isJsxAttribute(a) && a.getNameNode().getText() === "as",
+          )
+        asAttr?.remove()
+      }
+      renameTag(el, `${comp}.${sub}`)
+    } else {
+      const comp = inFieldset ? "Fieldset" : "Field"
+      if (comp === "Fieldset") needsFieldsetImport = true
+      else needsFieldImport = true
+      const sub = base === "FormHelperText" ? "HelperText" : "ErrorText"
+      renameTag(el, `${comp}.${sub}`)
+    }
+  }
+
+  // Update imports
+  const chakraImport = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
+  )
+  if (chakraImport) {
+    for (const named of [...chakraImport.getNamedImports()]) {
+      if (FORM_COMPONENTS.includes(named.getName())) named.remove()
+    }
+    const names = chakraImport.getNamedImports().map((n) => n.getName())
+    if (needsFieldImport && !names.includes("Field")) {
+      chakraImport.addNamedImport("Field")
+    }
+    if (needsFieldsetImport && !names.includes("Fieldset")) {
+      chakraImport.addNamedImport("Fieldset")
+    }
+  }
 }
+
+export default transform

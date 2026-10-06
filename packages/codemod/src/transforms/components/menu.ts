@@ -1,611 +1,372 @@
+import { Node, SyntaxKind } from "ts-morph"
 import type {
-  API,
-  FileInfo,
-  JSXAttribute,
-  JSXElement,
-  Options,
-} from "jscodeshift"
-import {
-  collectChakraLocalNames,
-  getJsxBaseName,
-} from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+  JsxAttribute,
+  JsxElement,
+  JsxOpeningElement,
+  JsxSelfClosingElement,
+  SourceFile,
+} from "ts-morph"
+import type { Transform } from "../../transform"
+import { collectChakraLocalNames } from "../../utils/chakra-tracker"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+type JsxOpening = JsxOpeningElement | JsxSelfClosingElement
 
-  const { chakraLocalNames, componentAliases } = collectChakraLocalNames(
-    j,
-    root,
-  )
-  if (chakraLocalNames.size === 0) return file.source
+const POSITIONING_PROPS = [
+  "placement",
+  "gutter",
+  "offset",
+  "flip",
+  "strategy",
+  "boundary",
+]
 
-  root.find(j.JSXOpeningElement).forEach((path) => {
-    const baseName = getJsxBaseName(path.node.name)
-    const isChakra = chakraLocalNames.has(baseName)
-    const resolvesToMenu =
-      baseName === "Menu" ||
-      (componentAliases.has(baseName) &&
-        componentAliases.get(baseName) === "Menu")
-    if (!isChakra || !resolvesToMenu) return
-    path.node.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Menu"),
-      j.jsxIdentifier("Root"),
-    )
-  })
+const OLD_MENU_COMPONENTS = [
+  "MenuButton",
+  "MenuList",
+  "MenuItem",
+  "MenuGroup",
+  "MenuDivider",
+  "MenuOptionGroup",
+  "MenuItemOption",
+]
 
-  root.find(j.JSXClosingElement).forEach((path) => {
-    if (
-      path.node.name.type !== "JSXIdentifier" ||
-      path.node.name.name !== "Menu"
-    )
-      return
-    const isChakra = chakraLocalNames.has("Menu")
-    if (!isChakra) return
-    path.node.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Menu"),
-      j.jsxIdentifier("Root"),
-    )
-  })
+function tagIs(opening: JsxOpening, name: string): boolean {
+  const tag = opening.getTagNameNode()
+  return Node.isIdentifier(tag) && tag.getText() === name
+}
 
-  root
-    .find(j.JSXOpeningElement, {
-      name: {
-        type: "JSXMemberExpression",
-        object: { name: "Menu" },
-        property: { name: "Root" },
-      },
-    })
-    .forEach((path) => {
-      const attrs = path.node.attributes ?? []
+function allOpenings(sourceFile: SourceFile): JsxOpening[] {
+  return [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+}
 
-      path.node.attributes = attrs.flatMap((attr) => {
-        if (
-          attr.type === "JSXAttribute" &&
-          attr.name.type === "JSXIdentifier" &&
-          attr.name.name === "isLazy"
-        ) {
-          return [
-            j.jsxAttribute(j.jsxIdentifier("lazyMount")),
-            j.jsxAttribute(j.jsxIdentifier("unmountOnExit")),
-          ]
+function findFirstOpening(
+  sourceFile: SourceFile,
+  name: string,
+): JsxOpening | undefined {
+  return allOpenings(sourceFile).find((o) => tagIs(o, name))
+}
+
+function findFirstElement(
+  sourceFile: SourceFile,
+  name: string,
+): JsxElement | undefined {
+  return sourceFile
+    .getDescendantsOfKind(SyntaxKind.JsxElement)
+    .find((e) => tagIs(e.getOpeningElement(), name))
+}
+
+function renameTag(opening: JsxOpening, newText: string) {
+  if (Node.isJsxSelfClosingElement(opening)) {
+    opening.getTagNameNode().replaceWithText(newText)
+    return
+  }
+  const el = opening.getParentIfKind(SyntaxKind.JsxElement)
+  el?.getClosingElement()?.getTagNameNode().replaceWithText(newText)
+  opening.getTagNameNode().replaceWithText(newText)
+}
+
+function childrenText(el: JsxElement, sourceFile: SourceFile): string {
+  const start = el.getOpeningElement().getEnd()
+  const end = el.getClosingElement().getStart()
+  return sourceFile.getFullText().slice(start, end)
+}
+
+function jsxAttrValueText(attr: JsxAttribute): string | undefined {
+  const init = attr.getInitializer()
+  if (!init) return undefined
+  if (Node.isStringLiteral(init)) return `'${init.getLiteralValue()}'`
+  if (Node.isJsxExpression(init)) return init.getExpression()?.getText()
+  return init.getText()
+}
+
+const transform: Transform = (sourceFile, ctx) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+
+  const hasMenu = chakraLocalNames.has("Menu")
+  let usedPortal = false
+
+  if (hasMenu) {
+    // 1. Menu -> Menu.Root
+    while (true) {
+      const opening = findFirstOpening(sourceFile, "Menu")
+      if (!opening) break
+      renameTag(opening, "Menu.Root")
+    }
+
+    // 2. isLazy -> lazyMount + unmountOnExit
+    for (const opening of allOpenings(sourceFile)) {
+      if (opening.getTagNameNode().getText() !== "Menu.Root") continue
+      const attrs = opening.getAttributes()
+      const idx = attrs.findIndex(
+        (a) => Node.isJsxAttribute(a) && a.getNameNode().getText() === "isLazy",
+      )
+      if (idx === -1) continue
+      const attr = attrs[idx]
+      if (Node.isJsxAttribute(attr)) {
+        attr.getNameNode().replaceWithText("lazyMount")
+        opening.insertAttribute(idx + 1, { name: "unmountOnExit" })
+      }
+    }
+
+    // 3. MenuButton -> Menu.Trigger (+ Button wrapper when `as` is present)
+    while (true) {
+      const btn = findFirstElement(sourceFile, "MenuButton")
+      if (!btn) break
+      const opening = btn.getOpeningElement()
+      let rightIcon: string | undefined
+      let leftIcon: string | undefined
+      let asText: string | undefined
+      const keep: string[] = []
+
+      for (const attr of opening.getAttributes()) {
+        if (!Node.isJsxAttribute(attr)) {
+          keep.push(attr.getText())
+          continue
         }
-        return attr
-      })
-    })
-
-  root
-    .find(j.JSXElement, {
-      openingElement: {
-        name: { type: "JSXIdentifier", name: "MenuButton" },
-      },
-    })
-    .forEach((path) => {
-      const button = path.node
-      const hasChakraMenu =
-        chakraLocalNames.has("Menu") ||
-        Array.from(componentAliases.values()).includes("Menu")
-      if (!hasChakraMenu) return
-
-      const attrs = button.openingElement.attributes ?? []
-
-      let rightIcon: JSXElement | null = null
-      let leftIcon: JSXElement | null = null
-      let asValue: any = null
-
-      const filteredAttrs = attrs.filter((attr) => {
-        if (attr.type !== "JSXAttribute") return true
-
-        if (attr.name.name === "rightIcon") {
-          if (attr.value?.type === "JSXExpressionContainer") {
-            rightIcon = attr.value.expression as JSXElement
-          }
-          return false
+        const name = attr.getNameNode().getText()
+        const init = attr.getInitializer()
+        if (name === "rightIcon") {
+          if (init && Node.isJsxExpression(init))
+            rightIcon = init.getExpression()?.getText()
+          continue
         }
-        if (attr.name.name === "leftIcon") {
-          if (attr.value?.type === "JSXExpressionContainer") {
-            leftIcon = attr.value.expression as JSXElement
-          }
-          return false
+        if (name === "leftIcon") {
+          if (init && Node.isJsxExpression(init))
+            leftIcon = init.getExpression()?.getText()
+          continue
         }
-        if (attr.name.name === "as") {
-          if (attr.value?.type === "JSXExpressionContainer") {
-            asValue = attr.value.expression
-          } else if (
-            attr.value?.type === "StringLiteral" ||
-            attr.value?.type === "Literal"
-          ) {
-            // For string literals like as="button", create JSXIdentifier
-            asValue = j.jsxIdentifier((attr.value as any).value)
-          }
-          return false
+        if (name === "as") {
+          if (init && Node.isJsxExpression(init))
+            asText = init.getExpression()?.getText()
+          else if (init && Node.isStringLiteral(init))
+            asText = init.getLiteralValue()
+          continue
         }
-        return true
-      })
+        keep.push(attr.getText())
+      }
 
-      const children: any[] = []
-      if (leftIcon) children.push(leftIcon)
-      children.push(...(button.children ?? []))
-      if (rightIcon) children.push(rightIcon)
+      const inner = childrenText(btn, sourceFile)
+      const content =
+        (leftIcon ? `${leftIcon}\n` : "") +
+        inner +
+        (rightIcon ? `\n${rightIcon}` : "")
 
-      // If no 'as' prop, use Menu.Trigger directly
-      if (!asValue) {
-        path.replace(
-          j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Menu"),
-                j.jsxIdentifier("Trigger"),
-              ),
-              filteredAttrs,
-              false,
-            ),
-            j.jsxClosingElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Menu"),
-                j.jsxIdentifier("Trigger"),
-              ),
-            ),
-            children,
-          ),
-        )
+      const keepText = keep.length ? ` ${keep.join(" ")}` : ""
+      let replacement: string
+      if (!asText) {
+        replacement = `<Menu.Trigger${keepText}>${content}</Menu.Trigger>`
       } else {
-        // If 'as' prop exists, use Menu.Trigger asChild pattern
-        // Convert Identifier to JSXIdentifier if needed
-        const componentName =
-          asValue.type === "Identifier"
-            ? j.jsxIdentifier(asValue.name)
-            : asValue
-
-        path.replace(
-          j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Menu"),
-                j.jsxIdentifier("Trigger"),
-              ),
-              [j.jsxAttribute(j.jsxIdentifier("asChild"))],
-              false,
-            ),
-            j.jsxClosingElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Menu"),
-                j.jsxIdentifier("Trigger"),
-              ),
-            ),
-            [
-              j.jsxElement(
-                j.jsxOpeningElement(componentName, filteredAttrs, false),
-                j.jsxClosingElement(componentName),
-                children,
-              ),
-            ],
-          ),
-        )
+        replacement = `<Menu.Trigger asChild>\n<${asText}${keepText}>${content}</${asText}>\n</Menu.Trigger>`
       }
-    })
+      btn.replaceWithText(replacement)
+    }
 
-  root
-    .find(j.JSXElement, {
-      openingElement: {
-        name: { type: "JSXIdentifier", name: "MenuList" },
-      },
-    })
-    .forEach((path) => {
-      const hasChakraMenu =
-        chakraLocalNames.has("Menu") ||
-        Array.from(componentAliases.values()).includes("Menu")
-      if (!hasChakraMenu) return
-      const list = path.node
-
-      path.replace(
-        j.jsxElement(
-          j.jsxOpeningElement(j.jsxIdentifier("Portal"), [], false),
-          j.jsxClosingElement(j.jsxIdentifier("Portal")),
-          [
-            j.jsxElement(
-              j.jsxOpeningElement(
-                j.jsxMemberExpression(
-                  j.jsxIdentifier("Menu"),
-                  j.jsxIdentifier("Positioner"),
-                ),
-                [],
-                false,
-              ),
-              j.jsxClosingElement(
-                j.jsxMemberExpression(
-                  j.jsxIdentifier("Menu"),
-                  j.jsxIdentifier("Positioner"),
-                ),
-              ),
-              [
-                j.jsxElement(
-                  j.jsxOpeningElement(
-                    j.jsxMemberExpression(
-                      j.jsxIdentifier("Menu"),
-                      j.jsxIdentifier("Content"),
-                    ),
-                    [],
-                    false,
-                  ),
-                  j.jsxClosingElement(
-                    j.jsxMemberExpression(
-                      j.jsxIdentifier("Menu"),
-                      j.jsxIdentifier("Content"),
-                    ),
-                  ),
-                  list.children ?? [],
-                ),
-              ],
-            ),
-          ],
-        ),
-      )
-    })
-
-  let itemIndex = 0
-
-  root
-    .find(j.JSXOpeningElement, {
-      name: { type: "JSXIdentifier", name: "MenuItem" },
-    })
-    .forEach((path) => {
-      const hasChakraMenu =
-        chakraLocalNames.has("Menu") ||
-        Array.from(componentAliases.values()).includes("Menu")
-      if (!hasChakraMenu) return
-      path.node.name = j.jsxMemberExpression(
-        j.jsxIdentifier("Menu"),
-        j.jsxIdentifier("Item"),
-      )
-
-      const attrs = path.node.attributes ?? []
-
-      path.node.attributes = [
-        ...attrs.flatMap((attr) => {
-          if (
-            attr.type === "JSXAttribute" &&
-            attr.name.type === "JSXIdentifier" &&
-            attr.name.name === "onClick"
-          ) {
-            return j.jsxAttribute(j.jsxIdentifier("onSelect"), attr.value)
-          }
-          return attr
-        }),
-        j.jsxAttribute(
-          j.jsxIdentifier("value"),
-          j.stringLiteral(`item-${itemIndex++}`),
-        ),
-      ]
-    })
-
-  root
-    .find(j.JSXClosingElement, {
-      name: { type: "JSXIdentifier", name: "MenuItem" },
-    })
-    .forEach((path) => {
-      const hasChakraMenu =
-        chakraLocalNames.has("Menu") ||
-        Array.from(componentAliases.values()).includes("Menu")
-      if (!hasChakraMenu) return
-      path.node.name = j.jsxMemberExpression(
-        j.jsxIdentifier("Menu"),
-        j.jsxIdentifier("Item"),
-      )
-    })
-
-  root
-    .find(j.JSXElement, {
-      openingElement: {
-        name: { type: "JSXIdentifier", name: "MenuOptionGroup" },
-      },
-    })
-    .forEach((path) => {
-      const hasChakraMenu =
-        chakraLocalNames.has("Menu") ||
-        Array.from(componentAliases.values()).includes("Menu")
-      if (!hasChakraMenu) return
-      const attrs = path.node.openingElement.attributes ?? []
-
-      const typeAttr = attrs.find(
-        (a): a is JSXAttribute =>
-          a.type === "JSXAttribute" &&
-          a.name.type === "JSXIdentifier" &&
-          a.name.name === "type" &&
-          a.value?.type === "StringLiteral",
-      )
-
-      const type = (typeAttr?.value as any)?.value
-      if (!type) return
-
-      const groupName = type === "radio" ? "RadioItemGroup" : "ItemGroup"
-      const itemName = type === "radio" ? "RadioItem" : "CheckboxItem"
-
-      const children = path.node.children ?? []
-
-      const items = children.filter((c): c is JSXElement =>
-        isJSXElementNamed(c, "MenuItemOption"),
-      )
-
-      const newItems = items.map((item) =>
-        j.jsxElement(
-          j.jsxOpeningElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Menu"),
-              j.jsxIdentifier(itemName),
-            ),
-            item.openingElement.attributes ?? [],
-            false,
-          ),
-          j.jsxClosingElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Menu"),
-              j.jsxIdentifier(itemName),
-            ),
-          ),
-          item.children ?? [],
-        ),
-      )
-
-      path.replace(
-        j.jsxElement(
-          j.jsxOpeningElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Menu"),
-              j.jsxIdentifier(groupName),
-            ),
-            attrs.filter(
-              (a) =>
-                a.type === "JSXAttribute" &&
-                a.name.type === "JSXIdentifier" &&
-                a.name.name !== "type",
-            ),
-            false,
-          ),
-          j.jsxClosingElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Menu"),
-              j.jsxIdentifier(groupName),
-            ),
-          ),
-          newItems,
-        ),
-      )
-    })
-
-  // MenuGroup → Menu.ItemGroup with Menu.ItemGroupLabel
-  root
-    .find(j.JSXElement, {
-      openingElement: { name: { type: "JSXIdentifier", name: "MenuGroup" } },
-    })
-    .forEach((path) => {
-      const hasChakraMenu =
-        chakraLocalNames.has("Menu") ||
-        Array.from(componentAliases.values()).includes("Menu")
-      if (!hasChakraMenu) return
-
-      const attrs = path.node.openingElement.attributes ?? []
-      const titleAttr = attrs.find(
-        (a): a is JSXAttribute =>
-          a.type === "JSXAttribute" &&
-          a.name.type === "JSXIdentifier" &&
-          a.name.name === "title",
-      )
-
-      const children = path.node.children ?? []
-
-      // Create Menu.ItemGroupLabel if title exists
-      const newChildren: any[] = []
-      if (titleAttr?.value) {
-        const labelText =
-          titleAttr.value.type === "StringLiteral" ||
-          titleAttr.value.type === "Literal"
-            ? (titleAttr.value as any).value
-            : titleAttr.value
-        newChildren.push(
-          j.jsxElement(
-            j.jsxOpeningElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Menu"),
-                j.jsxIdentifier("ItemGroupLabel"),
-              ),
-              [],
-              false,
-            ),
-            j.jsxClosingElement(
-              j.jsxMemberExpression(
-                j.jsxIdentifier("Menu"),
-                j.jsxIdentifier("ItemGroupLabel"),
-              ),
-            ),
-            [j.jsxText(labelText)],
-          ),
-        )
+    // 4. MenuList -> Portal > Menu.Positioner > Menu.Content
+    while (true) {
+      const opening = findFirstOpening(sourceFile, "MenuList")
+      if (!opening) break
+      usedPortal = true
+      let inner = ""
+      let target: JsxElement | JsxOpening = opening
+      if (Node.isJsxSelfClosingElement(opening)) {
+        target = opening
+      } else {
+        const el = opening.getParentIfKind(SyntaxKind.JsxElement)
+        if (el) {
+          inner = childrenText(el, sourceFile)
+          target = el
+        }
       }
-      newChildren.push(...children)
-
-      path.replace(
-        j.jsxElement(
-          j.jsxOpeningElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Menu"),
-              j.jsxIdentifier("ItemGroup"),
-            ),
-            attrs.filter(
-              (a) =>
-                a.type === "JSXAttribute" &&
-                a.name.type === "JSXIdentifier" &&
-                a.name.name !== "title",
-            ),
-            false,
-          ),
-          j.jsxClosingElement(
-            j.jsxMemberExpression(
-              j.jsxIdentifier("Menu"),
-              j.jsxIdentifier("ItemGroup"),
-            ),
-          ),
-          newChildren,
-        ),
+      target.replaceWithText(
+        `<Portal>\n<Menu.Positioner>\n<Menu.Content>${inner}</Menu.Content>\n</Menu.Positioner>\n</Portal>`,
       )
-    })
+    }
 
-  // MenuDivider → Menu.Separator
-  root.find(j.JSXIdentifier, { name: "MenuDivider" }).forEach((path) => {
-    const hasChakraMenu =
-      chakraLocalNames.has("Menu") ||
-      Array.from(componentAliases.values()).includes("Menu")
-    if (!hasChakraMenu) return
-
-    path.replace(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Menu"),
-        j.jsxIdentifier("Separator"),
-      ),
-    )
-  })
-
-  // Positioning props grouping (similar to Popover pattern)
-  root
-    .find(j.JSXOpeningElement, {
-      name: {
-        type: "JSXMemberExpression",
-        object: { name: "Menu" },
-        property: { name: "Root" },
-      },
-    })
-    .forEach((path) => {
-      const attrs = path.node.attributes ?? []
-      const positioningProps: Array<[string, any]> = []
-
-      const filteredAttrs = attrs.filter((attr) => {
+    // 5. MenuItem -> Menu.Item with value + onClick -> onSelect
+    let itemIndex = 0
+    while (true) {
+      const opening = findFirstOpening(sourceFile, "MenuItem")
+      if (!opening) break
+      for (const attr of opening.getAttributes()) {
         if (
-          attr.type !== "JSXAttribute" ||
-          attr.name.type !== "JSXIdentifier"
+          Node.isJsxAttribute(attr) &&
+          attr.getNameNode().getText() === "onClick"
         ) {
-          return true
+          attr.getNameNode().replaceWithText("onSelect")
         }
-
-        const positioningPropNames = [
-          "placement",
-          "gutter",
-          "offset",
-          "flip",
-          "strategy",
-          "boundary",
-        ]
-
-        if (positioningPropNames.includes(attr.name.name)) {
-          const value = getValueExpression(j, attr.value)
-
-          // Wrap boundary ref in arrow function
-          if (attr.name.name === "boundary" && value) {
-            positioningProps.push([
-              "boundary",
-              j.arrowFunctionExpression([], value),
-            ])
-          } else {
-            positioningProps.push([attr.name.name, value])
-          }
-          return false
-        }
-
-        return true
+      }
+      opening.addAttribute({
+        name: "value",
+        initializer: `"item-${itemIndex++}"`,
       })
+      renameTag(opening, "Menu.Item")
+    }
 
-      if (positioningProps.length > 0) {
-        filteredAttrs.push(
-          j.jsxAttribute(
-            j.jsxIdentifier("positioning"),
-            j.jsxExpressionContainer(
-              j.objectExpression(
-                positioningProps.map(([key, value]) =>
-                  j.property("init", j.identifier(key), value),
-                ),
-              ),
-            ),
-          ),
+    // 6. MenuOptionGroup (with a string `type`) -> RadioItemGroup / ItemGroup
+    while (true) {
+      const group = sourceFile
+        .getDescendantsOfKind(SyntaxKind.JsxElement)
+        .find((e) => {
+          if (!tagIs(e.getOpeningElement(), "MenuOptionGroup")) return false
+          return e
+            .getOpeningElement()
+            .getAttributes()
+            .some((a) => {
+              if (!Node.isJsxAttribute(a)) return false
+              if (a.getNameNode().getText() !== "type") return false
+              const init = a.getInitializer()
+              return !!init && Node.isStringLiteral(init)
+            })
+        })
+      if (!group) break
+
+      const opening = group.getOpeningElement()
+      const typeAttr = opening
+        .getAttributes()
+        .find(
+          (a) => Node.isJsxAttribute(a) && a.getNameNode().getText() === "type",
+        ) as JsxAttribute
+      const typeInit = typeAttr.getInitializer()
+      const typeVal =
+        typeInit && Node.isStringLiteral(typeInit)
+          ? typeInit.getLiteralValue()
+          : ""
+      const groupName = typeVal === "radio" ? "RadioItemGroup" : "ItemGroup"
+      const itemName = typeVal === "radio" ? "RadioItem" : "CheckboxItem"
+
+      const newAttrs = opening
+        .getAttributes()
+        .filter(
+          (a) =>
+            !(Node.isJsxAttribute(a) && a.getNameNode().getText() === "type"),
         )
+        .map((a) => a.getText())
+
+      const items: string[] = []
+      for (const child of group.getJsxChildren()) {
+        let childOpening: JsxOpening | undefined
+        let childInner = ""
+        let selfClosing = false
+        if (
+          Node.isJsxElement(child) &&
+          tagIs(child.getOpeningElement(), "MenuItemOption")
+        ) {
+          childOpening = child.getOpeningElement()
+          childInner = childrenText(child, sourceFile)
+        } else if (
+          Node.isJsxSelfClosingElement(child) &&
+          tagIs(child, "MenuItemOption")
+        ) {
+          childOpening = child
+          selfClosing = true
+        }
+        if (!childOpening) continue
+        const itemAttrs = childOpening.getAttributes().map((a) => a.getText())
+        const attrsText = itemAttrs.length ? ` ${itemAttrs.join(" ")}` : ""
+        if (selfClosing) {
+          items.push(`<Menu.${itemName}${attrsText} />`)
+        } else {
+          items.push(
+            `<Menu.${itemName}${attrsText}>${childInner}</Menu.${itemName}>`,
+          )
+        }
       }
 
-      path.node.attributes = filteredAttrs
-    })
+      const groupAttrsText = newAttrs.length ? ` ${newAttrs.join(" ")}` : ""
+      group.replaceWithText(
+        `<Menu.${groupName}${groupAttrsText}>\n${items.join("\n")}\n</Menu.${groupName}>`,
+      )
+    }
 
-  const usesPortal = root.find(j.JSXIdentifier, { name: "Portal" }).size() > 0
-  if (usesPortal) {
-    const imports = root.find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    if (imports.size() > 0) {
-      imports.forEach((imp) => {
-        const specs = imp.node.specifiers || []
-        const hasPortal = specs.some(
-          (s) => s.type === "ImportSpecifier" && s.imported.name === "Portal",
+    // 7. MenuGroup -> Menu.ItemGroup + Menu.ItemGroupLabel
+    while (true) {
+      const group = findFirstElement(sourceFile, "MenuGroup")
+      if (!group) break
+      const opening = group.getOpeningElement()
+      const titleAttr = opening
+        .getAttributes()
+        .find(
+          (a) =>
+            Node.isJsxAttribute(a) && a.getNameNode().getText() === "title",
+        ) as JsxAttribute | undefined
+
+      let labelText: string | undefined
+      if (titleAttr) {
+        const init = titleAttr.getInitializer()
+        if (init && Node.isStringLiteral(init))
+          labelText = init.getLiteralValue()
+        else if (init && Node.isJsxExpression(init)) labelText = init.getText()
+      }
+
+      const newAttrs = opening
+        .getAttributes()
+        .filter(
+          (a) =>
+            !(Node.isJsxAttribute(a) && a.getNameNode().getText() === "title"),
         )
-        if (!hasPortal) {
-          specs.push(j.importSpecifier(j.identifier("Portal")))
-          imp.node.specifiers = specs
-        }
-      })
-    } else {
-      root
-        .get()
-        .node.program.body.unshift(
-          j.importDeclaration(
-            [j.importSpecifier(j.identifier("Portal"))],
-            j.stringLiteral("@chakra-ui/react"),
-          ),
-        )
+        .map((a) => a.getText())
+
+      const inner = childrenText(group, sourceFile)
+      const label =
+        labelText !== undefined
+          ? `\n<Menu.ItemGroupLabel>${labelText}</Menu.ItemGroupLabel>`
+          : ""
+      const groupAttrsText = newAttrs.length ? ` ${newAttrs.join(" ")}` : ""
+      group.replaceWithText(
+        `<Menu.ItemGroup${groupAttrsText}>${label}${inner}</Menu.ItemGroup>`,
+      )
+    }
+
+    // 8. MenuDivider -> Menu.Separator
+    while (true) {
+      const opening = findFirstOpening(sourceFile, "MenuDivider")
+      if (!opening) break
+      renameTag(opening, "Menu.Separator")
+    }
+
+    // 9. Group positioning props into `positioning`
+    for (const opening of allOpenings(sourceFile)) {
+      if (opening.getTagNameNode().getText() !== "Menu.Root") continue
+      const props: string[] = []
+      for (const attr of opening.getAttributes()) {
+        if (!Node.isJsxAttribute(attr)) continue
+        const name = attr.getNameNode().getText()
+        if (!POSITIONING_PROPS.includes(name)) continue
+        const valText = jsxAttrValueText(attr) ?? ""
+        if (name === "boundary") props.push(`${name}: () => ${valText}`)
+        else props.push(`${name}: ${valText}`)
+        attr.remove()
+      }
+      if (props.length > 0) {
+        opening.addAttribute({
+          name: "positioning",
+          initializer: `{{\n${props.join(",\n")},\n}}`,
+        })
+      }
     }
   }
 
-  // Clean up unused Menu-related imports
-  const oldMenuComponents = [
-    "MenuButton",
-    "MenuList",
-    "MenuItem",
-    "MenuGroup",
-    "MenuDivider",
-    "MenuOptionGroup",
-    "MenuItemOption",
-  ]
-
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    .forEach((imp) => {
-      const specs = imp.node.specifiers || []
-      imp.node.specifiers = specs.filter((spec) => {
-        if (spec.type !== "ImportSpecifier") return true
-        const importedName = spec.imported.name as string
-        return !oldMenuComponents.includes(importedName)
-      })
-    })
-
-  return root.toSource({ quote: "single" })
-}
-
-function getValueExpression(j: any, value: any) {
-  if (!value) return null
-  if (value.type === "StringLiteral" || value.type === "Literal") {
-    return j.literal(value.value)
-  }
-  if (value.type === "JSXExpressionContainer") {
-    return value.expression
-  }
-  return value
-}
-
-function isJSXElementNamed(node: any, name: string): node is JSXElement {
-  return (
-    node.type === "JSXElement" &&
-    node.openingElement.name.type === "JSXIdentifier" &&
-    node.openingElement.name.name === name
+  // Imports: remove old menu components, add Portal when used.
+  const importDecl = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
   )
+  if (importDecl) {
+    for (const spec of importDecl.getNamedImports()) {
+      if (OLD_MENU_COMPONENTS.includes(spec.getName())) spec.remove()
+    }
+    if (usedPortal) {
+      const hasPortal = importDecl
+        .getNamedImports()
+        .some((n) => n.getName() === "Portal")
+      if (!hasPortal) importDecl.addNamedImport("Portal")
+    }
+  }
+
+  void ctx
 }
+
+export default transform

@@ -1,55 +1,22 @@
 import { defaultSystem } from "@chakra-ui/react"
 import isPropValid from "@emotion/is-prop-valid"
 import { htmlElementAttributes } from "html-element-attributes"
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type {
+  JsxAttribute,
+  JsxElement,
+  JsxOpeningElement,
+  JsxSelfClosingElement,
+  SourceFile,
+} from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   isTrackedJsx,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
 const GLOBAL_ATTRIBUTES = new Set([...(htmlElementAttributes["*"] || [])])
 const chakraProperties = new Set(Object.keys(defaultSystem.properties || {}))
-
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-
-  if (chakraLocalNames.size === 0) return file.source
-
-  const nextLinkNames = collectNextLinkImports(j, root)
-  const elementTypeRenames = new Map<string, string>()
-
-  root.find(j.JSXElement).forEach((path) => {
-    const opening = path.node.openingElement
-    if (!isTrackedJsx(opening, chakraLocalNames)) return
-
-    const asAttrIndex = opening.attributes?.findIndex(
-      (a) => a.type === "JSXAttribute" && a.name.name === "as",
-    )
-
-    if (asAttrIndex === undefined || asAttrIndex === -1) return
-
-    transformAsToAsChild(
-      j,
-      path,
-      asAttrIndex,
-      nextLinkNames,
-      elementTypeRenames,
-    )
-  })
-
-  updateTypeScriptSignatures(j, root)
-  updateObjectDestructuring(j, root)
-  updateElementTypeDestructuring(j, root, elementTypeRenames)
-
-  return root.toSource({ quote: "single" })
-}
 
 const ALWAYS_CHILD_PROPS = new Set([
   "ref",
@@ -81,7 +48,6 @@ const SVG_ELEMENTS = new Set([
   "use",
 ])
 
-// Simple presentational DOM elements that can use `as` prop directly (no asChild needed)
 const SIMPLE_DOM_ELEMENTS = new Set([
   "div",
   "span",
@@ -112,7 +78,6 @@ const SIMPLE_DOM_ELEMENTS = new Set([
   "figcaption",
 ])
 
-// Component type classifications
 enum ComponentType {
   DOM,
   Component,
@@ -120,160 +85,12 @@ enum ComponentType {
   Unknown,
 }
 
-interface PropDistribution {
-  child: any[]
-  parent: any[]
-}
-
 interface ComponentMetadata {
   tagName: string | null
   type: ComponentType
   isNextLink: boolean
-  parentName: string | null
 }
 
-function isEventHandler(propName: string): boolean {
-  return (
-    propName.startsWith("on") &&
-    propName.length > 2 &&
-    propName[2] === propName[2].toUpperCase()
-  )
-}
-
-function isDataOrAria(propName: string): boolean {
-  return propName.startsWith("data-") || propName.startsWith("aria-")
-}
-
-function isValidChakraProp(propName: string): boolean {
-  return (
-    propName.startsWith("_") ||
-    chakraProperties.has(propName) ||
-    ALWAYS_PARENT_PROPS.has(propName)
-  )
-}
-
-export function isValidDOMProp(propName: string, tagName: string): boolean {
-  if (isDataOrAria(propName)) return true
-
-  const lowerTag = tagName.toLowerCase()
-  const lowerProp = propName.toLowerCase()
-
-  if (GLOBAL_ATTRIBUTES.has(propName) || GLOBAL_ATTRIBUTES.has(lowerProp)) {
-    return true
-  }
-
-  if (SVG_ELEMENTS.has(lowerTag)) {
-    return isPropValid(propName)
-  }
-
-  const validAttributes = htmlElementAttributes[lowerTag]
-  if (validAttributes) {
-    return (
-      validAttributes.includes(propName) || validAttributes.includes(lowerProp)
-    )
-  }
-
-  return isPropValid(propName)
-}
-
-function classifyComponentType(node: any): ComponentType {
-  if (!node) return ComponentType.Unknown
-
-  if (node.type === "JSXIdentifier" || node.type === "Identifier") {
-    const firstChar = node.name[0]
-    const isLowerCase = firstChar === firstChar.toLowerCase()
-
-    if (node.type === "JSXIdentifier" && isLowerCase) {
-      return ComponentType.DOM
-    }
-
-    return isLowerCase ? ComponentType.ElementType : ComponentType.Component
-  }
-
-  if (node.type === "MemberExpression") {
-    return ComponentType.Component
-  }
-
-  // Handle string literals like as="div" or as="a"
-  if (node.type === "Literal" || node.type === "StringLiteral") {
-    const value = node.value
-    if (typeof value === "string") {
-      const firstChar = value[0]
-      const isLowerCase = firstChar === firstChar.toLowerCase()
-      return isLowerCase ? ComponentType.DOM : ComponentType.Component
-    }
-  }
-
-  return ComponentType.Unknown
-}
-
-function getTagNameString(node: any): string | null {
-  if (!node) return null
-
-  if (node.type === "JSXIdentifier" || node.type === "Identifier") {
-    return node.name
-  }
-
-  if (node.type === "Literal" || node.type === "StringLiteral") {
-    return node.value
-  }
-
-  return null
-}
-
-function toJsxName(j: any, node: any): any {
-  if (node.type === "Identifier") {
-    return j.jsxIdentifier(node.name)
-  }
-
-  if (node.type === "MemberExpression") {
-    return j.jsxMemberExpression(
-      toJsxName(j, node.object),
-      toJsxName(j, node.property),
-    )
-  }
-
-  if (node.type === "Literal" || node.type === "StringLiteral") {
-    return j.jsxIdentifier(node.value)
-  }
-
-  return node
-}
-
-function extractAsValue(asAttr: any): any {
-  let asValue = asAttr.value
-
-  if (asValue?.type === "JSXExpressionContainer") {
-    asValue = asValue.expression
-  }
-
-  return asValue
-}
-
-function getComponentMetadata(
-  asAttr: any,
-  parentName: any,
-  nextLinkNames: Set<string>,
-  j: any,
-): ComponentMetadata {
-  const asValue = extractAsValue(asAttr)
-  const innerTagName = toJsxName(j, asValue)
-  const tagName = getTagNameString(innerTagName)
-  const type = classifyComponentType(asValue)
-  const isNextLink = tagName ? nextLinkNames.has(tagName) : false
-  const parentNameStr = getTagNameString(parentName)
-
-  return {
-    tagName,
-    type,
-    isNextLink,
-    parentName: parentNameStr,
-  }
-}
-
-// Element-specific props that should move to child elements
-
-// Link elements: <a>, <Link>, <NextLink>
 const LINK_PROPS = new Set([
   "href",
   "target",
@@ -282,14 +99,12 @@ const LINK_PROPS = new Set([
   "hreflang",
   "referrerPolicy",
   "type",
-  // Next.js Link props
   "replace",
   "scroll",
   "shallow",
   "locale",
   "prefetch",
   "legacyBehavior",
-  // React Router / TanStack Router Link props
   "to",
   "state",
   "preventScrollReset",
@@ -304,7 +119,6 @@ const LINK_PROPS = new Set([
   "preloadDelay",
 ])
 
-// Input elements: <input>
 const INPUT_PROPS = new Set([
   "type",
   "value",
@@ -332,7 +146,6 @@ const INPUT_PROPS = new Set([
   "inputMode",
 ])
 
-// Button elements: <button>
 const BUTTON_PROPS = new Set([
   "type",
   "disabled",
@@ -346,7 +159,6 @@ const BUTTON_PROPS = new Set([
   "value",
 ])
 
-// Textarea elements: <textarea>
 const TEXTAREA_PROPS = new Set([
   "value",
   "defaultValue",
@@ -364,7 +176,6 @@ const TEXTAREA_PROPS = new Set([
   "form",
 ])
 
-// Select elements: <select>
 const SELECT_PROPS = new Set([
   "value",
   "defaultValue",
@@ -377,10 +188,8 @@ const SELECT_PROPS = new Set([
   "form",
 ])
 
-// Time elements: <time>
 const TIME_PROPS = new Set(["datetime", "dateTime"])
 
-// Form elements: <form>
 const FORM_PROPS = new Set([
   "action",
   "method",
@@ -391,7 +200,6 @@ const FORM_PROPS = new Set([
   "acceptCharset",
 ])
 
-// Image elements: <img>
 const IMG_PROPS = new Set([
   "src",
   "alt",
@@ -407,7 +215,6 @@ const IMG_PROPS = new Set([
   "isMap",
 ])
 
-// Video/Audio elements: <video>, <audio>
 const MEDIA_PROPS = new Set([
   "src",
   "autoplay",
@@ -422,13 +229,10 @@ const MEDIA_PROPS = new Set([
   "height",
 ])
 
-// Label elements: <label>
 const LABEL_PROPS = new Set(["htmlFor", "form"])
 
-// Option elements: <option>
 const OPTION_PROPS = new Set(["value", "selected", "disabled", "label"])
 
-// Iframe elements: <iframe>
 const IFRAME_PROPS = new Set([
   "src",
   "srcdoc",
@@ -442,28 +246,14 @@ const IFRAME_PROPS = new Set([
   "referrerPolicy",
 ])
 
-// Dialog elements: <dialog>
 const DIALOG_PROPS = new Set(["open"])
-
-// Details elements: <details>
 const DETAILS_PROPS = new Set(["open"])
-
-// Meter elements: <meter>
 const METER_PROPS = new Set(["value", "min", "max", "low", "high", "optimum"])
-
-// Progress elements: <progress>
 const PROGRESS_PROPS = new Set(["value", "max"])
-
-// Track elements: <track> (for video/audio)
 const TRACK_PROPS = new Set(["src", "kind", "srclang", "label", "default"])
-
-// Source elements: <source> (for video/audio/picture)
 const SOURCE_PROPS = new Set(["src", "srcset", "type", "media", "sizes"])
-
-// Canvas elements: <canvas>
 const CANVAS_PROPS = new Set(["width", "height"])
 
-// Map tag name to its specific props
 const ELEMENT_PROPS_MAP: Record<string, Set<string>> = {
   a: LINK_PROPS,
   Link: LINK_PROPS,
@@ -489,204 +279,67 @@ const ELEMENT_PROPS_MAP: Record<string, Set<string>> = {
   canvas: CANVAS_PROPS,
 }
 
-function shouldPropGoToChild(
-  propName: string,
-  metadata: ComponentMetadata,
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+
+  const nextLinkNames = collectNextLinkImports(sourceFile)
+
+  const targets: Array<JsxElement | JsxSelfClosingElement> = []
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    const opening = el.getOpeningElement()
+    if (isTrackedJsx(opening, chakraLocalNames) && hasAsAttr(opening)) {
+      targets.push(el)
+    }
+  }
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    if (isTrackedJsx(el, chakraLocalNames) && hasAsAttr(el)) {
+      targets.push(el)
+    }
+  }
+
+  // Rewrite deepest/last-first so earlier captured nodes stay valid.
+  targets.sort((a, b) => b.getStart() - a.getStart())
+
+  for (const node of targets) transformAsToAsChild(node, nextLinkNames)
+}
+
+function hasAsAttr(
+  opening: JsxOpeningElement | JsxSelfClosingElement,
 ): boolean {
-  // Always forward these to child
-  if (ALWAYS_CHILD_PROPS.has(propName) || isEventHandler(propName)) {
-    return true
-  }
-
-  // Never forward these to child
-  if (ALWAYS_PARENT_PROPS.has(propName)) {
-    return false
-  }
-
-  // Chakra style props always stay on parent
-  if (isValidChakraProp(propName)) {
-    return false
-  }
-
-  // Check if this is a link element (a, Link, or anything ending with "Link")
-  const isLinkElement =
-    metadata.tagName === "a" ||
-    metadata.tagName === "Link" ||
-    (metadata.tagName && metadata.tagName.endsWith("Link"))
-
-  if (isLinkElement && LINK_PROPS.has(propName)) {
-    // Filter out passHref for Next.js Links
-    if (metadata.isNextLink && propName === "passHref") {
-      return false
-    }
-    return true
-  }
-
-  // Check if this prop should move based on element type
-  if (metadata.tagName) {
-    const elementProps = ELEMENT_PROPS_MAP[metadata.tagName]
-    if (elementProps && elementProps.has(propName)) {
-      return true
-    }
-  }
-
-  // For element type variables, keep all props on parent
-  if (metadata.type === ComponentType.ElementType) {
-    return false
-  }
-
-  // For everything else, keep props on parent by default
-  // This is conservative - only move props we explicitly whitelisted above
-  return false
-}
-
-function distributeProps(
-  attributes: any[],
-  asAttrIndex: number,
-  metadata: ComponentMetadata,
-): PropDistribution {
-  const result: PropDistribution = { child: [], parent: [] }
-
-  attributes.forEach((attr, idx) => {
-    if (idx === asAttrIndex) return
-
-    // Spread attributes stay on parent
-    if (attr.type === "JSXSpreadAttribute") {
-      result.parent.push(attr)
-      return
-    }
-
-    if (attr.type !== "JSXAttribute" || typeof attr.name.name !== "string") {
-      result.parent.push(attr)
-      return
-    }
-
-    // Special handling: remove passHref for Next.js Links
-    if (metadata.isNextLink && attr.name.name === "passHref") {
-      return // Don't add to either parent or child
-    }
-
-    const target = shouldPropGoToChild(attr.name.name, metadata)
-      ? result.child
-      : result.parent
-
-    target.push(attr)
-  })
-
-  return result
-}
-
-function collectNextLinkImports(j: any, root: any): Set<string> {
-  const nextLinkNames = new Set<string>()
-
-  root
-    .find(j.ImportDeclaration, { source: { value: "next/link" } })
-    .forEach((path: any) => {
-      path.node.specifiers?.forEach((spec: any) => {
-        if (
-          spec.type === "ImportDefaultSpecifier" &&
-          spec.local?.type === "Identifier"
-        ) {
-          nextLinkNames.add(spec.local.name)
-        }
-        if (
-          spec.type === "ImportSpecifier" &&
-          spec.local?.type === "Identifier"
-        ) {
-          nextLinkNames.add(spec.local.name)
-        }
-      })
-    })
-
-  return nextLinkNames
-}
-
-function capitalizeElementType(
-  asValue: any,
-  j: any,
-  elementTypeRenames: Map<string, string>,
-): { name: any; capitalized: boolean } {
-  if (asValue.type === "Identifier") {
-    const capitalizedName =
-      asValue.name.charAt(0).toUpperCase() + asValue.name.slice(1)
-
-    elementTypeRenames.set(asValue.name, capitalizedName)
-
-    return {
-      name: j.jsxIdentifier(capitalizedName),
-      capitalized: true,
-    }
-  }
-
-  return { name: null, capitalized: false }
-}
-
-function createInnerElement(
-  j: any,
-  asAttr: any,
-  childAttributes: any[],
-  children: any[],
-  metadata: ComponentMetadata,
-  elementTypeRenames: Map<string, string>,
-): any {
-  const asValue = extractAsValue(asAttr)
-  const isSelfClosing = children.length === 0
-
-  // Handle element type variables
-  if (metadata.type === ComponentType.ElementType) {
-    const { name, capitalized } = capitalizeElementType(
-      asValue,
-      j,
-      elementTypeRenames,
-    )
-
-    if (capitalized && name) {
-      return j.jsxElement(
-        j.jsxOpeningElement(name, childAttributes, isSelfClosing),
-        isSelfClosing ? null : j.jsxClosingElement(name),
-        children,
-      )
-    }
-  }
-
-  const innerTagName = toJsxName(j, asValue)
-
-  return j.jsxElement(
-    j.jsxOpeningElement(innerTagName, childAttributes, isSelfClosing),
-    isSelfClosing ? null : j.jsxClosingElement(innerTagName),
-    children,
-  )
+  return opening
+    .getAttributes()
+    .some((a) => Node.isJsxAttribute(a) && a.getNameNode().getText() === "as")
 }
 
 function transformAsToAsChild(
-  j: any,
-  path: any,
-  asAttrIndex: number,
+  node: JsxElement | JsxSelfClosingElement,
   nextLinkNames: Set<string>,
-  elementTypeRenames: Map<string, string>,
-): void {
-  const opening = path.node.openingElement
-  const asAttr = opening.attributes[asAttrIndex]
+) {
+  const isSelfClosing = Node.isJsxSelfClosingElement(node)
+  const opening = isSelfClosing ? node : node.getOpeningElement()
+  const attrs = opening.getAttributes()
+
+  const asAttr = attrs.find(
+    (a): a is JsxAttribute =>
+      Node.isJsxAttribute(a) && a.getNameNode().getText() === "as",
+  )
+  if (!asAttr) return
+
   const asValue = extractAsValue(asAttr)
+  if (!asValue) return
 
-  // Skip transformation for dynamic expressions like as={as} or as={component}
-  // We can't know at build time what these will be, so leave them as-is
-  if (asValue.type === "Identifier") {
-    // Only transform if it's a known component name (starts with uppercase)
-    // or a known element name (lowercase string literal would have been caught earlier)
-    const firstChar = asValue.name[0]
-    const isComponent = firstChar === firstChar.toUpperCase()
-
-    // If it's a lowercase identifier (like 'as', 'elem', 'component'), skip transformation
-    if (!isComponent) {
-      return
-    }
+  // Skip dynamic lowercase identifiers, e.g. as={as}.
+  if (Node.isIdentifier(asValue)) {
+    const first = asValue.getText()[0]
+    if (first !== first.toUpperCase()) return
   }
 
-  const metadata = getComponentMetadata(asAttr, opening.name, nextLinkNames, j)
+  const metadata = getMetadata(asValue, nextLinkNames)
 
-  // Skip transformation for simple presentational DOM elements - they can use `as` prop directly
-  // Interactive/semantic elements like <a>, <button>, <time> still need asChild for proper prop handling
+  // Simple presentational DOM elements can keep the `as` prop directly.
   if (
     metadata.type === ComponentType.DOM &&
     metadata.tagName &&
@@ -695,86 +348,167 @@ function transformAsToAsChild(
     return
   }
 
-  const { child, parent } = distributeProps(
-    opening.attributes,
-    asAttrIndex,
-    metadata,
+  const child: string[] = []
+  const parent: string[] = []
+
+  for (const attr of attrs) {
+    if (attr === asAttr) continue
+
+    if (!Node.isJsxAttribute(attr)) {
+      parent.push(attr.getText())
+      continue
+    }
+
+    const name = attr.getNameNode().getText()
+    if (metadata.isNextLink && name === "passHref") continue
+
+    if (shouldPropGoToChild(name, metadata)) child.push(attr.getText())
+    else parent.push(attr.getText())
+  }
+
+  const innerTag = tagNameText(asValue)
+  const childrenText = Node.isJsxElement(node)
+    ? node
+        .getJsxChildren()
+        .map((c) => c.getText())
+        .join("")
+    : ""
+
+  const childAttrsText = child.length ? ` ${child.join(" ")}` : ""
+  const inner =
+    childrenText.trim().length === 0
+      ? `<${innerTag}${childAttrsText} />`
+      : `<${innerTag}${childAttrsText}>${childrenText}</${innerTag}>`
+
+  const parentAttrsText = parent.length ? ` ${parent.join(" ")}` : ""
+  const parentTag = opening.getTagNameNode().getText()
+
+  node.replaceWithText(
+    `<${parentTag}${parentAttrsText} asChild>${inner}</${parentTag}>`,
   )
+}
 
-  const innerElement = createInnerElement(
-    j,
-    asAttr,
-    child,
-    path.node.children || [],
-    metadata,
-    elementTypeRenames,
+function extractAsValue(asAttr: JsxAttribute): Node | undefined {
+  const init = asAttr.getInitializer()
+  if (!init) return undefined
+  if (Node.isJsxExpression(init)) return init.getExpression()
+  return init
+}
+
+function getMetadata(
+  asValue: Node,
+  nextLinkNames: Set<string>,
+): ComponentMetadata {
+  const tagName = getTagNameString(asValue)
+  const type = classifyComponentType(asValue)
+  const isNextLink = tagName ? nextLinkNames.has(tagName) : false
+  return { tagName, type, isNextLink }
+}
+
+function getTagNameString(node: Node): string | null {
+  if (Node.isIdentifier(node)) return node.getText()
+  if (Node.isStringLiteral(node)) return node.getLiteralValue()
+  return null
+}
+
+function tagNameText(node: Node): string {
+  if (Node.isStringLiteral(node)) return node.getLiteralValue()
+  return node.getText()
+}
+
+function classifyComponentType(node: Node): ComponentType {
+  if (Node.isIdentifier(node)) {
+    const first = node.getText()[0]
+    return first === first.toLowerCase()
+      ? ComponentType.ElementType
+      : ComponentType.Component
+  }
+  if (Node.isPropertyAccessExpression(node)) return ComponentType.Component
+  if (Node.isStringLiteral(node)) {
+    const value = node.getLiteralValue()
+    const first = value[0]
+    return first === first.toLowerCase()
+      ? ComponentType.DOM
+      : ComponentType.Component
+  }
+  return ComponentType.Unknown
+}
+
+function isEventHandler(name: string): boolean {
+  return (
+    name.startsWith("on") &&
+    name.length > 2 &&
+    name[2] === name[2].toUpperCase()
   )
-
-  // Update parent element
-  opening.attributes = [...parent, j.jsxAttribute(j.jsxIdentifier("asChild"))]
-
-  path.node.children = [innerElement]
-  path.node.openingElement.selfClosing = false
-  path.node.closingElement = j.jsxClosingElement(opening.name)
 }
 
-function updateTypeScriptSignatures(j: any, root: any): void {
-  root
-    .find(j.TSPropertySignature, { key: { name: "as" } })
-    .forEach((path: any) => {
-      path.node.key = j.identifier("asChild")
-      if (path.node.typeAnnotation) {
-        path.node.typeAnnotation.typeAnnotation = j.tsBooleanKeyword()
-      }
-    })
+function isDataOrAria(name: string): boolean {
+  return name.startsWith("data-") || name.startsWith("aria-")
 }
 
-function updateObjectDestructuring(j: any, root: any): void {
-  root.find(j.ObjectPattern).forEach((path: any) => {
-    path.node.properties.forEach((prop: any) => {
-      if (
-        prop.type === "Property" &&
-        prop.key.type === "Identifier" &&
-        prop.key.name === "as"
-      ) {
-        prop.key.name = "asChild"
-
-        if (prop.value.type === "Identifier" && prop.value.name === "as") {
-          prop.value.name = "asChild"
-        } else if (
-          prop.value.type === "AssignmentPattern" &&
-          prop.value.left.type === "Identifier"
-        ) {
-          prop.value.left.name = "asChild"
-        }
-      }
-    })
-  })
+function isValidChakraProp(name: string): boolean {
+  return (
+    name.startsWith("_") ||
+    chakraProperties.has(name) ||
+    ALWAYS_PARENT_PROPS.has(name)
+  )
 }
 
-function updateElementTypeDestructuring(
-  j: any,
-  root: any,
-  elementTypeRenames: Map<string, string>,
-): void {
-  if (elementTypeRenames.size === 0) return
+function shouldPropGoToChild(
+  name: string,
+  metadata: ComponentMetadata,
+): boolean {
+  if (ALWAYS_CHILD_PROPS.has(name) || isEventHandler(name)) return true
+  if (ALWAYS_PARENT_PROPS.has(name)) return false
+  if (isValidChakraProp(name)) return false
 
-  root.find(j.VariableDeclarator).forEach((path: any) => {
-    if (path.node.id.type !== "ObjectPattern") return
+  const isLinkElement =
+    metadata.tagName === "a" ||
+    metadata.tagName === "Link" ||
+    (!!metadata.tagName && metadata.tagName.endsWith("Link"))
 
-    path.node.id.properties.forEach((prop: any) => {
-      if (
-        prop.type === "Property" &&
-        prop.key.type === "Identifier" &&
-        prop.value.type === "Identifier" &&
-        prop.shorthand
-      ) {
-        const newName = elementTypeRenames.get(prop.key.name)
-        if (newName) {
-          prop.shorthand = false
-          prop.value = j.identifier(newName)
-        }
-      }
-    })
-  })
+  if (isLinkElement && LINK_PROPS.has(name)) {
+    if (metadata.isNextLink && name === "passHref") return false
+    return true
+  }
+
+  if (metadata.tagName) {
+    const elementProps = ELEMENT_PROPS_MAP[metadata.tagName]
+    if (elementProps && elementProps.has(name)) return true
+  }
+
+  if (metadata.type === ComponentType.ElementType) return false
+
+  return false
 }
+
+function collectNextLinkImports(sourceFile: SourceFile): Set<string> {
+  const names = new Set<string>()
+  const importDecl = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "next/link",
+  )
+  if (!importDecl) return names
+  const def = importDecl.getDefaultImport()
+  if (def) names.add(def.getText())
+  for (const named of importDecl.getNamedImports()) {
+    names.add(named.getAliasNode()?.getText() ?? named.getName())
+  }
+  return names
+}
+
+// Referenced for parity with the DOM-prop validity checks used elsewhere.
+export function isValidDOMProp(name: string, tagName: string): boolean {
+  if (isDataOrAria(name)) return true
+  const lowerTag = tagName.toLowerCase()
+  const lowerProp = name.toLowerCase()
+  if (GLOBAL_ATTRIBUTES.has(name) || GLOBAL_ATTRIBUTES.has(lowerProp))
+    return true
+  if (SVG_ELEMENTS.has(lowerTag)) return isPropValid(name)
+  const validAttributes = htmlElementAttributes[lowerTag]
+  if (validAttributes) {
+    return validAttributes.includes(name) || validAttributes.includes(lowerProp)
+  }
+  return isPropValid(name)
+}
+
+export default transform

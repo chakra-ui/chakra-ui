@@ -1,149 +1,98 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node } from "ts-morph"
+import type { Transform } from "../../transform"
 
-export default function transformer(
-  file: FileInfo,
-  api: API,
-  _options: Options,
-) {
-  const j = api.jscodeshift
-  const root = j(file.source)
+const transform: Transform = (sourceFile, ctx) => {
+  if (!ctx.filePath.includes(".storybook")) return
+
   let hasChanges = false
-
-  if (!file.path.includes(".storybook")) {
-    return file.source
-  }
-
   let needsStorybookImports = false
   let hasStorybookImports = false
 
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/storybook-addon" },
-    })
-    .forEach((path) => {
-      needsStorybookImports = true
-      j(path).remove()
-      hasChanges = true
-    })
+  // Remove @chakra-ui/storybook-addon imports.
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (importDecl.getModuleSpecifierValue() !== "@chakra-ui/storybook-addon")
+      continue
+    needsStorybookImports = true
+    importDecl.remove()
+    hasChanges = true
+  }
 
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@storybook/addon-themes" },
-    })
-    .forEach(() => {
+  // Detect existing @storybook/addon-themes import.
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (importDecl.getModuleSpecifierValue() === "@storybook/addon-themes") {
       hasStorybookImports = true
-    })
+    }
+  }
 
-  root
-    .find(j.VariableDeclarator, {
-      id: { name: "preview" },
-    })
-    .forEach((path) => {
-      if (path.node.init?.type === "ObjectExpression") {
-        const properties = path.node.init.properties
+  // Rewrite the `preview` decorators.
+  for (const decl of sourceFile.getVariableDeclarations()) {
+    if (decl.getName() !== "preview") continue
+    const init = decl.getInitializer()
+    if (!init || !Node.isObjectLiteralExpression(init)) continue
 
-        const decoratorsProp = properties.find(
-          (prop) =>
-            prop.type === "Property" &&
-            prop.key.type === "Identifier" &&
-            prop.key.name === "decorators",
-        )
+    const decoratorsProp = init.getProperty("decorators")
+    if (!decoratorsProp || !Node.isPropertyAssignment(decoratorsProp)) continue
 
-        if (
-          decoratorsProp &&
-          decoratorsProp.type === "Property" &&
-          decoratorsProp.value.type === "ArrayExpression"
-        ) {
-          const hasChakraDecorator = decoratorsProp.value.elements.some(
-            (elem) =>
-              elem?.type === "CallExpression" || elem?.type === "Identifier",
-          )
+    const decoratorsValue = decoratorsProp.getInitializer()
+    if (!decoratorsValue || !Node.isArrayLiteralExpression(decoratorsValue))
+      continue
 
-          if (hasChakraDecorator) {
-            needsStorybookImports = true
-            const newDecorators = j.arrayExpression([
-              j.callExpression(j.identifier("withThemeByClassName"), [
-                j.objectExpression([
-                  j.property(
-                    "init",
-                    j.identifier("defaultTheme"),
-                    j.literal("light"),
-                  ),
-                  j.property(
-                    "init",
-                    j.identifier("themes"),
-                    j.objectExpression([
-                      j.property("init", j.identifier("light"), j.literal("")),
-                      j.property(
-                        "init",
-                        j.identifier("dark"),
-                        j.literal("dark"),
-                      ),
-                    ]),
-                  ),
-                ]),
-              ]),
-              ...decoratorsProp.value.elements.filter((elem) => {
-                if (!elem) return false
-                if (elem.type === "ArrowFunctionExpression") {
-                  return true
-                }
-                return false
-              }),
-            ])
+    const elements = decoratorsValue.getElements()
+    const hasChakraDecorator = elements.some(
+      (elem) => Node.isCallExpression(elem) || Node.isIdentifier(elem),
+    )
 
-            decoratorsProp.value = newDecorators
-            hasChanges = true
-          }
-        }
-      }
-    })
+    if (!hasChakraDecorator) continue
+
+    needsStorybookImports = true
+
+    const arrowFns = elements
+      .filter((elem) => Node.isArrowFunction(elem))
+      .map((elem) => elem.getText())
+
+    const newDecorators = [
+      `withThemeByClassName({\n` +
+        `  defaultTheme: "light",\n` +
+        `  themes: {\n` +
+        `    light: "",\n` +
+        `    dark: "dark"\n` +
+        `  }\n` +
+        `})`,
+      ...arrowFns,
+    ].join(",\n")
+
+    decoratorsValue.replaceWithText(`[\n${newDecorators}\n]`)
+    hasChanges = true
+  }
 
   if (needsStorybookImports && !hasStorybookImports) {
-    const withThemeImport = j.importDeclaration(
-      [j.importSpecifier(j.identifier("withThemeByClassName"))],
-      j.literal("@storybook/addon-themes"),
-    )
-
-    const typeImports = j.importDeclaration(
-      [
-        j.importSpecifier(j.identifier("Preview")),
-        j.importSpecifier(j.identifier("ReactRenderer")),
-      ],
-      j.literal("@storybook/react"),
-    )
-    typeImports.importKind = "type"
-
-    const firstImport = root.find(j.ImportDeclaration).at(0)
-    if (firstImport.length > 0) {
-      firstImport.insertBefore(withThemeImport)
-      firstImport.insertBefore(typeImports)
-    } else {
-      root.get().node.program.body.unshift(typeImports)
-      root.get().node.program.body.unshift(withThemeImport)
-    }
-
+    sourceFile.insertImportDeclaration(0, {
+      namedImports: ["withThemeByClassName"],
+      moduleSpecifier: "@storybook/addon-themes",
+    })
+    sourceFile.insertImportDeclaration(1, {
+      isTypeOnly: true,
+      namedImports: ["Preview", "ReactRenderer"],
+      moduleSpecifier: "@storybook/react",
+    })
     hasChanges = true
   }
 
   if (hasChanges) {
-    const comment = j.commentBlock(
-      `\n` +
-        ` Chakra UI Storybook addon has been migrated to @storybook/addon-themes.\n` +
-        ` Make sure to:\n` +
-        ` 1. Install: npm install @storybook/addon-themes\n` +
-        ` 2. Add to .storybook/main.ts addons: ['@storybook/addon-themes']\n` +
-        ` 3. Review the decorators configuration below\n`,
-      true,
-      false,
-    )
+    const comment =
+      `/*\n` +
+      ` Chakra UI Storybook addon has been migrated to @storybook/addon-themes.\n` +
+      ` Make sure to:\n` +
+      ` 1. Install: npm install @storybook/addon-themes\n` +
+      ` 2. Add to .storybook/main.ts addons: ['@storybook/addon-themes']\n` +
+      ` 3. Review the decorators configuration below\n` +
+      `*/`
 
-    const firstStatement = root.find(j.Program).get("body", 0)
+    const firstStatement = sourceFile.getStatements()[0]
     if (firstStatement) {
-      firstStatement.node.comments = firstStatement.node.comments || []
-      firstStatement.node.comments.unshift(comment)
+      sourceFile.insertText(firstStatement.getStart(), `${comment}\n`)
     }
   }
-
-  return hasChanges ? root.toSource() : file.source
 }
+
+export default transform

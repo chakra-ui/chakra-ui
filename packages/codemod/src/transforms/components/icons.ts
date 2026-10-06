@@ -1,5 +1,6 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
+import { getJsxBaseName } from "../../utils/chakra-tracker"
 
 /**
  * Transforms @chakra-ui/icons to react-icons/lu (Lucide icons)
@@ -81,178 +82,100 @@ const ICON_MAPPING: Record<string, IconMapping> = {
   WarningTwoIcon: { icon: "LuAlertCircle", library: "react-icons/lu" },
 }
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-
-  // Track which icons from @chakra-ui/icons are used
+const transform: Transform = (sourceFile) => {
+  // Step 1: Find all icons imported from @chakra-ui/icons
   const usedChakraIcons = new Set<string>()
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (importDecl.getModuleSpecifierValue() !== "@chakra-ui/icons") continue
+    for (const named of importDecl.getNamedImports()) {
+      usedChakraIcons.add(named.getName())
+    }
+  }
+  if (usedChakraIcons.size === 0) return
+
+  // Step 2: Transform JSX elements for each mapped icon.
   let needsIconComponent = false
 
-  // Step 1: Find all imports from @chakra-ui/icons
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/icons" },
-    })
-    .forEach((path) => {
-      path.node.specifiers?.forEach((spec) => {
-        if (spec.type === "ImportSpecifier") {
-          usedChakraIcons.add(spec.imported.name as string)
-        }
-      })
-    })
-
-  if (usedChakraIcons.size === 0) return file.source
-
-  // Step 2: Transform JSX elements for each icon
-  usedChakraIcons.forEach((iconName) => {
-    const mapping = ICON_MAPPING[iconName]
-    if (!mapping) return
-
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: iconName } },
-      })
-      .forEach((path) => {
-        const usedWrapper = transformIconElement(j, path, mapping.icon)
-        if (usedWrapper) {
-          needsIconComponent = true
-        }
-      })
-  })
-
-  // Step 3: Update imports
-  updateIconImports(j, root, usedChakraIcons, needsIconComponent)
-
-  return root.toSource({ quote: "single" })
-}
-
-/**
- * Transform icon element. If icon has props, wrap in Icon component with as prop.
- * If no props, use the react-icon directly. Icons are self-closing for conciseness.
- * @returns {boolean} Whether Icon wrapper was used
- */
-function transformIconElement(
-  j: any,
-  path: any,
-  lucideIconName: string,
-): boolean {
-  const attrs = path.node.openingElement.attributes || []
-
-  // If icon has no attributes, use react-icon directly (self-closing)
-  if (attrs.length === 0) {
-    const directIcon = j.jsxElement(
-      j.jsxOpeningElement(j.jsxIdentifier(lucideIconName), [], true),
-    )
-    directIcon.closingElement = null
-    j(path).replaceWith(directIcon)
-    return false
+  const targets: Node[] = []
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    const base = getJsxBaseName(el.getOpeningElement().getTagNameNode())
+    if (usedChakraIcons.has(base) && ICON_MAPPING[base]) targets.push(el)
+  }
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    const base = getJsxBaseName(el.getTagNameNode())
+    if (usedChakraIcons.has(base) && ICON_MAPPING[base]) targets.push(el)
   }
 
-  // If icon has attributes, wrap in Icon component to preserve style props (self-closing)
-  const asProp = j.jsxAttribute(
-    j.jsxIdentifier("as"),
-    j.jsxExpressionContainer(j.identifier(lucideIconName)),
-  )
+  targets.sort((a, b) => b.getStart() - a.getStart())
 
-  const iconWrapper = j.jsxElement(
-    j.jsxOpeningElement(j.jsxIdentifier("Icon"), [asProp, ...attrs], true),
-  )
-  iconWrapper.closingElement = null
+  for (const el of targets) {
+    const isSelfClosing = Node.isJsxSelfClosingElement(el)
+    const opening = isSelfClosing ? el : (el as any).getOpeningElement()
+    const base = getJsxBaseName(opening.getTagNameNode())
+    const lucide = ICON_MAPPING[base].icon
+    const attrs = opening.getAttributes().map((a: Node) => a.getText())
 
-  j(path).replaceWith(iconWrapper)
-  return true
+    if (attrs.length === 0) {
+      el.replaceWithText(`<${lucide} />`)
+    } else {
+      needsIconComponent = true
+      el.replaceWithText(`<Icon as={${lucide}} ${attrs.join(" ")} />`)
+    }
+  }
+
+  // Step 3: Update imports.
+  updateIconImports(sourceFile, usedChakraIcons, needsIconComponent)
 }
 
-/**
- * Update imports - add Icon from @chakra-ui/react (if needed) and react-icons
- */
 function updateIconImports(
-  j: any,
-  root: any,
+  sourceFile: import("ts-morph").SourceFile,
   usedChakraIcons: Set<string>,
   needsIconComponent: boolean,
 ) {
-  // Add Icon to @chakra-ui/react imports if needed and not present
+  // Add Icon to @chakra-ui/react imports if needed.
   if (needsIconComponent) {
-    let hasIconImport = false
-
-    root
-      .find(j.ImportDeclaration, {
-        source: { value: "@chakra-ui/react" },
+    const chakraImport = sourceFile.getImportDeclaration(
+      (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
+    )
+    if (chakraImport) {
+      const hasIcon = chakraImport
+        .getNamedImports()
+        .some((n) => n.getName() === "Icon")
+      if (!hasIcon) chakraImport.addNamedImport("Icon")
+    } else {
+      sourceFile.insertImportDeclaration(0, {
+        namedImports: ["Icon"],
+        moduleSpecifier: "@chakra-ui/react",
       })
-      .forEach((path: any) => {
-        const specifiers = path.node.specifiers || []
-        hasIconImport = specifiers.some(
-          (spec: any) =>
-            spec.type === "ImportSpecifier" && spec.imported.name === "Icon",
-        )
-
-        // Add Icon import if missing
-        if (!hasIconImport) {
-          path.node.specifiers.push(j.importSpecifier(j.identifier("Icon")))
-          hasIconImport = true
-        }
-      })
-
-    // If no @chakra-ui/react import exists, create one
-    if (!hasIconImport) {
-      const chakraImport = j.importDeclaration(
-        [j.importSpecifier(j.identifier("Icon"))],
-        j.stringLiteral("@chakra-ui/react"),
-      )
-      const firstImport = root.find(j.ImportDeclaration).at(0)
-      if (firstImport.length > 0) {
-        firstImport.insertBefore(chakraImport)
-      } else {
-        root.get().node.program.body.unshift(chakraImport)
-      }
     }
   }
 
-  // Remove @chakra-ui/icons import
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/icons" },
-    })
-    .forEach((path: any) => {
-      j(path).remove()
-    })
+  // Remove @chakra-ui/icons imports.
+  for (const importDecl of [...sourceFile.getImportDeclarations()]) {
+    if (importDecl.getModuleSpecifierValue() === "@chakra-ui/icons") {
+      importDecl.remove()
+    }
+  }
 
-  // Group icons by library
+  // Group icons by library and add imports.
   const iconsByLibrary = new Map<string, Set<string>>()
-
-  Array.from(usedChakraIcons).forEach((iconName) => {
+  for (const iconName of usedChakraIcons) {
     const mapping = ICON_MAPPING[iconName]
-    if (!mapping) return
-
-    const { icon, library } = mapping
-    if (!iconsByLibrary.has(library)) {
-      iconsByLibrary.set(library, new Set())
+    if (!mapping) continue
+    if (!iconsByLibrary.has(mapping.library)) {
+      iconsByLibrary.set(mapping.library, new Set())
     }
-    iconsByLibrary.get(library)!.add(icon)
-  })
+    iconsByLibrary.get(mapping.library)!.add(mapping.icon)
+  }
 
-  // Create import statements for each library
-  const lastImport = root.find(j.ImportDeclaration).at(-1)
-  const insertionPoint = lastImport.length > 0 ? lastImport : null
-
-  iconsByLibrary.forEach((icons, library) => {
-    const uniqueIcons = Array.from(icons).sort()
-
-    const newImport = j.importDeclaration(
-      uniqueIcons.map((name: string) => j.importSpecifier(j.identifier(name))),
-      j.stringLiteral(library),
-    )
-
-    if (insertionPoint) {
-      insertionPoint.insertAfter(newImport)
-    } else {
-      root.get().node.program.body.unshift(newImport)
-    }
-  })
+  for (const [library, icons] of iconsByLibrary) {
+    sourceFile.addImportDeclaration({
+      namedImports: Array.from(icons).sort(),
+      moduleSpecifier: library,
+    })
+  }
 }
+
+export default transform
