@@ -2,4 +2,4 @@
 "@chakra-ui/cli": patch
 ---
 
-Fix `@chakra-ui/cli` failing to install on Node.js 26.
+- **CLI**: Fix installation failing on Node.js 26.
