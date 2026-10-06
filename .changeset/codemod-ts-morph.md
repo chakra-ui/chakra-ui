@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/codemod": minor
+"@chakra-ui/codemod": patch
 ---
 
 - **Codemod**
