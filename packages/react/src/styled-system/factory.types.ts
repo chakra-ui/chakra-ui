@@ -13,12 +13,12 @@ import type {
   Pretty,
 } from "../utils"
 import type { MinimalNested, SystemStyleObject } from "./css.types"
-import type { SystemProperties } from "./generated/system.gen"
 import type {
   RecipeDefinition,
   RecipeSelection,
   RecipeVariantRecord,
 } from "./recipe.types"
+import type { SystemProperties } from "./register"
 
 export interface UnstyledProp {
   /**

@@ -1,6 +1,6 @@
 import type { DistributiveOmit, Pretty } from "../utils"
 import type { ConditionalValue, SystemStyleObject } from "./css.types"
-import type { ColorPalette } from "./generated/token.gen"
+import type { ColorPalette } from "./register"
 
 type StringToBoolean<T> = T extends "true" | "false" ? boolean : T
 
