@@ -32,6 +32,7 @@ export function ComponentExplorer({
         alignItems="center"
         justifyContent="center"
         overflow="hidden"
+        pos="relative"
       >
         <ExamplePreview name={name} />
       </Box>
