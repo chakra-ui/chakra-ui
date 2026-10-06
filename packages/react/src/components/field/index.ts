@@ -2,6 +2,7 @@ export {
   FieldRoot,
   FieldPropsProvider,
   FieldLabel,
+  FieldInputElement,
   FieldHelperText,
   FieldErrorText,
   FieldErrorIcon,
@@ -11,6 +12,7 @@ export {
 
 export type {
   FieldRootProps,
+  FieldInputElementProps,
   FieldLabelProps,
   FieldHelperTextProps,
   FieldErrorTextProps,

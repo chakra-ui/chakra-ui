@@ -11,13 +11,10 @@ export const fieldSlotRecipe = defineSlotRecipe({
     "select",
     "textarea",
     "requiredIndicator",
+    "inputElement",
     "requiredIndicator",
   ],
   base: {
-    requiredIndicator: {
-      color: "fg.error",
-      lineHeight: "1",
-    },
     root: {
       display: "flex",
       width: "100%",
@@ -35,6 +32,10 @@ export const fieldSlotRecipe = defineSlotRecipe({
       _disabled: {
         opacity: "0.5",
       },
+    },
+    requiredIndicator: {
+      color: "fg.error",
+      lineHeight: "1",
     },
     errorText: {
       display: "inline-flex",
@@ -56,15 +57,30 @@ export const fieldSlotRecipe = defineSlotRecipe({
           flexDirection: "column",
           alignItems: "flex-start",
         },
+        group: {
+          flexDirection: "row",
+        },
       },
       horizontal: {
         root: {
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
+          display: "grid",
+          gridTemplateColumns: "var(--field-label-width, 80px) 1fr",
+          gap: "1.5",
+          alignItems: "start",
         },
         label: {
-          flex: "0 0 var(--field-label-width, 80px)",
+          gridColumn: "1",
+          alignSelf: "center",
+        },
+        inputElement: {
+          gridColumn: "2",
+          justifySelf: "end",
+        },
+        helperText: {
+          gridColumn: "2",
+        },
+        errorText: {
+          gridColumn: "2",
         },
       },
     },
