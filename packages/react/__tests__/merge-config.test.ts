@@ -139,6 +139,100 @@ describe("mergeConfig", () => {
     `)
   })
 
+  test("should handle nested semantic token overrides", () => {
+    const baseConfig = {
+      theme: {
+        semanticTokens: {
+          colors: {
+            accent: {
+              solid: { value: { base: "#2563eb", _dark: "#60a5fa" } },
+              fg: { value: { base: "#1d4ed8", _dark: "#93c5fd" } },
+            },
+          },
+        },
+      },
+    }
+
+    const customConfig = {
+      theme: {
+        semanticTokens: {
+          colors: {
+            accent: { value: { base: "#ef4444", _dark: "#f87171" } },
+          },
+        },
+      },
+    }
+
+    const mergedConfig = mergeConfigs(baseConfig, customConfig)
+    const system = createSystem(mergedConfig)
+
+    const conditionsOf = (name: string) =>
+      system.tokens.getByName(name)?.extensions.conditions
+
+    expect(conditionsOf("colors.accent.solid")).toEqual({
+      base: "#2563eb",
+      _dark: "#60a5fa",
+    })
+    expect(conditionsOf("colors.accent.fg")).toEqual({
+      base: "#1d4ed8",
+      _dark: "#93c5fd",
+    })
+    expect(conditionsOf("colors.accent")).toEqual({
+      base: "#ef4444",
+      _dark: "#f87171",
+    })
+
+    expect(mergedConfig.theme?.semanticTokens).toMatchInlineSnapshot(`
+      {
+        "colors": {
+          "accent": {
+            "DEFAULT": {
+              "value": {
+                "_dark": "#f87171",
+                "base": "#ef4444",
+              },
+            },
+            "fg": {
+              "value": {
+                "_dark": "#93c5fd",
+                "base": "#1d4ed8",
+              },
+            },
+            "solid": {
+              "value": {
+                "_dark": "#60a5fa",
+                "base": "#2563eb",
+              },
+            },
+          },
+        },
+      }
+    `)
+  })
+
+  test("nested semantic token override should keep the default palette", () => {
+    const system = createSystem(defaultConfig, {
+      theme: {
+        semanticTokens: {
+          colors: {
+            red: { value: { _light: "tomato", _dark: "firebrick" } },
+          },
+        },
+      },
+    })
+
+    expect(system.token("colors.red.solid")).toBe(
+      "var(--chakra-colors-red-solid)",
+    )
+    expect(system.token("colors.red.fg")).toBe("var(--chakra-colors-red-fg)")
+    expect(system.token("colors.red.subtle")).toBe(
+      "var(--chakra-colors-red-subtle)",
+    )
+    expect(
+      system.tokens.getByName("colors.red")?.extensions.conditions,
+    ).toEqual({ _light: "tomato", _dark: "firebrick" })
+  })
+
   test("should handle nested token overrides with mixed-case sibling keys", () => {
     const baseConfig = {
       theme: {
