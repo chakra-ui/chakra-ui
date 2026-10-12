@@ -1,5 +1,74 @@
 # @chakra-ui/react
 
+## 3.37.1
+
+### Patch Changes
+
+- [`2c2fd7c`](https://github.com/chakra-ui/chakra-ui/commit/2c2fd7c1a510d7bb6f9f3d2bd6450bf2f3c3a13a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Flex, Square,
+  Circle**: Fix the array form of the `css` prop being ignored.
+  - **createOverlay**: Fix `remove` and `removeAll` leaving promises from
+    `open`, `close` and `waitForExit` pending forever. They now resolve with
+    `undefined`.
+  - **useBreakpoint**
+    - Fix always returning `"base"` when the `breakpoints` option is omitted.
+    - Fix the `getWindow` option being ignored, which broke media queries in
+      iframes and Shadow DOM. This also applies to `useBreakpointValue`.
+
+- [`2c2fd7c`](https://github.com/chakra-ui/chakra-ui/commit/2c2fd7c1a510d7bb6f9f3d2bd6450bf2f3c3a13a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Checkbox Card,
+  Radio Card, Slider**: Fix `cursor` token overrides in the theme being ignored.
+  - **Theme**: Use `tokens.cursor.disabled` for disabled elements instead of a
+    hardcoded `not-allowed`, and `tokens.cursor.option` for Listbox items.
+  - **FileUpload**: Fix disabled delete triggers showing an active cursor and
+    full-opacity icon.
+  - **ScrollArea**: Fix the vertical scrollbar showing when content only
+    overflows horizontally, and vice versa.
+
+- [`2c2fd7c`](https://github.com/chakra-ui/chakra-ui/commit/2c2fd7c1a510d7bb6f9f3d2bd6450bf2f3c3a13a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**
+  - Fix variants named after a CSS shorthand, such as `rounded`, `bg` or `p`,
+    being dropped in `cva` and `sva`.
+  - Fix a `!` inside a style value being treated as `!important`, which broke
+    values like `content: '"!"'` and `url(/a!b.png)`. Only a trailing `!` or
+    `!important` is recognized now.
+  - Fix SSR hydration mismatches on `className` caused by the style cache
+    ignoring property order.
+  - Fix tokens with a value of `0` returning the fallback instead, e.g.
+    `useToken("zIndex", "base")`.
+
+- [`676d6cf`](https://github.com/chakra-ui/chakra-ui/commit/676d6cf37386061f4e92e96169b66a9ad58f3419)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update Ark UI to
+  v5.39.3.
+  - **Field**: Fix `Field.ErrorText` not being announced by VoiceOver and
+    Narrator. It is now linked to the input via `aria-describedby` instead of
+    `aria-errormessage`, so tests asserting `toHaveAccessibleErrorMessage`
+    should use `toHaveAccessibleDescription`.
+  - **Popover**: `Popover.Title` now renders an `h2` instead of a `div`, and its
+    ref is typed as `HTMLHeadingElement`.
+  - **Listbox, Toggle**: `Listbox.ItemText` and `Toggle.Indicator` now render a
+    `span` instead of a `div`, and their refs are typed as `HTMLSpanElement`.
+  - **Dialog, Drawer, Popover, Color Picker, Floating Panel**: `initialFocusEl`
+    can now return `false` to open without moving focus.
+  - **Pagination**: Add `api.type` and `api.getPageUrl(page)`.
+  - **Presence**: Fix elements with an exit animation staying mounted forever in
+    Safari, invisible but still blocking clicks.
+  - **Popover**: Fix `autoFocus={false}` being ignored for modal popovers.
+  - **Popover, Select, Menu**: Fix a stylesheet `z-index` on the positioner
+    being ignored.
+  - **Floating Panel**: Fix `strategy="absolute"` placing the panel outside its
+    boundary, and the panel not following its boundary when an ancestor scrolls.
+  - **Listbox**: Fix Shift+click range selection anchoring on the highlighted
+    item instead of the clicked one.
+  - **Tabs**: Fix programmatic tab selection triggering link navigation.
+  - **Toaster**: Fix `dir` and `getRootNode` being ignored.
+  - **Progress**: Fix the formatter not updating when `formatOptions` changes.
+  - **Splitter**: Fix slow dragging in large documents.
+  - Fix inline style values containing semicolons, such as data URLs, being cut
+    off when props merge.
+  - Fix an `Illegal invocation` error on setup when a tool like Storybook has
+    replaced `HTMLElement.prototype.focus`.
+
 ## 3.37.0
 
 ### Minor Changes
