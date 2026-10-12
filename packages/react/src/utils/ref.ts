@@ -1,5 +1,5 @@
 import * as React from "react"
-import { isString } from "./is"
+import { isString } from "./is.ts"
 
 export function getElementRef(el: React.ReactElement) {
   const version = React.version

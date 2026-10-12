@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
-import { useChakraContext } from "./provider"
+import { useChakraContext } from "./provider.tsx"
 
 export function useToken(category: string, token: string | string[]): string[] {
   const sys = useChakraContext()

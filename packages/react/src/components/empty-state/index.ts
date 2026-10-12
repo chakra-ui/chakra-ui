@@ -6,7 +6,7 @@ export {
   EmptyStateTitle,
   EmptyStateDescription,
   useEmptyStateStyles,
-} from "./empty-state"
+} from "./empty-state.ts"
 
 export type {
   EmptyStateRootProps,
@@ -14,6 +14,6 @@ export type {
   EmptyStateIndicatorProps,
   EmptyStateTitleProps,
   EmptyStateDescriptionProps,
-} from "./empty-state"
+} from "./empty-state.ts"
 
-export * as EmptyState from "./namespace"
+export * as EmptyState from "./namespace.ts"

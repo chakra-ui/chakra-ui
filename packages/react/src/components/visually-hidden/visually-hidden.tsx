@@ -1,6 +1,6 @@
 "use client"
 
-import { chakra } from "../../styled-system"
+import { chakra } from "../../styled-system/index.ts"
 
 export const visuallyHiddenStyle = {
   border: "0",

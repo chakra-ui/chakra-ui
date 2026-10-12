@@ -1,9 +1,9 @@
-export * as Status from "./namespace"
+export * as Status from "./namespace.ts"
 export {
   StatusIndicator,
   StatusRoot,
   StatusPropsProvider,
   useStatusStyles,
-} from "./status"
+} from "./status.tsx"
 
-export type { StatusIndicatorProps, StatusRootProps } from "./status"
+export type { StatusIndicatorProps, StatusRootProps } from "./status.tsx"

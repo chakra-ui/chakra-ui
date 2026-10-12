@@ -1,5 +1,5 @@
-import { mapEntries, memo } from "../utils"
-import type { Condition, ConditionConfig } from "./types"
+import { mapEntries, memo } from "../utils/index.ts"
+import type { Condition, ConditionConfig } from "./types.ts"
 
 const SPECIAL_KEY_REGEX = /^@|&|&$/
 

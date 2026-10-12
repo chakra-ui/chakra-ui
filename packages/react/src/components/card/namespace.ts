@@ -6,7 +6,7 @@ export {
   CardHeader as Header,
   CardTitle as Title,
   CardDescription as Description,
-} from "./card"
+} from "./card.tsx"
 
 export type {
   CardBodyProps as BodyProps,
@@ -15,4 +15,4 @@ export type {
   CardHeaderProps as HeaderProps,
   CardTitleProps as TitleProps,
   CardDescriptionProps as DescriptionProps,
-} from "./card"
+} from "./card.tsx"

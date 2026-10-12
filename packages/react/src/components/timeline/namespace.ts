@@ -8,7 +8,7 @@ export {
   TimelineContent as Content,
   TimelineTitle as Title,
   TimelineDescription as Description,
-} from "./timeline"
+} from "./timeline.tsx"
 
 export type {
   TimelineRootProps as RootProps,
@@ -19,4 +19,4 @@ export type {
   TimelineContentProps as ContentProps,
   TimelineTitleProps as TitleProps,
   TimelineDescriptionProps as DescriptionProps,
-} from "./timeline"
+} from "./timeline.tsx"

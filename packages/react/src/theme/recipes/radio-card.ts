@@ -1,6 +1,6 @@
-import { radioCardAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
-import { radiomarkRecipe } from "./radiomark"
+import { radioCardAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
+import { radiomarkRecipe } from "./radiomark.ts"
 
 export const radioCardSlotRecipe = defineSlotRecipe({
   className: "chakra-radio-card",

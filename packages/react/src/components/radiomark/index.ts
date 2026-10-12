@@ -1,2 +1,2 @@
-export { Radiomark } from "./radiomark"
-export type { RadiomarkProps } from "./radiomark"
+export { Radiomark } from "./radiomark.tsx"
+export type { RadiomarkProps } from "./radiomark.tsx"

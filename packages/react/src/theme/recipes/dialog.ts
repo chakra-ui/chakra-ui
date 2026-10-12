@@ -1,5 +1,5 @@
-import { dialogAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { dialogAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const dialogSlotRecipe = defineSlotRecipe({
   slots: dialogAnatomy.keys(),

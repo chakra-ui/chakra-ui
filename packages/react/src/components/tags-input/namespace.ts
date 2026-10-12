@@ -15,7 +15,7 @@ export {
   TagsInputClearTrigger as ClearTrigger,
   TagsInputItemInput as ItemInput,
   TagsInputItemPreview as ItemPreview,
-} from "./tags-input"
+} from "./tags-input.tsx"
 
 export type {
   TagsInputRootProviderProps as RootProviderProps,
@@ -32,4 +32,4 @@ export type {
   TagsInputValidityChangeDetails as ValidityChangeDetails,
   TagsInputItemInputProps as ItemInputProps,
   TagsInputItemPreviewProps as ItemPreviewProps,
-} from "./tags-input"
+} from "./tags-input.tsx"

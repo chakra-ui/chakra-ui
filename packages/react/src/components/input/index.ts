@@ -1,2 +1,2 @@
-export { Input, InputPropsProvider } from "./input"
-export type { InputProps } from "./input"
+export { Input, InputPropsProvider } from "./input.tsx"
+export type { InputProps } from "./input.tsx"

@@ -13,7 +13,7 @@ export {
   RadioCardItemContext as ItemContext,
   RadioCardItemHiddenInput as ItemHiddenInput,
   RadioCardItemDescription as ItemDescription,
-} from "./radio-card"
+} from "./radio-card.tsx"
 
 export type {
   RadioCardItemControlProps as ItemControlProps,
@@ -27,4 +27,4 @@ export type {
   RadioCardValueChangeDetails as ValueChangeDetails,
   RadioCardItemContentProps as ItemContentProps,
   RadioCardItemDescriptionProps as ItemDescriptionProps,
-} from "./radio-card"
+} from "./radio-card.tsx"

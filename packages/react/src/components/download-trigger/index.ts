@@ -4,7 +4,10 @@ import {
   DownloadTrigger as ArkDownloadTrigger,
   type DownloadTriggerBaseProps,
 } from "@ark-ui/react/download-trigger"
-import { type HTMLChakraProps, createRecipeContext } from "../../styled-system"
+import {
+  type HTMLChakraProps,
+  createRecipeContext,
+} from "../../styled-system/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

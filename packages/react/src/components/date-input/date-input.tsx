@@ -10,7 +10,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
+} from "../../styled-system/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

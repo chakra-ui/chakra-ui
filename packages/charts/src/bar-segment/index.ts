@@ -6,7 +6,7 @@ export {
   BarSegmentValue,
   BarSegmentLegend,
   BarSegmentReference,
-} from "./bar-segment"
+} from "./bar-segment.tsx"
 export type {
   BarSegmentData,
   BarSegmentLegendProps,
@@ -16,6 +16,6 @@ export type {
   BarSegmentBarProps,
   BarSegmentLabelProps,
   BarSegmentTooltipProps,
-} from "./bar-segment"
+} from "./bar-segment.tsx"
 
-export * as BarSegment from "./namespace"
+export * as BarSegment from "./namespace.tsx"

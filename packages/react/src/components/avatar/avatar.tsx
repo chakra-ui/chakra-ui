@@ -10,9 +10,9 @@ import {
   chakra,
   createSlotRecipeContext,
   useSlotRecipe,
-} from "../../styled-system"
-import { cx } from "../../utils"
-import { Group, type GroupProps } from "../group"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
+import { Group, type GroupProps } from "../group/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

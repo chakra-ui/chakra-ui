@@ -8,8 +8,8 @@ import {
   chakra,
   createSlotRecipeContext,
   useSlotRecipe,
-} from "../../styled-system"
-import { ArrowDownIcon, ArrowUpIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { ArrowDownIcon, ArrowUpIcon } from "../icons.tsx"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

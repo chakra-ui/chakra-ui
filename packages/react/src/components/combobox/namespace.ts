@@ -20,7 +20,7 @@ export {
   ComboboxPropsProvider as PropsProvider,
   ComboboxTrigger as Trigger,
   ComboboxEmpty as Empty,
-} from "./combobox"
+} from "./combobox.tsx"
 
 export type {
   ComboboxInputProps as InputProps,
@@ -41,7 +41,7 @@ export type {
   ComboboxInputValueChangeDetails as InputValueChangeDetails,
   ComboboxRootComponent as RootComponent,
   ComboboxEmptyProps as EmptyProps,
-} from "./combobox"
+} from "./combobox.tsx"
 
 export type {
   ComboboxInteractOutsideEvent as InteractOutsideEvent,

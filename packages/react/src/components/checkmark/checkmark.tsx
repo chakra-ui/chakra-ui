@@ -9,7 +9,7 @@ import {
   type UnstyledProp,
   chakra,
   useRecipe,
-} from "../../styled-system"
+} from "../../styled-system/index.ts"
 
 export interface CheckmarkProps
   extends HTMLChakraProps<"svg", RecipeProps<"checkmark">>, UnstyledProp {

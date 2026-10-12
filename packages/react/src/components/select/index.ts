@@ -21,7 +21,7 @@ export {
   SelectTrigger,
   SelectValueText,
   useSelectStyles,
-} from "./select"
+} from "./select.tsx"
 
 export type {
   SelectClearTriggerProps,
@@ -45,7 +45,7 @@ export type {
   SelectTriggerProps,
   SelectValueChangeDetails,
   SelectValueTextProps,
-} from "./select"
+} from "./select.tsx"
 
 export {
   useSelect,
@@ -61,4 +61,4 @@ export type {
   SelectPointerDownOutsideEvent,
 } from "@ark-ui/react/select"
 
-export * as Select from "./namespace"
+export * as Select from "./namespace.ts"

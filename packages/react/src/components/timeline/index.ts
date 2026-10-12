@@ -9,7 +9,7 @@ export {
   TimelineSeparator,
   TimelineTitle,
   useTimelineStyles,
-} from "./timeline"
+} from "./timeline.tsx"
 
 export type {
   TimelineConnectorProps,
@@ -20,6 +20,6 @@ export type {
   TimelineRootProps,
   TimelineSeparatorProps,
   TimelineTitleProps,
-} from "./timeline"
+} from "./timeline.tsx"
 
-export * as Timeline from "./namespace"
+export * as Timeline from "./namespace.ts"

@@ -22,7 +22,7 @@ export {
   MenuTriggerItem as TriggerItem,
   MenuContext as Context,
   MenuItemContext as ItemContext,
-} from "./menu"
+} from "./menu.tsx"
 
 export type {
   MenuArrowProps as ArrowProps,
@@ -49,7 +49,7 @@ export type {
   MenuOpenChangeDetails as OpenChangeDetails,
   MenuSelectionDetails as SelectionDetails,
   MenuHighlightChangeDetails as HighlightChangeDetails,
-} from "./menu"
+} from "./menu.tsx"
 
 export type {
   MenuInteractOutsideEvent as InteractOutsideEvent,

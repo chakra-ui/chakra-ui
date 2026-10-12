@@ -16,7 +16,7 @@ export {
   PopoverTitle,
   PopoverTrigger,
   usePopoverStyles,
-} from "./popover"
+} from "./popover.tsx"
 
 export type {
   PopoverAnchorProps,
@@ -34,9 +34,9 @@ export type {
   PopoverRootProviderProps,
   PopoverTitleProps,
   PopoverTriggerProps,
-} from "./popover"
+} from "./popover.tsx"
 
-export * as Popover from "./namespace"
+export * as Popover from "./namespace.ts"
 
 export { usePopover, usePopoverContext } from "@ark-ui/react/popover"
 

@@ -9,7 +9,7 @@ export {
   SegmentGroupRoot as Root,
   SegmentGroupRootProvider as RootProvider,
   SegmentGroupItems as Items,
-} from "./segment-group"
+} from "./segment-group.tsx"
 
 export type {
   SegmentGroupIndicatorProps as IndicatorProps,
@@ -19,4 +19,4 @@ export type {
   SegmentGroupRootProviderProps as RootProviderProps,
   SegmentGroupValueChangeDetails as ValueChangeDetails,
   SegmentGroupItemsProps as ItemsProps,
-} from "./segment-group"
+} from "./segment-group.tsx"

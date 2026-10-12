@@ -1,5 +1,5 @@
-import { clone, mergeWith, walkObject } from "../utils"
-import type { SystemConfig } from "./types"
+import { clone, mergeWith, walkObject } from "../utils/index.ts"
+import type { SystemConfig } from "./types.ts"
 
 // Token keys that should be moved to DEFAULT when nesting
 const tokenKeys = ["value", "type", "description"]

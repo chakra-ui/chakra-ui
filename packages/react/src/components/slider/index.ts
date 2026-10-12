@@ -16,7 +16,7 @@ export {
   SliderContext,
   SliderHiddenInput,
   useSliderStyles,
-} from "./slider"
+} from "./slider.tsx"
 
 export type {
   SliderControlProps,
@@ -33,10 +33,10 @@ export type {
   SliderMarkerGroupProps,
   SliderDraggingIndicatorProps,
   SliderValueChangeDetails,
-} from "./slider"
+} from "./slider.tsx"
 
 export { useSlider, useSliderContext } from "@ark-ui/react/slider"
 
 export type { UseSliderProps, UseSliderReturn } from "@ark-ui/react/slider"
 
-export * as Slider from "./namespace"
+export * as Slider from "./namespace.ts"

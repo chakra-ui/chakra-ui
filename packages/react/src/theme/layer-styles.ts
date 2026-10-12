@@ -1,4 +1,4 @@
-import { defineLayerStyles } from "../styled-system"
+import { defineLayerStyles } from "../styled-system/index.ts"
 
 export const layerStyles = defineLayerStyles({
   // fill: some background color + color combination

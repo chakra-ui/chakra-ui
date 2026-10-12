@@ -6,16 +6,16 @@ export {
   QrCodeOverlay,
   QrCodePropsProvider,
   useQrCodeStyles,
-} from "./qr-code"
+} from "./qr-code.tsx"
 
 export type {
   QrCodeRootProps,
   QrCodeFrameProps,
   QrCodePatternProps,
   QrCodeOverlayProps,
-} from "./qr-code"
+} from "./qr-code.tsx"
 
 export { useQrCode, useQrCodeContext } from "@ark-ui/react/qr-code"
 export type { UseQrCodeProps, UseQrCodeReturn } from "@ark-ui/react/qr-code"
 
-export * as QrCode from "./namespace"
+export * as QrCode from "./namespace.ts"

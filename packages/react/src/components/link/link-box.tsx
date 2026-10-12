@@ -1,8 +1,8 @@
 "use client"
 
 import { forwardRef } from "react"
-import { type HTMLChakraProps, chakra } from "../../styled-system"
-import { cx } from "../../utils"
+import { type HTMLChakraProps, chakra } from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
 
 export interface LinkOverlayProps extends HTMLChakraProps<"a"> {}
 

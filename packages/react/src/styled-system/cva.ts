@@ -9,11 +9,11 @@ import {
   splitProps,
   uniq,
   walkObject,
-} from "../utils"
-import { createCssFn } from "./css"
-import type { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
-import { EMPTY_OBJECT } from "./singleton"
-import type { Condition, CssFn, Layers, SystemContext } from "./types"
+} from "../utils/index.ts"
+import { createCssFn } from "./css.ts"
+import type { RecipeCreatorFn, RecipeDefinition } from "./recipe.types.ts"
+import { EMPTY_OBJECT } from "./singleton.ts"
+import type { Condition, CssFn, Layers, SystemContext } from "./types.ts"
 
 const defaults = (conf: any): Required<RecipeDefinition> => ({
   base: EMPTY_OBJECT,

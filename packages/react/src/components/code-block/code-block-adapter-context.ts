@@ -1,8 +1,8 @@
 "use client"
 
-import { createContext } from "../../create-context"
-import { plainTextAdapter } from "./adapters"
-import type { UseCodeHighlightReturn } from "./use-code-highlight"
+import { createContext } from "../../create-context.ts"
+import { plainTextAdapter } from "./adapters.ts"
+import type { UseCodeHighlightReturn } from "./use-code-highlight.ts"
 
 export interface UseCodeBlockAdapterContext extends UseCodeHighlightReturn {}
 

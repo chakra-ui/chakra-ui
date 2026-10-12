@@ -8,8 +8,8 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { CheckIcon, ChevronDownIcon, CloseIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { CheckIcon, ChevronDownIcon, CloseIcon } from "../icons.tsx"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

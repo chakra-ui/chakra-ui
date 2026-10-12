@@ -1,6 +1,6 @@
 import { useMemo } from "react"
-import { splitProps } from "../utils"
-import { useChakraContext } from "./provider"
+import { splitProps } from "../utils/index.ts"
+import { useChakraContext } from "./provider.tsx"
 
 const htmlProps = new Set([
   "htmlWidth",

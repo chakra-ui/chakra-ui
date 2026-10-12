@@ -6,7 +6,7 @@ export {
   AvatarFallback as Fallback,
   AvatarIcon as Icon,
   AvatarContext as Context,
-} from "./avatar"
+} from "./avatar.tsx"
 
 export type {
   AvatarRootProps as RootProps,
@@ -14,4 +14,4 @@ export type {
   AvatarFallbackProps as FallbackProps,
   AvatarIconProps as IconProps,
   AvatarStatusChangeDetails as StatusChangeDetails,
-} from "./avatar"
+} from "./avatar.tsx"

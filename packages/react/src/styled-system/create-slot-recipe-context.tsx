@@ -1,26 +1,26 @@
 "use client"
 
 import { forwardRef, useMemo } from "react"
-import { createContext } from "../create-context"
-import { mergeProps } from "../merge-props"
-import { cx } from "../utils"
-import type { SystemStyleObject } from "./css.types"
+import { createContext } from "../create-context.ts"
+import { mergeProps } from "../merge-props.ts"
+import { cx } from "../utils/index.ts"
+import type { SystemStyleObject } from "./css.types.ts"
 import {
   getElementTypeDisplayName,
   inferRootProviderDisplayName,
   inferSlotRecipeComponentDisplayName,
   upperFirst,
-} from "./display-name"
-import { EMPTY_SLOT_STYLES } from "./empty"
-import { chakra } from "./factory"
-import type { JsxFactoryOptions } from "./factory.types"
-import type { ConfigRecipeSlots } from "./generated/recipes.gen"
-import type { SystemSlotRecipeFn } from "./recipe.types"
+} from "./display-name.ts"
+import { EMPTY_SLOT_STYLES } from "./empty.ts"
+import { chakra } from "./factory.tsx"
+import type { JsxFactoryOptions } from "./factory.types.ts"
+import type { ConfigRecipeSlots } from "./generated/recipes.gen.ts"
+import type { SystemSlotRecipeFn } from "./recipe.types.ts"
 import {
   type SlotRecipeKey,
   type UseSlotRecipeOptions,
   useSlotRecipe,
-} from "./use-slot-recipe"
+} from "./use-slot-recipe.ts"
 
 interface WrapElementProps<P> {
   wrapElement?(element: React.ReactElement, props: P): React.ReactElement

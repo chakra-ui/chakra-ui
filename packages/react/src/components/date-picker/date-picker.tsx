@@ -14,9 +14,9 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { Button } from "../button/button"
-import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { Button } from "../button/button.tsx"
+import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "../icons.tsx"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

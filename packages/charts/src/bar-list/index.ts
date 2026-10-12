@@ -6,7 +6,7 @@ export {
   BarListTitle,
   BarListLabel,
   BarListTooltip,
-} from "./bar-list"
+} from "./bar-list.tsx"
 
 export type {
   BarListData,
@@ -15,6 +15,6 @@ export type {
   BarListValueProps,
   BarListLabelProps,
   BarListTooltipProps,
-} from "./bar-list"
+} from "./bar-list.tsx"
 
-export * as BarList from "./namespace"
+export * as BarList from "./namespace.ts"

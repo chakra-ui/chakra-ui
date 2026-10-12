@@ -1,4 +1,4 @@
-import { memo } from "../utils/memo"
+import { memo } from "../utils/memo.ts"
 
 const createMediaQueryRegex = (dimension: "width" | "height") => ({
   minMax: new RegExp(

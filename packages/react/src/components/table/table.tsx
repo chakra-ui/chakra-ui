@@ -8,8 +8,8 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { cx } from "../../utils"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

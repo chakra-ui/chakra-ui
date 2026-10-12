@@ -1,4 +1,4 @@
-import { isObject } from "./is"
+import { isObject } from "./is.ts"
 
 function merge(target: any, source: any): any {
   if (source == null) return target

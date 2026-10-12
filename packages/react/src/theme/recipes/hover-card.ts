@@ -1,5 +1,5 @@
-import { hoverCardAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { hoverCardAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const hoverCardSlotRecipe = defineSlotRecipe({
   className: "chakra-hover-card",

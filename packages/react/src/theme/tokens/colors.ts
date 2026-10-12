@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "../../styled-system/index.ts"
 
 export const colors = defineTokens.colors({
   transparent: { value: "transparent" },

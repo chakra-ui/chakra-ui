@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "../../styled-system/index.ts"
 
 export const animations = defineTokens.animations({
   spin: { value: "spin 1s linear infinite" },

@@ -5,7 +5,7 @@ export {
   FieldsetLegend as Legend,
   FieldsetContent as Content,
   FieldsetContext as Context,
-} from "./fieldset"
+} from "./fieldset.ts"
 
 export type {
   FieldsetRootProps as RootProps,
@@ -13,4 +13,4 @@ export type {
   FieldsetHelperTextProps as HelperTextProps,
   FieldsetLegendProps as LegendProps,
   FieldsetContentProps as ContentProps,
-} from "./fieldset"
+} from "./fieldset.ts"

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { type Dict, omit } from "../utils"
+import { type Dict, omit } from "../utils/index.ts"
 
 type OverlaySnapshotEntry<T extends Dict> = { id: string; props: T }
 

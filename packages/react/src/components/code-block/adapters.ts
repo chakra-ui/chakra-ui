@@ -1,4 +1,4 @@
-import type { CodeBlockAdapter } from "./types"
+import type { CodeBlockAdapter } from "./types.ts"
 
 export const plainTextAdapter: CodeBlockAdapter = {
   getHighlighter:

@@ -1,7 +1,10 @@
 import type { PropertiesFallback } from "csstype"
-import type { Conditions } from "./generated/conditions.gen"
-import type { CssVarProperties, SystemProperties } from "./generated/system.gen"
-import type { AnySelector, Selectors } from "./selectors"
+import type { Conditions } from "./generated/conditions.gen.ts"
+import type {
+  CssVarProperties,
+  SystemProperties,
+} from "./generated/system.gen.ts"
+import type { AnySelector, Selectors } from "./selectors.ts"
 
 type String = string & {}
 type Number = number & {}

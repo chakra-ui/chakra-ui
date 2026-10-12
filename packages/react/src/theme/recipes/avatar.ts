@@ -1,5 +1,5 @@
-import { avatarAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { avatarAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const avatarSlotRecipe = defineSlotRecipe({
   slots: avatarAnatomy.keys(),

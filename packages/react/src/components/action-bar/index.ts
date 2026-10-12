@@ -9,7 +9,7 @@ export {
   ActionBarSeparator,
   ActionBarContext,
   useActionBarStyles,
-} from "./action-bar"
+} from "./action-bar.tsx"
 
 export type {
   ActionBarCloseTriggerProps,
@@ -20,7 +20,7 @@ export type {
   ActionBarSelectionTriggerProps,
   ActionBarSeparatorProps,
   ActionBarOpenChangeDetails,
-} from "./action-bar"
+} from "./action-bar.tsx"
 
 export {
   usePopover as useActionBar,
@@ -35,4 +35,4 @@ export type {
   PopoverPointerDownOutsideEvent as ActionBarPointerDownOutsideEvent,
 } from "@ark-ui/react/popover"
 
-export * as ActionBar from "./namespace"
+export * as ActionBar from "./namespace.ts"

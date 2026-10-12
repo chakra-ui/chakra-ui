@@ -1,5 +1,5 @@
-import { carouselAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { carouselAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const carouselSlotRecipe = defineSlotRecipe({
   className: "carousel",

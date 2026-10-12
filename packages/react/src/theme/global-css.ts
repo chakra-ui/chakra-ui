@@ -1,4 +1,4 @@
-import { defineGlobalStyles } from "../styled-system"
+import { defineGlobalStyles } from "../styled-system/index.ts"
 
 const empty = "var(--chakra-empty, )"
 

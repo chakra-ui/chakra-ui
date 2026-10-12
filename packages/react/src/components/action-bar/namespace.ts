@@ -8,7 +8,7 @@ export {
   ActionBarPropsProvider as PropsProvider,
   ActionBarRootProvider as RootProvider,
   ActionBarContext as Context,
-} from "./action-bar"
+} from "./action-bar.tsx"
 
 export type {
   ActionBarRootProps as RootProps,
@@ -19,7 +19,7 @@ export type {
   ActionBarCloseTriggerProps as CloseTriggerProps,
   ActionBarOpenChangeDetails as OpenChangeDetails,
   ActionBarRootProviderProps as RootProviderProps,
-} from "./action-bar"
+} from "./action-bar.tsx"
 
 export type {
   PopoverInteractOutsideEvent as InteractOutsideEvent,

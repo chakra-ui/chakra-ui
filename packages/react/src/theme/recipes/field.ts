@@ -1,5 +1,5 @@
-import { fieldAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { fieldAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const fieldSlotRecipe = defineSlotRecipe({
   className: "chakra-field",

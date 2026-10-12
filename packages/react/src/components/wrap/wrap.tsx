@@ -2,9 +2,12 @@
 
 import type { Assign } from "@ark-ui/react"
 import { forwardRef } from "react"
-import type { HTMLChakraProps, SystemStyleObject } from "../../styled-system"
-import { chakra, defineStyle } from "../../styled-system"
-import { cx } from "../../utils"
+import type {
+  HTMLChakraProps,
+  SystemStyleObject,
+} from "../../styled-system/index.ts"
+import { chakra, defineStyle } from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
 
 export interface WrapProps extends Assign<
   HTMLChakraProps<"div">,

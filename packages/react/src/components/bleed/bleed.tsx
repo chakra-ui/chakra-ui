@@ -5,8 +5,8 @@ import {
   type HTMLChakraProps,
   type SystemStyleObject,
   chakra,
-} from "../../styled-system"
-import { isCssUnit, isCssVar, mapObject } from "../../utils"
+} from "../../styled-system/index.ts"
+import { isCssUnit, isCssVar, mapObject } from "../../utils/index.ts"
 
 export interface BleedProps extends HTMLChakraProps<"div"> {
   /**

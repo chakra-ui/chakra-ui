@@ -1,2 +1,2 @@
-export { Spinner, SpinnerPropsProvider } from "./spinner"
-export type { SpinnerProps } from "./spinner"
+export { Spinner, SpinnerPropsProvider } from "./spinner.tsx"
+export type { SpinnerProps } from "./spinner.tsx"

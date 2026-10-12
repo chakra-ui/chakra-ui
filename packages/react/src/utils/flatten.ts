@@ -1,4 +1,4 @@
-import { type WalkObjectStopFn, walkObject } from "./walk-object"
+import { type WalkObjectStopFn, walkObject } from "./walk-object.ts"
 
 export function flatten(
   values: Record<string, Record<string, any>>,

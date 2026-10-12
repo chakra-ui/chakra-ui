@@ -1,10 +1,10 @@
 "use client"
 
 import { forwardRef, useMemo } from "react"
-import type { RecipeProps } from "../../styled-system"
-import { useRecipe } from "../../styled-system"
-import { Group, type GroupProps } from "../group"
-import { ButtonPropsProvider } from "./button"
+import type { RecipeProps } from "../../styled-system/index.ts"
+import { useRecipe } from "../../styled-system/index.ts"
+import { Group, type GroupProps } from "../group/index.ts"
+import { ButtonPropsProvider } from "./button.tsx"
 
 export interface ButtonGroupProps extends GroupProps, RecipeProps<"button"> {}
 

@@ -11,7 +11,7 @@ export {
   RatingGroupRootProvider,
   RatingGroupItems,
   useRatingGroupStyles,
-} from "./rating-group"
+} from "./rating-group.tsx"
 
 export type {
   RatingGroupControlProps,
@@ -23,7 +23,7 @@ export type {
   RatingGroupRootProviderProps,
   RatingGroupValueChangeDetails,
   RatingGroupHoverChangeDetails,
-} from "./rating-group"
+} from "./rating-group.tsx"
 
 export {
   useRatingGroup,
@@ -36,4 +36,4 @@ export type {
   UseRatingGroupReturn,
 } from "@ark-ui/react/rating-group"
 
-export * as RatingGroup from "./namespace"
+export * as RatingGroup from "./namespace.ts"

@@ -5,8 +5,8 @@ import {
   type HTMLChakraProps,
   type SystemStyleObject,
   chakra,
-} from "../../styled-system"
-import { cx } from "../../utils"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
 
 interface ImageOptions {
   /**

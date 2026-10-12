@@ -1,18 +1,18 @@
 import type { PropertiesFallback } from "csstype"
-import type { Dict, DistributiveOmit } from "../utils"
+import type { Dict, DistributiveOmit } from "../utils/index.ts"
 import type {
   ConditionalValue,
   CssKeyframes,
   Nested,
   SystemStyleObject,
-} from "./css.types"
-import type { Tokens } from "./generated/token.gen"
+} from "./css.types.ts"
+import type { Tokens } from "./generated/token.gen.ts"
 import type {
   RecipeCreatorFn,
   RecipeDefinition,
   SlotRecipeConfig,
   SlotRecipeCreatorFn,
-} from "./recipe.types"
+} from "./recipe.types.ts"
 
 export type CssProperty = keyof PropertiesFallback
 

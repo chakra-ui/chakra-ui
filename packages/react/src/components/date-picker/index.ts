@@ -35,7 +35,7 @@ export {
   DatePickerYearTable,
   DatePickerValueText,
   useDatePickerStyles,
-} from "./date-picker"
+} from "./date-picker.tsx"
 
 export type {
   DatePickerClearTriggerProps,
@@ -74,7 +74,7 @@ export type {
   DatePickerMonthTableProps,
   DatePickerYearTableProps,
   DatePickerValueTextProps,
-} from "./date-picker"
+} from "./date-picker.tsx"
 
 export {
   DatePickerContext,
@@ -98,4 +98,4 @@ export type {
   UseDatePickerReturn,
 } from "@ark-ui/react/date-picker"
 
-export * as DatePicker from "./namespace"
+export * as DatePicker from "./namespace.ts"

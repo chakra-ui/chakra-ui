@@ -4,13 +4,13 @@ export {
   ChartRadialText,
   ChartRoot,
   ChartTooltip,
-} from "./chart"
+} from "./chart.tsx"
 export type {
   ChartRootProps,
   ChartGradientProps,
   ChartLegendProps,
   ChartTooltipProps,
   ChartRadialTextProps,
-} from "./chart"
+} from "./chart.tsx"
 
-export * as Chart from "./namespace"
+export * as Chart from "./namespace.ts"

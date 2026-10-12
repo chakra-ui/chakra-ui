@@ -1,5 +1,5 @@
-import { actionBarAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { actionBarAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const actionBarSlotRecipe = defineSlotRecipe({
   className: "chakra-action-bar",

@@ -1,5 +1,5 @@
-import { selectAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { selectAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const selectSlotRecipe = defineSlotRecipe({
   className: "chakra-select",

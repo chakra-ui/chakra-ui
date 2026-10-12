@@ -12,8 +12,8 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { Checkmark } from "../checkmark"
+} from "../../styled-system/index.ts"
+import { Checkmark } from "../checkmark/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -6,7 +6,7 @@ export {
   TagEndElement,
   useTagStyles,
   TagRootPropsProvider,
-} from "./tag"
+} from "./tag.tsx"
 
 export type {
   TagRootProps,
@@ -14,6 +14,6 @@ export type {
   TagLabelProps,
   TagStartElementProps,
   TagEndElementProps,
-} from "./tag"
+} from "./tag.tsx"
 
-export * as Tag from "./namespace"
+export * as Tag from "./namespace.ts"

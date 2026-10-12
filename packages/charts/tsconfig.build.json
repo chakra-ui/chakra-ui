@@ -2,6 +2,8 @@
   "extends": "../../tsconfig.json",
   "include": ["src"],
   "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "noEmit": false,
     "emitDeclarationOnly": true,
     "declaration": true,

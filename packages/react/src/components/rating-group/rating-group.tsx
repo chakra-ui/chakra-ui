@@ -13,9 +13,9 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { For } from "../for"
-import { StarIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { For } from "../for/index.ts"
+import { StarIcon } from "../icons.tsx"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

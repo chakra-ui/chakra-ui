@@ -2,16 +2,16 @@
 
 import { dataAttr } from "@ark-ui/react"
 import { forwardRef, useMemo } from "react"
-import { mergeProps } from "../../merge-props"
+import { mergeProps } from "../../merge-props.ts"
 import {
   type HTMLChakraProps,
   type RecipeProps,
   type UnstyledProp,
   chakra,
   createRecipeContext,
-} from "../../styled-system"
-import { cx } from "../../utils"
-import { Loader } from "../loader"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
+import { Loader } from "../loader/index.tsx"
 
 const { useRecipeResult, PropsProvider, usePropsContext } = createRecipeContext(
   { key: "button" },

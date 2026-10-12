@@ -1,5 +1,5 @@
-import { segmentGroupAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { segmentGroupAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const segmentGroupSlotRecipe = defineSlotRecipe({
   className: "chakra-segment-group",

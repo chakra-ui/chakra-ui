@@ -1,14 +1,14 @@
 "use client"
 
 import { useMemo } from "react"
-import type { ConfigSlotRecipes } from "./generated/recipes.gen"
-import { useChakraContext } from "./provider"
+import type { ConfigSlotRecipes } from "./generated/recipes.gen.ts"
+import { useChakraContext } from "./provider.tsx"
 import type {
   RecipeVariantMap,
   RecipeVariantProps,
   SlotRecipeConfig,
   SystemSlotRecipeFn,
-} from "./recipe.types"
+} from "./recipe.types.ts"
 
 export type SlotRecipeKey = keyof ConfigSlotRecipes | (string & {})
 

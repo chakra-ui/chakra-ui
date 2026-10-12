@@ -11,7 +11,7 @@ export {
   CheckboxCardRootPropsProvider,
   CheckboxCardDescription,
   useCheckboxCardStyles,
-} from "./checkbox-card"
+} from "./checkbox-card.tsx"
 
 export type {
   CheckboxCardAddonProps,
@@ -23,7 +23,7 @@ export type {
   CheckboxCardCheckedChangeDetails,
   CheckboxCardContentProps,
   CheckboxCardDescriptionProps,
-} from "./checkbox-card"
+} from "./checkbox-card.tsx"
 
 export {
   useCheckbox as useCheckboxCard,
@@ -35,4 +35,4 @@ export type {
   UseCheckboxReturn as UseCheckboxCardReturn,
 } from "@ark-ui/react/checkbox"
 
-export * as CheckboxCard from "./namespace"
+export * as CheckboxCard from "./namespace.ts"

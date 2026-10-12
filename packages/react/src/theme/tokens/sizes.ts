@@ -1,5 +1,5 @@
-import { defineTokens } from "../../styled-system"
-import { spacing } from "./spacing"
+import { defineTokens } from "../../styled-system/index.ts"
+import { spacing } from "./spacing.ts"
 
 const largeSizes = defineTokens.sizes({
   "3xs": { value: "14rem" },

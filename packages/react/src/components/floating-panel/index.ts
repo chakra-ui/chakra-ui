@@ -15,7 +15,7 @@ export {
   FloatingPanelCloseTrigger,
   FloatingPanelControl,
   useFloatingPanelStyles,
-} from "./floating-panel"
+} from "./floating-panel.tsx"
 
 export type {
   FloatingPanelRootProps,
@@ -33,7 +33,7 @@ export type {
   FloatingPanelStageTriggerProps,
   FloatingPanelCloseTriggerProps,
   FloatingPanelControlProps,
-} from "./floating-panel"
+} from "./floating-panel.tsx"
 
 export {
   useFloatingPanel,
@@ -50,4 +50,4 @@ export type {
   FloatingPanelStageChangeDetails,
 } from "@ark-ui/react/floating-panel"
 
-export * as FloatingPanel from "./namespace"
+export * as FloatingPanel from "./namespace.ts"

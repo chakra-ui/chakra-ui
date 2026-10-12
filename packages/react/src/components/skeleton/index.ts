@@ -3,9 +3,9 @@ export {
   SkeletonPropsProvider,
   SkeletonCircle,
   SkeletonText,
-} from "./skeleton"
+} from "./skeleton.tsx"
 export type {
   SkeletonProps,
   SkeletonCircleProps,
   SkeletonTextProps,
-} from "./skeleton"
+} from "./skeleton.tsx"

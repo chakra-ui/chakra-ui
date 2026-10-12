@@ -5,7 +5,7 @@ import {
   Presence as ArkPresence,
   type PresenceProps as ArkPresenceProps,
 } from "@ark-ui/react/presence"
-import { type HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system/index.ts"
 
 export interface PresenceProps extends Assign<
   HTMLChakraProps<"div">,

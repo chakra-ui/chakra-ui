@@ -1,5 +1,5 @@
-import { type Dict, walkObject } from "../utils"
-import { type SystemContext } from "./types"
+import { type Dict, walkObject } from "../utils/index.ts"
+import { type SystemContext } from "./types.ts"
 
 export function createNormalizeFn(context: {
   utility: SystemContext["utility"]

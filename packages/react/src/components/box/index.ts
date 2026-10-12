@@ -1,6 +1,6 @@
 "use client"
 
-import { type HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system/index.ts"
 
 export interface BoxProps extends HTMLChakraProps<"div"> {}
 

@@ -6,7 +6,7 @@ export {
   FieldErrorText as ErrorText,
   FieldErrorIcon as ErrorIcon,
   FieldRequiredIndicator as RequiredIndicator,
-} from "./field"
+} from "./field.tsx"
 
 export type {
   FieldRootProps as RootProps,
@@ -15,7 +15,7 @@ export type {
   FieldErrorTextProps as ErrorTextProps,
   FieldErrorIconProps as ErrorIconProps,
   FieldRequiredIndicatorProps as RequiredIndicatorProps,
-} from "./field"
+} from "./field.tsx"
 
 export { FieldContext as Context, FieldItem as Item } from "@ark-ui/react/field"
 

@@ -9,7 +9,7 @@ export {
   StatHelpText,
   StatLabel,
   useStatStyles,
-} from "./stat"
+} from "./stat.tsx"
 
 export type {
   StatUpIndicatorProps,
@@ -20,6 +20,6 @@ export type {
   StatValueUnitProps,
   StatHelpTextProps,
   StatLabelProps,
-} from "./stat"
+} from "./stat.tsx"
 
-export * as Stat from "./namespace"
+export * as Stat from "./namespace.ts"

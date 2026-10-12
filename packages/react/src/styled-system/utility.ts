@@ -1,13 +1,19 @@
-import { type Dict, isFunction, isString, mapEntries, memo } from "../utils"
-import { colorMix } from "./color-mix"
-import { mapToJson } from "./map-to-json"
-import { EMPTY_OBJECT } from "./singleton"
+import {
+  type Dict,
+  isFunction,
+  isString,
+  mapEntries,
+  memo,
+} from "../utils/index.ts"
+import { colorMix } from "./color-mix.ts"
+import { mapToJson } from "./map-to-json.ts"
+import { EMPTY_OBJECT } from "./singleton.ts"
 import type {
   TokenDictionary,
   Utility,
   UtilityConfig,
   UtilityPropertyConfig,
-} from "./types"
+} from "./types.ts"
 
 interface Options {
   tokens: TokenDictionary

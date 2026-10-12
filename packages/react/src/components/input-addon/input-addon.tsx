@@ -8,7 +8,7 @@ import {
   type UnstyledProp,
   chakra,
   useRecipe,
-} from "../../styled-system"
+} from "../../styled-system/index.ts"
 
 export interface InputAddonProps
   extends HTMLChakraProps<"div">, RecipeProps<"inputAddon">, UnstyledProp {}

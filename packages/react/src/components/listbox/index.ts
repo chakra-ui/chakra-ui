@@ -15,7 +15,7 @@ export {
   ListboxValueText,
   ListboxEmpty,
   useListboxStyles,
-} from "./listbox"
+} from "./listbox.tsx"
 
 export type {
   ListboxContentProps,
@@ -33,7 +33,7 @@ export type {
   ListboxRootProviderProps,
   ListboxValueChangeDetails,
   ListboxValueTextProps,
-} from "./listbox"
+} from "./listbox.tsx"
 
 export {
   useListbox,
@@ -49,4 +49,4 @@ export type {
   ListboxSelectionMode,
 } from "@ark-ui/react/listbox"
 
-export * as Listbox from "./namespace"
+export * as Listbox from "./namespace.ts"

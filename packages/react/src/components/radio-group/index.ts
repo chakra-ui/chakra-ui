@@ -10,7 +10,7 @@ export {
   RadioGroupItemHiddenInput,
   RadioGroupContext,
   useRadioGroupStyles,
-} from "./radio-group"
+} from "./radio-group.tsx"
 
 export type {
   RadioGroupItemControlProps,
@@ -20,7 +20,7 @@ export type {
   RadioGroupRootProps,
   RadioGroupRootProviderProps,
   RadioGroupValueChangeDetails,
-} from "./radio-group"
+} from "./radio-group.tsx"
 
 export {
   useRadioGroup,
@@ -33,4 +33,4 @@ export type {
   UseRadioGroupReturn,
 } from "@ark-ui/react/radio-group"
 
-export * as RadioGroup from "./namespace"
+export * as RadioGroup from "./namespace.ts"

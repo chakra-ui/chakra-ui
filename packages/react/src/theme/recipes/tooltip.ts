@@ -1,5 +1,5 @@
-import { tooltipAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { tooltipAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const tooltipSlotRecipe = defineSlotRecipe({
   slots: tooltipAnatomy.keys(),

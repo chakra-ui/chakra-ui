@@ -1,5 +1,5 @@
-import { defineRecipe } from "../../styled-system"
-import { inputRecipe } from "./input"
+import { defineRecipe } from "../../styled-system/index.ts"
+import { inputRecipe } from "./input.ts"
 
 export const inputAddonRecipe = defineRecipe({
   className: "chakra-input-addon",
