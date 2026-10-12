@@ -734,7 +734,17 @@ export type EmptyStateVariantMap = {
 
 // Field
 
-export type FieldSlot = "root" | "errorText" | "helperText" | "input" | "label" | "select" | "textarea" | "requiredIndicator" | "requiredIndicator"
+export type FieldSlot =
+  | "root"
+  | "errorText"
+  | "helperText"
+  | "input"
+  | "label"
+  | "select"
+  | "textarea"
+  | "requiredIndicator"
+  | "inputElement"
+  | "requiredIndicator"
 
 export interface FieldVariant {
   /** @default "vertical" */

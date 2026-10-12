@@ -6,6 +6,15 @@ import type { AnySelector, Selectors } from "./selectors"
 type String = string & {}
 type Number = number & {}
 
+export type CornerShape =
+  | "round"
+  | "scoop"
+  | "bevel"
+  | "notch"
+  | "square"
+  | "squircle"
+  | (string & {})
+
 /* -----------------------------------------------------------------------------
  * Native css properties
  * -----------------------------------------------------------------------------*/
@@ -13,7 +22,9 @@ type Number = number & {}
 export type CssProperty = keyof PropertiesFallback
 
 export interface CssProperties
-  extends PropertiesFallback<String | Number>, CssVarProperties {}
+  extends PropertiesFallback<String | Number>, CssVarProperties {
+  cornerShape?: CornerShape
+}
 
 export interface CssKeyframes {
   [name: string]: {
