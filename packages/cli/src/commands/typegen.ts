@@ -9,6 +9,7 @@ import { generateCondition } from "../utils/generate-conditions"
 import { generatePropTypes } from "../utils/generate-prop-types"
 import { generateRecipe } from "../utils/generate-recipe"
 import { generateSystemTypes } from "../utils/generate-system-types"
+import { generateThemeAugmentationTypes } from "../utils/generate-theme-augmentation-types"
 import { generateTokens } from "../utils/generate-tokens"
 import * as io from "../utils/io"
 import { tasks } from "../utils/tasks"
@@ -29,12 +30,12 @@ const getDefaultBasePath = () => {
   return join(root, "styled-system", "generated")
 }
 
-interface CodegenFlags {
+export interface CodegenFlags {
   strict?: boolean
   format?: boolean
   watch?: string
   clean?: boolean
-  outdir: string
+  outdir?: string
   tsconfig?: string
 }
 
@@ -46,8 +47,7 @@ export const TypegenCommand = new Command("typegen")
   .option("--clean", "Clean the output directory")
   .option(
     "--outdir <dir>",
-    "Output directory to write the generated types",
-    getDefaultBasePath(),
+    "Ship the generated types with your codebase: writes a single module augmentation file (declare module '@chakra-ui/react') to <dir>. When omitted, the internal .gen types are written to the default in-package location.",
   )
   .option(
     "--tsconfig <path>",
@@ -57,9 +57,15 @@ export const TypegenCommand = new Command("typegen")
     debug("source", source)
     debug("flags", flags)
 
+    // Passing --outdir is the deliberate signal to ship types with your codebase:
+    // with it we emit a single module augmentation file; without it we regenerate
+    // the internal .gen types in the default in-package location.
+    const augment = flags.outdir != null
+    const outdir = flags.outdir ?? getDefaultBasePath()
+
     if (flags.clean) {
-      debug("cleaning output directory", flags.outdir)
-      await io.clean(flags.outdir)
+      debug("cleaning output directory", outdir)
+      await io.clean(outdir)
     }
 
     let result = await io.read(source, { tsconfig: flags.tsconfig })
@@ -72,7 +78,7 @@ export const TypegenCommand = new Command("typegen")
     }
 
     const build = async () => {
-      await codegen(result.mod, flags)
+      await codegen(result.mod, flags, outdir, augment)
 
       if (flags.watch) {
         p.log.info("\n⌛️ Watching for changes...")
@@ -92,47 +98,64 @@ export const TypegenCommand = new Command("typegen")
     p.outro("🎉 Done!")
   })
 
-function codegen(sys: SystemContext, flags: CodegenFlags) {
-  io.ensureDir(flags.outdir)
-  debug("writing codegen to", flags.outdir)
+function codegen(
+  sys: SystemContext,
+  flags: CodegenFlags,
+  outdir: string,
+  augment: boolean,
+) {
+  io.ensureDir(outdir)
+  debug("writing codegen to", outdir)
+
+  if (augment) {
+    return tasks([
+      {
+        title: "Generating theme augmentation types...",
+        task: async () => {
+          await io.write(
+            outdir,
+            "theme-typings",
+            generateThemeAugmentationTypes(sys, flags),
+          )
+          return "✅ Generated theme augmentation types"
+        },
+      },
+    ])
+  }
 
   return tasks([
     {
       title: "Generating conditions types...",
       task: async () => {
-        await io.write(flags.outdir, "conditions.gen", generateCondition(sys))
+        await io.write(outdir, "conditions.gen", generateCondition(sys))
         return "✅ Generated conditions typings"
       },
     },
     {
       title: "Generating recipe types...",
       task: async () => {
-        await io.write(
-          flags.outdir,
-          "recipes.gen",
-          generateRecipe(sys, flags.strict),
-        )
+        await io.write(outdir, "recipes.gen", generateRecipe(sys, flags.strict))
         return "✅ Generated recipe typings"
       },
     },
     {
       title: "Generating utility types...",
       task: async () => {
-        await io.write(flags.outdir, "prop-types.gen", generatePropTypes(sys))
+        await io.write(outdir, "prop-types.gen", generatePropTypes(sys))
         return "✅ Generated utility typings"
       },
     },
     {
       title: "Generating token types...",
       task: async () => {
-        await io.write(flags.outdir, "token.gen", generateTokens(sys))
+        await io.write(outdir, "token.gen", generateTokens(sys))
         return "✅ Generated token typings"
       },
     },
     {
       title: "Generating system types...",
       task: async () => {
-        await io.write(flags.outdir, "system.gen", generateSystemTypes(sys))
+        await io.write(outdir, "system.gen", generateSystemTypes(sys))
         return "✅ Generated system types"
       },
     },
