@@ -161,8 +161,8 @@ const docsLinks: NavItem = {
           items: [
             { title: "Combobox", url: "combobox" },
             {
-              title: "Command Palette",
-              url: "command-palette",
+              title: "Command",
+              url: "command",
               status: "new",
             },
             { title: "Listbox", url: "listbox" },

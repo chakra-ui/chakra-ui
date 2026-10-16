@@ -1,0 +1,310 @@
+---
+title: Command
+description:
+  Used to build searchable command menus, search dialogs, and pickers.
+links:
+  source: components/command
+  storybook: components-command--basic
+  recipe: command
+---
+
+<ExampleTabs name="command-basic" />
+
+## Usage
+
+```jsx
+import { Command, useCommandCollection } from "@chakra-ui/react"
+```
+
+```jsx
+<Command.Dialog>
+  <Command.DialogTrigger />
+  <Command.Root>
+    <Command.Label />
+    <Command.Control>
+      <Command.Indicator />
+      <Command.Input />
+      <Command.ClearTrigger />
+    </Command.Control>
+    <Command.List>
+      <Command.Loading />
+      <Command.ItemGroup>
+        <Command.ItemGroupLabel />
+        <Command.Item>
+          <Command.ItemText />
+          <Command.ItemCommand />
+          <Command.ItemIndicator />
+        </Command.Item>
+      </Command.ItemGroup>
+      <Command.Separator />
+      <Command.Empty />
+    </Command.List>
+    <Command.Footer />
+  </Command.Root>
+</Command.Dialog>
+```
+
+`Command.Root` renders the search and results inline. Wrap it in
+`Command.Dialog` for a palette: it closes after a command runs, and has no
+global shortcut, so you can bind `⌘K` with the tool your app already uses (see
+[Store](#store)).
+
+Use `useCommandCollection` to rank items as the user types. Pass its `search` to
+`onInputValueChange`, and reset it in the dialog's `onExitComplete`.
+
+```tsx
+const command = useCommandCollection({ initialItems: commands })
+
+<Command.Dialog onExitComplete={() => command.search("")}>
+  <Command.Root
+    collection={command.collection}
+    onInputValueChange={(e) => command.search(e.inputValue)}
+  >
+    {/* ... */}
+  </Command.Root>
+</Command.Dialog>
+```
+
+By default the command runs actions: give an item an `onSelect` to run it, and
+no selected state persists. Set `closeOnSelect: false` on an item, or on `Root`,
+to keep the dialog open. To build a picker where selection persists, set
+`selectionMode` to `single` or `multiple`.
+
+### Coming from cmdk
+
+| cmdk                            | Chakra UI                                          |
+| ------------------------------- | -------------------------------------------------- |
+| `<Command>`                     | `<Command.Root collection={command.collection}>`   |
+| `<Command.Input>`               | `<Command.Input>` + `useCommandCollection`         |
+| `<Command.List>`                | `<Command.List>`                                   |
+| `<Command.Item onSelect={fn}>`  | `{ label, value, onSelect: fn }` in the collection |
+| `<Command.Group heading="...">` | `<Command.ItemGroup>` + `ItemGroupLabel`           |
+| `<Command.Empty>`               | `<Command.Empty>`                                  |
+| `<Command.Dialog>`              | `<Command.Dialog>`                                 |
+
+The key difference: `cmdk` owns the items and filters them from the DOM, while
+here the items are data. `useCommandCollection` ranks them with fuzzy matching
+and keywords, loads them asynchronously with `load`, or you replace the ranking
+with `filter`.
+
+## Examples
+
+### Inline
+
+Render `Command.Root` without a dialog to embed the command in a page, sidebar,
+or popover.
+
+<ExampleTabs name="command-inline" />
+
+### Async Content
+
+Debounce requests, cancel stale work, and give loading, error, retry, and empty
+states distinct feedback. `Loading` and `Empty` never render at the same time.
+
+<ExampleTabs name="command-with-async-content" />
+
+### Groups
+
+Pass `groupBy` to `useCommandCollection` and render each group with `ItemGroup`
+and `ItemGroupLabel`. Results are ranked within each group, and the group order
+stays fixed while typing.
+
+<ExampleTabs name="command-with-groups" />
+
+### Selection Mode
+
+Set `selectionMode="multiple"` to build a picker where selection persists and
+several items can be chosen, instead of running a command and closing.
+
+<ExampleTabs name="command-multiple" />
+
+### Controlled
+
+Own the selected value with `value` and `onValueChange` to drive selection from
+outside the palette.
+
+<ExampleTabs name="command-controlled" />
+
+### Controlled Search
+
+Own the query with `onInputValueChange` to sync it with external state, URL
+params, or analytics.
+
+<ExampleTabs name="command-controlled-search" />
+
+### Store
+
+An alternative way to control the command is to use the `RootProvider` component
+and the `useCommand` store hook. The store lives outside the dialog, so the
+search survives closing it, and you can read its state from anywhere, like
+showing the last search next to a `⌘K` trigger.
+
+<ExampleTabs name="command-with-root-provider" />
+
+### Keywords
+
+Add `keywords` to an item to make it findable by other words, like "preferences"
+for Settings. Keyword matches rank slightly below label matches. Pass `filter`
+to `useCommandCollection` to replace the ranking entirely.
+
+<ExampleTabs name="command-with-keywords" />
+
+### Prefix Search
+
+Start the query with `>`, `@`, or `#` to scope the search to commands, people,
+or channels. Backspace on an empty input clears the scope.
+
+<ExampleTabs name="command-with-prefix-search" />
+
+### Highlight Matches
+
+Set `highlight` on `ItemText` to emphasize the characters that matched the
+query, including fuzzy and camelCase matches.
+
+```tsx
+<Command.ItemText highlight>{item.label}</Command.ItemText>
+```
+
+### Hotkeys
+
+Register the same items with `useHotkeys` so their shortcuts work with the menu
+closed. Give an item a `scope` to make its shortcut, and its row in the menu,
+available only in that part of the app. Format shortcuts per platform with
+`useFormatHotkey`.
+
+<ExampleTabs name="command-with-hotkeys" />
+
+### Nested
+
+Build nested pages by swapping the collection as the user drills in. Use
+item-level `closeOnSelect={false}` for actions that open a child page.
+
+<ExampleTabs name="command-nested" />
+
+### Links
+
+Render items as real anchors for navigation palettes, so middle-click and
+keyboard semantics work as expected.
+
+<ExampleTabs name="command-with-links" />
+
+### Recent Items
+
+Track recently used commands and surface them in a dedicated group.
+
+<ExampleTabs name="command-with-recent-items" />
+
+### Disabled Items
+
+Disable specific items to indicate unavailable commands while keeping them
+visible for context.
+
+<ExampleTabs name="command-with-disabled-items" />
+
+### Tabs
+
+Scope results to a category with `Tabs`, filtering the collection by the active
+tab.
+
+<ExampleTabs name="command-with-tabs" />
+
+### Footer Actions
+
+Add a `Footer` with shortcut hints or actions that stay visible below the list.
+
+<ExampleTabs name="command-with-footer-actions" />
+
+### With Avatar
+
+Render an avatar next to each item for people or workspace pickers.
+
+<ExampleTabs name="command-with-avatar" />
+
+### Empty State
+
+Customize the `Empty` view shown when the query matches no commands.
+
+<ExampleTabs name="command-with-empty-state" />
+
+### Virtualized
+
+Handle large datasets efficiently by virtualizing the list.
+
+<ExampleTabs name="command-virtualized" />
+
+### Sizes
+
+Use the `size` prop to change density. The dialog remains viewport-aware at each
+size and on narrow screens.
+
+<ExampleTabs name="command-with-sizes" />
+
+## Props
+
+### Root
+
+<PropTable component="Command" part="Root" />
+
+### RootProvider
+
+<PropTable component="Command" part="RootProvider" />
+
+### Label
+
+<PropTable component="Command" part="Label" />
+
+### Input
+
+<PropTable component="Command" part="Input" />
+
+### Control
+
+<PropTable component="Command" part="Control" />
+
+### Indicator
+
+<PropTable component="Command" part="Indicator" />
+
+### List
+
+<PropTable component="Command" part="List" />
+
+### Loading
+
+<PropTable component="Command" part="Loading" />
+
+### Item
+
+<PropTable component="Command" part="Item" />
+
+### ItemText
+
+<PropTable component="Command" part="ItemText" />
+
+### ItemIndicator
+
+<PropTable component="Command" part="ItemIndicator" />
+
+### ItemGroup
+
+<PropTable component="Command" part="ItemGroup" />
+
+### ItemGroupLabel
+
+<PropTable component="Command" part="ItemGroupLabel" />
+
+### ItemCommand
+
+<PropTable component="Command" part="ItemCommand" />
+
+### Empty
+
+<PropTable component="Command" part="Empty" />
+
+### Separator
+
+<PropTable component="Command" part="Separator" />
+
+### Footer
+
+<PropTable component="Command" part="Footer" />
