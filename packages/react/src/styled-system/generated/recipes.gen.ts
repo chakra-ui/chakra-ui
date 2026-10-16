@@ -1197,13 +1197,10 @@ export type ComboboxVariantMap = {
   [K in keyof ComboboxVariant]: Array<ComboboxVariant[K]>
 }
 
-// CommandPalette
+// Command
 
-export type CommandPaletteSlot =
-  | "trigger"
-  | "backdrop"
-  | "positioner"
-  | "panel"
+export type CommandSlot =
+  | "root"
   | "label"
   | "control"
   | "indicator"
@@ -1221,17 +1218,17 @@ export type CommandPaletteSlot =
   | "separator"
   | "footer"
 
-export interface CommandPaletteVariant {
+export interface CommandVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg" | undefined
 }
 
-export type CommandPaletteVariantProps = {
-  [K in keyof CommandPaletteVariant]?: ConditionalValue<CommandPaletteVariant[K]> | undefined
+export type CommandVariantProps = {
+  [K in keyof CommandVariant]?: ConditionalValue<CommandVariant[K]> | undefined
 }
 
-export type CommandPaletteVariantMap = {
-  [K in keyof CommandPaletteVariant]: Array<CommandPaletteVariant[K]>
+export type CommandVariantMap = {
+  [K in keyof CommandVariant]: Array<CommandVariant[K]>
 }
 
 // Slider
@@ -1674,7 +1671,7 @@ export interface ConfigSlotRecipes {
   segmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps, SegmentGroupVariantMap>
   select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps, SelectVariantMap>
   combobox: SystemSlotRecipeFn<ComboboxSlot, ComboboxVariantProps, ComboboxVariantMap>
-  commandPalette: SystemSlotRecipeFn<CommandPaletteSlot, CommandPaletteVariantProps, CommandPaletteVariantMap>
+  command: SystemSlotRecipeFn<CommandSlot, CommandVariantProps, CommandVariantMap>
   slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps, SliderVariantMap>
   splitter: SystemSlotRecipeFn<SplitterSlot, SplitterVariantProps, SplitterVariantMap>
   stat: SystemSlotRecipeFn<StatSlot, StatVariantProps, StatVariantMap>
@@ -1735,7 +1732,7 @@ export interface ConfigRecipeSlots {
   segmentGroup: SegmentGroupSlot
   select: SelectSlot
   combobox: ComboboxSlot
-  commandPalette: CommandPaletteSlot
+  command: CommandSlot
   slider: SliderSlot
   splitter: SplitterSlot
   stat: StatSlot
