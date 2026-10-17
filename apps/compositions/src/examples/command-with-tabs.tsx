@@ -7,6 +7,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   Span,
   Tabs,
   useCommandCollection,
@@ -52,63 +53,66 @@ export const CommandWithTabs = () => {
             <LuSearch /> Search apps, actions and people...
           </Button>
         </Command.DialogTrigger>
-        <Command.DialogContent>
-          <Command.Root>
-            <Command.Control>
-              <Command.Indicator />
-              <Command.Input placeholder="Search apps, actions and people..." />
-            </Command.Control>
-            <Box px="3" py="2" borderBottomWidth="1px">
-              <Tabs.Root
-                value={tab}
-                onValueChange={(e) => setTab(e.value ?? "all")}
-                size="sm"
-                variant="subtle"
-              >
-                <Tabs.List gap="1">
-                  {tabs.map((item) => (
-                    <Tabs.Trigger key={item.value} value={item.value}>
-                      {item.label}
-                    </Tabs.Trigger>
-                  ))}
-                </Tabs.List>
-              </Tabs.Root>
-            </Box>
-            <Command.List>
-              {command.collection.items.map((item) => (
-                <Command.Item item={item} key={item.value}>
-                  {item.icon}
-                  <Command.ItemText highlight>{item.label}</Command.ItemText>
-                  <Span textStyle="xs" color="fg.subtle" truncate>
-                    {item.description}
-                  </Span>
-                </Command.Item>
-              ))}
-              <Command.Empty>No results found</Command.Empty>
-            </Command.List>
-            <Command.Footer>
-              <HStack gap="1.5">
-                <KbdGroup size="sm" variant="subtle">
-                  <Kbd>↑</Kbd>
-                  <Kbd>↓</Kbd>
-                </KbdGroup>
-                Navigate
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  ↵
-                </Kbd>
-                Select
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  esc
-                </Kbd>
-                Close
-              </HStack>
-            </Command.Footer>
-          </Command.Root>
-        </Command.DialogContent>
+        <Portal>
+          <Command.DialogBackdrop />
+          <Command.DialogContent>
+            <Command.Root>
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Search apps, actions and people..." />
+              </Command.Control>
+              <Box px="3" py="2" borderBottomWidth="1px">
+                <Tabs.Root
+                  value={tab}
+                  onValueChange={(e) => setTab(e.value ?? "all")}
+                  size="sm"
+                  variant="subtle"
+                >
+                  <Tabs.List gap="1">
+                    {tabs.map((item) => (
+                      <Tabs.Trigger key={item.value} value={item.value}>
+                        {item.label}
+                      </Tabs.Trigger>
+                    ))}
+                  </Tabs.List>
+                </Tabs.Root>
+              </Box>
+              <Command.List>
+                {command.collection.items.map((item) => (
+                  <Command.Item item={item} key={item.value}>
+                    {item.icon}
+                    <Command.ItemText highlight>{item.label}</Command.ItemText>
+                    <Span textStyle="xs" color="fg.subtle" truncate>
+                      {item.description}
+                    </Span>
+                  </Command.Item>
+                ))}
+                <Command.Empty>No results found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Select
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    esc
+                  </Kbd>
+                  Close
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Portal>
       </Command.Dialog>
     </Command.Provider>
   )

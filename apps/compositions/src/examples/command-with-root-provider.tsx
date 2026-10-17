@@ -6,6 +6,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   Span,
   Text,
   useCommand,
@@ -69,47 +70,54 @@ export const CommandWithRootProvider = () => {
 
       <Command.Provider value={command}>
         <Command.Dialog open={open} onOpenChange={(e) => setOpen(e.open)}>
-          <Command.DialogContent>
-            <Command.RootProvider value={store}>
-              <Command.Control>
-                <Command.Indicator />
-                <Command.Input placeholder="Type a command or search..." />
-              </Command.Control>
-              <Command.List>
-                {command.collection.items.map((item) => (
-                  <Command.Item item={item} key={item.value}>
-                    {item.icon}
-                    <Command.ItemText highlight>{item.label}</Command.ItemText>
-                    {item.shortcut.map((key) => (
-                      <Command.ItemCommand key={key}>{key}</Command.ItemCommand>
-                    ))}
-                  </Command.Item>
-                ))}
-                <Command.Empty>No results found</Command.Empty>
-              </Command.List>
-              <Command.Footer>
-                <HStack gap="1.5">
-                  <KbdGroup size="sm" variant="subtle">
-                    <Kbd>↑</Kbd>
-                    <Kbd>↓</Kbd>
-                  </KbdGroup>
-                  Navigate
-                </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    ↵
-                  </Kbd>
-                  Select
-                </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    esc
-                  </Kbd>
-                  Close
-                </HStack>
-              </Command.Footer>
-            </Command.RootProvider>
-          </Command.DialogContent>
+          <Portal>
+            <Command.DialogBackdrop />
+            <Command.DialogContent>
+              <Command.RootProvider value={store}>
+                <Command.Control>
+                  <Command.Indicator />
+                  <Command.Input placeholder="Type a command or search..." />
+                </Command.Control>
+                <Command.List>
+                  {command.collection.items.map((item) => (
+                    <Command.Item item={item} key={item.value}>
+                      {item.icon}
+                      <Command.ItemText highlight>
+                        {item.label}
+                      </Command.ItemText>
+                      {item.shortcut.map((key) => (
+                        <Command.ItemCommand key={key}>
+                          {key}
+                        </Command.ItemCommand>
+                      ))}
+                    </Command.Item>
+                  ))}
+                  <Command.Empty>No results found</Command.Empty>
+                </Command.List>
+                <Command.Footer>
+                  <HStack gap="1.5">
+                    <KbdGroup size="sm" variant="subtle">
+                      <Kbd>↑</Kbd>
+                      <Kbd>↓</Kbd>
+                    </KbdGroup>
+                    Navigate
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      ↵
+                    </Kbd>
+                    Select
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      esc
+                    </Kbd>
+                    Close
+                  </HStack>
+                </Command.Footer>
+              </Command.RootProvider>
+            </Command.DialogContent>
+          </Portal>
         </Command.Dialog>
       </Command.Provider>
     </HStack>

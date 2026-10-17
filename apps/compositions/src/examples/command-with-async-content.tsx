@@ -7,6 +7,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   Spinner,
   Text,
   useCommandCollection,
@@ -52,74 +53,79 @@ export const CommandWithAsyncContent = () => {
             <LuUsers /> Search people...
           </Button>
         </Command.DialogTrigger>
-        <Command.DialogContent>
-          <Command.Root>
-            <Command.Label>People search</Command.Label>
-            <Command.Control>
-              <Command.Indicator />
-              <Command.Input placeholder="Search by name, e.g. Emily or James..." />
-              {command.loading && <Spinner size="sm" color="fg.muted" />}
-            </Command.Control>
-            <Command.List>
-              <Command.Loading>Searching people…</Command.Loading>
-              {command.collection.items.map((item) => {
-                const name = `${item.firstName} ${item.lastName}`
-                return (
-                  <Command.Item item={item} key={item.id}>
-                    <Avatar.Root size="2xs">
-                      <Avatar.Fallback name={name} />
-                      <Avatar.Image src={item.image} />
-                    </Avatar.Root>
-                    <Command.ItemText highlight>{name}</Command.ItemText>
-                    <Text ms="auto" textStyle="xs" color="fg.muted" truncate>
-                      {item.company.title}
-                    </Text>
-                  </Command.Item>
-                )
-              })}
-              {command.error ? (
-                <Text
-                  role="alert"
-                  px="3"
-                  py="6"
-                  textAlign="center"
-                  textStyle="sm"
-                  color="fg.muted"
-                >
-                  Search failed.{" "}
-                  <Button size="xs" variant="plain" onClick={command.retry}>
-                    Try again
-                  </Button>
-                </Text>
-              ) : (
-                <Command.Empty>
-                  {command.query ? "No people found" : "Start typing to search"}
-                </Command.Empty>
-              )}
-            </Command.List>
-            <Command.Footer>
-              <HStack gap="1.5">
-                <KbdGroup size="sm" variant="subtle">
-                  <Kbd>↑</Kbd>
-                  <Kbd>↓</Kbd>
-                </KbdGroup>
-                Navigate
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  ↵
-                </Kbd>
-                Select
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  esc
-                </Kbd>
-                Close
-              </HStack>
-            </Command.Footer>
-          </Command.Root>
-        </Command.DialogContent>
+        <Portal>
+          <Command.DialogBackdrop />
+          <Command.DialogContent>
+            <Command.Root>
+              <Command.Label>People search</Command.Label>
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Search by name, e.g. Emily or James..." />
+                {command.loading && <Spinner size="sm" color="fg.muted" />}
+              </Command.Control>
+              <Command.List>
+                <Command.Loading>Searching people…</Command.Loading>
+                {command.collection.items.map((item) => {
+                  const name = `${item.firstName} ${item.lastName}`
+                  return (
+                    <Command.Item item={item} key={item.id}>
+                      <Avatar.Root size="2xs">
+                        <Avatar.Fallback name={name} />
+                        <Avatar.Image src={item.image} />
+                      </Avatar.Root>
+                      <Command.ItemText highlight>{name}</Command.ItemText>
+                      <Text ms="auto" textStyle="xs" color="fg.muted" truncate>
+                        {item.company.title}
+                      </Text>
+                    </Command.Item>
+                  )
+                })}
+                {command.error ? (
+                  <Text
+                    role="alert"
+                    px="3"
+                    py="6"
+                    textAlign="center"
+                    textStyle="sm"
+                    color="fg.muted"
+                  >
+                    Search failed.{" "}
+                    <Button size="xs" variant="plain" onClick={command.retry}>
+                      Try again
+                    </Button>
+                  </Text>
+                ) : (
+                  <Command.Empty>
+                    {command.query
+                      ? "No people found"
+                      : "Start typing to search"}
+                  </Command.Empty>
+                )}
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Select
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    esc
+                  </Kbd>
+                  Close
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Portal>
       </Command.Dialog>
     </Command.Provider>
   )

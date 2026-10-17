@@ -3,6 +3,7 @@ export {
   CommandContext,
   CommandControl,
   CommandDialog,
+  CommandDialogBackdrop,
   CommandDialogContent,
   CommandDialogContext,
   CommandDialogTrigger,
@@ -30,6 +31,7 @@ export {
 export type {
   CommandClearTriggerProps,
   CommandControlProps,
+  CommandDialogBackdropProps,
   CommandDialogContentProps,
   CommandDialogProps,
   CommandDialogTriggerProps,

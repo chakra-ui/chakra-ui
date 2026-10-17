@@ -6,6 +6,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   useCommandCollection,
 } from "@chakra-ui/react"
 import { useEffect, useMemo, useState } from "react"
@@ -82,67 +83,70 @@ export const CommandWithRecentItems = () => {
             <LuSearch /> Search commands...
           </Button>
         </Command.DialogTrigger>
-        <Command.DialogContent>
-          <Command.Root
-            onInputValueChange={(e) => setSearching(e.inputValue !== "")}
-            onSelect={(e) => {
-              const value = e.itemValue.replace(/^recent:/, "")
-              const next = [value, ...recent.filter((v) => v !== value)].slice(
-                0,
-                MAX_RECENT,
-              )
-              setRecent(next)
-              writeRecent(next)
-            }}
-          >
-            <Command.Control>
-              <Command.Indicator />
-              <Command.Input placeholder="Type a command or search..." />
-            </Command.Control>
-            <Command.List>
-              {command.collection.group().map(([group, items]) => (
-                <Command.ItemGroup key={group}>
-                  <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
-                  {items.map((item) => (
-                    <Command.Item item={item} key={item.value}>
-                      {item.icon}
-                      <Command.ItemText highlight>
-                        {item.label}
-                      </Command.ItemText>
-                      {item.shortcut.map((key) => (
-                        <Command.ItemCommand key={key}>
-                          {key}
-                        </Command.ItemCommand>
-                      ))}
-                    </Command.Item>
-                  ))}
-                </Command.ItemGroup>
-              ))}
-              <Command.Empty>No results found</Command.Empty>
-            </Command.List>
-            <Command.Footer>
-              <HStack gap="1.5">
-                <KbdGroup size="sm" variant="subtle">
-                  <Kbd>↑</Kbd>
-                  <Kbd>↓</Kbd>
-                </KbdGroup>
-                Navigate
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  ↵
-                </Kbd>
-                Select
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  esc
-                </Kbd>
-                Close
-              </HStack>
-            </Command.Footer>
-          </Command.Root>
-        </Command.DialogContent>
+        <Portal>
+          <Command.DialogBackdrop />
+          <Command.DialogContent>
+            <Command.Root
+              onInputValueChange={(e) => setSearching(e.inputValue !== "")}
+              onSelect={(e) => {
+                const value = e.itemValue.replace(/^recent:/, "")
+                const next = [
+                  value,
+                  ...recent.filter((v) => v !== value),
+                ].slice(0, MAX_RECENT)
+                setRecent(next)
+                writeRecent(next)
+              }}
+            >
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Type a command or search..." />
+              </Command.Control>
+              <Command.List>
+                {command.collection.group().map(([group, items]) => (
+                  <Command.ItemGroup key={group}>
+                    <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
+                    {items.map((item) => (
+                      <Command.Item item={item} key={item.value}>
+                        {item.icon}
+                        <Command.ItemText highlight>
+                          {item.label}
+                        </Command.ItemText>
+                        {item.shortcut.map((key) => (
+                          <Command.ItemCommand key={key}>
+                            {key}
+                          </Command.ItemCommand>
+                        ))}
+                      </Command.Item>
+                    ))}
+                  </Command.ItemGroup>
+                ))}
+                <Command.Empty>No results found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Select
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    esc
+                  </Kbd>
+                  Close
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Portal>
       </Command.Dialog>
     </Command.Provider>
   )

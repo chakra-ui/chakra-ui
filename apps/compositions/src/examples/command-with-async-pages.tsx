@@ -8,6 +8,7 @@ import {
   HStack,
   Image,
   Kbd,
+  Portal,
   Spinner,
   Text,
   useCommandPages,
@@ -57,66 +58,71 @@ export const CommandWithAsyncPages = () => {
             <LuSearch /> Search...
           </Button>
         </Command.DialogTrigger>
-        <Command.DialogContent>
-          <Command.Root>
-            <Command.Control>
-              <Command.Indicator />
-              {page && (
-                <Badge size="sm" variant="subtle" flexShrink="0">
-                  {page.title}
-                </Badge>
-              )}
-              <Command.Input
-                placeholder={page?.placeholder ?? "Type a command or search..."}
-                onKeyDown={command.onInputKeyDown}
-              />
-              {command.loading && <Spinner size="sm" color="fg.muted" />}
-            </Command.Control>
-            <Command.List>
-              {command.collection.size === 0 && (
-                <Command.Loading>
-                  Loading {page?.title?.toLowerCase()}...
-                </Command.Loading>
-              )}
-              {command.collection.items.map((item) => (
-                <Command.Item item={item} key={item.value}>
-                  {item.icon}
-                  <Command.ItemText highlight>{item.label}</Command.ItemText>
-                  {item.description && (
-                    <Text ms="auto" textStyle="xs" color="fg.muted" truncate>
-                      {item.description}
-                    </Text>
-                  )}
-                  {command.isPage(item) && <LuChevronRight />}
-                </Command.Item>
-              ))}
-              {command.error ? (
-                <Command.Empty>
-                  Couldn't load results.{" "}
-                  <Button size="xs" variant="plain" onClick={command.retry}>
-                    Retry
-                  </Button>
-                </Command.Empty>
-              ) : (
-                <Command.Empty>No results found</Command.Empty>
-              )}
-            </Command.List>
-            <Command.Footer>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  ↵
-                </Kbd>
-                Select
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  {page ? "⌫" : "esc"}
-                </Kbd>
-                {page ? "Back" : "Close"}
-              </HStack>
-            </Command.Footer>
-          </Command.Root>
-        </Command.DialogContent>
+        <Portal>
+          <Command.DialogBackdrop />
+          <Command.DialogContent>
+            <Command.Root>
+              <Command.Control>
+                <Command.Indicator />
+                {page && (
+                  <Badge size="sm" variant="subtle" flexShrink="0">
+                    {page.title}
+                  </Badge>
+                )}
+                <Command.Input
+                  placeholder={
+                    page?.placeholder ?? "Type a command or search..."
+                  }
+                  onKeyDown={command.onInputKeyDown}
+                />
+                {command.loading && <Spinner size="sm" color="fg.muted" />}
+              </Command.Control>
+              <Command.List>
+                {command.collection.size === 0 && (
+                  <Command.Loading>
+                    Loading {page?.title?.toLowerCase()}...
+                  </Command.Loading>
+                )}
+                {command.collection.items.map((item) => (
+                  <Command.Item item={item} key={item.value}>
+                    {item.icon}
+                    <Command.ItemText highlight>{item.label}</Command.ItemText>
+                    {item.description && (
+                      <Text ms="auto" textStyle="xs" color="fg.muted" truncate>
+                        {item.description}
+                      </Text>
+                    )}
+                    {command.isPage(item) && <LuChevronRight />}
+                  </Command.Item>
+                ))}
+                {command.error ? (
+                  <Command.Empty>
+                    Couldn't load results.{" "}
+                    <Button size="xs" variant="plain" onClick={command.retry}>
+                      Retry
+                    </Button>
+                  </Command.Empty>
+                ) : (
+                  <Command.Empty>No results found</Command.Empty>
+                )}
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Select
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    {page ? "⌫" : "esc"}
+                  </Kbd>
+                  {page ? "Back" : "Close"}
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Portal>
       </Command.Dialog>
     </Command.Provider>
   )

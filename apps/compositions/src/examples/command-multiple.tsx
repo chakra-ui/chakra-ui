@@ -8,6 +8,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   Text,
   Wrap,
   useCommandCollection,
@@ -50,58 +51,63 @@ export const CommandMultiple = () => {
               <LuTag /> Add labels...
             </Button>
           </Command.DialogTrigger>
-          <Command.DialogContent>
-            <Command.Root
-              closeOnSelect={false}
-              onSelect={(e) =>
-                setValue((prev) =>
-                  prev.includes(e.itemValue)
-                    ? prev.filter((v) => v !== e.itemValue)
-                    : [...prev, e.itemValue],
-                )
-              }
-            >
-              <Command.Control>
-                <Command.Indicator />
-                <Command.Input placeholder="Search labels..." />
-              </Command.Control>
-              <Command.List>
-                {command.collection.items.map((item) => (
-                  <Command.Item item={item} key={item.value}>
-                    {item.icon}
-                    <Command.ItemText highlight>{item.label}</Command.ItemText>
-                    {value.includes(item.value) && (
-                      <Box color="fg" ms="auto">
-                        <LuCheck />
-                      </Box>
-                    )}
-                  </Command.Item>
-                ))}
-                <Command.Empty>No labels found</Command.Empty>
-              </Command.List>
-              <Command.Footer>
-                <HStack gap="1.5">
-                  <KbdGroup size="sm" variant="subtle">
-                    <Kbd>↑</Kbd>
-                    <Kbd>↓</Kbd>
-                  </KbdGroup>
-                  Navigate
-                </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    ↵
-                  </Kbd>
-                  Toggle
-                </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    esc
-                  </Kbd>
-                  Close
-                </HStack>
-              </Command.Footer>
-            </Command.Root>
-          </Command.DialogContent>
+          <Portal>
+            <Command.DialogBackdrop />
+            <Command.DialogContent>
+              <Command.Root
+                closeOnSelect={false}
+                onSelect={(e) =>
+                  setValue((prev) =>
+                    prev.includes(e.itemValue)
+                      ? prev.filter((v) => v !== e.itemValue)
+                      : [...prev, e.itemValue],
+                  )
+                }
+              >
+                <Command.Control>
+                  <Command.Indicator />
+                  <Command.Input placeholder="Search labels..." />
+                </Command.Control>
+                <Command.List>
+                  {command.collection.items.map((item) => (
+                    <Command.Item item={item} key={item.value}>
+                      {item.icon}
+                      <Command.ItemText highlight>
+                        {item.label}
+                      </Command.ItemText>
+                      {value.includes(item.value) && (
+                        <Box color="fg" ms="auto">
+                          <LuCheck />
+                        </Box>
+                      )}
+                    </Command.Item>
+                  ))}
+                  <Command.Empty>No labels found</Command.Empty>
+                </Command.List>
+                <Command.Footer>
+                  <HStack gap="1.5">
+                    <KbdGroup size="sm" variant="subtle">
+                      <Kbd>↑</Kbd>
+                      <Kbd>↓</Kbd>
+                    </KbdGroup>
+                    Navigate
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      ↵
+                    </Kbd>
+                    Toggle
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      esc
+                    </Kbd>
+                    Close
+                  </HStack>
+                </Command.Footer>
+              </Command.Root>
+            </Command.DialogContent>
+          </Portal>
         </Command.Dialog>
       </Command.Provider>
 

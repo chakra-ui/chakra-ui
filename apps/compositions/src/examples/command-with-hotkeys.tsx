@@ -6,6 +6,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   SegmentGroup,
   Stack,
   Text,
@@ -122,56 +123,61 @@ export const CommandWithHotkeys = () => {
               </KbdGroup>
             </Button>
           </Command.DialogTrigger>
-          <Command.DialogContent>
-            <Command.Root
-              onSelect={(e) => {
-                const item = command.collection.find(e.itemValue)
-                if (item) run(item, "menu")
-              }}
-            >
-              <Command.Control>
-                <Command.Indicator />
-                <Command.Input placeholder="Type a command or search..." />
-              </Command.Control>
-              <Command.List>
-                {command.collection.group().map(([group, groupItems]) => (
-                  <Command.ItemGroup key={group}>
-                    <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
-                    {groupItems.map((item) => (
-                      <Command.Item item={item} key={item.value}>
-                        {item.icon}
-                        <Command.ItemText highlight>
-                          {item.label}
-                        </Command.ItemText>
-                        {keysOf(item.hotkey).map((key, index) => (
-                          <Command.ItemCommand key={index}>
-                            {key}
-                          </Command.ItemCommand>
-                        ))}
-                      </Command.Item>
-                    ))}
-                  </Command.ItemGroup>
-                ))}
-                <Command.Empty>No commands found</Command.Empty>
-              </Command.List>
-              <Command.Footer>
-                <HStack gap="1.5">
-                  <KbdGroup size="sm" variant="subtle">
-                    <Kbd>↑</Kbd>
-                    <Kbd>↓</Kbd>
-                  </KbdGroup>
-                  Navigate
-                </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    ↵
-                  </Kbd>
-                  Run
-                </HStack>
-                <Text ms="auto">Shortcuts also work with the menu closed</Text>
-              </Command.Footer>
-            </Command.Root>
-          </Command.DialogContent>
+          <Portal>
+            <Command.DialogBackdrop />
+            <Command.DialogContent>
+              <Command.Root
+                onSelect={(e) => {
+                  const item = command.collection.find(e.itemValue)
+                  if (item) run(item, "menu")
+                }}
+              >
+                <Command.Control>
+                  <Command.Indicator />
+                  <Command.Input placeholder="Type a command or search..." />
+                </Command.Control>
+                <Command.List>
+                  {command.collection.group().map(([group, groupItems]) => (
+                    <Command.ItemGroup key={group}>
+                      <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
+                      {groupItems.map((item) => (
+                        <Command.Item item={item} key={item.value}>
+                          {item.icon}
+                          <Command.ItemText highlight>
+                            {item.label}
+                          </Command.ItemText>
+                          {keysOf(item.hotkey).map((key, index) => (
+                            <Command.ItemCommand key={index}>
+                              {key}
+                            </Command.ItemCommand>
+                          ))}
+                        </Command.Item>
+                      ))}
+                    </Command.ItemGroup>
+                  ))}
+                  <Command.Empty>No commands found</Command.Empty>
+                </Command.List>
+                <Command.Footer>
+                  <HStack gap="1.5">
+                    <KbdGroup size="sm" variant="subtle">
+                      <Kbd>↑</Kbd>
+                      <Kbd>↓</Kbd>
+                    </KbdGroup>
+                    Navigate
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      ↵
+                    </Kbd>
+                    Run
+                  </HStack>
+                  <Text ms="auto">
+                    Shortcuts also work with the menu closed
+                  </Text>
+                </Command.Footer>
+              </Command.Root>
+            </Command.DialogContent>
+          </Portal>
         </Command.Dialog>
       </Command.Provider>
 

@@ -13,36 +13,39 @@ links:
 ## Usage
 
 ```jsx
-import { Command, useCommandCollection } from "@chakra-ui/react"
+import { Command, Portal, useCommandCollection } from "@chakra-ui/react"
 ```
 
 ```jsx
 <Command.Provider>
   <Command.Dialog>
     <Command.DialogTrigger />
-    <Command.DialogContent>
-      <Command.Root>
-        <Command.Label />
-        <Command.Control>
-          <Command.Indicator />
-          <Command.Input />
-          <Command.ClearTrigger />
-        </Command.Control>
-        <Command.List>
-          <Command.Loading />
-          <Command.ItemGroup>
-            <Command.ItemGroupLabel />
-            <Command.Item>
-              <Command.ItemText />
-              <Command.ItemCommand />
-            </Command.Item>
-          </Command.ItemGroup>
-          <Command.Separator />
-          <Command.Empty />
-        </Command.List>
-        <Command.Footer />
-      </Command.Root>
-    </Command.DialogContent>
+    <Portal>
+      <Command.DialogBackdrop />
+      <Command.DialogContent>
+        <Command.Root>
+          <Command.Label />
+          <Command.Control>
+            <Command.Indicator />
+            <Command.Input />
+            <Command.ClearTrigger />
+          </Command.Control>
+          <Command.List>
+            <Command.Loading />
+            <Command.ItemGroup>
+              <Command.ItemGroupLabel />
+              <Command.Item>
+                <Command.ItemText />
+                <Command.ItemCommand />
+              </Command.Item>
+            </Command.ItemGroup>
+            <Command.Separator />
+            <Command.Empty />
+          </Command.List>
+          <Command.Footer />
+        </Command.Root>
+      </Command.DialogContent>
+    </Portal>
   </Command.Dialog>
 </Command.Provider>
 ```
@@ -52,6 +55,9 @@ import { Command, useCommandCollection } from "@chakra-ui/react"
 and has no global shortcut, so you can bind `⌘K` with the tool your app already
 uses (see [Store](#store)).
 
+Render the dialog in a `Portal` as with other overlays. `Command.DialogBackdrop`
+is optional; leave it out for a palette without a backdrop.
+
 Use `useCommandCollection` to rank items as the user types, and share it with
 `Command.Provider`. The dialog clears the query after it closes.
 
@@ -60,9 +66,12 @@ const command = useCommandCollection({ initialItems: commands })
 
 <Command.Provider value={command}>
   <Command.Dialog>
-    <Command.DialogContent>
+    <Portal>
+      <Command.DialogBackdrop />
+      <Command.DialogContent>
       <Command.Root>{/* ... */}</Command.Root>
-    </Command.DialogContent>
+      </Command.DialogContent>
+    </Portal>
   </Command.Dialog>
 </Command.Provider>
 ```
@@ -198,12 +207,15 @@ const command = useCommandPages({
 
 <Command.Provider value={command}>
   <Command.Dialog>
-    <Command.DialogContent>
+    <Portal>
+      <Command.DialogBackdrop />
+      <Command.DialogContent>
       <Command.Root>
         <Command.Input onKeyDown={command.onInputKeyDown} />
         ...
       </Command.Root>
-    </Command.DialogContent>
+      </Command.DialogContent>
+    </Portal>
   </Command.Dialog>
 </Command.Provider>
 ```

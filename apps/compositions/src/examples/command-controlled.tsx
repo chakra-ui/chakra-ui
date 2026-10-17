@@ -7,6 +7,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   Status,
   useCommandCollection,
 } from "@chakra-ui/react"
@@ -38,52 +39,55 @@ export const CommandControlled = () => {
             {current?.label}
           </Button>
         </Command.DialogTrigger>
-        <Command.DialogContent>
-          <Command.Root onSelect={(e) => setStatus(e.itemValue)}>
-            <Command.Control>
-              <Command.Indicator />
-              <Command.Input placeholder="Change status..." />
-            </Command.Control>
-            <Command.List>
-              {command.collection.items.map((item) => (
-                <Command.Item item={item} key={item.value}>
-                  <Status.Root colorPalette={item.color}>
-                    <Status.Indicator />
-                  </Status.Root>
-                  <Command.ItemText highlight>{item.label}</Command.ItemText>
-                  {item.value === status && (
-                    <Box color="fg" ms="auto">
-                      <LuCheck />
-                    </Box>
-                  )}
-                  <Command.ItemCommand>{item.shortcut}</Command.ItemCommand>
-                </Command.Item>
-              ))}
-              <Command.Empty>No statuses found</Command.Empty>
-            </Command.List>
-            <Command.Footer>
-              <HStack gap="1.5">
-                <KbdGroup size="sm" variant="subtle">
-                  <Kbd>↑</Kbd>
-                  <Kbd>↓</Kbd>
-                </KbdGroup>
-                Navigate
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  ↵
-                </Kbd>
-                Select
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  esc
-                </Kbd>
-                Close
-              </HStack>
-            </Command.Footer>
-          </Command.Root>
-        </Command.DialogContent>
+        <Portal>
+          <Command.DialogBackdrop />
+          <Command.DialogContent>
+            <Command.Root onSelect={(e) => setStatus(e.itemValue)}>
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Change status..." />
+              </Command.Control>
+              <Command.List>
+                {command.collection.items.map((item) => (
+                  <Command.Item item={item} key={item.value}>
+                    <Status.Root colorPalette={item.color}>
+                      <Status.Indicator />
+                    </Status.Root>
+                    <Command.ItemText highlight>{item.label}</Command.ItemText>
+                    {item.value === status && (
+                      <Box color="fg" ms="auto">
+                        <LuCheck />
+                      </Box>
+                    )}
+                    <Command.ItemCommand>{item.shortcut}</Command.ItemCommand>
+                  </Command.Item>
+                ))}
+                <Command.Empty>No statuses found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Select
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    esc
+                  </Kbd>
+                  Close
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Portal>
       </Command.Dialog>
     </Command.Provider>
   )

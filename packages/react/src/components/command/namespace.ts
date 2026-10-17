@@ -3,6 +3,7 @@ export {
   CommandContext as Context,
   CommandControl as Control,
   CommandDialog as Dialog,
+  CommandDialogBackdrop as DialogBackdrop,
   CommandDialogContent as DialogContent,
   CommandDialogContext as DialogContext,
   CommandDialogTrigger as DialogTrigger,
@@ -29,6 +30,7 @@ export {
 export type {
   CommandClearTriggerProps as ClearTriggerProps,
   CommandControlProps as ControlProps,
+  CommandDialogBackdropProps as DialogBackdropProps,
   CommandDialogContentProps as DialogContentProps,
   CommandDialogProps as DialogProps,
   CommandDialogTriggerProps as DialogTriggerProps,
