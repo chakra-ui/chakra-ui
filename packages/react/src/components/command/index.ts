@@ -68,6 +68,7 @@ export type {
 export { useCommandCollection } from "./use-command-collection"
 export type {
   CommandLoadDetails,
+  CommandLoadResult,
   UseCommandCollectionProps,
   UseCommandCollectionReturn,
 } from "./use-command-collection"

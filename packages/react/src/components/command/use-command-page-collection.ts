@@ -5,6 +5,7 @@ import { useControllableState, useLiveRef } from "../../hooks"
 import type { CommandItem, CommandSelectionDetails } from "./command"
 import {
   type CommandLoadDetails,
+  type CommandLoadResult,
   type UseCommandCollectionProps,
   type UseCommandCollectionReturn,
   useCommandCollection,
@@ -22,7 +23,9 @@ export interface UseCommandPageCollectionProps<
   /**
    * Loads items for the current page. Runs again when the page changes.
    */
-  load?: ((details: CommandPageLoadDetails<T>) => Promise<T[]>) | undefined
+  load?:
+    | ((details: CommandPageLoadDetails<T>) => Promise<CommandLoadResult<T>>)
+    | undefined
   /**
    * Whether a query also matches items in nested pages.
    * @default false
