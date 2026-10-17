@@ -172,8 +172,6 @@ export function useCommandPageCollection<T extends CommandItem>(
         push,
       })
 
-      // Going back to the top level or an open ancestor: restore its query
-      // and highlight the page we came from
       const depth =
         value == null
           ? 0

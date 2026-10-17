@@ -6,7 +6,7 @@ import {
   useComboboxContext,
 } from "@ark-ui/react/combobox"
 import { Dialog as ArkDialog } from "@ark-ui/react/dialog"
-import { type JSX, forwardRef, useMemo } from "react"
+import { type JSX, forwardRef, useId, useMemo } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -30,9 +30,9 @@ import {
 import { SearchIcon } from "../icons"
 import {
   CommandContextProvider,
-  CommandSourceProvider,
+  CommandProviderContextProvider,
   useCommandContext,
-  useCommandSourceContext,
+  useCommandProviderContext,
 } from "./command-context"
 import { getCommandMatchRanges } from "./command-score"
 import {
@@ -68,10 +68,15 @@ export interface CommandProviderProps<T extends CommandItem = CommandItem> {
 export function CommandProvider<T extends CommandItem>(
   props: CommandProviderProps<T>,
 ) {
+  const labelId = useId()
+  const context = useMemo(
+    () => ({ value: props.value, labelId }),
+    [props.value, labelId],
+  )
   return (
-    <CommandSourceProvider value={props.value}>
+    <CommandProviderContextProvider value={context}>
       {props.children}
-    </CommandSourceProvider>
+    </CommandProviderContextProvider>
   )
 }
 
@@ -96,7 +101,6 @@ const CommandRootProviderBase = forwardRef<
     onClose?: VoidFunction
   } & React.HTMLAttributes<HTMLDivElement>
 >(function CommandRootProviderBase(props, ref) {
-  // `onClose` comes from `Command.Dialog`; with `useCommand`, pass it there
   const { value, onClose: _onClose, ...restProps } = props
 
   return (
@@ -131,10 +135,11 @@ export interface CommandRootProps<
 const CommandRootBase = forwardRef<HTMLDivElement, CommandRootProps>(
   function CommandRootBase(props, ref) {
     const [commandProps, localProps] = splitCommandProps(props)
-    const source = useCommandSourceContext()
+    const provider = useCommandProviderContext()
     const command = useCommand({
       ...commandProps,
-      command: commandProps.command ?? source,
+      command: commandProps.command ?? provider?.value,
+      ids: { label: provider?.labelId, ...commandProps.ids },
     })
     return (
       <CommandRootProviderBase
@@ -173,7 +178,8 @@ export interface CommandDialogProps extends DialogRootProps {}
 
 export const CommandDialog = (props: CommandDialogProps) => {
   const { children, onEscapeKeyDown, onExitComplete, ...rootProps } = props
-  const source = useCommandSourceContext()
+  const provider = useCommandProviderContext()
+  const source = provider?.value
 
   return (
     <DialogRoot
@@ -181,6 +187,7 @@ export const CommandDialog = (props: CommandDialogProps) => {
       unmountOnExit
       placement="top"
       {...rootProps}
+      ids={{ title: provider?.labelId, ...rootProps.ids }}
       onEscapeKeyDown={(event) => {
         onEscapeKeyDown?.(event)
         if (!event.defaultPrevented && source?.popPage?.()) {
@@ -295,18 +302,23 @@ export const CommandIndicator = withContext<
 export interface CommandInputProps
   extends HTMLChakraProps<"input", ArkCombobox.InputBaseProps>, UnstyledProp {}
 
-// Enter acts on what was typed, even if the list is still catching up
+// Safari reports the Enter that confirms IME input as keyCode 229
+const isComposing = (event: KeyboardEvent) =>
+  event.isComposing || event.keyCode === 229
+
 const CommandInputBase = forwardRef<HTMLInputElement, ArkCombobox.InputProps>(
   function CommandInputBase(props, ref) {
     const { command, combobox, selectItem } = useCommandContext()
+    const provider = useCommandProviderContext()
     return (
       <ArkCombobox.Input
         ref={ref}
+        aria-labelledby={provider?.labelId}
         {...props}
         onKeyDown={(event) => {
           props.onKeyDown?.(event)
           if (event.defaultPrevented || event.key !== "Enter") return
-          if (event.nativeEvent.isComposing) return
+          if (isComposing(event.nativeEvent)) return
           if (!command || command.filterQuery === command.query) return
 
           const highlighted = combobox.highlightedValue
@@ -509,7 +521,7 @@ const CommandLoadingBase = forwardRef<
 >(function CommandLoadingBase(props, ref) {
   const { loading } = useCommandContext()
   if (!loading) return null
-  return <div ref={ref} role="status" aria-live="polite" {...props} />
+  return <div ref={ref} {...props} />
 })
 
 export const CommandLoading = withContext<HTMLDivElement, CommandLoadingProps>(

@@ -139,6 +139,7 @@ export function useCommand<T extends CommandItem = CommandItem>(
     defaultHighlightedValue: collection.firstValue,
     ...restProps,
     collection,
+    loading: !!loading,
     inputValue,
     onInputValueChange(details) {
       setInputValue(details.inputValue)
@@ -153,7 +154,7 @@ export function useCommand<T extends CommandItem = CommandItem>(
     value: [],
   })
 
-  useHighlightSync(combobox, command?.highlightedValue ?? null)
+  useRestoreHighlight(combobox, command?.highlightedValue ?? null)
 
   const selectItem = (item: T) => {
     const itemValue = collection.getItemValue(item) ?? ""
@@ -164,10 +165,10 @@ export function useCommand<T extends CommandItem = CommandItem>(
 }
 
 /**
- * Keeps an item highlighted as the collection changes: the preferred item when
- * it changes, else the current one if it's still there, else the first.
+ * Highlights the item the user came back from, or the first item when the
+ * highlighted one is removed.
  */
-function useHighlightSync<T extends CommandItem>(
+function useRestoreHighlight<T extends CommandItem>(
   combobox: UseComboboxReturn<T>,
   preferred: string | null,
 ) {
@@ -183,8 +184,10 @@ function useHighlightSync<T extends CommandItem>(
 
     const pending = pendingRef.current
     if (pending && pending !== highlightedValue && collection.has(pending)) {
-      combobox.setHighlightValue(pending)
-      return
+      const frame = requestAnimationFrame(() =>
+        combobox.setHighlightValue(pending),
+      )
+      return () => cancelAnimationFrame(frame)
     }
     pendingRef.current = null
 
