@@ -50,16 +50,8 @@ import { Command, Portal, useCommandCollection } from "@chakra-ui/react"
 </Command.Provider>
 ```
 
-`Command.Root` renders the search and results inline. For a palette, put it in
-`Command.DialogContent` inside `Command.Dialog`: it closes after a command runs,
-and has no global shortcut, so you can bind `⌘K` with the tool your app already
-uses (see [Store](#store)).
-
-Render the dialog in a `Portal` as with other overlays. `Command.DialogBackdrop`
-is optional; leave it out for a palette without a backdrop.
-
-Use `useCommandCollection` to rank items as the user types, and share it with
-`Command.Provider`. The dialog clears the query after it closes.
+Items are data. `useCommandCollection` ranks them as you type, and
+`Command.Provider` shares the result with the dialog and the root.
 
 ```tsx
 const command = useCommandCollection({ initialItems: commands })
@@ -69,61 +61,103 @@ const command = useCommandCollection({ initialItems: commands })
     <Portal>
       <Command.DialogBackdrop />
       <Command.DialogContent>
-      <Command.Root>{/* ... */}</Command.Root>
+        <Command.Root>{/* ... */}</Command.Root>
       </Command.DialogContent>
     </Portal>
   </Command.Dialog>
 </Command.Provider>
 ```
 
-Inline, pass it to `Command.Root` with the `command` prop instead.
+- Selecting an item runs its `onSelect` and closes the dialog. Set
+  `closeOnSelect: false` on the item, or on `Root`, to keep it open.
+- The dialog clears the query after it closes.
+- `Command.DialogBackdrop` is optional.
+- Set `disabled: true` on an item to show it without letting it run.
+- There's no built-in shortcut to open the dialog. Bind `⌘K` with the tool your
+  app already uses, as in [Hotkeys](#hotkeys).
 
-Set `disabled: true` on an item to show it without letting it run.
-
-By default the command runs actions: give an item an `onSelect` to run it, and
-no selected state persists. Set `closeOnSelect: false` on an item, or on `Root`,
-to keep the dialog open. For a picker with a persistent selection, use
+Command runs actions and keeps no selected value. For a picker, use
 [Combobox](/docs/components/combobox) or [Listbox](/docs/components/listbox).
 
 ### Coming from cmdk
 
+In cmdk, items are elements that cmdk filters in the DOM. Here, items are data
+that `useCommandCollection` ranks.
+
 | cmdk                            | Chakra UI                                          |
 | ------------------------------- | -------------------------------------------------- |
-| `<Command>`                     | `<Command.Provider value={command}>`               |
-| `<Command.Input>`               | `<Command.Input>` + `useCommandCollection`         |
+| `<Command>`                     | `<Command.Root>` with `useCommandCollection`       |
+| `<Command.Dialog>`              | `<Command.Dialog>` + `<Command.DialogContent>`     |
+| `<Command.Input>`               | `<Command.Input>`                                  |
 | `<Command.List>`                | `<Command.List>`                                   |
-| `<Command.Item onSelect={fn}>`  | `{ label, value, onSelect: fn }` in the collection |
-| `<Command.Group heading="...">` | `<Command.ItemGroup>` + `ItemGroupLabel`           |
+| `<Command.Item onSelect={fn}>`  | `{ label, value, onSelect: fn }` in `initialItems` |
+| `<Command.Group heading="...">` | `<Command.ItemGroup>` + `<Command.ItemGroupLabel>` |
 | `<Command.Empty>`               | `<Command.Empty>`                                  |
-| `<Command.Dialog>`              | `<Command.Dialog>`                                 |
-
-The key difference: `cmdk` owns the items and filters them from the DOM, while
-here the items are data. `useCommandCollection` ranks them with fuzzy matching
-and keywords, loads them asynchronously with `load`, or you replace the ranking
-with `filter`.
+| `shouldFilter={false}`          | `filter: null`                                     |
 
 ## Examples
 
 ### Inline
 
-Render `Command.Root` without a dialog to embed the command in a page, sidebar,
-or popover.
+Render `Command.Root` without a dialog and pass the collection with the
+`command` prop.
 
 <ExampleTabs name="command-inline" />
 
+### Groups
+
+Pass `groupBy` to `useCommandCollection`. Items are ranked within each group,
+and the group order stays fixed while you type.
+
+<ExampleTabs name="command-with-groups" />
+
+### Keywords
+
+Add `keywords` to an item so other words find it, like "preferences" for
+Settings. Keyword matches rank just below label matches.
+
+<ExampleTabs name="command-with-keywords" />
+
+### Highlight Matches
+
+Set `highlight` on `ItemText` to bold the matched characters, including fuzzy
+and camelCase matches.
+
+```tsx
+<Command.ItemText highlight>{item.label}</Command.ItemText>
+```
+
+### Controlled Search
+
+Pass `query` and `onQueryChange` to keep the query in your own state, for
+example to sync it with the URL.
+
+<ExampleTabs name="command-controlled-search" />
+
+### Prefix Search
+
+Type `>`, `@`, or `#` first to search only commands, people, or channels.
+Backspace on an empty input clears the scope.
+
+<ExampleTabs name="command-with-prefix-search" />
+
+### Tabs
+
+Filter the items by the active tab.
+
+<ExampleTabs name="command-with-tabs" />
+
 ### Async Content
 
-Pass `load` to `useCommandCollection` to fetch items as the user types. Stale
-requests are cancelled, so only the latest results show. Give loading, error,
-retry, and empty states distinct feedback; `Loading` and `Empty` never render at
-the same time.
+Pass `load` to fetch items as you type. Stale requests are cancelled, and
+`Loading` and `Empty` never show at the same time.
 
 <ExampleTabs name="command-with-async-content" />
 
 ### Load More
 
 Return `{ items, cursor }` from `load` to page through results. Call
-`command.loadMore()` when the user reaches the end of the list, while
+`command.loadMore()` when the user reaches the end of the list and
 `command.hasMore` is true.
 
 <ExampleTabs name="command-with-load-more" />
@@ -131,8 +165,7 @@ Return `{ items, cursor }` from `load` to page through results. Call
 ### Bring Your Own Data
 
 To fetch with your own data layer, such as TanStack Query, control the query and
-pass the results in. Set `filter: null` so results the server already filtered
-show as given.
+pass the results in. Set `filter: null` so server results show as returned.
 
 ```tsx
 const [query, setQuery] = useState("")
@@ -153,79 +186,10 @@ const command = useCommandCollection({
 </Command.Root>
 ```
 
-### Groups
-
-Pass `groupBy` to `useCommandCollection` and render each group with `ItemGroup`
-and `ItemGroupLabel`. Results are ranked within each group, and the group order
-stays fixed while typing.
-
-<ExampleTabs name="command-with-groups" />
-
-### Toggle Items
-
-Set `closeOnSelect={false}` and toggle values in `onSelect` to pick several
-items without closing. Show a check on the items that are on.
-
-<ExampleTabs name="command-multiple" />
-
-### Controlled Search
-
-Pass `query` and `onQueryChange` to `useCommandCollection` to sync it with
-external state, URL params, or analytics.
-
-<ExampleTabs name="command-controlled-search" />
-
-### Store
-
-An alternative way to control the command is to use the `RootProvider` component
-and the `useCommand` store hook. The store lives outside the dialog, so the
-search survives closing it, and you can read its state from anywhere, like
-showing the last search next to a `⌘K` trigger.
-
-<ExampleTabs name="command-with-root-provider" />
-
-### Keywords
-
-Add `keywords` to an item to make it findable by other words, like "preferences"
-for Settings. Keyword matches rank slightly below label matches. Pass `filter`
-to `useCommandCollection` to replace the ranking entirely.
-
-<ExampleTabs name="command-with-keywords" />
-
-### Prefix Search
-
-Start the query with `>`, `@`, or `#` to scope the search to commands, people,
-or channels. Backspace on an empty input clears the scope.
-
-<ExampleTabs name="command-with-prefix-search" />
-
-### Highlight Matches
-
-Set `highlight` on `ItemText` to emphasize the characters that matched the
-query, including fuzzy and camelCase matches.
-
-```tsx
-<Command.ItemText highlight>{item.label}</Command.ItemText>
-```
-
-### Hotkeys
-
-Register the same items with `useHotkeys` so their shortcuts work with the menu
-closed. Give an item a `scope` to make its shortcut, and its row in the menu,
-available only in that part of the app. Format shortcuts per platform with
-`useFormatHotkey`.
-
-<ExampleTabs name="command-with-hotkeys" />
-
 ### Nested
 
-Use `useCommandPageCollection` for nested pages. It's `useCommandCollection`
-plus pages: give an item a `parent` to place it on that item's page. Selecting
-an item with children opens its page, and going back restores the query that
-page had.
-
-Escape in the dialog goes back a page before closing. Pass `onInputKeyDown` to
-the input so Backspace on an empty input goes back too.
+Use `useCommandPageCollection` for nested pages. It works like
+`useCommandCollection`, and an item with a `parent` lives on that item's page.
 
 ```tsx
 const command = useCommandPageCollection({
@@ -241,78 +205,93 @@ const command = useCommandPageCollection({
     <Portal>
       <Command.DialogBackdrop />
       <Command.DialogContent>
-      <Command.Root>
-        <Command.Input onKeyDown={command.onInputKeyDown} />
-        ...
-      </Command.Root>
+        <Command.Root>
+          <Command.Input onKeyDown={command.onInputKeyDown} />
+          {/* ... */}
+        </Command.Root>
       </Command.DialogContent>
     </Portal>
   </Command.Dialog>
 </Command.Provider>
 ```
 
-Use `command.pages` to render a breadcrumb and `command.setPage` to jump to a
-page. With `deepSearch`, a query also matches items in nested pages; use
-`command.getPath(item)` to show where each match lives.
-
-To open a page directly, for example from a keyboard shortcut, call
-`command.reset("status")` before opening the dialog. Escape then closes the
-dialog, while Backspace on an empty input still goes up to the parent page.
+- Selecting an item with children opens its page.
+- Escape goes back to the previous page, then closes the dialog.
+- Backspace on an empty input goes up a page. Pass `onInputKeyDown` to the input
+  for this.
+- Going back restores the query and highlights the item you came from.
+- `command.pages` is the trail of open pages, for a breadcrumb.
+- With `deepSearch`, a query also matches items in nested pages.
+  `command.getPath(item)` returns where a match lives.
+- To open a page directly, such as from a shortcut, call
+  `command.reset("status")` before opening the dialog. Escape then closes it.
 
 <ExampleTabs name="command-nested" />
 
 ### Async Pages
 
-Mark an item with `page: true` to open a page that loads its own items. `load`
-receives the current `page`, runs again right away when the page changes, and
-its results only show on the page that loaded them.
+Set `page: true` on an item to open a page that loads its own items. `load`
+receives the current `page` and reloads when it changes.
 
 <ExampleTabs name="command-with-async-pages" />
 
 ### Input Pages
 
-Control the query to build a page's items from what the user types, such as
-renaming an issue or inviting someone by email.
+Build a page's items from the query, such as "Rename to …" or "Invite by email".
 
 <ExampleTabs name="command-with-input-page" />
 
+### Hotkeys
+
+Register the same items with `useHotkeys` so their shortcuts work while the menu
+is closed. Format them per platform with `useFormatHotkey`.
+
+<ExampleTabs name="command-with-hotkeys" />
+
+### Store
+
+Use `useCommand` with `Command.RootProvider` to work with the command's state
+from outside, such as controlling the dialog from a `⌘K` shortcut.
+
+<ExampleTabs name="command-with-root-provider" />
+
 ### Links
 
-Render items as real anchors for navigation palettes, so middle-click and
-keyboard semantics work as expected.
+Render items as anchors with `asChild`, so links open with a click, a
+middle-click, or Enter.
 
 <ExampleTabs name="command-with-links" />
 
 ### Recent Items
 
-Track recently used commands and surface them in a dedicated group.
+Store recently used commands and show them in their own group.
 
 <ExampleTabs name="command-with-recent-items" />
 
-### Tabs
+### Toggle Items
 
-Scope results to a category with `Tabs`, filtering the collection by the active
-tab.
+Set `closeOnSelect={false}` and toggle values in `onSelect` to pick several
+items without closing.
 
-<ExampleTabs name="command-with-tabs" />
+<ExampleTabs name="command-multiple" />
 
 ### Footer Actions
 
-Add a `Footer` with shortcut hints or actions that stay visible below the list.
+Show shortcut hints or actions below the list with `Footer`.
 
 <ExampleTabs name="command-with-footer-actions" />
 
 ### Empty State
 
-Customize the `Empty` view shown when the query matches no commands.
+Customize what `Empty` shows when nothing matches.
 
 <ExampleTabs name="command-with-empty-state" />
 
 ### Virtualized
 
-Handle large datasets efficiently by virtualizing the list. Rank with a deferred
-copy of the query so typing stays responsive while the list catches up; pressing
-Enter still acts on what was typed.
+Virtualize the list for large datasets. Pass a deferred copy of the query as
+`filterQuery` so typing stays responsive. Enter still runs the top match for
+what you typed.
 
 ```tsx
 const [query, setQuery] = useState("")
@@ -328,8 +307,8 @@ const command = useCommandCollection({
 
 ### Sizes
 
-Set `size` on `Command.Root` to change density, and on `Command.Dialog` to
-change the dialog's width. Each follows its own theme sizes.
+`size` on `Command.Root` sets the density. `size` on `Command.Dialog` sets the
+width.
 
 <ExampleTabs name="command-with-sizes" />
 
