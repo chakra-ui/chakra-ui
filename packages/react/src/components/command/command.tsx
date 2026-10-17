@@ -446,7 +446,7 @@ export interface CommandItemProps
 export const CommandItem = withContext<HTMLDivElement, CommandItemProps>(
   ArkCombobox.Item,
   "item",
-  { forwardAsChild: true },
+  { forwardAsChild: true, defaultProps: { persistFocus: true } },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

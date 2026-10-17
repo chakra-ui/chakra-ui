@@ -177,8 +177,7 @@ const hasModifierKey = (modifiers: CommandModifierKeys) =>
   modifiers.altKey
 
 /**
- * Highlights the item the user came back from, or the first item when the
- * highlighted one is removed.
+ * Highlights the item the user came back from, e.g. after leaving a page.
  */
 function useRestoreHighlight<T extends CommandItem>(
   combobox: UseComboboxReturn<T>,
@@ -203,11 +202,6 @@ function useRestoreHighlight<T extends CommandItem>(
       return () => cancelAnimationFrame(frame)
     }
     pendingRef.current = null
-
-    if (highlightedValue && collection.has(highlightedValue)) return
-
-    const first = collection.firstValue
-    if (first) setHighlightRef.current(first)
   }, [collection, preferred, highlightedValue, setHighlightRef])
 }
 
