@@ -15,7 +15,7 @@ import {
   Stack,
   Status,
   Text,
-  useCommandPageCollection,
+  useCommandCollection,
   useFormatHotkey,
   useHotkeys,
 } from "@chakra-ui/react"
@@ -74,7 +74,7 @@ export const CommandNested = () => {
   const [open, setOpen] = useState(false)
   const [copied, setCopied] = useState<string>()
 
-  const command = useCommandPageCollection({
+  const command = useCommandCollection({
     initialItems: items,
     groupBy: (item) => item.group ?? "",
     deepSearch: true,
@@ -180,7 +180,6 @@ export const CommandNested = () => {
                     placeholder={
                       page?.placeholder ?? "Type a command or search..."
                     }
-                    onKeyDown={command.onInputKeyDown}
                   />
                 </Command.Control>
                 <Command.List>

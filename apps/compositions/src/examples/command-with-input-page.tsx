@@ -9,7 +9,7 @@ import {
   Portal,
   Stack,
   Text,
-  useCommandPageCollection,
+  useCommandCollection,
 } from "@chakra-ui/react"
 import { useMemo, useState } from "react"
 import {
@@ -62,7 +62,7 @@ export const CommandWithInputPage = () => {
     return result
   }, [query])
 
-  const command = useCommandPageCollection({
+  const command = useCommandCollection({
     initialItems: items,
     query,
     onQueryChange: setQuery,
@@ -99,7 +99,6 @@ export const CommandWithInputPage = () => {
                     placeholder={
                       page?.placeholder ?? "Type a command or search..."
                     }
-                    onKeyDown={command.onInputKeyDown}
                   />
                 </Command.Control>
                 <Command.List>

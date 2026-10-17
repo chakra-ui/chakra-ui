@@ -74,12 +74,6 @@ export type {
   UseCommandCollectionReturn,
 } from "./use-command-collection"
 
-export { useCommandPageCollection } from "./use-command-page-collection"
-export type {
-  UseCommandPageCollectionProps,
-  UseCommandPageCollectionReturn,
-} from "./use-command-page-collection"
-
 export { useCommandContext } from "./command-context"
 export type { UseCommandContext } from "./command-context"
 

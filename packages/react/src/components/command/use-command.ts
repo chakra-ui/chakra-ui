@@ -36,20 +36,7 @@ type ComboboxOnlyProps<T extends CommandItem> = Pick<
  */
 export interface CommandSource<
   T extends CommandItem = CommandItem,
-> extends UseCommandCollectionReturn<T> {
-  /**
-   * Return `true` to keep the command open after a selection.
-   */
-  onSelect?: ((details: CommandSelectionDetails) => boolean) | undefined
-  /**
-   * The item to highlight next, e.g. the one the user came back from.
-   */
-  highlightedValue?: string | null | undefined
-  /**
-   * Goes back one page. Returns `false` when there's nowhere to go.
-   */
-  popPage?: (() => boolean) | undefined
-}
+> extends UseCommandCollectionReturn<T> {}
 
 export interface UseCommandProps<
   T extends CommandItem = CommandItem,
@@ -59,7 +46,7 @@ export interface UseCommandProps<
    */
   collection?: ListCollection<T> | undefined
   /**
-   * The value of `useCommandCollection` or `useCommandPageCollection`.
+   * The value of `useCommandCollection`.
    */
   command?: CommandSource<T> | undefined
   /**
@@ -93,7 +80,7 @@ export interface UseCommandReturn<T extends CommandItem = CommandItem> {
    */
   loading: boolean | undefined
   /**
-   * The value of `useCommandCollection` or `useCommandPageCollection`, if any.
+   * The value of `useCommandCollection`, if any.
    */
   command: CommandSource<T> | undefined
   /**
@@ -137,7 +124,7 @@ export function useCommand<T extends CommandItem = CommandItem>(
   ) => {
     if (typeof item?.onSelect === "function") item.onSelect(details)
     onSelect?.(details)
-    if (command?.onSelect?.(details)) return
+    if (command?.onSelect(details)) return
 
     const shouldClose = closeOnSelect && !hasModifierKey(details.modifiers)
     if (item?.closeOnSelect ?? shouldClose) onClose?.()

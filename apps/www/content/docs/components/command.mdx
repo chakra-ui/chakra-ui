@@ -192,37 +192,22 @@ const command = useCommandCollection({
 
 ### Nested
 
-Use `useCommandPageCollection` for nested pages. It works like
-`useCommandCollection`, and an item with a `parent` lives on that item's page.
+Give an item a `parent` to put it on that item's page. Nothing else changes in
+the markup.
 
 ```tsx
-const command = useCommandPageCollection({
+const command = useCommandCollection({
   initialItems: [
     { label: "Change status...", value: "status" },
     { label: "Done", value: "status:done", parent: "status" },
   ],
   deepSearch: true,
 })
-
-<Command.Provider value={command}>
-  <Command.Dialog>
-    <Portal>
-      <Command.DialogBackdrop />
-      <Command.DialogContent>
-        <Command.Root>
-          <Command.Input onKeyDown={command.onInputKeyDown} />
-          {/* ... */}
-        </Command.Root>
-      </Command.DialogContent>
-    </Portal>
-  </Command.Dialog>
-</Command.Provider>
 ```
 
 - Selecting an item with children opens its page.
 - Escape goes back to the previous page, then closes the dialog.
-- Backspace on an empty input goes up a page. Pass `onInputKeyDown` to the input
-  for this.
+- Backspace on an empty input goes up a page.
 - Going back restores the query and highlights the item you came from.
 - `command.pages` is the trail of open pages, for a breadcrumb.
 - With `deepSearch`, a query also matches items in nested pages.

@@ -11,7 +11,7 @@ import {
   Portal,
   Spinner,
   Text,
-  useCommandPageCollection,
+  useCommandCollection,
 } from "@chakra-ui/react"
 import {
   LuChevronRight,
@@ -32,7 +32,7 @@ interface Result extends Command.Item {
 }
 
 export const CommandWithAsyncPages = () => {
-  const command = useCommandPageCollection<Result>({
+  const command = useCommandCollection<Result>({
     initialItems: items,
     load: async ({ page, query, signal }) => {
       if (query) await wait(200, signal)
@@ -73,7 +73,6 @@ export const CommandWithAsyncPages = () => {
                   placeholder={
                     page?.placeholder ?? "Type a command or search..."
                   }
-                  onKeyDown={command.onInputKeyDown}
                 />
                 {command.loading && <Spinner size="sm" color="fg.muted" />}
               </Command.Control>

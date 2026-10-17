@@ -58,7 +58,7 @@ export { useCommandStyles }
 
 export interface CommandProviderProps<T extends CommandItem = CommandItem> {
   /**
-   * The value of `useCommandCollection` or `useCommandPageCollection`, shared with
+   * The value of `useCommandCollection`, shared with
    * every `Command.Root` inside.
    */
   value: CommandSource<T>
@@ -190,7 +190,7 @@ export const CommandDialog = (props: CommandDialogProps) => {
       ids={{ title: provider?.labelId, ...rootProps.ids }}
       onEscapeKeyDown={(event) => {
         onEscapeKeyDown?.(event)
-        if (!event.defaultPrevented && source?.popPage?.()) {
+        if (!event.defaultPrevented && source?.popPage()) {
           event.preventDefault()
         }
       }}
@@ -302,7 +302,7 @@ export const CommandIndicator = withContext<
 export interface CommandInputProps
   extends HTMLChakraProps<"input", ArkCombobox.InputBaseProps>, UnstyledProp {}
 
-// Safari reports the Enter that confirms IME input as keyCode 229
+// Safari reports keys that confirm or cancel IME input as keyCode 229
 const isComposing = (event: KeyboardEvent) =>
   event.isComposing || event.keyCode === 229
 
@@ -317,8 +317,9 @@ const CommandInputBase = forwardRef<HTMLInputElement, ArkCombobox.InputProps>(
         {...props}
         onKeyDown={(event) => {
           props.onKeyDown?.(event)
-          if (event.defaultPrevented || event.key !== "Enter") return
           if (isComposing(event.nativeEvent)) return
+          command?.onInputKeyDown(event)
+          if (event.defaultPrevented || event.key !== "Enter") return
           if (!command || command.filterQuery === command.query) return
 
           const highlighted = combobox.highlightedValue
