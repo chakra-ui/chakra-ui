@@ -15,6 +15,7 @@ import {
 } from "../../styled-system"
 import {
   DialogBackdrop,
+  type DialogBackdropProps,
   DialogContent,
   type DialogContentProps,
   DialogContext,
@@ -27,7 +28,6 @@ import {
   type DialogTriggerProps,
 } from "../dialog"
 import { SearchIcon } from "../icons"
-import { Portal } from "../portal"
 import {
   CommandContextProvider,
   CommandSourceProvider,
@@ -217,15 +217,6 @@ export interface CommandDialogContentProps extends Omit<
    * @default "Search for a command to run"
    */
   description?: React.ReactNode | undefined
-  /**
-   * Whether to render the dialog in a portal.
-   * @default true
-   */
-  portalled?: boolean | undefined
-  /**
-   * The element to portal the dialog into.
-   */
-  portalRef?: React.RefObject<HTMLElement | null> | undefined
 }
 
 export const CommandDialogContent = forwardRef<
@@ -235,25 +226,24 @@ export const CommandDialogContent = forwardRef<
   const {
     title = "Command palette",
     description = "Search for a command to run",
-    portalled = true,
-    portalRef,
     children,
     ...rest
   } = props
 
   return (
-    <Portal disabled={!portalled} container={portalRef}>
-      <DialogBackdrop />
-      <DialogPositioner>
-        <DialogContent ref={ref} overflow="hidden" {...rest}>
-          <DialogTitle srOnly>{title}</DialogTitle>
-          <DialogDescription srOnly>{description}</DialogDescription>
-          {children}
-        </DialogContent>
-      </DialogPositioner>
-    </Portal>
+    <DialogPositioner>
+      <DialogContent ref={ref} overflow="hidden" {...rest}>
+        <DialogTitle srOnly>{title}</DialogTitle>
+        <DialogDescription srOnly>{description}</DialogDescription>
+        {children}
+      </DialogContent>
+    </DialogPositioner>
   )
 })
+
+export interface CommandDialogBackdropProps extends DialogBackdropProps {}
+
+export const CommandDialogBackdrop = DialogBackdrop
 
 ////////////////////////////////////////////////////////////////////////////////////
 

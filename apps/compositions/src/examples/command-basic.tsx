@@ -6,6 +6,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   Span,
   Text,
   useCommandCollection,
@@ -43,51 +44,58 @@ export const CommandBasic = () => {
               <LuSearch /> Search commands...
             </Button>
           </Command.DialogTrigger>
-          <Command.DialogContent>
-            <Command.Root
-              onSelect={(e) =>
-                setLastCommand(command.collection.find(e.itemValue)?.label)
-              }
-            >
-              <Command.Control>
-                <Command.Indicator />
-                <Command.Input placeholder="Type a command or search..." />
-              </Command.Control>
-              <Command.List>
-                {command.collection.items.map((item) => (
-                  <Command.Item item={item} key={item.value}>
-                    {item.icon}
-                    <Command.ItemText highlight>{item.label}</Command.ItemText>
-                    {item.shortcut.map((key) => (
-                      <Command.ItemCommand key={key}>{key}</Command.ItemCommand>
-                    ))}
-                  </Command.Item>
-                ))}
-                <Command.Empty>No commands found</Command.Empty>
-              </Command.List>
-              <Command.Footer>
-                <HStack gap="1.5">
-                  <KbdGroup size="sm" variant="subtle">
-                    <Kbd>↑</Kbd>
-                    <Kbd>↓</Kbd>
-                  </KbdGroup>
-                  Navigate
-                </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    ↵
-                  </Kbd>
-                  Run
-                </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    esc
-                  </Kbd>
-                  Close
-                </HStack>
-              </Command.Footer>
-            </Command.Root>
-          </Command.DialogContent>
+          <Portal>
+            <Command.DialogBackdrop />
+            <Command.DialogContent>
+              <Command.Root
+                onSelect={(e) =>
+                  setLastCommand(command.collection.find(e.itemValue)?.label)
+                }
+              >
+                <Command.Control>
+                  <Command.Indicator />
+                  <Command.Input placeholder="Type a command or search..." />
+                </Command.Control>
+                <Command.List>
+                  {command.collection.items.map((item) => (
+                    <Command.Item item={item} key={item.value}>
+                      {item.icon}
+                      <Command.ItemText highlight>
+                        {item.label}
+                      </Command.ItemText>
+                      {item.shortcut.map((key) => (
+                        <Command.ItemCommand key={key}>
+                          {key}
+                        </Command.ItemCommand>
+                      ))}
+                    </Command.Item>
+                  ))}
+                  <Command.Empty>No commands found</Command.Empty>
+                </Command.List>
+                <Command.Footer>
+                  <HStack gap="1.5">
+                    <KbdGroup size="sm" variant="subtle">
+                      <Kbd>↑</Kbd>
+                      <Kbd>↓</Kbd>
+                    </KbdGroup>
+                    Navigate
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      ↵
+                    </Kbd>
+                    Run
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      esc
+                    </Kbd>
+                    Close
+                  </HStack>
+                </Command.Footer>
+              </Command.Root>
+            </Command.DialogContent>
+          </Portal>
         </Command.Dialog>
       </Command.Provider>
       {lastCommand && (

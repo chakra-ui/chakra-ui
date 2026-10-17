@@ -6,6 +6,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   Span,
   useCommandCollection,
 } from "@chakra-ui/react"
@@ -49,74 +50,79 @@ export const CommandVirtualized = () => {
             <LuSearch /> Search documents...
           </Button>
         </Command.DialogTrigger>
-        <Command.DialogContent>
-          <Command.Root
-            scrollToIndexFn={(details) => {
-              virtualizer.scrollToIndex(details.index, { align: "auto" })
-            }}
-          >
-            <Command.Control>
-              <Command.Indicator />
-              <Command.Input
-                placeholder={`Search ${commands.length.toLocaleString()} commands...`}
-              />
-            </Command.Control>
-            <Command.List ref={scrollRef}>
-              <div
-                style={{
-                  height: `${virtualizer.getTotalSize()}px`,
-                  width: "100%",
-                  position: "relative",
-                }}
-              >
-                {virtualizer.getVirtualItems().map((virtualItem) => {
-                  const item = collection.items[virtualItem.index]
-                  return (
-                    <Command.Item
-                      key={item.value}
-                      item={item}
-                      aria-posinset={virtualItem.index + 1}
-                      aria-setsize={collection.size}
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: `${virtualItem.size}px`,
-                        transform: `translateY(${virtualItem.start}px)`,
-                      }}
-                    >
-                      {item.icon}
-                      <Command.ItemText highlight>
-                        {item.label}
-                      </Command.ItemText>
-                      <Span textStyle="xs" color="fg.subtle">
-                        {item.folder}
-                      </Span>
-                    </Command.Item>
-                  )
-                })}
-              </div>
-              <Command.Empty>No commands found</Command.Empty>
-            </Command.List>
-            <Command.Footer>
-              <HStack gap="1.5">
-                <KbdGroup size="sm" variant="subtle">
-                  <Kbd>↑</Kbd>
-                  <Kbd>↓</Kbd>
-                </KbdGroup>
-                Navigate
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  ↵
-                </Kbd>
-                Select
-              </HStack>
-              <Span ms="auto">{collection.size.toLocaleString()} results</Span>
-            </Command.Footer>
-          </Command.Root>
-        </Command.DialogContent>
+        <Portal>
+          <Command.DialogBackdrop />
+          <Command.DialogContent>
+            <Command.Root
+              scrollToIndexFn={(details) => {
+                virtualizer.scrollToIndex(details.index, { align: "auto" })
+              }}
+            >
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input
+                  placeholder={`Search ${commands.length.toLocaleString()} commands...`}
+                />
+              </Command.Control>
+              <Command.List ref={scrollRef}>
+                <div
+                  style={{
+                    height: `${virtualizer.getTotalSize()}px`,
+                    width: "100%",
+                    position: "relative",
+                  }}
+                >
+                  {virtualizer.getVirtualItems().map((virtualItem) => {
+                    const item = collection.items[virtualItem.index]
+                    return (
+                      <Command.Item
+                        key={item.value}
+                        item={item}
+                        aria-posinset={virtualItem.index + 1}
+                        aria-setsize={collection.size}
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          width: "100%",
+                          height: `${virtualItem.size}px`,
+                          transform: `translateY(${virtualItem.start}px)`,
+                        }}
+                      >
+                        {item.icon}
+                        <Command.ItemText highlight>
+                          {item.label}
+                        </Command.ItemText>
+                        <Span textStyle="xs" color="fg.subtle">
+                          {item.folder}
+                        </Span>
+                      </Command.Item>
+                    )
+                  })}
+                </div>
+                <Command.Empty>No commands found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Select
+                </HStack>
+                <Span ms="auto">
+                  {collection.size.toLocaleString()} results
+                </Span>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Portal>
       </Command.Dialog>
     </Command.Provider>
   )

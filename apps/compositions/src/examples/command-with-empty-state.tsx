@@ -8,6 +8,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   VStack,
   useCommandCollection,
 } from "@chakra-ui/react"
@@ -49,72 +50,75 @@ export const CommandWithEmptyState = () => {
             <LuSearch /> Search labels...
           </Button>
         </Command.DialogTrigger>
-        <Command.DialogContent>
-          <Command.Root>
-            <Command.Control>
-              <Command.Indicator />
-              <Command.Input placeholder="Search or create a label..." />
-            </Command.Control>
-            <Command.List>
-              {command.collection.items.map((item) => (
-                <Command.Item item={item} key={item.value}>
-                  <Box boxSize="2.5" rounded="full" bg={item.color} />
-                  <Command.ItemText highlight>{item.label}</Command.ItemText>
-                </Command.Item>
-              ))}
-              <Command.Empty>
-                <EmptyState.Root size="sm">
-                  <EmptyState.Content>
-                    <EmptyState.Indicator>
-                      <LuTag />
-                    </EmptyState.Indicator>
-                    <VStack textAlign="center" gap="1">
-                      <EmptyState.Title>No labels found</EmptyState.Title>
-                      <EmptyState.Description>
-                        {`There's no label matching "${command.query}" yet`}
-                      </EmptyState.Description>
-                    </VStack>
-                    <Command.Context>
-                      {(combobox) => (
-                        <Button
-                          size="xs"
-                          variant="outline"
-                          onClick={() => {
-                            createLabel()
-                            combobox.focus()
-                          }}
-                        >
-                          <LuPlus /> {`Create "${command.query}"`}
-                        </Button>
-                      )}
-                    </Command.Context>
-                  </EmptyState.Content>
-                </EmptyState.Root>
-              </Command.Empty>
-            </Command.List>
-            <Command.Footer>
-              <HStack gap="1.5">
-                <KbdGroup size="sm" variant="subtle">
-                  <Kbd>↑</Kbd>
-                  <Kbd>↓</Kbd>
-                </KbdGroup>
-                Navigate
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  ↵
-                </Kbd>
-                Select
-              </HStack>
-              <HStack gap="1.5">
-                <Kbd size="sm" variant="subtle">
-                  esc
-                </Kbd>
-                Close
-              </HStack>
-            </Command.Footer>
-          </Command.Root>
-        </Command.DialogContent>
+        <Portal>
+          <Command.DialogBackdrop />
+          <Command.DialogContent>
+            <Command.Root>
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Search or create a label..." />
+              </Command.Control>
+              <Command.List>
+                {command.collection.items.map((item) => (
+                  <Command.Item item={item} key={item.value}>
+                    <Box boxSize="2.5" rounded="full" bg={item.color} />
+                    <Command.ItemText highlight>{item.label}</Command.ItemText>
+                  </Command.Item>
+                ))}
+                <Command.Empty>
+                  <EmptyState.Root size="sm">
+                    <EmptyState.Content>
+                      <EmptyState.Indicator>
+                        <LuTag />
+                      </EmptyState.Indicator>
+                      <VStack textAlign="center" gap="1">
+                        <EmptyState.Title>No labels found</EmptyState.Title>
+                        <EmptyState.Description>
+                          {`There's no label matching "${command.query}" yet`}
+                        </EmptyState.Description>
+                      </VStack>
+                      <Command.Context>
+                        {(combobox) => (
+                          <Button
+                            size="xs"
+                            variant="outline"
+                            onClick={() => {
+                              createLabel()
+                              combobox.focus()
+                            }}
+                          >
+                            <LuPlus /> {`Create "${command.query}"`}
+                          </Button>
+                        )}
+                      </Command.Context>
+                    </EmptyState.Content>
+                  </EmptyState.Root>
+                </Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Select
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    esc
+                  </Kbd>
+                  Close
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Portal>
       </Command.Dialog>
     </Command.Provider>
   )

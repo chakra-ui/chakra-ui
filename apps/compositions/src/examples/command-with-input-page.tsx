@@ -6,6 +6,7 @@ import {
   Command,
   HStack,
   Kbd,
+  Portal,
   Stack,
   Text,
   useCommandPages,
@@ -83,51 +84,54 @@ export const CommandWithInputPage = () => {
               <LuSearch /> Search actions...
             </Button>
           </Command.DialogTrigger>
-          <Command.DialogContent>
-            <Command.Root>
-              <Command.Control>
-                <Command.Indicator />
-                {page && (
-                  <Badge size="sm" variant="subtle" flexShrink="0">
-                    {page.title}
-                  </Badge>
-                )}
-                <Command.Input
-                  placeholder={
-                    page?.placeholder ?? "Type a command or search..."
-                  }
-                  onKeyDown={command.onInputKeyDown}
-                />
-              </Command.Control>
-              <Command.List>
-                {command.collection.items.map((item) => (
-                  <Command.Item item={item} key={item.value}>
-                    {item.icon}
-                    <Command.ItemText highlight={!page}>
-                      {item.label}
-                    </Command.ItemText>
-                  </Command.Item>
-                ))}
-                <Command.Empty>
-                  {page?.hint ?? "No results found"}
-                </Command.Empty>
-              </Command.List>
-              <Command.Footer>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    ↵
-                  </Kbd>
-                  {page ? "Confirm" : "Select"}
-                </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    {page ? "⌫" : "esc"}
-                  </Kbd>
-                  {page ? "Back" : "Close"}
-                </HStack>
-              </Command.Footer>
-            </Command.Root>
-          </Command.DialogContent>
+          <Portal>
+            <Command.DialogBackdrop />
+            <Command.DialogContent>
+              <Command.Root>
+                <Command.Control>
+                  <Command.Indicator />
+                  {page && (
+                    <Badge size="sm" variant="subtle" flexShrink="0">
+                      {page.title}
+                    </Badge>
+                  )}
+                  <Command.Input
+                    placeholder={
+                      page?.placeholder ?? "Type a command or search..."
+                    }
+                    onKeyDown={command.onInputKeyDown}
+                  />
+                </Command.Control>
+                <Command.List>
+                  {command.collection.items.map((item) => (
+                    <Command.Item item={item} key={item.value}>
+                      {item.icon}
+                      <Command.ItemText highlight={!page}>
+                        {item.label}
+                      </Command.ItemText>
+                    </Command.Item>
+                  ))}
+                  <Command.Empty>
+                    {page?.hint ?? "No results found"}
+                  </Command.Empty>
+                </Command.List>
+                <Command.Footer>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      ↵
+                    </Kbd>
+                    {page ? "Confirm" : "Select"}
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      {page ? "⌫" : "esc"}
+                    </Kbd>
+                    {page ? "Back" : "Close"}
+                  </HStack>
+                </Command.Footer>
+              </Command.Root>
+            </Command.DialogContent>
+          </Portal>
         </Command.Dialog>
       </Command.Provider>
 

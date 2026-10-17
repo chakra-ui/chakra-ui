@@ -6,6 +6,7 @@ import {
   Command,
   HStack,
   Kbd,
+  Portal,
   useCommandCollection,
 } from "@chakra-ui/react"
 import { useState } from "react"
@@ -50,63 +51,66 @@ export const CommandWithPrefixSearch = () => {
             <LuSearch /> Search everything...
           </Button>
         </Command.DialogTrigger>
-        <Command.DialogContent>
-          <Command.Root>
-            <Command.Control>
-              <Command.Indicator />
-              {scope && (
-                <Badge size="sm" variant="surface" flexShrink="0">
-                  {scope.icon}
-                  {scope.label}
-                </Badge>
-              )}
-              <Command.Input
-                placeholder={
-                  scope
-                    ? `Search ${scope.label.toLowerCase()}...`
-                    : "Search or type > @ # to filter..."
-                }
-                onKeyDown={(e) => {
-                  if (command.query) return
-                  if (!prefix && isPrefix(e.key)) {
-                    e.preventDefault()
-                    setPrefix(e.key)
+        <Portal>
+          <Command.DialogBackdrop />
+          <Command.DialogContent>
+            <Command.Root>
+              <Command.Control>
+                <Command.Indicator />
+                {scope && (
+                  <Badge size="sm" variant="surface" flexShrink="0">
+                    {scope.icon}
+                    {scope.label}
+                  </Badge>
+                )}
+                <Command.Input
+                  placeholder={
+                    scope
+                      ? `Search ${scope.label.toLowerCase()}...`
+                      : "Search or type > @ # to filter..."
                   }
-                  if (prefix && e.key === "Backspace") {
-                    e.preventDefault()
-                    setPrefix(null)
-                  }
-                }}
-              />
-            </Command.Control>
-            <Command.List>
-              {command.collection.group().map(([group, items]) => (
-                <Command.ItemGroup key={group}>
-                  <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
-                  {items.map((item) => (
-                    <Command.Item item={item} key={item.value}>
-                      {item.icon}
-                      <Command.ItemText highlight>
-                        {item.label}
-                      </Command.ItemText>
-                    </Command.Item>
-                  ))}
-                </Command.ItemGroup>
-              ))}
-              <Command.Empty>No results found</Command.Empty>
-            </Command.List>
-            <Command.Footer>
-              {Object.entries(scopes).map(([key, value]) => (
-                <HStack gap="1.5" key={key}>
-                  <Kbd size="sm" variant="subtle">
-                    {key}
-                  </Kbd>
-                  {value.label}
-                </HStack>
-              ))}
-            </Command.Footer>
-          </Command.Root>
-        </Command.DialogContent>
+                  onKeyDown={(e) => {
+                    if (command.query) return
+                    if (!prefix && isPrefix(e.key)) {
+                      e.preventDefault()
+                      setPrefix(e.key)
+                    }
+                    if (prefix && e.key === "Backspace") {
+                      e.preventDefault()
+                      setPrefix(null)
+                    }
+                  }}
+                />
+              </Command.Control>
+              <Command.List>
+                {command.collection.group().map(([group, items]) => (
+                  <Command.ItemGroup key={group}>
+                    <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
+                    {items.map((item) => (
+                      <Command.Item item={item} key={item.value}>
+                        {item.icon}
+                        <Command.ItemText highlight>
+                          {item.label}
+                        </Command.ItemText>
+                      </Command.Item>
+                    ))}
+                  </Command.ItemGroup>
+                ))}
+                <Command.Empty>No results found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                {Object.entries(scopes).map(([key, value]) => (
+                  <HStack gap="1.5" key={key}>
+                    <Kbd size="sm" variant="subtle">
+                      {key}
+                    </Kbd>
+                    {value.label}
+                  </HStack>
+                ))}
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Portal>
       </Command.Dialog>
     </Command.Provider>
   )

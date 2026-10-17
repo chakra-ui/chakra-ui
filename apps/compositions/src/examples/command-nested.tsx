@@ -11,6 +11,7 @@ import {
   HStack,
   Kbd,
   KbdGroup,
+  Portal,
   Stack,
   Status,
   Text,
@@ -100,121 +101,124 @@ export const CommandNested = () => {
               <LuSearch /> Search actions...
             </Button>
           </Command.DialogTrigger>
-          <Command.DialogContent>
-            <Command.Root
-              onSelect={(e) => {
-                const item = command.collection.find(e.itemValue)
-                if (!item?.field || !item.option) return
-                const { field, option } = item
-                setIssue((prev) => applyOption(prev, field, option))
-              }}
-            >
-              <HStack px="4" pt="3" gap="1" textStyle="xs" color="fg.muted">
-                <Crumb
-                  variant="surface"
-                  fontFamily="mono"
-                  onClick={() => command.setPage(null)}
-                >
-                  ENG-142
-                </Crumb>
-                {command.pages.length === 0 && (
-                  <Text truncate ms="1">
-                    Fix login redirect loop on Safari
-                  </Text>
-                )}
-                {command.pages.map((item, index) => {
-                  const last = index === command.pages.length - 1
-                  return (
-                    <Fragment key={item.value}>
-                      <LuChevronRight />
-                      <Crumb
-                        variant={last ? "subtle" : "plain"}
-                        onClick={() => command.setPage(item.value)}
-                      >
-                        {titleOf(item)}
-                      </Crumb>
-                    </Fragment>
-                  )
-                })}
-              </HStack>
-              <Command.Control>
-                <Command.Indicator />
-                <Command.Input
-                  placeholder={
-                    page?.placeholder ?? "Type a command or search..."
-                  }
-                  onKeyDown={command.onInputKeyDown}
-                />
-              </Command.Control>
-              <Command.List>
-                {command.collection.group().map(([group, groupItems]) => (
-                  <Command.ItemGroup key={group}>
-                    {group && (
-                      <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
-                    )}
-                    {groupItems.map((item) => {
-                      const path = command.getPath(item)
-                      return (
-                        <Command.Item item={item} key={item.value}>
-                          {item.icon}
-                          {path.length > 0 && (
-                            <HStack gap="1" color="fg.muted" flexShrink="0">
-                              {path.map((parent) => (
-                                <Fragment key={parent.value}>
-                                  {titleOf(parent)}
-                                  <LuChevronRight />
-                                </Fragment>
-                              ))}
-                            </HStack>
-                          )}
-                          <Command.ItemText highlight>
-                            {item.label}
-                          </Command.ItemText>
-                          {isSelected(item) && (
-                            <Box color="fg" ms="auto">
-                              <LuCheck />
-                            </Box>
-                          )}
-                          {command.isPage(item) && !item.shortcut && (
-                            <Box color="fg.subtle" ms="auto">
-                              <LuChevronRight />
-                            </Box>
-                          )}
-                          {item.shortcut?.map((key) => (
-                            <Command.ItemCommand key={key}>
-                              {key}
-                            </Command.ItemCommand>
-                          ))}
-                        </Command.Item>
-                      )
-                    })}
-                  </Command.ItemGroup>
-                ))}
-                <Command.Empty>No results found</Command.Empty>
-              </Command.List>
-              <Command.Footer>
-                <HStack gap="1.5">
-                  <KbdGroup size="sm" variant="subtle">
-                    <Kbd>↑</Kbd>
-                    <Kbd>↓</Kbd>
-                  </KbdGroup>
-                  Navigate
+          <Portal>
+            <Command.DialogBackdrop />
+            <Command.DialogContent>
+              <Command.Root
+                onSelect={(e) => {
+                  const item = command.collection.find(e.itemValue)
+                  if (!item?.field || !item.option) return
+                  const { field, option } = item
+                  setIssue((prev) => applyOption(prev, field, option))
+                }}
+              >
+                <HStack px="4" pt="3" gap="1" textStyle="xs" color="fg.muted">
+                  <Crumb
+                    variant="surface"
+                    fontFamily="mono"
+                    onClick={() => command.setPage(null)}
+                  >
+                    ENG-142
+                  </Crumb>
+                  {command.pages.length === 0 && (
+                    <Text truncate ms="1">
+                      Fix login redirect loop on Safari
+                    </Text>
+                  )}
+                  {command.pages.map((item, index) => {
+                    const last = index === command.pages.length - 1
+                    return (
+                      <Fragment key={item.value}>
+                        <LuChevronRight />
+                        <Crumb
+                          variant={last ? "subtle" : "plain"}
+                          onClick={() => command.setPage(item.value)}
+                        >
+                          {titleOf(item)}
+                        </Crumb>
+                      </Fragment>
+                    )
+                  })}
                 </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    ↵
-                  </Kbd>
-                  {page?.value === "labels" ? "Toggle" : "Select"}
-                </HStack>
-                <HStack gap="1.5">
-                  <Kbd size="sm" variant="subtle">
-                    {page ? "⌫" : "esc"}
-                  </Kbd>
-                  {page ? "Back" : "Close"}
-                </HStack>
-              </Command.Footer>
-            </Command.Root>
-          </Command.DialogContent>
+                <Command.Control>
+                  <Command.Indicator />
+                  <Command.Input
+                    placeholder={
+                      page?.placeholder ?? "Type a command or search..."
+                    }
+                    onKeyDown={command.onInputKeyDown}
+                  />
+                </Command.Control>
+                <Command.List>
+                  {command.collection.group().map(([group, groupItems]) => (
+                    <Command.ItemGroup key={group}>
+                      {group && (
+                        <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
+                      )}
+                      {groupItems.map((item) => {
+                        const path = command.getPath(item)
+                        return (
+                          <Command.Item item={item} key={item.value}>
+                            {item.icon}
+                            {path.length > 0 && (
+                              <HStack gap="1" color="fg.muted" flexShrink="0">
+                                {path.map((parent) => (
+                                  <Fragment key={parent.value}>
+                                    {titleOf(parent)}
+                                    <LuChevronRight />
+                                  </Fragment>
+                                ))}
+                              </HStack>
+                            )}
+                            <Command.ItemText highlight>
+                              {item.label}
+                            </Command.ItemText>
+                            {isSelected(item) && (
+                              <Box color="fg" ms="auto">
+                                <LuCheck />
+                              </Box>
+                            )}
+                            {command.isPage(item) && !item.shortcut && (
+                              <Box color="fg.subtle" ms="auto">
+                                <LuChevronRight />
+                              </Box>
+                            )}
+                            {item.shortcut?.map((key) => (
+                              <Command.ItemCommand key={key}>
+                                {key}
+                              </Command.ItemCommand>
+                            ))}
+                          </Command.Item>
+                        )
+                      })}
+                    </Command.ItemGroup>
+                  ))}
+                  <Command.Empty>No results found</Command.Empty>
+                </Command.List>
+                <Command.Footer>
+                  <HStack gap="1.5">
+                    <KbdGroup size="sm" variant="subtle">
+                      <Kbd>↑</Kbd>
+                      <Kbd>↓</Kbd>
+                    </KbdGroup>
+                    Navigate
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      ↵
+                    </Kbd>
+                    {page?.value === "labels" ? "Toggle" : "Select"}
+                  </HStack>
+                  <HStack gap="1.5">
+                    <Kbd size="sm" variant="subtle">
+                      {page ? "⌫" : "esc"}
+                    </Kbd>
+                    {page ? "Back" : "Close"}
+                  </HStack>
+                </Command.Footer>
+              </Command.Root>
+            </Command.DialogContent>
+          </Portal>
         </Command.Dialog>
       </Command.Provider>
 
