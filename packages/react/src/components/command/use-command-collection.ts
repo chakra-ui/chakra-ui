@@ -181,7 +181,6 @@ export function useCommandCollection<T extends CommandItem>(
     return prepared
   }
 
-  // Narrows from the previous matches while the query keeps growing
   const searchLocal = (items: readonly T[], query: string, narrow: boolean) => {
     const last = narrow ? lastSearchRef.current : null
     const pool =

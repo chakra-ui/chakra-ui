@@ -12,9 +12,19 @@ export const [CommandContextProvider, useCommandContext] =
     providerName: "<Command.Root />",
   })
 
-export const [CommandSourceProvider, useCommandSourceContext] = createContext<
-  CommandSource<any> | undefined
->({
-  name: "CommandSourceContext",
-  strict: false,
-})
+export interface CommandProviderContext {
+  /**
+   * The value passed to `Command.Provider`.
+   */
+  value: CommandSource<any>
+  /**
+   * The id that labels the command, e.g. the dialog title.
+   */
+  labelId: string
+}
+
+export const [CommandProviderContextProvider, useCommandProviderContext] =
+  createContext<CommandProviderContext | undefined>({
+    name: "CommandProviderContext",
+    strict: false,
+  })

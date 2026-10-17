@@ -25,6 +25,7 @@ export const CommandInline = () => {
       bg="bg.panel"
       shadow="xs"
     >
+      <Command.Label srOnly>Search commands</Command.Label>
       <Command.Control>
         <Command.Indicator />
         <Command.Input placeholder="Type a command or search..." />
