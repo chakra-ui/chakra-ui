@@ -15,7 +15,7 @@ import {
   Stack,
   Status,
   Text,
-  useCommandPages,
+  useCommandPageCollection,
   useFormatHotkey,
   useHotkeys,
 } from "@chakra-ui/react"
@@ -74,7 +74,7 @@ export const CommandNested = () => {
   const [open, setOpen] = useState(false)
   const [copied, setCopied] = useState<string>()
 
-  const command = useCommandPages({
+  const command = useCommandPageCollection({
     initialItems: items,
     groupBy: (item) => item.group ?? "",
     deepSearch: true,

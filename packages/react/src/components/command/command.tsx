@@ -58,7 +58,7 @@ export { useCommandStyles }
 
 export interface CommandProviderProps<T extends CommandItem = CommandItem> {
   /**
-   * The value of `useCommandCollection` or `useCommandPages`, shared with
+   * The value of `useCommandCollection` or `useCommandPageCollection`, shared with
    * every `Command.Root` inside.
    */
   value: CommandSource<T>

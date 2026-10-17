@@ -16,10 +16,9 @@ export interface CommandPageLoadDetails<
   page: T | null
 }
 
-export interface UseCommandPagesProps<T extends CommandItem> extends Omit<
-  UseCommandCollectionProps<T>,
-  "load" | "loadKey"
-> {
+export interface UseCommandPageCollectionProps<
+  T extends CommandItem,
+> extends Omit<UseCommandCollectionProps<T>, "load" | "loadKey"> {
   /**
    * Loads items for the current page. Runs again when the page changes.
    */
@@ -35,7 +34,7 @@ export interface UseCommandPagesProps<T extends CommandItem> extends Omit<
   onPageChange?: ((page: T | null) => void) | undefined
 }
 
-export interface UseCommandPagesReturn<
+export interface UseCommandPageCollectionReturn<
   T extends CommandItem,
 > extends UseCommandCollectionReturn<T> {
   /**
@@ -88,9 +87,9 @@ export interface UseCommandPagesReturn<
 const EMPTY: never[] = []
 const ROOT = "\0root"
 
-export function useCommandPages<T extends CommandItem>(
-  props: UseCommandPagesProps<T>,
-): UseCommandPagesReturn<T> {
+export function useCommandPageCollection<T extends CommandItem>(
+  props: UseCommandPageCollectionProps<T>,
+): UseCommandPageCollectionReturn<T> {
   const {
     initialItems = EMPTY,
     deepSearch = false,

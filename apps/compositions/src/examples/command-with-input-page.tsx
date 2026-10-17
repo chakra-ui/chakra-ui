@@ -9,7 +9,7 @@ import {
   Portal,
   Stack,
   Text,
-  useCommandPages,
+  useCommandPageCollection,
 } from "@chakra-ui/react"
 import { useMemo, useState } from "react"
 import {
@@ -62,7 +62,7 @@ export const CommandWithInputPage = () => {
     return result
   }, [query])
 
-  const command = useCommandPages({
+  const command = useCommandPageCollection({
     initialItems: items,
     query,
     onQueryChange: setQuery,

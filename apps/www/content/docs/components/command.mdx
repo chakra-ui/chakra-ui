@@ -184,15 +184,16 @@ available only in that part of the app. Format shortcuts per platform with
 
 ### Nested
 
-Use `useCommandPages` for nested pages. Give an item a `parent` to place it on
-that item's page. Selecting an item with children opens its page, and going back
-restores the query that page had.
+Use `useCommandPageCollection` for nested pages. It's `useCommandCollection`
+plus pages: give an item a `parent` to place it on that item's page. Selecting
+an item with children opens its page, and going back restores the query that
+page had.
 
 Escape in the dialog goes back a page before closing. Pass `onInputKeyDown` to
 the input so Backspace on an empty input goes back too.
 
 ```tsx
-const command = useCommandPages({
+const command = useCommandPageCollection({
   initialItems: [
     { label: "Change status...", value: "status" },
     { label: "Done", value: "status:done", parent: "status" },
