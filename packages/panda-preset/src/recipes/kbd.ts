@@ -5,6 +5,7 @@ export const kbdRecipe = defineRecipe({
   base: {
     display: "inline-flex",
     alignItems: "center",
+    justifyContent: "center",
     fontWeight: "medium",
     fontFamily: "mono",
     flexShrink: "0",
@@ -39,14 +40,17 @@ export const kbdRecipe = defineRecipe({
       sm: {
         textStyle: "xs",
         height: "4.5",
+        minW: "4.5",
       },
       md: {
         textStyle: "sm",
         height: "5",
+        minW: "5",
       },
       lg: {
         textStyle: "md",
         height: "6",
+        minW: "6",
       },
     },
   },
