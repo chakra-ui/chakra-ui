@@ -12,8 +12,8 @@ const system = createSystem(defaultConfig, {
   theme: {
     tokens: {
       fonts: {
-        heading: { value: "Inter, sans-serif" },
-        body: { value: "Inter, sans-serif" },
+        heading: { value: "'Wix Madefor Text', sans-serif" },
+        body: { value: "'Wix Madefor Text', sans-serif" },
         mono: { value: "Roboto Mono, monospace" },
       },
     },
