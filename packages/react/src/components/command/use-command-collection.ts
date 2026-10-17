@@ -222,7 +222,7 @@ export function useCommandCollection<T extends CommandItem>(
       buildTree(initialItems, (item) =>
         String(optionsRef.current.itemToValue?.(item) ?? item.value ?? ""),
       ),
-    [initialItems],
+    [initialItems, optionsRef],
   )
 
   const page = pageValue != null ? (tree.items.get(pageValue) ?? null) : null
@@ -233,13 +233,16 @@ export function useCommandCollection<T extends CommandItem>(
     [tree, page],
   )
 
-  const getScope = (query: string) =>
-    deepSearch && query
-      ? getDescendants(tree, pageKey)
-      : (tree.children.get(pageKey) ?? EMPTY)
+  const getScope = useCallback(
+    (deep: boolean) =>
+      deep
+        ? getDescendants(tree, pageKey)
+        : (tree.children.get(pageKey) ?? EMPTY),
+    [tree, pageKey],
+  )
 
   const deep = deepSearch && !!filterQuery
-  const scope = useMemo(() => getScope(filterQuery), [tree, pageKey, deep])
+  const scope = useMemo(() => getScope(deep), [getScope, deep])
 
   const loaded = useAsyncList({
     filterText: query,
@@ -250,48 +253,59 @@ export function useCommandCollection<T extends CommandItem>(
       : undefined,
   })
 
-  const prepare = (item: T) => {
-    let prepared = preparedRef.current.get(item)
-    if (!prepared) {
-      const { itemToString } = optionsRef.current
-      const label = itemToString?.(item) ?? item.label ?? ""
-      prepared = prepareCommand(String(label), item.keywords)
-      preparedRef.current.set(item, prepared)
-    }
-    return prepared
-  }
+  const prepare = useCallback(
+    (item: T) => {
+      let prepared = preparedRef.current.get(item)
+      if (!prepared) {
+        const { itemToString } = optionsRef.current
+        const label = itemToString?.(item) ?? item.label ?? ""
+        prepared = prepareCommand(String(label), item.keywords)
+        preparedRef.current.set(item, prepared)
+      }
+      return prepared
+    },
+    [optionsRef],
+  )
 
-  const searchLocal = (items: readonly T[], query: string, narrow: boolean) => {
-    const last = narrow ? lastSearchRef.current : null
-    const pool =
-      last && last.source === items && query.startsWith(last.query)
-        ? last.matches
-        : items
-    const match = createCommandMatcher(query)
-    const matches = rankItems(pool, query, (item) => match(prepare(item)))
-    if (narrow) lastSearchRef.current = { source: items, query, matches }
-    return matches
-  }
+  const searchLocal = useCallback(
+    (items: readonly T[], query: string, narrow: boolean) => {
+      const last = narrow ? lastSearchRef.current : null
+      const pool =
+        last && last.source === items && query.startsWith(last.query)
+          ? last.matches
+          : items
+      const match = createCommandMatcher(query)
+      const matches = rankItems(pool, query, (item) => match(prepare(item)))
+      if (narrow) lastSearchRef.current = { source: items, query, matches }
+      return matches
+    },
+    [prepare],
+  )
 
-  const rank = (items: readonly T[], query: string, narrow: boolean) => {
-    const { filter, groupBy } = optionsRef.current
-    const score = filter && ((item: T) => filter(item, query))
+  const rank = useCallback(
+    (items: readonly T[], query: string, narrow: boolean) => {
+      const { filter, groupBy } = optionsRef.current
+      const score = filter && ((item: T) => filter(item, query))
 
-    const local =
-      filter === null
-        ? [...items]
-        : score
-          ? rankItems(items, query, score)
-          : searchLocal(items, query, narrow)
-    const remote = score ? rankItems(loaded.items, query, score) : loaded.items
+      const local =
+        filter === null
+          ? [...items]
+          : score
+            ? rankItems(items, query, score)
+            : searchLocal(items, query, narrow)
+      const remote = score
+        ? rankItems(loaded.items, query, score)
+        : loaded.items
 
-    const merged = keepGroupOrder(
-      [...local, ...remote],
-      [...items, ...loaded.items],
-      groupBy,
-    )
-    return limit == null ? merged : merged.slice(0, limit)
-  }
+      const merged = keepGroupOrder(
+        [...local, ...remote],
+        [...items, ...loaded.items],
+        groupBy,
+      )
+      return limit == null ? merged : merged.slice(0, limit)
+    },
+    [optionsRef, searchLocal, loaded.items, limit],
+  )
 
   const collection = useMemo(() => {
     const { filter, ...options } = optionsRef.current
@@ -299,10 +313,10 @@ export function useCommandCollection<T extends CommandItem>(
       ...options,
       items: rank(scope, filterQuery, true),
     })
-  }, [scope, loaded.items, filterQuery, limit])
+  }, [optionsRef, rank, scope, filterQuery])
 
   const getFirstMatch = (query: string) =>
-    rank(getScope(query), query, false)[0]
+    rank(getScope(deepSearch && !!query), query, false)[0]
 
   const stateRef = useLiveRef({ pages, query, tree, onPageChange })
 
@@ -335,7 +349,7 @@ export function useCommandCollection<T extends CommandItem>(
 
       onPageChange?.(value != null ? (tree.items.get(value) ?? null) : null)
     },
-    [setQuery],
+    [setQuery, stateRef],
   )
 
   const setPage = useCallback(
@@ -356,7 +370,7 @@ export function useCommandCollection<T extends CommandItem>(
     const parent = pages.at(-2)
     navigate({ value: parent ? tree.toValue(parent) : null, push: false })
     return true
-  }, [navigate])
+  }, [navigate, stateRef])
 
   const reset = useCallback(
     (value: string | null = null) => {

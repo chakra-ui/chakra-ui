@@ -172,7 +172,7 @@ export function useAsyncList<T, C = string>(
 
       return controller
     },
-    [],
+    [loadRef, stateRef],
   )
 
   useEffect(() => {
@@ -184,7 +184,7 @@ export function useAsyncList<T, C = string>(
     const { pending, result, depsKey } = stateRef.current
     if (pending || result.depsKey !== depsKey || result.cursor == null) return
     start({ cursor: result.cursor, append: true })
-  }, [start])
+  }, [start, stateRef])
 
   const reload = useCallback(() => setAttempt((count) => count + 1), [])
 

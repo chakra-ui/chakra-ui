@@ -7,7 +7,7 @@ import {
   useCombobox,
 } from "@ark-ui/react/combobox"
 import { useEffect, useRef } from "react"
-import { useControllableState } from "../../hooks"
+import { useControllableState, useLiveRef } from "../../hooks"
 import { createSplitProps } from "../../utils"
 import type { CommandItem, CommandSelectionDetails } from "./command"
 import type { UseCommandCollectionReturn } from "./use-command-collection"
@@ -185,6 +185,7 @@ function useRestoreHighlight<T extends CommandItem>(
   preferred: string | null,
 ) {
   const { collection, highlightedValue } = combobox
+  const setHighlightRef = useLiveRef(combobox.setHighlightValue)
   const preferredRef = useRef(preferred)
   const pendingRef = useRef<string | null>(null)
 
@@ -197,7 +198,7 @@ function useRestoreHighlight<T extends CommandItem>(
     const pending = pendingRef.current
     if (pending && pending !== highlightedValue && collection.has(pending)) {
       const frame = requestAnimationFrame(() =>
-        combobox.setHighlightValue(pending),
+        setHighlightRef.current(pending),
       )
       return () => cancelAnimationFrame(frame)
     }
@@ -206,8 +207,8 @@ function useRestoreHighlight<T extends CommandItem>(
     if (highlightedValue && collection.has(highlightedValue)) return
 
     const first = collection.firstValue
-    if (first) combobox.setHighlightValue(first)
-  }, [collection, preferred, highlightedValue])
+    if (first) setHighlightRef.current(first)
+  }, [collection, preferred, highlightedValue, setHighlightRef])
 }
 
 /**
