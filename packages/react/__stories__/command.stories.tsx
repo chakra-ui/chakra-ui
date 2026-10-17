@@ -27,6 +27,7 @@ export { CommandNested as NestedPages } from "compositions/examples/command-nest
 export { CommandWithAsyncPages as AsyncPages } from "compositions/examples/command-with-async-pages"
 export { CommandWithInputPage as InputPage } from "compositions/examples/command-with-input-page"
 export { CommandWithAsyncContent as AsyncContent } from "compositions/examples/command-with-async-content"
+export { CommandWithLoadMore as LoadMore } from "compositions/examples/command-with-load-more"
 export { CommandWithRecentItems as RecentCommands } from "compositions/examples/command-with-recent-items"
 export { CommandVirtualized as Virtualized } from "compositions/examples/command-virtualized"
 export { CommandWithSizes as Sizes } from "compositions/examples/command-with-sizes"

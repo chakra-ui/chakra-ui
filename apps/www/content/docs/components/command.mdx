@@ -120,6 +120,14 @@ the same time.
 
 <ExampleTabs name="command-with-async-content" />
 
+### Load More
+
+Return `{ items, cursor }` from `load` to page through results. Call
+`command.loadMore()` when the user reaches the end of the list, while
+`command.hasMore` is true.
+
+<ExampleTabs name="command-with-load-more" />
+
 ### Bring Your Own Data
 
 To fetch with your own data layer, such as TanStack Query, control the query and

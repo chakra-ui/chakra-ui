@@ -6,7 +6,12 @@ import {
   createListCollection,
 } from "@ark-ui/react/collection"
 import { useMemo, useRef } from "react"
-import { useAsyncList, useControllableState, useLiveRef } from "../../hooks"
+import {
+  type AsyncListLoadResult,
+  useAsyncList,
+  useControllableState,
+  useLiveRef,
+} from "../../hooks"
 import type { CommandItem } from "./command"
 import {
   type PreparedCommand,
@@ -23,7 +28,13 @@ export interface CommandLoadDetails {
    * Aborted when a newer load starts or the component unmounts.
    */
   signal: AbortSignal
+  /**
+   * Where the page to load starts. `undefined` for the first page.
+   */
+  cursor?: string | undefined
 }
+
+export type CommandLoadResult<T> = T[] | AsyncListLoadResult<T>
 
 export interface UseCommandCollectionProps<T extends CommandItem> extends Omit<
   CollectionOptions<T>,
@@ -44,9 +55,12 @@ export interface UseCommandCollectionProps<T extends CommandItem> extends Omit<
    */
   limit?: number | undefined
   /**
-   * Loads items for the query. They show after the local items.
+   * Loads items for the query. They show after the local items. Return
+   * `{ items, cursor }` to load more pages with `loadMore`.
    */
-  load?: ((details: CommandLoadDetails) => Promise<T[]>) | undefined
+  load?:
+    | ((details: CommandLoadDetails) => Promise<CommandLoadResult<T>>)
+    | undefined
   /**
    * Changing it clears the loaded items and loads again.
    */
@@ -101,6 +115,14 @@ export interface UseCommandCollectionReturn<T extends CommandItem> {
    */
   reload: VoidFunction
   /**
+   * Whether `load` has more pages.
+   */
+  hasMore: boolean
+  /**
+   * Loads the next page and appends its items.
+   */
+  loadMore: VoidFunction
+  /**
    * Clears the query.
    */
   reset: VoidFunction
@@ -138,7 +160,8 @@ export function useCommandCollection<T extends CommandItem>(
     filterText: query,
     dependencies: [loadKey],
     load: load
-      ? ({ filterText, signal }) => load({ query: filterText, signal })
+      ? ({ filterText, signal, cursor }) =>
+          load({ query: filterText, signal, cursor })
       : undefined,
   })
   const filterQuery = filterQueryProp ?? query
@@ -203,16 +226,23 @@ export function useCommandCollection<T extends CommandItem>(
     })
   }, [initialItems, loaded.items, filterQuery, limit])
 
+  const getFirstMatch = (query: string, items?: readonly T[]) =>
+    rank(query, false, items)[0]
+
+  const reset = () => setQuery("")
+
   return {
     collection,
     query,
     filterQuery,
-    getFirstMatch: (query, items) => rank(query, false, items)[0],
+    getFirstMatch,
     search: setQuery,
     loading: loaded.loading,
     error: loaded.error,
     reload: loaded.reload,
-    reset: () => setQuery(""),
+    hasMore: loaded.hasMore,
+    loadMore: loaded.loadMore,
+    reset,
   }
 }
 
