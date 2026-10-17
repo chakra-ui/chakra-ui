@@ -98,7 +98,7 @@ export const CommandWithAsyncPages = () => {
                 {command.error ? (
                   <Command.Empty>
                     Couldn't load results.{" "}
-                    <Button size="xs" variant="plain" onClick={command.retry}>
+                    <Button size="xs" variant="plain" onClick={command.reload}>
                       Retry
                     </Button>
                   </Command.Empty>
