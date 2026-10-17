@@ -219,6 +219,10 @@ Use `command.pages` to render a breadcrumb and `command.setPage` to jump to a
 page. With `deepSearch`, a query also matches items in nested pages; use
 `command.getPath(item)` to show where each match lives.
 
+To open a page directly, for example from a keyboard shortcut, call
+`command.reset("status")` before opening the dialog. Escape then closes the
+dialog, while Backspace on an empty input still goes up to the parent page.
+
 <ExampleTabs name="command-nested" />
 
 ### Async Pages
