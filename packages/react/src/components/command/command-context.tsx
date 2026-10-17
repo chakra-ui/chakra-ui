@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext } from "../../create-context"
-import type { UseCommandReturn } from "./use-command"
+import type { CommandSource, UseCommandReturn } from "./use-command"
 
 export interface UseCommandContext extends UseCommandReturn {}
 
@@ -11,3 +11,10 @@ export const [CommandContextProvider, useCommandContext] =
     hookName: "useCommandContext",
     providerName: "<Command.Root />",
   })
+
+export const [CommandSourceProvider, useCommandSourceContext] = createContext<
+  CommandSource<any> | undefined
+>({
+  name: "CommandSourceContext",
+  strict: false,
+})

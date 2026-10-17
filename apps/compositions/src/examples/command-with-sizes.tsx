@@ -5,6 +5,7 @@ import {
   Command,
   HStack,
   Kbd,
+  KbdGroup,
   Stack,
   useCommandCollection,
 } from "@chakra-ui/react"
@@ -30,64 +31,63 @@ const CommandDemo = (props: { size: "sm" | "md" | "lg" }) => {
   const command = useCommandCollection({ initialItems: commands })
 
   return (
-    <Command.Dialog size={props.size} onExitComplete={() => command.search("")}>
-      <Command.DialogTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          minW="64"
-          justifyContent="flex-start"
-          color="fg.muted"
-        >
-          <LuSearch /> Search... (size={props.size})
-        </Button>
-      </Command.DialogTrigger>
-      <Command.Root
-        collection={command.collection}
-        onInputValueChange={(e) => command.search(e.inputValue)}
-      >
-        <Command.Label>Command palette</Command.Label>
-        <Command.Control>
-          <Command.Indicator />
-          <Command.Input placeholder="Type a command or search..." />
-        </Command.Control>
-        <Command.List>
-          {command.collection.items.map((item) => (
-            <Command.Item item={item} key={item.value}>
-              {item.icon}
-              <Command.ItemText highlight>{item.label}</Command.ItemText>
-              {item.shortcut.map((key) => (
-                <Command.ItemCommand key={key}>{key}</Command.ItemCommand>
+    <Command.Provider value={command}>
+      <Command.Dialog size={props.size}>
+        <Command.DialogTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            minW="64"
+            justifyContent="flex-start"
+            color="fg.muted"
+          >
+            <LuSearch /> Search... (size={props.size})
+          </Button>
+        </Command.DialogTrigger>
+        <Command.DialogContent>
+          <Command.Root size={props.size}>
+            <Command.Label>Command palette</Command.Label>
+            <Command.Control>
+              <Command.Indicator />
+              <Command.Input placeholder="Type a command or search..." />
+            </Command.Control>
+            <Command.List>
+              {command.collection.items.map((item) => (
+                <Command.Item item={item} key={item.value}>
+                  {item.icon}
+                  <Command.ItemText highlight>{item.label}</Command.ItemText>
+                  {item.shortcut.map((key) => (
+                    <Command.ItemCommand key={key}>{key}</Command.ItemCommand>
+                  ))}
+                </Command.Item>
               ))}
-            </Command.Item>
-          ))}
-          <Command.Empty>No results found</Command.Empty>
-        </Command.List>
-        <Command.Footer>
-          <HStack gap="1.5">
-            <Kbd size="sm" variant="subtle">
-              ↑
-            </Kbd>
-            <Kbd size="sm" variant="subtle">
-              ↓
-            </Kbd>
-            Navigate
-          </HStack>
-          <HStack gap="1.5">
-            <Kbd size="sm" variant="subtle">
-              ↵
-            </Kbd>
-            Select
-          </HStack>
-          <HStack gap="1.5">
-            <Kbd size="sm" variant="subtle">
-              esc
-            </Kbd>
-            Close
-          </HStack>
-        </Command.Footer>
-      </Command.Root>
-    </Command.Dialog>
+              <Command.Empty>No results found</Command.Empty>
+            </Command.List>
+            <Command.Footer>
+              <HStack gap="1.5">
+                <KbdGroup size="sm" variant="subtle">
+                  <Kbd>↑</Kbd>
+                  <Kbd>↓</Kbd>
+                </KbdGroup>
+                Navigate
+              </HStack>
+              <HStack gap="1.5">
+                <Kbd size="sm" variant="subtle">
+                  ↵
+                </Kbd>
+                Select
+              </HStack>
+              <HStack gap="1.5">
+                <Kbd size="sm" variant="subtle">
+                  esc
+                </Kbd>
+                Close
+              </HStack>
+            </Command.Footer>
+          </Command.Root>
+        </Command.DialogContent>
+      </Command.Dialog>
+    </Command.Provider>
   )
 }
 

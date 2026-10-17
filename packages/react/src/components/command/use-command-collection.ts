@@ -5,8 +5,13 @@ import {
   type ListCollection,
   createListCollection,
 } from "@ark-ui/react/collection"
-import { useMemo, useRef, useState } from "react"
-import { type AsyncListLoadDetails, useAsyncList } from "../../hooks"
+import { useMemo, useRef } from "react"
+import {
+  type AsyncListLoadDetails,
+  useAsyncList,
+  useControllableState,
+  useLiveRef,
+} from "../../hooks"
 import type { CommandItem } from "./command"
 import {
   type PreparedCommand,
@@ -25,8 +30,8 @@ export interface UseCommandCollectionProps<T extends CommandItem> extends Omit<
    */
   initialItems?: T[] | readonly T[] | undefined
   /**
-   * Scores an item against the query, from 0 (hidden) to 1 (best match).
-   * Defaults to a fuzzy match on the item's text and `keywords`.
+   * Scores an item from 0 (hidden) to 1. Defaults to a fuzzy match on the
+   * label and `keywords`.
    */
   filter?: ((item: T, query: string) => number) | undefined
   /**
@@ -34,43 +39,34 @@ export interface UseCommandCollectionProps<T extends CommandItem> extends Omit<
    */
   limit?: number | undefined
   /**
-   * Loads items for a query, e.g. from a server. Results are ranked by the
-   * server and shown after the local items, unless `filter` is set.
+   * Loads items for the query. They show after the local items.
    */
   load?: ((details: CommandLoadDetails) => Promise<T[]>) | undefined
   /**
-   * How long to wait after typing stops before calling `load`, in ms. The
-   * first load runs right away.
-   * @default 200
+   * Changing it clears the loaded items and loads again.
    */
-  debounce?: number | undefined
+  loadKey?: string | number | undefined
+  /**
+   * The controlled query.
+   */
+  query?: string | undefined
+  /**
+   * Called when the query changes.
+   */
+  onQueryChange?: ((query: string) => void) | undefined
 }
 
 export interface UseCommandCollectionReturn<T extends CommandItem> {
-  /**
-   * The ranked collection to pass to `Command.Root`.
-   */
   collection: ListCollection<T>
-  /**
-   * The current query.
-   */
   query: string
-  /**
-   * Updates the query. Pass it the input value from `onInputValueChange`.
-   */
   search: (query: string) => void
-  /**
-   * Whether `load` is waiting for results.
-   */
   loading: boolean
-  /**
-   * The error thrown by the last `load`, if any.
-   */
   error: Error | undefined
-  /**
-   * Runs `load` again for the current query.
-   */
   retry: VoidFunction
+  /**
+   * Clears the query.
+   */
+  reset: VoidFunction
 }
 
 const EMPTY: never[] = []
@@ -89,57 +85,62 @@ export function useCommandCollection<T extends CommandItem>(
     filter,
     limit,
     load,
-    debounce = 200,
+    loadKey,
+    query: queryProp,
+    onQueryChange,
     ...collectionOptions
   } = props
 
-  const [query, setQuery] = useState("")
-  const loaded = useAsyncList({ query, load, debounce })
+  const [query, setQuery] = useControllableState({
+    value: queryProp,
+    defaultValue: "",
+    onChange: onQueryChange,
+  })
+  const loaded = useAsyncList({ query, load, key: loadKey })
 
-  const optionsRef = useRef({ ...collectionOptions, filter })
-  optionsRef.current = { ...collectionOptions, filter }
-
+  const optionsRef = useLiveRef({ ...collectionOptions, filter })
   const preparedRef = useRef(new WeakMap<T, PreparedCommand>())
   const lastSearchRef = useRef<LastSearch<T> | null>(null)
 
+  const prepare = (item: T) => {
+    let prepared = preparedRef.current.get(item)
+    if (!prepared) {
+      const { itemToString } = optionsRef.current
+      const label = itemToString?.(item) ?? item.label ?? ""
+      prepared = prepareCommand(String(label), item.keywords)
+      preparedRef.current.set(item, prepared)
+    }
+    return prepared
+  }
+
+  // Narrows from the previous matches while the query keeps growing
+  const searchLocal = (items: readonly T[]) => {
+    const last = lastSearchRef.current
+    const pool =
+      last && last.source === items && query.startsWith(last.query)
+        ? last.matches
+        : items
+    const match = createCommandMatcher(query)
+    const matches = rankItems(pool, query, (item) => match(prepare(item)))
+    lastSearchRef.current = { source: items, query, matches }
+    return matches
+  }
+
   const collection = useMemo(() => {
     const { filter, ...options } = optionsRef.current
+    const score = filter && ((item: T) => filter(item, query))
 
-    let local: T[]
-    if (filter) {
-      local = rankItems(initialItems, query, (item) => filter(item, query))
-    } else {
-      const prepare = (item: T) => {
-        let prepared = preparedRef.current.get(item)
-        if (!prepared) {
-          const label = options.itemToString?.(item) ?? item.label ?? ""
-          prepared = prepareCommand(String(label), item.keywords)
-          preparedRef.current.set(item, prepared)
-        }
-        return prepared
-      }
-      const last = lastSearchRef.current
-      const pool =
-        last && last.source === initialItems && query.startsWith(last.query)
-          ? last.matches
-          : initialItems
-      const match = createCommandMatcher(query)
-      local = rankItems(pool, query, (item) => match(prepare(item)))
-      lastSearchRef.current = {
-        source: initialItems,
-        query,
-        matches: query ? local : [...initialItems],
-      }
-    }
+    const local = score
+      ? rankItems(initialItems, query, score)
+      : searchLocal(initialItems)
+    const remote = score ? rankItems(loaded.items, query, score) : loaded.items
 
-    const remote = filter
-      ? rankItems(loaded.items, query, (item) => filter(item, query))
-      : loaded.items
     const merged = keepGroupOrder(
       [...local, ...remote],
       [...initialItems, ...loaded.items],
       options.groupBy,
     )
+
     const items = limit == null ? merged : merged.slice(0, limit)
     return createListCollection<T>({ ...options, items })
   }, [initialItems, loaded.items, query, limit])
@@ -151,6 +152,7 @@ export function useCommandCollection<T extends CommandItem>(
     loading: loaded.loading,
     error: loaded.error,
     retry: loaded.retry,
+    reset: () => setQuery(""),
   }
 }
 

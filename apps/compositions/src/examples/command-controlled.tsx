@@ -1,14 +1,17 @@
 "use client"
 
 import {
+  Box,
   Button,
   Command,
   HStack,
   Kbd,
+  KbdGroup,
   Status,
   useCommandCollection,
 } from "@chakra-ui/react"
 import { useState } from "react"
+import { LuCheck } from "react-icons/lu"
 
 export const CommandControlled = () => {
   const [status, setStatus] = useState("in-progress")
@@ -20,69 +23,69 @@ export const CommandControlled = () => {
   const current = statuses.find((item) => item.value === status)
 
   return (
-    <Command.Dialog onExitComplete={() => command.search("")}>
-      <Command.DialogTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          minW="64"
-          justifyContent="flex-start"
-        >
-          <Status.Root colorPalette={current?.color}>
-            <Status.Indicator />
-          </Status.Root>
-          {current?.label}
-        </Button>
-      </Command.DialogTrigger>
-      <Command.Root
-        collection={command.collection}
-        selectionMode="single"
-        value={[status]}
-        onValueChange={(e) => setStatus(e.value[0] ?? status)}
-        onInputValueChange={(e) => command.search(e.inputValue)}
-      >
-        <Command.Control>
-          <Command.Indicator />
-          <Command.Input placeholder="Change status..." />
-        </Command.Control>
-        <Command.List>
-          {command.collection.items.map((item) => (
-            <Command.Item item={item} key={item.value}>
-              <Status.Root colorPalette={item.color}>
-                <Status.Indicator />
-              </Status.Root>
-              <Command.ItemText highlight>{item.label}</Command.ItemText>
-              <Command.ItemIndicator />
-              <Command.ItemCommand>{item.shortcut}</Command.ItemCommand>
-            </Command.Item>
-          ))}
-          <Command.Empty>No statuses found</Command.Empty>
-        </Command.List>
-        <Command.Footer>
-          <HStack gap="1.5">
-            <Kbd size="sm" variant="subtle">
-              ↑
-            </Kbd>
-            <Kbd size="sm" variant="subtle">
-              ↓
-            </Kbd>
-            Navigate
-          </HStack>
-          <HStack gap="1.5">
-            <Kbd size="sm" variant="subtle">
-              ↵
-            </Kbd>
-            Select
-          </HStack>
-          <HStack gap="1.5">
-            <Kbd size="sm" variant="subtle">
-              esc
-            </Kbd>
-            Close
-          </HStack>
-        </Command.Footer>
-      </Command.Root>
-    </Command.Dialog>
+    <Command.Provider value={command}>
+      <Command.Dialog>
+        <Command.DialogTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            minW="64"
+            justifyContent="flex-start"
+          >
+            <Status.Root colorPalette={current?.color}>
+              <Status.Indicator />
+            </Status.Root>
+            {current?.label}
+          </Button>
+        </Command.DialogTrigger>
+        <Command.DialogContent>
+          <Command.Root onSelect={(e) => setStatus(e.itemValue)}>
+            <Command.Control>
+              <Command.Indicator />
+              <Command.Input placeholder="Change status..." />
+            </Command.Control>
+            <Command.List>
+              {command.collection.items.map((item) => (
+                <Command.Item item={item} key={item.value}>
+                  <Status.Root colorPalette={item.color}>
+                    <Status.Indicator />
+                  </Status.Root>
+                  <Command.ItemText highlight>{item.label}</Command.ItemText>
+                  {item.value === status && (
+                    <Box color="fg" ms="auto">
+                      <LuCheck />
+                    </Box>
+                  )}
+                  <Command.ItemCommand>{item.shortcut}</Command.ItemCommand>
+                </Command.Item>
+              ))}
+              <Command.Empty>No statuses found</Command.Empty>
+            </Command.List>
+            <Command.Footer>
+              <HStack gap="1.5">
+                <KbdGroup size="sm" variant="subtle">
+                  <Kbd>↑</Kbd>
+                  <Kbd>↓</Kbd>
+                </KbdGroup>
+                Navigate
+              </HStack>
+              <HStack gap="1.5">
+                <Kbd size="sm" variant="subtle">
+                  ↵
+                </Kbd>
+                Select
+              </HStack>
+              <HStack gap="1.5">
+                <Kbd size="sm" variant="subtle">
+                  esc
+                </Kbd>
+                Close
+              </HStack>
+            </Command.Footer>
+          </Command.Root>
+        </Command.DialogContent>
+      </Command.Dialog>
+    </Command.Provider>
   )
 }
 

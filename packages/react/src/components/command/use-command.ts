@@ -1,183 +1,184 @@
 "use client"
 
+import type { ListCollection } from "@ark-ui/react/collection"
 import {
   type Combobox as ArkCombobox,
   type UseComboboxReturn,
   useCombobox,
 } from "@ark-ui/react/combobox"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useControllableState } from "../../hooks"
-import type { CommandItem } from "./command"
+import { createSplitProps } from "../../utils"
+import type { CommandItem, CommandSelectionDetails } from "./command"
+import type { UseCommandCollectionReturn } from "./use-command-collection"
 
-type ComboboxOnlyProps<T extends CommandItem> = Omit<
+const comboboxPropKeys = [
+  "defaultHighlightedValue",
+  "defaultInputValue",
+  "highlightedValue",
+  "id",
+  "ids",
+  "inputValue",
+  "navigate",
+  "onHighlightChange",
+  "onInputValueChange",
+  "onSelect",
+  "scrollToIndexFn",
+] as const
+
+type ComboboxOnlyProps<T extends CommandItem> = Pick<
   ArkCombobox.RootBaseProps<T>,
-  | "open"
-  | "defaultOpen"
-  | "onOpenChange"
-  | "positioning"
-  | "disableLayer"
-  | "multiple"
+  (typeof comboboxPropKeys)[number]
 >
+
+/**
+ * What `Command.Root` reads from the `command` prop.
+ */
+export interface CommandSource<
+  T extends CommandItem = CommandItem,
+> extends UseCommandCollectionReturn<T> {
+  /**
+   * Return `true` to keep the command open after a selection.
+   */
+  onSelect?: ((details: CommandSelectionDetails) => boolean) | undefined
+  /**
+   * The item to highlight next, e.g. the one the user came back from.
+   */
+  highlightedValue?: string | null | undefined
+  /**
+   * Goes back one page. Returns `false` when there's nowhere to go.
+   */
+  popPage?: (() => boolean) | undefined
+}
 
 export interface UseCommandProps<
   T extends CommandItem = CommandItem,
 > extends ComboboxOnlyProps<T> {
   /**
-   * Whether the command is loading results. Shows the `Loading` part, hides
-   * `Empty`, and is reflected on the root and indicator parts.
-   * @default false
+   * The items to show. Not needed when `command` is passed.
+   */
+  collection?: ListCollection<T> | undefined
+  /**
+   * The value of `useCommandCollection` or `useCommandPages`.
+   */
+  command?: CommandSource<T> | undefined
+  /**
+   * Whether results are loading. Defaults to `command.loading`.
    */
   loading?: boolean | undefined
   /**
-   * Whether selecting an item calls `onClose`. Defaults to `true` in action
-   * mode and `false` in single and multiple selection modes.
+   * Whether selecting an item calls `onClose`.
+   * @default true
    */
   closeOnSelect?: boolean | undefined
   /**
-   * How selection behaves. The default `none` runs commands without
-   * persisting a selected state; use `onSelect` to execute them. Pass
-   * `single` or `multiple` to build pickers where selection persists.
-   * @default "none"
-   */
-  selectionMode?: "none" | "single" | "multiple" | undefined
-  /**
-   * Called when a selection should dismiss the command, such as closing the
-   * dialog or popover that contains it.
+   * Called when a selection should close the command.
    */
   onClose?: VoidFunction | undefined
 }
 
 export interface UseCommandReturn<T extends CommandItem = CommandItem> {
-  /**
-   * Whether the command is loading results.
-   */
   loading: boolean | undefined
-  /**
-   * The underlying combobox API, e.g. `inputValue` and `setInputValue`.
-   */
+  command: CommandSource<T> | undefined
   combobox: UseComboboxReturn<T>
-  /**
-   * Overrides `onClose` from the provider that renders the command.
-   * @internal
-   */
-  closeRef: React.MutableRefObject<VoidFunction | undefined>
 }
 
 export function useCommand<T extends CommandItem = CommandItem>(
   props: UseCommandProps<T>,
 ): UseCommandReturn<T> {
   const {
-    loading,
-    closeOnSelect: closeOnSelectProp,
-    selectionMode = "none",
+    loading: loadingProp,
+    closeOnSelect = true,
     onClose,
     inputValue: inputValueProp,
     defaultInputValue = "",
     onInputValueChange,
+    command,
+    collection: collectionProp,
     ...restProps
   } = props
 
+  const collection = (command?.collection ?? collectionProp)!
+  const loading = loadingProp ?? command?.loading
+
   const [inputValue, setInputValue] = useControllableState({
-    value: inputValueProp,
+    value: command ? command.query : inputValueProp,
     defaultValue: defaultInputValue,
   })
 
-  const actionMode = selectionMode === "none"
-  const closeOnSelect = closeOnSelectProp ?? actionMode
   const onSelect = restProps.onSelect
-  const closeRef = useRef<VoidFunction | undefined>(undefined)
 
   const combobox = useCombobox<T>({
     inputBehavior: "autohighlight",
     selectionBehavior: "preserve",
     loopFocus: false,
-    defaultHighlightedValue: restProps.collection.firstValue,
+    defaultHighlightedValue: collection.firstValue,
     ...restProps,
+    collection,
     inputValue,
     onInputValueChange(details) {
       setInputValue(details.inputValue)
+      command?.search(details.inputValue)
       onInputValueChange?.(details)
     },
     open: true,
     disableLayer: true,
-    multiple: selectionMode === "multiple",
     onSelect(details) {
-      const item = restProps.collection.find(details.itemValue) as
-        | CommandItem
-        | null
-        | undefined
+      const item = collection.find(details.itemValue) as T | null | undefined
       if (typeof item?.onSelect === "function") item.onSelect(details)
       onSelect?.(details)
-      const itemCloseOnSelect =
-        typeof item?.closeOnSelect === "boolean"
-          ? item.closeOnSelect
-          : undefined
-      const close = closeRef.current ?? onClose
-      if (itemCloseOnSelect ?? closeOnSelect) close?.()
+      if (command?.onSelect?.(details)) return
+
+      if (item?.closeOnSelect ?? closeOnSelect) onClose?.()
     },
-    ...(actionMode ? { value: [] } : {}),
+    value: [],
   })
 
-  return { loading, combobox, closeRef }
-}
+  useHighlightSync(combobox, command?.highlightedValue ?? null)
 
-const commandPropKeys = [
-  "allowCustomValue",
-  "alwaysSubmitOnEnter",
-  "autoFocus",
-  "closeOnSelect",
-  "collection",
-  "composite",
-  "defaultHighlightedValue",
-  "defaultInputValue",
-  "defaultValue",
-  "disabled",
-  "form",
-  "highlightedValue",
-  "id",
-  "ids",
-  "inputBehavior",
-  "inputValue",
-  "invalid",
-  "loading",
-  "loopFocus",
-  "name",
-  "navigate",
-  "onFocusOutside",
-  "onHighlightChange",
-  "onInputValueChange",
-  "onInteractOutside",
-  "onPointerDownOutside",
-  "onSelect",
-  "onValueChange",
-  "openOnChange",
-  "openOnClick",
-  "openOnKeyPress",
-  "placeholder",
-  "readOnly",
-  "required",
-  "scrollToIndexFn",
-  "selectionBehavior",
-  "selectionMode",
-  "translations",
-  "value",
-] as const
+  return { loading, command, combobox }
+}
 
 /**
- * Splits `useCommand` props from the rest, which go to the root element.
- * `onClose` stays with the rest so the provider can register it.
+ * Keeps an item highlighted as the collection changes: the preferred item when
+ * it changes, else the current one if it's still there, else the first.
  */
-export function splitCommandProps<T extends UseCommandProps<any>>(
-  props: T,
-): [UseCommandProps<any>, Omit<T, (typeof commandPropKeys)[number]>] {
-  const commandProps: Record<string, unknown> = {}
-  const restProps: Record<string, unknown> = {}
-  for (const [key, value] of Object.entries(props)) {
-    if ((commandPropKeys as readonly string[]).includes(key)) {
-      commandProps[key] = value
-    } else {
-      restProps[key] = value
+function useHighlightSync<T extends CommandItem>(
+  combobox: UseComboboxReturn<T>,
+  preferred: string | null,
+) {
+  const { collection, highlightedValue } = combobox
+  const preferredRef = useRef(preferred)
+  const pendingRef = useRef<string | null>(null)
+
+  useEffect(() => {
+    if (preferred !== preferredRef.current) {
+      preferredRef.current = preferred
+      pendingRef.current = preferred
     }
-  }
-  return [commandProps as unknown as UseCommandProps<any>, restProps as any]
+
+    const pending = pendingRef.current
+    if (pending && pending !== highlightedValue && collection.has(pending)) {
+      combobox.setHighlightValue(pending)
+      return
+    }
+    pendingRef.current = null
+
+    if (highlightedValue && collection.has(highlightedValue)) return
+
+    const first = collection.firstValue
+    if (first) combobox.setHighlightValue(first)
+  }, [collection, preferred, highlightedValue])
 }
+
+/**
+ * Splits `useCommand` props from the ones for the root element.
+ */
+export const splitCommandProps = createSplitProps<UseCommandProps<any>>([
+  ...comboboxPropKeys,
+  "collection",
+  "command",
+  "loading",
+  "closeOnSelect",
+  "onClose",
+])

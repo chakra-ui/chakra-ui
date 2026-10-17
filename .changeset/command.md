@@ -37,8 +37,8 @@ shortcut.
 
 - Items run their `onSelect` action and close the palette by default. Use
   `closeOnSelect={false}` for nested pages or actions that keep it open.
-- Use `selectionMode="single"` or `selectionMode="multiple"` to build a picker
-  with persistent selection.
+- Command runs actions. For a picker with a persistent selection, use Combobox
+  or Listbox.
 - Use `useCommand` with `Command.RootProvider` to control the palette from
   anywhere, such as binding a `⌘K` shortcut.
 - Use `Loading`, `Empty`, and `Separator` to represent asynchronous results and

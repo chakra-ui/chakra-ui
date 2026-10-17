@@ -2,10 +2,12 @@
 
 import {
   Badge,
+  Box,
   Button,
   Command,
   HStack,
   Kbd,
+  KbdGroup,
   Text,
   Wrap,
   useCommandCollection,
@@ -15,6 +17,7 @@ import {
   LuAccessibility,
   LuBookOpen,
   LuBug,
+  LuCheck,
   LuGauge,
   LuPalette,
   LuSparkles,
@@ -34,64 +37,73 @@ export const CommandMultiple = () => {
 
   return (
     <>
-      <Command.Dialog onExitComplete={() => command.search("")}>
-        <Command.DialogTrigger asChild>
-          <Button
-            variant="outline"
-            size="sm"
-            minW="64"
-            justifyContent="flex-start"
-            color="fg.muted"
-          >
-            <LuTag /> Add labels...
-          </Button>
-        </Command.DialogTrigger>
-        <Command.Root
-          collection={command.collection}
-          selectionMode="multiple"
-          value={value}
-          onValueChange={(e) => setValue(e.value)}
-          onInputValueChange={(e) => command.search(e.inputValue)}
-        >
-          <Command.Control>
-            <Command.Indicator />
-            <Command.Input placeholder="Search labels..." />
-          </Command.Control>
-          <Command.List>
-            {command.collection.items.map((item) => (
-              <Command.Item item={item} key={item.value}>
-                {item.icon}
-                <Command.ItemText highlight>{item.label}</Command.ItemText>
-                <Command.ItemIndicator />
-              </Command.Item>
-            ))}
-            <Command.Empty>No labels found</Command.Empty>
-          </Command.List>
-          <Command.Footer>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↑
-              </Kbd>
-              <Kbd size="sm" variant="subtle">
-                ↓
-              </Kbd>
-              Navigate
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↵
-              </Kbd>
-              Select
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                esc
-              </Kbd>
-              Close
-            </HStack>
-          </Command.Footer>
-        </Command.Root>
-      </Command.Dialog>
+      <Command.Provider value={command}>
+        <Command.Dialog>
+          <Command.DialogTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              minW="64"
+              justifyContent="flex-start"
+              color="fg.muted"
+            >
+              <LuTag /> Add labels...
+            </Button>
+          </Command.DialogTrigger>
+          <Command.DialogContent>
+            <Command.Root
+              closeOnSelect={false}
+              onSelect={(e) =>
+                setValue((prev) =>
+                  prev.includes(e.itemValue)
+                    ? prev.filter((v) => v !== e.itemValue)
+                    : [...prev, e.itemValue],
+                )
+              }
+            >
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Search labels..." />
+              </Command.Control>
+              <Command.List>
+                {command.collection.items.map((item) => (
+                  <Command.Item item={item} key={item.value}>
+                    {item.icon}
+                    <Command.ItemText highlight>{item.label}</Command.ItemText>
+                    {value.includes(item.value) && (
+                      <Box color="fg" ms="auto">
+                        <LuCheck />
+                      </Box>
+                    )}
+                  </Command.Item>
+                ))}
+                <Command.Empty>No labels found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Toggle
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    esc
+                  </Kbd>
+                  Close
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Command.Dialog>
+      </Command.Provider>
 
       {selected.length > 0 ? (
         <Wrap mt="4" gap="1.5">

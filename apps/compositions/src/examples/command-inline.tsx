@@ -18,8 +18,7 @@ export const CommandInline = () => {
 
   return (
     <Command.Root
-      collection={command.collection}
-      onInputValueChange={(e) => command.search(e.inputValue)}
+      command={command}
       maxW="sm"
       borderWidth="1px"
       rounded="l3"

@@ -6,6 +6,7 @@ import {
   Command,
   HStack,
   Kbd,
+  KbdGroup,
   Separator,
   Span,
   useCommandCollection,
@@ -31,73 +32,73 @@ export const CommandWithFooterActions = () => {
   const [highlighted, setHighlighted] = useState<AppItem | null>(null)
 
   return (
-    <Command.Dialog
-      onExitComplete={() => {
-        command.search("")
-      }}
-    >
-      <Command.DialogTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          minW="64"
-          justifyContent="flex-start"
-          color="fg.muted"
-        >
-          <LuSearch /> Search apps and commands...
-        </Button>
-      </Command.DialogTrigger>
-      <Command.Root
-        collection={command.collection}
-        onInputValueChange={(e) => command.search(e.inputValue)}
-        onHighlightChange={(e) => setHighlighted(e.highlightedItem ?? null)}
-      >
-        <Command.Control>
-          <Command.Indicator />
-          <Command.Input placeholder="Search for apps and commands..." />
-        </Command.Control>
-        <Command.List>
-          {command.collection.group().map(([group, items]) => (
-            <Command.ItemGroup key={group}>
-              <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
-              {items.map((item) => (
-                <Command.Item item={item} key={item.value}>
-                  {item.icon}
-                  <Command.ItemText highlight>{item.label}</Command.ItemText>
-                  <Span textStyle="xs" color="fg.subtle">
-                    {item.type}
-                  </Span>
-                </Command.Item>
+    <Command.Provider value={command}>
+      <Command.Dialog>
+        <Command.DialogTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            minW="64"
+            justifyContent="flex-start"
+            color="fg.muted"
+          >
+            <LuSearch /> Search apps and commands...
+          </Button>
+        </Command.DialogTrigger>
+        <Command.DialogContent>
+          <Command.Root
+            onHighlightChange={(e) =>
+              setHighlighted(command.collection.find(e.highlightedValue))
+            }
+          >
+            <Command.Control>
+              <Command.Indicator />
+              <Command.Input placeholder="Search for apps and commands..." />
+            </Command.Control>
+            <Command.List>
+              {command.collection.group().map(([group, items]) => (
+                <Command.ItemGroup key={group}>
+                  <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
+                  {items.map((item) => (
+                    <Command.Item item={item} key={item.value}>
+                      {item.icon}
+                      <Command.ItemText highlight>
+                        {item.label}
+                      </Command.ItemText>
+                      <Span textStyle="xs" color="fg.subtle">
+                        {item.type}
+                      </Span>
+                    </Command.Item>
+                  ))}
+                </Command.ItemGroup>
               ))}
-            </Command.ItemGroup>
-          ))}
-          <Command.Empty>No results found</Command.Empty>
-        </Command.List>
-        <Command.Footer>
-          <Box color="fg.muted" display="inline-flex">
-            <LuCommand />
-          </Box>
-          <HStack gap="2" ms="auto" color="fg">
-            <Span fontWeight="medium">{highlighted?.action ?? "Open"}</Span>
-            <Kbd size="sm" variant="subtle">
-              ↵
-            </Kbd>
-          </HStack>
-          <Separator orientation="vertical" height="4" />
-          <HStack gap="2">
-            <Span>Actions</Span>
-            <HStack gap="1">
-              <Kbd size="sm" variant="subtle">
-                ⌘
-              </Kbd>
-              <Kbd size="sm" variant="subtle">
-                K
-              </Kbd>
-            </HStack>
-          </HStack>
-        </Command.Footer>
-      </Command.Root>
-    </Command.Dialog>
+              <Command.Empty>No results found</Command.Empty>
+            </Command.List>
+            <Command.Footer>
+              <Box color="fg.muted" display="inline-flex">
+                <LuCommand />
+              </Box>
+              <HStack gap="2" ms="auto" color="fg">
+                <Span fontWeight="medium">{highlighted?.action ?? "Open"}</Span>
+                <Kbd size="sm" variant="subtle">
+                  ↵
+                </Kbd>
+              </HStack>
+              <Separator orientation="vertical" height="4" />
+              <HStack gap="2">
+                <Span>Actions</Span>
+                <HStack gap="1">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>⌘</Kbd>
+                    <Kbd>K</Kbd>
+                  </KbdGroup>
+                </HStack>
+              </HStack>
+            </Command.Footer>
+          </Command.Root>
+        </Command.DialogContent>
+      </Command.Dialog>
+    </Command.Provider>
   )
 }
 
