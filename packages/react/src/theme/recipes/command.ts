@@ -83,6 +83,9 @@ export const commandSlotRecipe = defineSlotRecipe({
       scrollbarWidth: "thin",
       p: "var(--command-list-padding)",
       scrollPaddingBlock: "var(--command-list-padding)",
+      "& > *": {
+        flexShrink: 0,
+      },
     },
 
     item: {

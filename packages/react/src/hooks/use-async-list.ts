@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { startTransition, useCallback, useEffect, useState } from "react"
 import { useLiveRef } from "./use-live-ref"
 
 export interface AsyncListLoadDetails {
@@ -80,9 +80,11 @@ export function useAsyncList<T>(
     loadRef.current({ query, signal: controller.signal }).then(
       (items) => {
         if (controller.signal.aborted) return
-        setResult({ key, items })
-        setError(undefined)
-        setPending(false)
+        startTransition(() => {
+          setResult({ key, items })
+          setError(undefined)
+          setPending(false)
+        })
       },
       (reason) => {
         if (controller.signal.aborted) return

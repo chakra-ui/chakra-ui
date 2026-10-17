@@ -78,9 +78,22 @@ export interface UseCommandProps<
 }
 
 export interface UseCommandReturn<T extends CommandItem = CommandItem> {
+  /**
+   * Whether results are loading.
+   */
   loading: boolean | undefined
+  /**
+   * The value of `useCommandCollection` or `useCommandPageCollection`, if any.
+   */
   command: CommandSource<T> | undefined
+  /**
+   * The underlying combobox API, e.g. `highlightedValue` and `focus`.
+   */
   combobox: UseComboboxReturn<T>
+  /**
+   * Selects an item as if the user picked it.
+   */
+  selectItem: (item: T) => void
 }
 
 export function useCommand<T extends CommandItem = CommandItem>(
@@ -108,6 +121,17 @@ export function useCommand<T extends CommandItem = CommandItem>(
 
   const onSelect = restProps.onSelect
 
+  const runSelect = (
+    details: CommandSelectionDetails,
+    item: T | null | undefined,
+  ) => {
+    if (typeof item?.onSelect === "function") item.onSelect(details)
+    onSelect?.(details)
+    if (command?.onSelect?.(details)) return
+
+    if (item?.closeOnSelect ?? closeOnSelect) onClose?.()
+  }
+
   const combobox = useCombobox<T>({
     inputBehavior: "autohighlight",
     selectionBehavior: "preserve",
@@ -124,19 +148,19 @@ export function useCommand<T extends CommandItem = CommandItem>(
     open: true,
     disableLayer: true,
     onSelect(details) {
-      const item = collection.find(details.itemValue) as T | null | undefined
-      if (typeof item?.onSelect === "function") item.onSelect(details)
-      onSelect?.(details)
-      if (command?.onSelect?.(details)) return
-
-      if (item?.closeOnSelect ?? closeOnSelect) onClose?.()
+      runSelect(details, collection.find(details.itemValue))
     },
     value: [],
   })
 
   useHighlightSync(combobox, command?.highlightedValue ?? null)
 
-  return { loading, command, combobox }
+  const selectItem = (item: T) => {
+    const itemValue = collection.getItemValue(item) ?? ""
+    runSelect({ itemValue, value: [] }, item)
+  }
+
+  return { loading, command, combobox, selectItem }
 }
 
 /**

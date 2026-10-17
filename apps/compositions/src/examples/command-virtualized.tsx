@@ -11,7 +11,7 @@ import {
   useCommandCollection,
 } from "@chakra-ui/react"
 import { useVirtualizer } from "@tanstack/react-virtual"
-import { useRef, useState } from "react"
+import { useDeferredValue, useState } from "react"
 import {
   LuCopy,
   LuFileText,
@@ -23,22 +23,29 @@ import {
 } from "react-icons/lu"
 
 export const CommandVirtualized = () => {
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [open, setOpen] = useState(false)
+  const [scrollElement, setScrollElement] = useState<HTMLDivElement | null>(
+    null,
+  )
 
-  const command = useCommandCollection({ initialItems: commands })
+  const [query, setQuery] = useState("")
+  const command = useCommandCollection({
+    initialItems: commands,
+    query,
+    onQueryChange: setQuery,
+    filterQuery: useDeferredValue(query),
+  })
   const { collection } = command
 
   const virtualizer = useVirtualizer({
     count: collection.size,
-    getScrollElement: () => scrollRef.current,
+    getScrollElement: () => scrollElement,
     estimateSize: () => 36,
     overscan: 10,
   })
 
   return (
     <Command.Provider value={command}>
-      <Command.Dialog open={open} onOpenChange={(e) => setOpen(e.open)}>
+      <Command.Dialog>
         <Command.DialogTrigger asChild>
           <Button
             variant="outline"
@@ -64,7 +71,7 @@ export const CommandVirtualized = () => {
                   placeholder={`Search ${commands.length.toLocaleString()} commands...`}
                 />
               </Command.Control>
-              <Command.List ref={scrollRef}>
+              <Command.List ref={setScrollElement}>
                 <div
                   style={{
                     height: `${virtualizer.getTotalSize()}px`,
