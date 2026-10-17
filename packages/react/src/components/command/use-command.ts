@@ -59,7 +59,7 @@ export interface UseCommandProps<
    */
   collection?: ListCollection<T> | undefined
   /**
-   * The value of `useCommandCollection` or `useCommandPages`.
+   * The value of `useCommandCollection` or `useCommandPageCollection`.
    */
   command?: CommandSource<T> | undefined
   /**

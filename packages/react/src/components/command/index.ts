@@ -72,11 +72,11 @@ export type {
   UseCommandCollectionReturn,
 } from "./use-command-collection"
 
-export { useCommandPages } from "./use-command-pages"
+export { useCommandPageCollection } from "./use-command-page-collection"
 export type {
-  UseCommandPagesProps,
-  UseCommandPagesReturn,
-} from "./use-command-pages"
+  UseCommandPageCollectionProps,
+  UseCommandPageCollectionReturn,
+} from "./use-command-page-collection"
 
 export { useCommandContext } from "./command-context"
 export type { UseCommandContext } from "./command-context"
