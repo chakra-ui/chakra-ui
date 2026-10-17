@@ -70,6 +70,8 @@ const command = useCommandCollection({ initialItems: commands })
 
 - Selecting an item runs its `onSelect` and closes the dialog. Set
   `closeOnSelect: false` on the item, or on `Root`, to keep it open.
+- Holding ⌘, Ctrl, Shift, or Alt while selecting keeps the dialog open, e.g. to
+  open several links in new tabs. `onSelect` receives them as `modifiers`.
 - The dialog clears the query after it closes.
 - `Command.DialogBackdrop` is optional.
 - Set `disabled: true` on an item to show it without letting it run.
@@ -260,7 +262,8 @@ from outside, such as controlling the dialog from a `⌘K` shortcut.
 ### Links
 
 Render items as anchors with `asChild`, so links open with a click, a
-middle-click, or Enter.
+middle-click, or Enter. ⌘+Enter or Ctrl+Enter opens the link in a new tab, like
+⌘+click.
 
 <ExampleTabs name="command-with-links" />
 

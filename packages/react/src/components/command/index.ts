@@ -60,6 +60,7 @@ export type {
 
 export { useCommand } from "./use-command"
 export type {
+  CommandSelectItemOptions,
   CommandSource,
   UseCommandProps,
   UseCommandReturn,

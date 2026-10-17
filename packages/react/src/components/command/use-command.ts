@@ -77,6 +77,16 @@ export interface UseCommandProps<
   onClose?: VoidFunction | undefined
 }
 
+type CommandModifierKeys = CommandSelectionDetails["modifiers"]
+
+export interface CommandSelectItemOptions {
+  /**
+   * The modifier keys of the triggering event. Any of them keeps the command
+   * open.
+   */
+  modifiers?: CommandModifierKeys | undefined
+}
+
 export interface UseCommandReturn<T extends CommandItem = CommandItem> {
   /**
    * Whether results are loading.
@@ -93,7 +103,7 @@ export interface UseCommandReturn<T extends CommandItem = CommandItem> {
   /**
    * Selects an item as if the user picked it.
    */
-  selectItem: (item: T) => void
+  selectItem: (item: T, options?: CommandSelectItemOptions) => void
 }
 
 export function useCommand<T extends CommandItem = CommandItem>(
@@ -129,7 +139,8 @@ export function useCommand<T extends CommandItem = CommandItem>(
     onSelect?.(details)
     if (command?.onSelect?.(details)) return
 
-    if (item?.closeOnSelect ?? closeOnSelect) onClose?.()
+    const shouldClose = closeOnSelect && !hasModifierKey(details.modifiers)
+    if (item?.closeOnSelect ?? shouldClose) onClose?.()
   }
 
   const combobox = useCombobox<T>({
@@ -156,13 +167,27 @@ export function useCommand<T extends CommandItem = CommandItem>(
 
   useRestoreHighlight(combobox, command?.highlightedValue ?? null)
 
-  const selectItem = (item: T) => {
+  const selectItem = (item: T, options: CommandSelectItemOptions = {}) => {
     const itemValue = collection.getItemValue(item) ?? ""
-    runSelect({ itemValue, value: [] }, item)
+    const modifiers = options.modifiers ?? NO_MODIFIERS
+    runSelect({ itemValue, value: [], modifiers }, item)
   }
 
   return { loading, command, combobox, selectItem }
 }
+
+const NO_MODIFIERS: CommandModifierKeys = {
+  metaKey: false,
+  ctrlKey: false,
+  shiftKey: false,
+  altKey: false,
+}
+
+const hasModifierKey = (modifiers: CommandModifierKeys) =>
+  modifiers.metaKey ||
+  modifiers.ctrlKey ||
+  modifiers.shiftKey ||
+  modifiers.altKey
 
 /**
  * Highlights the item the user came back from, or the first item when the

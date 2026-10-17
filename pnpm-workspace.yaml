@@ -99,7 +99,8 @@ minimumReleaseAgeExclude:
   - '@zag-js/types@1.43.1'
   - '@zag-js/utils@1.43.1'
 
-# TEMP: remove before release, once chakra-ui/zag#3477 and #3479 ship
+# TEMP: remove before release, once chakra-ui/zag#3477, #3479 and #3480 ship
 patchedDependencies:
   '@zag-js/combobox@1.43.3': patches/@zag-js__combobox@1.43.3.patch
+  '@zag-js/dom-query@1.43.3': patches/@zag-js__dom-query@1.43.3.patch
   '@zag-js/live-region@1.43.3': patches/@zag-js__live-region@1.43.3.patch

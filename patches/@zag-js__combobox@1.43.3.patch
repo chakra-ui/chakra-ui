@@ -1,5 +1,5 @@
 diff --git a/dist/combobox.connect.js b/dist/combobox.connect.js
-index 5fc786c2fedd9939e4af3298cd16af45e50980b5..6f123f5c25aecf2dcb4a29a21b8d85b478076848 100644
+index 5fc786c2fedd9939e4af3298cd16af45e50980b5..40fe242ac90300cc1bbc48abda4e2c97f637d3f1 100644
 --- a/dist/combobox.connect.js
 +++ b/dist/combobox.connect.js
 @@ -53,6 +53,7 @@ function connect(service, normalize) {
@@ -18,7 +18,35 @@ index 5fc786c2fedd9939e4af3298cd16af45e50980b5..6f123f5c25aecf2dcb4a29a21b8d85b4
      inputValue: context.get("inputValue"),
      highlightedValue,
      highlightedItem: context.get("highlightedItem"),
-@@ -337,6 +339,8 @@ function connect(service, normalize) {
+@@ -214,7 +216,8 @@ function connect(service, normalize) {
+         onKeyDown(event) {
+           if (event.defaultPrevented) return;
+           if (!interactive) return;
+-          if (event.ctrlKey || event.shiftKey || (0, import_dom_query.isComposingEvent)(event)) return;
++          if ((0, import_dom_query.isComposingEvent)(event)) return;
++          if ((event.ctrlKey || event.shiftKey) && event.key !== "Enter") return;
+           const openOnKeyPress = prop("openOnKeyPress");
+           const isModifierKey = event.ctrlKey || event.metaKey || event.shiftKey;
+           const keypress = true;
+@@ -244,7 +247,7 @@ function connect(service, normalize) {
+               }
+             },
+             Enter(event2) {
+-              send({ type: "INPUT.ENTER", keypress, src: "item-select" });
++              send({ type: "INPUT.ENTER", keypress, src: "item-select", modifiers: (0, import_dom_query.getModifierKeys)(event) });
+               const hasHighlight = highlightedValue != null;
+               const alwaysSubmit = prop("alwaysSubmitOnEnter");
+               const willBeRejected = computed("isCustomValue") && !prop("allowCustomValue");
+@@ -254,7 +257,7 @@ function connect(service, normalize) {
+               if (highlightedValue == null) return;
+               const itemEl = dom.getItemEl(scope, highlightedValue);
+               if ((0, import_dom_query.isAnchorElement)(itemEl)) {
+-                prop("navigate")?.({ value: highlightedValue, node: itemEl, href: itemEl.href });
++                prop("navigate")?.({ value: highlightedValue, node: itemEl, href: itemEl.href, modifiers: (0, import_dom_query.getModifierKeys)(event) });
+               }
+             },
+             Escape() {
+@@ -337,6 +340,8 @@ function connect(service, normalize) {
          "data-side": currentPlacementSide,
          "aria-labelledby": dom.getLabelId(scope),
          "aria-multiselectable": prop("multiple") && composite ? true : void 0,
@@ -27,7 +55,7 @@ index 5fc786c2fedd9939e4af3298cd16af45e50980b5..6f123f5c25aecf2dcb4a29a21b8d85b4
          "data-empty": (0, import_dom_query.dataAttr)(collection.size === 0),
          onPointerDown(event) {
            if (!(0, import_dom_query.isLeftClick)(event)) return;
-@@ -350,7 +354,9 @@ function connect(service, normalize) {
+@@ -350,7 +355,9 @@ function connect(service, normalize) {
          role: !composite ? "listbox" : void 0,
          "data-empty": (0, import_dom_query.dataAttr)(collection.size === 0),
          "aria-labelledby": dom.getLabelId(scope),
@@ -38,11 +66,35 @@ index 5fc786c2fedd9939e4af3298cd16af45e50980b5..6f123f5c25aecf2dcb4a29a21b8d85b4
        });
      },
      getClearTriggerProps() {
+@@ -405,11 +412,9 @@ function connect(service, normalize) {
+           send({ type: "ITEM.POINTER_LEAVE", value });
+         },
+         onClick(event) {
+-          if ((0, import_dom_query.isDownloadingEvent)(event)) return;
+-          if ((0, import_dom_query.isOpeningInNewTab)(event)) return;
+           if ((0, import_dom_query.isContextMenuEvent)(event)) return;
+           if (itemState.disabled) return;
+-          send({ type: "ITEM.CLICK", src: "item-select", value });
++          send({ type: "ITEM.CLICK", src: "item-select", value, modifiers: (0, import_dom_query.getModifierKeys)(event) });
+         }
+       });
+     },
 diff --git a/dist/combobox.connect.mjs b/dist/combobox.connect.mjs
-index 270005dd7480e0d1673003b46e1a9580c8c58397..eef7500fd65a044f16a88572c6648b898ea7b628 100644
+index 270005dd7480e0d1673003b46e1a9580c8c58397..c6a747887fd45ec0ace99a91830900ed18b35c9f 100644
 --- a/dist/combobox.connect.mjs
 +++ b/dist/combobox.connect.mjs
-@@ -29,6 +29,7 @@ function connect(service, normalize) {
+@@ -6,9 +6,8 @@ import {
+   isAnchorElement,
+   isComposingEvent,
+   isContextMenuEvent,
+-  isDownloadingEvent,
+   isLeftClick,
+-  isOpeningInNewTab
++  getModifierKeys
+ } from "@zag-js/dom-query";
+ import { getInteractionModality } from "@zag-js/focus-visible";
+ import { getPlacementSide, getPlacementStyles } from "@zag-js/popper";
+@@ -29,6 +28,7 @@ function connect(service, normalize) {
    const required = !!prop("required");
    const readOnly = !!prop("readOnly");
    const open = state.hasTag("open");
@@ -50,7 +102,7 @@ index 270005dd7480e0d1673003b46e1a9580c8c58397..eef7500fd65a044f16a88572c6648b89
    const focused = state.hasTag("focused");
    const composite = prop("composite");
    const highlightedValue = context.get("highlightedValue");
-@@ -52,6 +53,7 @@ function connect(service, normalize) {
+@@ -52,6 +52,7 @@ function connect(service, normalize) {
    return {
      focused,
      open,
@@ -58,6 +110,34 @@ index 270005dd7480e0d1673003b46e1a9580c8c58397..eef7500fd65a044f16a88572c6648b89
      inputValue: context.get("inputValue"),
      highlightedValue,
      highlightedItem: context.get("highlightedItem"),
+@@ -190,7 +191,8 @@ function connect(service, normalize) {
+         onKeyDown(event) {
+           if (event.defaultPrevented) return;
+           if (!interactive) return;
+-          if (event.ctrlKey || event.shiftKey || isComposingEvent(event)) return;
++          if (isComposingEvent(event)) return;
++          if ((event.ctrlKey || event.shiftKey) && event.key !== "Enter") return;
+           const openOnKeyPress = prop("openOnKeyPress");
+           const isModifierKey = event.ctrlKey || event.metaKey || event.shiftKey;
+           const keypress = true;
+@@ -220,7 +222,7 @@ function connect(service, normalize) {
+               }
+             },
+             Enter(event2) {
+-              send({ type: "INPUT.ENTER", keypress, src: "item-select" });
++              send({ type: "INPUT.ENTER", keypress, src: "item-select", modifiers: getModifierKeys(event) });
+               const hasHighlight = highlightedValue != null;
+               const alwaysSubmit = prop("alwaysSubmitOnEnter");
+               const willBeRejected = computed("isCustomValue") && !prop("allowCustomValue");
+@@ -230,7 +232,7 @@ function connect(service, normalize) {
+               if (highlightedValue == null) return;
+               const itemEl = dom.getItemEl(scope, highlightedValue);
+               if (isAnchorElement(itemEl)) {
+-                prop("navigate")?.({ value: highlightedValue, node: itemEl, href: itemEl.href });
++                prop("navigate")?.({ value: highlightedValue, node: itemEl, href: itemEl.href, modifiers: getModifierKeys(event) });
+               }
+             },
+             Escape() {
 @@ -313,6 +315,8 @@ function connect(service, normalize) {
          "data-side": currentPlacementSide,
          "aria-labelledby": dom.getLabelId(scope),
@@ -78,10 +158,34 @@ index 270005dd7480e0d1673003b46e1a9580c8c58397..eef7500fd65a044f16a88572c6648b89
        });
      },
      getClearTriggerProps() {
+@@ -381,11 +387,9 @@ function connect(service, normalize) {
+           send({ type: "ITEM.POINTER_LEAVE", value });
+         },
+         onClick(event) {
+-          if (isDownloadingEvent(event)) return;
+-          if (isOpeningInNewTab(event)) return;
+           if (isContextMenuEvent(event)) return;
+           if (itemState.disabled) return;
+-          send({ type: "ITEM.CLICK", src: "item-select", value });
++          send({ type: "ITEM.CLICK", src: "item-select", value, modifiers: getModifierKeys(event) });
+         }
+       });
+     },
 diff --git a/dist/combobox.machine.js b/dist/combobox.machine.js
-index 754a6313f52a07ec3531e70b5cbc9495a092c756..c2603f03021a23e8a7e9e4cb44793dcc8492a76c 100644
+index 754a6313f52a07ec3531e70b5cbc9495a092c756..4864329a5124a938fc2ede2503b2356e8eabe435 100644
 --- a/dist/combobox.machine.js
 +++ b/dist/combobox.machine.js
+@@ -60,8 +60,8 @@ var machine = createMachine({
+       openOnKeyPress: true,
+       openOnChange: true,
+       composite: true,
+-      navigate({ node }) {
+-        (0, import_dom_query.clickIfLink)(node);
++      navigate(details) {
++        (0, import_dom_query.clickIfLink)(details.node, details.modifiers);
+       },
+       collection: import_combobox.collection.empty(),
+       ...props,
 @@ -172,7 +172,7 @@ var machine = createMachine({
        action(["syncSelectedItems"]);
      });
@@ -149,6 +253,30 @@ index 754a6313f52a07ec3531e70b5cbc9495a092c756..c2603f03021a23e8a7e9e4cb44793dcc
        },
        trackPlacement({ context, prop, scope }) {
          const anchorEl = () => dom.getControlEl(scope) || dom.getTriggerEl(scope);
+@@ -759,12 +781,12 @@ var machine = createMachine({
+         context.set("highlightedValue", null);
+       },
+       selectHighlightedItem(params) {
+-        const { context, prop } = params;
++        const { context, event, prop } = params;
+         const collection2 = prop("collection");
+         const highlightedValue = context.get("highlightedValue");
+         if (!highlightedValue || !collection2.has(highlightedValue)) return;
+         const nextValue = prop("multiple") ? (0, import_utils.addOrRemove)(context.get("value"), highlightedValue) : [highlightedValue];
+-        prop("onSelect")?.({ value: nextValue, itemValue: highlightedValue });
++        prop("onSelect")?.({ value: nextValue, itemValue: highlightedValue, modifiers: (0, import_dom_query.getModifierKeys)(event.modifiers) });
+         context.set("value", nextValue);
+         const inputValue = (0, import_utils.match)(prop("selectionBehavior"), {
+           preserve: context.get("inputValue"),
+@@ -797,7 +819,7 @@ var machine = createMachine({
+         if (event.value == null) return;
+         flush(() => {
+           const nextValue = prop("multiple") ? (0, import_utils.addOrRemove)(context.get("value"), event.value) : [event.value];
+-          prop("onSelect")?.({ value: nextValue, itemValue: event.value });
++          prop("onSelect")?.({ value: nextValue, itemValue: event.value, modifiers: (0, import_dom_query.getModifierKeys)(event.modifiers) });
+           context.set("value", nextValue);
+           const inputValue = (0, import_utils.match)(prop("selectionBehavior"), {
+             preserve: context.get("inputValue"),
 @@ -1015,6 +1037,12 @@ var machine = createMachine({
          const isSelected = value ? context.get("value").includes(value) : false;
          refs.get("liveRegion")?.announce(isSelected ? `${optionText}, selected` : optionText);
@@ -182,10 +310,18 @@ index 754a6313f52a07ec3531e70b5cbc9495a092c756..c2603f03021a23e8a7e9e4cb44793dcc
  0 && (module.exports = {
    machine
 diff --git a/dist/combobox.machine.mjs b/dist/combobox.machine.mjs
-index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..c97c53b569ddb0af84ac200cea47703e631a7df7 100644
+index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..58e57fa6655ef3013b6c25b6ea86c4c6dcafcd72 100644
 --- a/dist/combobox.machine.mjs
 +++ b/dist/combobox.machine.mjs
-@@ -18,7 +18,7 @@ import {
+@@ -8,6 +8,7 @@ import { setup } from "@zag-js/core";
+ import { trackDismissableElement } from "@zag-js/dismissable";
+ import {
+   clickIfLink,
++  getModifierKeys,
+   isApple,
+   nextTick,
+   observeAttributes,
+@@ -18,7 +19,7 @@ import {
  import { getInteractionModality, setInteractionModality, trackFocusVisible } from "@zag-js/focus-visible";
  import { createLiveRegion } from "@zag-js/live-region";
  import { getPlacement } from "@zag-js/popper";
@@ -194,7 +330,18 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..c97c53b569ddb0af84ac200cea47703e
  import { collection } from "./combobox.collection.mjs";
  import * as dom from "./combobox.dom.mjs";
  var { guards, createMachine, choose } = setup();
-@@ -150,7 +150,7 @@ var machine = createMachine({
+@@ -38,8 +39,8 @@ var machine = createMachine({
+       openOnKeyPress: true,
+       openOnChange: true,
+       composite: true,
+-      navigate({ node }) {
+-        clickIfLink(node);
++      navigate(details) {
++        clickIfLink(details.node, details.modifiers);
+       },
+       collection: collection.empty(),
+       ...props,
+@@ -150,7 +151,7 @@ var machine = createMachine({
        action(["syncSelectedItems"]);
      });
      track([() => context.get("inputValue")], () => {
@@ -203,7 +350,7 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..c97c53b569ddb0af84ac200cea47703e
      });
      track([() => context.get("highlightedValue")], () => {
        action(["syncHighlightedItem", "autofillInputValue", "announceHighlightedItem"]);
-@@ -160,6 +160,10 @@ var machine = createMachine({
+@@ -160,6 +161,10 @@ var machine = createMachine({
      });
      track([() => prop("collection").toString()], () => {
        send({ type: "CHILDREN_CHANGE" });
@@ -214,7 +361,7 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..c97c53b569ddb0af84ac200cea47703e
      });
    },
    on: {
-@@ -478,6 +482,10 @@ var machine = createMachine({
+@@ -478,6 +483,10 @@ var machine = createMachine({
          interacting: {
            on: {
              CHILDREN_CHANGE: [
@@ -225,7 +372,7 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..c97c53b569ddb0af84ac200cea47703e
                {
                  guard: "isHighlightedItemRemoved",
                  actions: ["clearHighlightedValue"]
-@@ -549,6 +557,7 @@ var machine = createMachine({
+@@ -549,6 +558,7 @@ var machine = createMachine({
            }
          },
          suggesting: {
@@ -233,7 +380,7 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..c97c53b569ddb0af84ac200cea47703e
            on: {
              CHILDREN_CHANGE: [
                {
-@@ -656,12 +665,25 @@ var machine = createMachine({
+@@ -656,12 +666,25 @@ var machine = createMachine({
          });
        },
        trackLiveRegion({ refs, scope }) {
@@ -261,7 +408,31 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..c97c53b569ddb0af84ac200cea47703e
        },
        trackPlacement({ context, prop, scope }) {
          const anchorEl = () => dom.getControlEl(scope) || dom.getTriggerEl(scope);
-@@ -993,6 +1015,12 @@ var machine = createMachine({
+@@ -737,12 +760,12 @@ var machine = createMachine({
+         context.set("highlightedValue", null);
+       },
+       selectHighlightedItem(params) {
+-        const { context, prop } = params;
++        const { context, event, prop } = params;
+         const collection2 = prop("collection");
+         const highlightedValue = context.get("highlightedValue");
+         if (!highlightedValue || !collection2.has(highlightedValue)) return;
+         const nextValue = prop("multiple") ? addOrRemove(context.get("value"), highlightedValue) : [highlightedValue];
+-        prop("onSelect")?.({ value: nextValue, itemValue: highlightedValue });
++        prop("onSelect")?.({ value: nextValue, itemValue: highlightedValue, modifiers: getModifierKeys(event.modifiers) });
+         context.set("value", nextValue);
+         const inputValue = match(prop("selectionBehavior"), {
+           preserve: context.get("inputValue"),
+@@ -775,7 +798,7 @@ var machine = createMachine({
+         if (event.value == null) return;
+         flush(() => {
+           const nextValue = prop("multiple") ? addOrRemove(context.get("value"), event.value) : [event.value];
+-          prop("onSelect")?.({ value: nextValue, itemValue: event.value });
++          prop("onSelect")?.({ value: nextValue, itemValue: event.value, modifiers: getModifierKeys(event.modifiers) });
+           context.set("value", nextValue);
+           const inputValue = match(prop("selectionBehavior"), {
+             preserve: context.get("inputValue"),
+@@ -993,6 +1016,12 @@ var machine = createMachine({
          const isSelected = value ? context.get("value").includes(value) : false;
          refs.get("liveRegion")?.announce(isSelected ? `${optionText}, selected` : optionText);
        },
@@ -274,7 +445,7 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..c97c53b569ddb0af84ac200cea47703e
        toggleVisibility({ event, send, prop }) {
          send({ type: prop("open") ? "CONTROLLED.OPEN" : "CONTROLLED.CLOSE", previousEvent: event });
        }
-@@ -1002,6 +1030,18 @@ var machine = createMachine({
+@@ -1002,6 +1031,18 @@ var machine = createMachine({
  function getOpenChangeReason(event) {
    return (event.previousEvent || event).src;
  }
@@ -318,10 +489,34 @@ index 2ca5b3dae0ff259c6a091c488ef126c32991901f..5d738ba2aae0f5a9e2b2d44512931082
    "multiple",
    "name",
 diff --git a/dist/combobox.types.d.mts b/dist/combobox.types.d.mts
-index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..4160df10f766774eb81e002e342c254c191448bd 100644
+index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..2588396366420d4d2d12008bd66a8e2bdccda213 100644
 --- a/dist/combobox.types.d.mts
 +++ b/dist/combobox.types.d.mts
-@@ -49,6 +49,9 @@ interface SelectionDetails {
+@@ -6,6 +6,7 @@ import { PositioningOptions, Placement } from '@zag-js/popper';
+ export { Placement, PositioningOptions } from '@zag-js/popper';
+ import { RequiredBy, DirectionProperty, CommonProperties, PropTypes } from '@zag-js/types';
+ import { LiveRegion } from '@zag-js/live-region';
++import { ModifierKeys } from '@zag-js/dom-query';
+ 
+ interface ValueChangeDetails<T extends CollectionItem = CollectionItem> {
+     value: string[];
+@@ -41,14 +42,25 @@ interface NavigateDetails {
+     value: string;
+     node: HTMLAnchorElement;
+     href: string;
++    /**
++     * The modifier keys held when the item was activated
++     */
++    modifiers: ModifierKeys;
+ }
+ interface SelectionDetails {
+     value: string[];
+     itemValue: string;
++    /**
++     * The modifier keys held when the item was activated
++     */
++    modifiers: ModifierKeys;
+ }
  interface IntlTranslations {
      triggerLabel?: string | undefined;
      clearTriggerLabel?: string | undefined;
@@ -331,7 +526,7 @@ index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..4160df10f766774eb81e002e342c254c
  }
  interface ElementIds {
      root?: string | undefined;
-@@ -250,6 +253,10 @@ interface ComboboxProps<T extends CollectionItem = CollectionItem> extends Direc
+@@ -250,6 +262,10 @@ interface ComboboxProps<T extends CollectionItem = CollectionItem> extends Direc
       * Function to navigate to the selected item
       */
      navigate?: ((details: NavigateDetails) => void) | null | undefined;
@@ -342,7 +537,7 @@ index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..4160df10f766774eb81e002e342c254c
  }
  type PropsWithDefault = "openOnChange" | "openOnKeyPress" | "composite" | "loopFocus" | "positioning" | "openOnClick" | "openOnChange" | "inputBehavior" | "collection" | "selectionBehavior" | "closeOnSelect" | "positioning" | "defaultValue" | "defaultInputValue";
  interface ComboboxSchema<T extends CollectionItem = CollectionItem> {
-@@ -266,6 +273,7 @@ interface ComboboxSchema<T extends CollectionItem = CollectionItem> {
+@@ -266,6 +282,7 @@ interface ComboboxSchema<T extends CollectionItem = CollectionItem> {
      };
      refs: {
          liveRegion: LiveRegion | null;
@@ -350,7 +545,7 @@ index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..4160df10f766774eb81e002e342c254c
      };
      computed: {
          isCustomValue: boolean;
-@@ -333,6 +341,10 @@ interface ComboboxApi<T extends PropTypes = PropTypes, V extends CollectionItem
+@@ -333,6 +350,10 @@ interface ComboboxApi<T extends PropTypes = PropTypes, V extends CollectionItem
       * Whether the combobox is open
       */
      open: boolean;
@@ -362,10 +557,34 @@ index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..4160df10f766774eb81e002e342c254c
       * The value of the combobox input
       */
 diff --git a/dist/combobox.types.d.ts b/dist/combobox.types.d.ts
-index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..4160df10f766774eb81e002e342c254c191448bd 100644
+index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..2588396366420d4d2d12008bd66a8e2bdccda213 100644
 --- a/dist/combobox.types.d.ts
 +++ b/dist/combobox.types.d.ts
-@@ -49,6 +49,9 @@ interface SelectionDetails {
+@@ -6,6 +6,7 @@ import { PositioningOptions, Placement } from '@zag-js/popper';
+ export { Placement, PositioningOptions } from '@zag-js/popper';
+ import { RequiredBy, DirectionProperty, CommonProperties, PropTypes } from '@zag-js/types';
+ import { LiveRegion } from '@zag-js/live-region';
++import { ModifierKeys } from '@zag-js/dom-query';
+ 
+ interface ValueChangeDetails<T extends CollectionItem = CollectionItem> {
+     value: string[];
+@@ -41,14 +42,25 @@ interface NavigateDetails {
+     value: string;
+     node: HTMLAnchorElement;
+     href: string;
++    /**
++     * The modifier keys held when the item was activated
++     */
++    modifiers: ModifierKeys;
+ }
+ interface SelectionDetails {
+     value: string[];
+     itemValue: string;
++    /**
++     * The modifier keys held when the item was activated
++     */
++    modifiers: ModifierKeys;
+ }
  interface IntlTranslations {
      triggerLabel?: string | undefined;
      clearTriggerLabel?: string | undefined;
@@ -375,7 +594,7 @@ index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..4160df10f766774eb81e002e342c254c
  }
  interface ElementIds {
      root?: string | undefined;
-@@ -250,6 +253,10 @@ interface ComboboxProps<T extends CollectionItem = CollectionItem> extends Direc
+@@ -250,6 +262,10 @@ interface ComboboxProps<T extends CollectionItem = CollectionItem> extends Direc
       * Function to navigate to the selected item
       */
      navigate?: ((details: NavigateDetails) => void) | null | undefined;
@@ -386,7 +605,7 @@ index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..4160df10f766774eb81e002e342c254c
  }
  type PropsWithDefault = "openOnChange" | "openOnKeyPress" | "composite" | "loopFocus" | "positioning" | "openOnClick" | "openOnChange" | "inputBehavior" | "collection" | "selectionBehavior" | "closeOnSelect" | "positioning" | "defaultValue" | "defaultInputValue";
  interface ComboboxSchema<T extends CollectionItem = CollectionItem> {
-@@ -266,6 +273,7 @@ interface ComboboxSchema<T extends CollectionItem = CollectionItem> {
+@@ -266,6 +282,7 @@ interface ComboboxSchema<T extends CollectionItem = CollectionItem> {
      };
      refs: {
          liveRegion: LiveRegion | null;
@@ -394,7 +613,7 @@ index 7afdb5c71fe4145e67f68c35f44684c76ab3ed76..4160df10f766774eb81e002e342c254c
      };
      computed: {
          isCustomValue: boolean;
-@@ -333,6 +341,10 @@ interface ComboboxApi<T extends PropTypes = PropTypes, V extends CollectionItem
+@@ -333,6 +350,10 @@ interface ComboboxApi<T extends PropTypes = PropTypes, V extends CollectionItem
       * Whether the combobox is open
       */
      open: boolean;

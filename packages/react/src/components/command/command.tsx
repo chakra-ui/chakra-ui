@@ -329,7 +329,10 @@ const CommandInputBase = forwardRef<HTMLInputElement, ArkCombobox.InputProps>(
           const item = command.getFirstMatch(command.query)
           if (!item) return
           event.preventDefault()
-          selectItem(item)
+          const { metaKey, ctrlKey, shiftKey, altKey } = event
+          selectItem(item, {
+            modifiers: { metaKey, ctrlKey, shiftKey, altKey },
+          })
         }}
       />
     )
