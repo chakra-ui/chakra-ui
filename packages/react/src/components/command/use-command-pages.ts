@@ -51,7 +51,7 @@ export interface UseCommandPagesReturn<
    */
   setPage: (value: string | null) => void
   /**
-   * Goes back one page. Returns `false` at the top level.
+   * Goes back to the previous page. Returns `false` when there's none.
    */
   popPage: () => boolean
   /**
@@ -63,13 +63,20 @@ export interface UseCommandPagesReturn<
    */
   getPath: (item: T) => T[]
   /**
-   * Clears the query and returns to the top level.
+   * Starts over at the top level, or at the given page.
    */
-  reset: VoidFunction
+  reset: (page?: string | null) => void
+  /**
+   * The item to highlight after going back: the one the user came from.
+   */
   highlightedValue: string | null
+  /**
+   * Opens the page of a selected item that is a page. Returns `true` when it
+   * did, so the command stays open.
+   */
   onSelect: (details: CommandSelectionDetails) => boolean
   /**
-   * Pass to `Command.Input` to go back on Backspace or Escape.
+   * Pass to `Command.Input`: Backspace goes up a page, Escape goes back.
    */
   onInputKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
   /**
@@ -103,6 +110,7 @@ export function useCommandPages<T extends CommandItem>(
   const [pageValue, setPageValue] = useState<string | null>(null)
   const [highlightedValue, setHighlightedValue] = useState<string | null>(null)
   const queriesRef = useRef(new Map<string, string>())
+  const historyRef = useRef<(string | null)[]>([])
 
   const itemToValueRef = useLiveRef(collectionProps.itemToValue)
 
@@ -144,13 +152,21 @@ export function useCommandPages<T extends CommandItem>(
 
   const stateRef = useLiveRef({ pages, query, tree, onPageChange })
 
-  const setPage = useCallback(
-    (value: string | null) => {
+  const navigate = useCallback(
+    (options: { value: string | null; push: boolean }) => {
+      const { value, push } = options
       const { pages, query, tree, onPageChange } = stateRef.current
       const current = pages.at(-1)
+      const currentValue = current ? tree.toValue(current) : null
 
-      if (value === (current ? tree.toValue(current) : null)) return
+      if (value === currentValue) return
       if (value != null && !tree.items.has(value)) return
+
+      historyRef.current = updateHistory(historyRef.current, {
+        from: currentValue,
+        to: value,
+        push,
+      })
 
       // Going back to the top level or an open ancestor: restore its query
       // and highlight the page we came from
@@ -170,21 +186,36 @@ export function useCommandPages<T extends CommandItem>(
     [setQuery],
   )
 
+  const setPage = useCallback(
+    (value: string | null) => navigate({ value, push: true }),
+    [navigate],
+  )
+
   const popPage = useCallback(() => {
+    const previous = historyRef.current.at(-1)
+    if (previous === undefined) return false
+    navigate({ value: previous, push: false })
+    return true
+  }, [navigate])
+
+  const goUp = useCallback(() => {
     const { pages, tree } = stateRef.current
     if (!pages.length) return false
-
     const parent = pages.at(-2)
-    setPage(parent ? tree.toValue(parent) : null)
+    navigate({ value: parent ? tree.toValue(parent) : null, push: false })
     return true
-  }, [setPage])
+  }, [navigate])
 
-  const reset = useCallback(() => {
-    queriesRef.current.clear()
-    setQuery("")
-    setHighlightedValue(null)
-    setPageValue(null)
-  }, [setQuery])
+  const reset = useCallback(
+    (value: string | null = null) => {
+      queriesRef.current.clear()
+      historyRef.current = []
+      setQuery("")
+      setHighlightedValue(null)
+      setPageValue(value)
+    },
+    [setQuery],
+  )
 
   const isPage = useCallback(
     (item: T) => item.page === true || tree.children.has(tree.toValue(item)),
@@ -209,12 +240,13 @@ export function useCommandPages<T extends CommandItem>(
   const onInputKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.defaultPrevented) return
-      const back =
-        event.key === "Escape" ||
-        (event.key === "Backspace" && !event.currentTarget.value)
-      if (back && popPage()) event.preventDefault()
+      const handled =
+        event.key === "Escape"
+          ? popPage()
+          : event.key === "Backspace" && !event.currentTarget.value && goUp()
+      if (handled) event.preventDefault()
     },
-    [popPage],
+    [popPage, goUp],
   )
 
   const onEscapeKeyDown = useCallback(
@@ -265,6 +297,15 @@ function buildTree<T extends CommandItem>(
   }
 
   return { items: byValue, children, toValue }
+}
+
+function updateHistory(
+  history: (string | null)[],
+  options: { from: string | null; to: string | null; push: boolean },
+) {
+  const visited = history.lastIndexOf(options.to)
+  if (visited >= 0) return history.slice(0, visited)
+  return options.push ? [...history, options.from] : history
 }
 
 function getAncestors<T extends CommandItem>(

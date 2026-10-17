@@ -16,6 +16,8 @@ import {
   Status,
   Text,
   useCommandPages,
+  useFormatHotkey,
+  useHotkeys,
 } from "@chakra-ui/react"
 import { Fragment, useState } from "react"
 import {
@@ -54,7 +56,8 @@ interface IssueCommand extends Command.Item {
   title?: string
   placeholder?: string
   icon?: React.ReactNode
-  shortcut?: string[]
+  hotkey?: string
+  copy?: string
   group?: string
   field?: Field
   option?: string
@@ -68,12 +71,42 @@ export const CommandNested = () => {
     labels: ["bug"],
     project: "auth",
   })
+  const [open, setOpen] = useState(false)
+  const [copied, setCopied] = useState<string>()
 
   const command = useCommandPages({
     initialItems: items,
     groupBy: (item) => item.group ?? "",
     deepSearch: true,
   })
+
+  const openPage = (value: string) => {
+    command.reset(value)
+    setOpen(true)
+  }
+
+  const copy = (text: string) => {
+    navigator.clipboard.writeText(text)
+    setCopied(text)
+  }
+
+  const run = (item: IssueCommand) => {
+    if (command.isPage(item)) openPage(item.value)
+    else if (item.copy) copy(item.copy)
+  }
+
+  useHotkeys({
+    commands: shortcutItems.map((item) => ({
+      id: item.value,
+      hotkey: item.hotkey!,
+      label: item.label,
+      action: () => run(item),
+      options: { preventDefault: true },
+    })),
+  })
+
+  const formatHotkey = useFormatHotkey()
+  const keysOf = (hotkey: string) => formatHotkey(hotkey).split(" ")
 
   const isSelected = (item: IssueCommand) => {
     if (!item.field || !item.option) return false
@@ -89,7 +122,7 @@ export const CommandNested = () => {
   return (
     <Stack gap="6" align="flex-start">
       <Command.Provider value={command}>
-        <Command.Dialog>
+        <Command.Dialog open={open} onOpenChange={(e) => setOpen(e.open)}>
           <Command.DialogTrigger asChild>
             <Button
               variant="outline"
@@ -107,6 +140,7 @@ export const CommandNested = () => {
               <Command.Root
                 onSelect={(e) => {
                   const item = command.collection.find(e.itemValue)
+                  if (item?.copy) copy(item.copy)
                   if (!item?.field || !item.option) return
                   const { field, option } = item
                   setIssue((prev) => applyOption(prev, field, option))
@@ -178,16 +212,17 @@ export const CommandNested = () => {
                                 <LuCheck />
                               </Box>
                             )}
-                            {command.isPage(item) && !item.shortcut && (
+                            {command.isPage(item) && !item.hotkey && (
                               <Box color="fg.subtle" ms="auto">
                                 <LuChevronRight />
                               </Box>
                             )}
-                            {item.shortcut?.map((key) => (
-                              <Command.ItemCommand key={key}>
-                                {key}
-                              </Command.ItemCommand>
-                            ))}
+                            {item.hotkey &&
+                              keysOf(item.hotkey).map((key) => (
+                                <Command.ItemCommand key={key}>
+                                  {key}
+                                </Command.ItemCommand>
+                              ))}
                           </Command.Item>
                         )
                       })}
@@ -223,6 +258,36 @@ export const CommandNested = () => {
       </Command.Provider>
 
       <IssueSummary issue={issue} />
+
+      <Stack
+        gap="2"
+        textStyle="sm"
+        p="4"
+        borderWidth="1px"
+        rounded="l3"
+        bg="bg.subtle"
+        minW="64"
+      >
+        <Text fontWeight="medium">Shortcuts</Text>
+        {shortcutItems.map((item) => (
+          <HStack key={item.value} gap="3">
+            <KbdGroup size="sm" variant="subtle" minW="16">
+              {keysOf(item.hotkey!).map((key) => (
+                <Kbd key={key}>{key}</Kbd>
+              ))}
+            </KbdGroup>
+            <Text textStyle="xs" color="fg.muted">
+              {item.label}
+            </Text>
+          </HStack>
+        ))}
+      </Stack>
+
+      {copied && (
+        <Text textStyle="sm" color="fg.muted">
+          Copied {copied} to clipboard
+        </Text>
+      )}
     </Stack>
   )
 }
@@ -288,7 +353,7 @@ const items: IssueCommand[] = [
     placeholder: "Change status...",
     group: "Change",
     icon: <LuCircleDashed />,
-    shortcut: ["S"],
+    hotkey: "s",
   },
   {
     label: "Change priority...",
@@ -297,7 +362,7 @@ const items: IssueCommand[] = [
     placeholder: "Change priority...",
     group: "Change",
     icon: <LuSignalHigh />,
-    shortcut: ["P"],
+    hotkey: "p",
   },
   {
     label: "Assign to...",
@@ -306,7 +371,7 @@ const items: IssueCommand[] = [
     placeholder: "Assign to...",
     group: "Change",
     icon: <LuUserRound />,
-    shortcut: ["A"],
+    hotkey: "a",
   },
   {
     label: "Add labels...",
@@ -315,7 +380,7 @@ const items: IssueCommand[] = [
     placeholder: "Add labels...",
     group: "Change",
     icon: <LuTag />,
-    shortcut: ["L"],
+    hotkey: "l",
   },
   {
     label: "Move to project...",
@@ -324,28 +389,29 @@ const items: IssueCommand[] = [
     placeholder: "Pick a team...",
     group: "Change",
     icon: <LuFolderInput />,
-    shortcut: ["⇧", "P"],
+    hotkey: "shift+p",
   },
   {
     label: "Copy issue ID",
     value: "copy-id",
     group: "Issue",
     icon: <LuCopy />,
-    shortcut: ["⌘", "."],
+    hotkey: "mod+.",
+    copy: "ENG-142",
   },
   {
     label: "Copy issue URL",
     value: "copy-url",
     group: "Issue",
     icon: <LuLink />,
-    shortcut: ["⇧", "⌘", ","],
+    hotkey: "mod+shift+,",
+    copy: "https://example.com/issues/ENG-142",
   },
   {
     label: "Delete issue",
     value: "delete",
     group: "Issue",
     icon: <LuTrash2 />,
-    shortcut: ["⌘", "⌫"],
   },
   ...options("status", "status", [
     { label: "Backlog", option: "backlog", icon: dot("gray") },
@@ -464,3 +530,5 @@ const IssueSummary = (props: { issue: Issue }) => {
     </DataList.Root>
   )
 }
+
+const shortcutItems = items.filter((item) => item.hotkey)
