@@ -90,7 +90,7 @@ export const CommandWithAsyncContent = () => {
                     color="fg.muted"
                   >
                     Search failed.{" "}
-                    <Button size="xs" variant="plain" onClick={command.retry}>
+                    <Button size="xs" variant="plain" onClick={command.reload}>
                       Try again
                     </Button>
                   </Text>

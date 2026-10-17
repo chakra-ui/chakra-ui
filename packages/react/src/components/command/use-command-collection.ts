@@ -6,12 +6,7 @@ import {
   createListCollection,
 } from "@ark-ui/react/collection"
 import { useMemo, useRef } from "react"
-import {
-  type AsyncListLoadDetails,
-  useAsyncList,
-  useControllableState,
-  useLiveRef,
-} from "../../hooks"
+import { useAsyncList, useControllableState, useLiveRef } from "../../hooks"
 import type { CommandItem } from "./command"
 import {
   type PreparedCommand,
@@ -19,7 +14,16 @@ import {
   prepareCommand,
 } from "./command-score"
 
-export interface CommandLoadDetails extends AsyncListLoadDetails {}
+export interface CommandLoadDetails {
+  /**
+   * The query to load items for.
+   */
+  query: string
+  /**
+   * Aborted when a newer load starts or the component unmounts.
+   */
+  signal: AbortSignal
+}
 
 export interface UseCommandCollectionProps<T extends CommandItem> extends Omit<
   CollectionOptions<T>,
@@ -95,7 +99,7 @@ export interface UseCommandCollectionReturn<T extends CommandItem> {
   /**
    * Runs `load` again for the current query.
    */
-  retry: VoidFunction
+  reload: VoidFunction
   /**
    * Clears the query.
    */
@@ -130,7 +134,13 @@ export function useCommandCollection<T extends CommandItem>(
     defaultValue: "",
     onChange: onQueryChange,
   })
-  const loaded = useAsyncList({ query, load, key: loadKey })
+  const loaded = useAsyncList({
+    filterText: query,
+    dependencies: [loadKey],
+    load: load
+      ? ({ filterText, signal }) => load({ query: filterText, signal })
+      : undefined,
+  })
   const filterQuery = filterQueryProp ?? query
 
   const optionsRef = useLiveRef({ ...collectionOptions, filter })
@@ -201,7 +211,7 @@ export function useCommandCollection<T extends CommandItem>(
     search: setQuery,
     loading: loaded.loading,
     error: loaded.error,
-    retry: loaded.retry,
+    reload: loaded.reload,
     reset: () => setQuery(""),
   }
 }
