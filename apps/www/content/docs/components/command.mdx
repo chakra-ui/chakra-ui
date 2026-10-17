@@ -78,6 +78,8 @@ const command = useCommandCollection({ initialItems: commands })
 
 Inline, pass it to `Command.Root` with the `command` prop instead.
 
+Set `disabled: true` on an item to show it without letting it run.
+
 By default the command runs actions: give an item an `onSelect` to run it, and
 no selected state persists. Set `closeOnSelect: false` on an item, or on `Root`,
 to keep the dialog open. For a picker with a persistent selection, use
@@ -130,13 +132,6 @@ Set `closeOnSelect={false}` and toggle values in `onSelect` to pick several
 items without closing. Show a check on the items that are on.
 
 <ExampleTabs name="command-multiple" />
-
-### Controlled
-
-Keep the current value in state, set it in `onSelect`, and show a check on the
-item that matches.
-
-<ExampleTabs name="command-controlled" />
 
 ### Controlled Search
 
@@ -254,13 +249,6 @@ Track recently used commands and surface them in a dedicated group.
 
 <ExampleTabs name="command-with-recent-items" />
 
-### Disabled Items
-
-Disable specific items to indicate unavailable commands while keeping them
-visible for context.
-
-<ExampleTabs name="command-with-disabled-items" />
-
 ### Tabs
 
 Scope results to a category with `Tabs`, filtering the collection by the active
@@ -273,12 +261,6 @@ tab.
 Add a `Footer` with shortcut hints or actions that stay visible below the list.
 
 <ExampleTabs name="command-with-footer-actions" />
-
-### With Avatar
-
-Render an avatar next to each item for people or workspace pickers.
-
-<ExampleTabs name="command-with-avatar" />
 
 ### Empty State
 
