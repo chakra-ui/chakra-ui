@@ -295,8 +295,37 @@ export const CommandIndicator = withContext<
 export interface CommandInputProps
   extends HTMLChakraProps<"input", ArkCombobox.InputBaseProps>, UnstyledProp {}
 
+// Enter acts on what was typed, even if the list is still catching up
+const CommandInputBase = forwardRef<HTMLInputElement, ArkCombobox.InputProps>(
+  function CommandInputBase(props, ref) {
+    const { command, combobox, selectItem } = useCommandContext()
+    return (
+      <ArkCombobox.Input
+        ref={ref}
+        {...props}
+        onKeyDown={(event) => {
+          props.onKeyDown?.(event)
+          if (event.defaultPrevented || event.key !== "Enter") return
+          if (event.nativeEvent.isComposing) return
+          if (!command || command.filterQuery === command.query) return
+
+          const highlighted = combobox.highlightedValue
+          if (highlighted && highlighted !== combobox.collection.firstValue) {
+            return
+          }
+
+          const item = command.getFirstMatch(command.query)
+          if (!item) return
+          event.preventDefault()
+          selectItem(item)
+        }}
+      />
+    )
+  },
+)
+
 export const CommandInput = withContext<HTMLInputElement, CommandInputProps>(
-  ArkCombobox.Input,
+  CommandInputBase,
   "input",
   { forwardAsChild: true },
 )
@@ -419,11 +448,13 @@ const CommandItemTextBase = forwardRef<HTMLDivElement, CommandItemTextProps>(
   function CommandItemTextBase(props, ref) {
     const { highlight, children, ...restProps } = props
     const combobox = useComboboxContext()
+    const { command } = useCommandContext()
+    const query = command?.filterQuery ?? combobox.inputValue
     const text = highlight && typeof children === "string" ? children : null
 
     const content = useMemo(() => {
       if (text === null) return children
-      const ranges = getCommandMatchRanges(text, combobox.inputValue)
+      const ranges = getCommandMatchRanges(text, query)
       if (!ranges.length) return text
       const parts: React.ReactNode[] = []
       let cursor = 0
@@ -434,7 +465,7 @@ const CommandItemTextBase = forwardRef<HTMLDivElement, CommandItemTextProps>(
       }
       if (cursor < text.length) parts.push(text.slice(cursor))
       return parts
-    }, [text, children, combobox.inputValue])
+    }, [text, children, query])
 
     return (
       <ArkCombobox.ItemText

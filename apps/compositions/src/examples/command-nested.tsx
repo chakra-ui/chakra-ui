@@ -139,7 +139,7 @@ export const CommandNested = () => {
             <Command.DialogContent>
               <Command.Root
                 onSelect={(e) => {
-                  const item = command.collection.find(e.itemValue)
+                  const item = items.find((item) => item.value === e.itemValue)
                   if (item?.copy) copy(item.copy)
                   if (!item?.field || !item.option) return
                   const { field, option } = item

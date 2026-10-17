@@ -97,6 +97,7 @@ export function useCommandPageCollection<T extends CommandItem>(
     load,
     query: queryProp,
     onQueryChange,
+    filterQuery,
     ...collectionProps
   } = props
 
@@ -129,7 +130,7 @@ export function useCommandPageCollection<T extends CommandItem>(
     [tree, page],
   )
 
-  const deep = deepSearch && !!query
+  const deep = deepSearch && !!(filterQuery ?? query)
   const scope = useMemo(
     () => (deep ? getDescendants(tree, pageKey) : tree.children.get(pageKey)),
     [tree, pageKey, deep],
@@ -143,6 +144,7 @@ export function useCommandPageCollection<T extends CommandItem>(
     initialItems: scope,
     query,
     onQueryChange: setQuery,
+    filterQuery,
     loadKey: pageKey,
     load: load
       ? (details) => loadRef.current!({ ...details, page: pageRef.current })
@@ -255,8 +257,17 @@ export function useCommandPageCollection<T extends CommandItem>(
     [popPage],
   )
 
+  const getFirstMatch = (query: string) =>
+    collection.getFirstMatch(
+      query,
+      deepSearch && query
+        ? getDescendants(tree, pageKey)
+        : (tree.children.get(pageKey) ?? EMPTY),
+    )
+
   return {
     ...collection,
+    getFirstMatch,
     page,
     pages,
     setPage,

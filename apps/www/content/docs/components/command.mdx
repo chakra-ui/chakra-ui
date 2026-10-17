@@ -113,10 +113,37 @@ or popover.
 
 ### Async Content
 
-Debounce requests, cancel stale work, and give loading, error, retry, and empty
-states distinct feedback. `Loading` and `Empty` never render at the same time.
+Pass `load` to `useCommandCollection` to fetch items as the user types. Stale
+requests are cancelled, so only the latest results show. Give loading, error,
+retry, and empty states distinct feedback; `Loading` and `Empty` never render at
+the same time.
 
 <ExampleTabs name="command-with-async-content" />
+
+### Bring Your Own Data
+
+To fetch with your own data layer, such as TanStack Query, control the query and
+pass the results in. Set `filter: null` so results the server already filtered
+show as given.
+
+```tsx
+const [query, setQuery] = useState("")
+const people = useQuery({
+  queryKey: ["people", query],
+  queryFn: () => searchPeople(query),
+})
+
+const command = useCommandCollection({
+  initialItems: people.data ?? [],
+  query,
+  onQueryChange: setQuery,
+  filter: null,
+})
+
+<Command.Root command={command} loading={people.isFetching}>
+  {/* ... */}
+</Command.Root>
+```
 
 ### Groups
 
@@ -275,7 +302,19 @@ Customize the `Empty` view shown when the query matches no commands.
 
 ### Virtualized
 
-Handle large datasets efficiently by virtualizing the list.
+Handle large datasets efficiently by virtualizing the list. Rank with a deferred
+copy of the query so typing stays responsive while the list catches up; pressing
+Enter still acts on what was typed.
+
+```tsx
+const [query, setQuery] = useState("")
+const command = useCommandCollection({
+  initialItems,
+  query,
+  onQueryChange: setQuery,
+  filterQuery: useDeferredValue(query),
+})
+```
 
 <ExampleTabs name="command-virtualized" />
 
