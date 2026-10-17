@@ -172,7 +172,7 @@ index 270005dd7480e0d1673003b46e1a9580c8c58397..c6a747887fd45ec0ace99a91830900ed
        });
      },
 diff --git a/dist/combobox.machine.js b/dist/combobox.machine.js
-index 754a6313f52a07ec3531e70b5cbc9495a092c756..4864329a5124a938fc2ede2503b2356e8eabe435 100644
+index 754a6313f52a07ec3531e70b5cbc9495a092c756..4fada573fa198c96b492739660aa48633053575f 100644
 --- a/dist/combobox.machine.js
 +++ b/dist/combobox.machine.js
 @@ -60,8 +60,8 @@ var machine = createMachine({
@@ -206,6 +206,15 @@ index 754a6313f52a07ec3531e70b5cbc9495a092c756..4864329a5124a938fc2ede2503b2356e
      });
    },
    on: {
+@@ -487,7 +491,7 @@ var machine = createMachine({
+         "VALUE.CLEAR": [
+           {
+             guard: "isOpenControlled",
+-            actions: ["clearInputValue", "clearSelectedItems", "invokeOnClose"]
++            actions: ["clearInputValue", "clearSelectedItems", "invokeOnClose", "scrollContentToTop"]
+           },
+           {
+             target: "closed.focused",
 @@ -500,6 +504,10 @@ var machine = createMachine({
          interacting: {
            on: {
@@ -217,6 +226,20 @@ index 754a6313f52a07ec3531e70b5cbc9495a092c756..4864329a5124a938fc2ede2503b2356e
                {
                  guard: "isHighlightedItemRemoved",
                  actions: ["clearHighlightedValue"]
+@@ -536,11 +544,11 @@ var machine = createMachine({
+               {
+                 guard: "autoComplete",
+                 target: "suggesting",
+-                actions: ["setInputValue"]
++                actions: ["setInputValue", "scrollContentToTop"]
+               },
+               {
+                 target: "suggesting",
+-                actions: ["clearHighlightedValue", "setInputValue"]
++                actions: ["clearHighlightedValue", "setInputValue", "scrollContentToTop"]
+               }
+             ],
+             "ITEM.POINTER_MOVE": {
 @@ -571,6 +579,7 @@ var machine = createMachine({
            }
          },
@@ -224,6 +247,15 @@ index 754a6313f52a07ec3531e70b5cbc9495a092c756..4864329a5124a938fc2ede2503b2356e
 +          exit: ["cancelResultsAnnouncement"],
            on: {
              CHILDREN_CHANGE: [
+               {
+@@ -603,7 +612,7 @@ var machine = createMachine({
+               actions: ["highlightLastItem"]
+             },
+             "INPUT.CHANGE": {
+-              actions: ["setInputValue"]
++              actions: ["setInputValue", "scrollContentToTop"]
+             },
+             "LAYER.ESCAPE": [
                {
 @@ -678,12 +687,25 @@ var machine = createMachine({
          });
@@ -310,7 +342,7 @@ index 754a6313f52a07ec3531e70b5cbc9495a092c756..4864329a5124a938fc2ede2503b2356e
  0 && (module.exports = {
    machine
 diff --git a/dist/combobox.machine.mjs b/dist/combobox.machine.mjs
-index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..58e57fa6655ef3013b6c25b6ea86c4c6dcafcd72 100644
+index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..9587a0a56112ad92971c61388bff02147cefd3ca 100644
 --- a/dist/combobox.machine.mjs
 +++ b/dist/combobox.machine.mjs
 @@ -8,6 +8,7 @@ import { setup } from "@zag-js/core";
@@ -361,6 +393,15 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..58e57fa6655ef3013b6c25b6ea86c4c6
      });
    },
    on: {
+@@ -465,7 +470,7 @@ var machine = createMachine({
+         "VALUE.CLEAR": [
+           {
+             guard: "isOpenControlled",
+-            actions: ["clearInputValue", "clearSelectedItems", "invokeOnClose"]
++            actions: ["clearInputValue", "clearSelectedItems", "invokeOnClose", "scrollContentToTop"]
+           },
+           {
+             target: "closed.focused",
 @@ -478,6 +483,10 @@ var machine = createMachine({
          interacting: {
            on: {
@@ -372,6 +413,20 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..58e57fa6655ef3013b6c25b6ea86c4c6
                {
                  guard: "isHighlightedItemRemoved",
                  actions: ["clearHighlightedValue"]
+@@ -514,11 +523,11 @@ var machine = createMachine({
+               {
+                 guard: "autoComplete",
+                 target: "suggesting",
+-                actions: ["setInputValue"]
++                actions: ["setInputValue", "scrollContentToTop"]
+               },
+               {
+                 target: "suggesting",
+-                actions: ["clearHighlightedValue", "setInputValue"]
++                actions: ["clearHighlightedValue", "setInputValue", "scrollContentToTop"]
+               }
+             ],
+             "ITEM.POINTER_MOVE": {
 @@ -549,6 +558,7 @@ var machine = createMachine({
            }
          },
@@ -379,6 +434,15 @@ index f3d8d0b4922094e13d4f4cb945b3f2b564f6081f..58e57fa6655ef3013b6c25b6ea86c4c6
 +          exit: ["cancelResultsAnnouncement"],
            on: {
              CHILDREN_CHANGE: [
+               {
+@@ -581,7 +591,7 @@ var machine = createMachine({
+               actions: ["highlightLastItem"]
+             },
+             "INPUT.CHANGE": {
+-              actions: ["setInputValue"]
++              actions: ["setInputValue", "scrollContentToTop"]
+             },
+             "LAYER.ESCAPE": [
                {
 @@ -656,12 +666,25 @@ var machine = createMachine({
          });
