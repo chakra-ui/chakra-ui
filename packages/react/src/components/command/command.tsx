@@ -561,7 +561,7 @@ export const CommandSeparator = withContext<
   HTMLDivElement,
   CommandSeparatorProps
 >("div", "separator", {
-  defaultProps: { role: "separator", "aria-orientation": "horizontal" },
+  defaultProps: { role: "presentation" },
 })
 
 ////////////////////////////////////////////////////////////////////////////////////
