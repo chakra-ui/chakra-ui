@@ -17,64 +17,68 @@ import { Command, useCommandCollection } from "@chakra-ui/react"
 ```
 
 ```jsx
-<Command.Dialog>
-  <Command.DialogTrigger />
-  <Command.Root>
-    <Command.Label />
-    <Command.Control>
-      <Command.Indicator />
-      <Command.Input />
-      <Command.ClearTrigger />
-    </Command.Control>
-    <Command.List>
-      <Command.Loading />
-      <Command.ItemGroup>
-        <Command.ItemGroupLabel />
-        <Command.Item>
-          <Command.ItemText />
-          <Command.ItemCommand />
-          <Command.ItemIndicator />
-        </Command.Item>
-      </Command.ItemGroup>
-      <Command.Separator />
-      <Command.Empty />
-    </Command.List>
-    <Command.Footer />
-  </Command.Root>
-</Command.Dialog>
+<Command.Provider>
+  <Command.Dialog>
+    <Command.DialogTrigger />
+    <Command.DialogContent>
+      <Command.Root>
+        <Command.Label />
+        <Command.Control>
+          <Command.Indicator />
+          <Command.Input />
+          <Command.ClearTrigger />
+        </Command.Control>
+        <Command.List>
+          <Command.Loading />
+          <Command.ItemGroup>
+            <Command.ItemGroupLabel />
+            <Command.Item>
+              <Command.ItemText />
+              <Command.ItemCommand />
+            </Command.Item>
+          </Command.ItemGroup>
+          <Command.Separator />
+          <Command.Empty />
+        </Command.List>
+        <Command.Footer />
+      </Command.Root>
+    </Command.DialogContent>
+  </Command.Dialog>
+</Command.Provider>
 ```
 
-`Command.Root` renders the search and results inline. Wrap it in
-`Command.Dialog` for a palette: it closes after a command runs, and has no
-global shortcut, so you can bind `⌘K` with the tool your app already uses (see
-[Store](#store)).
+`Command.Root` renders the search and results inline. For a palette, put it in
+`Command.DialogContent` inside `Command.Dialog`: it closes after a command runs,
+and has no global shortcut, so you can bind `⌘K` with the tool your app already
+uses (see [Store](#store)).
 
-Use `useCommandCollection` to rank items as the user types. Pass its `search` to
-`onInputValueChange`, and reset it in the dialog's `onExitComplete`.
+Use `useCommandCollection` to rank items as the user types, and share it with
+`Command.Provider`. The dialog clears the query after it closes.
 
 ```tsx
 const command = useCommandCollection({ initialItems: commands })
 
-<Command.Dialog onExitComplete={() => command.search("")}>
-  <Command.Root
-    collection={command.collection}
-    onInputValueChange={(e) => command.search(e.inputValue)}
-  >
-    {/* ... */}
-  </Command.Root>
-</Command.Dialog>
+<Command.Provider value={command}>
+  <Command.Dialog>
+    <Command.DialogContent>
+      <Command.Root>{/* ... */}</Command.Root>
+    </Command.DialogContent>
+  </Command.Dialog>
+</Command.Provider>
 ```
+
+Inline, pass it to `Command.Root` with the `command` prop instead.
 
 By default the command runs actions: give an item an `onSelect` to run it, and
 no selected state persists. Set `closeOnSelect: false` on an item, or on `Root`,
-to keep the dialog open. To build a picker where selection persists, set
-`selectionMode` to `single` or `multiple`.
+to keep the dialog open. For a picker with a persistent selection, use
+[Combobox](/docs/components/combobox) or [Listbox](/docs/components/listbox).
 
 ### Coming from cmdk
 
 | cmdk                            | Chakra UI                                          |
 | ------------------------------- | -------------------------------------------------- |
-| `<Command>`                     | `<Command.Root collection={command.collection}>`   |
+| `<Command>`                     | `<Command.Provider value={command}>`               |
 | `<Command.Input>`               | `<Command.Input>` + `useCommandCollection`         |
 | `<Command.List>`                | `<Command.List>`                                   |
 | `<Command.Item onSelect={fn}>`  | `{ label, value, onSelect: fn }` in the collection |
@@ -111,24 +115,24 @@ stays fixed while typing.
 
 <ExampleTabs name="command-with-groups" />
 
-### Selection Mode
+### Toggle Items
 
-Set `selectionMode="multiple"` to build a picker where selection persists and
-several items can be chosen, instead of running a command and closing.
+Set `closeOnSelect={false}` and toggle values in `onSelect` to pick several
+items without closing. Show a check on the items that are on.
 
 <ExampleTabs name="command-multiple" />
 
 ### Controlled
 
-Own the selected value with `value` and `onValueChange` to drive selection from
-outside the palette.
+Keep the current value in state, set it in `onSelect`, and show a check on the
+item that matches.
 
 <ExampleTabs name="command-controlled" />
 
 ### Controlled Search
 
-Own the query with `onInputValueChange` to sync it with external state, URL
-params, or analytics.
+Pass `query` and `onQueryChange` to `useCommandCollection` to sync it with
+external state, URL params, or analytics.
 
 <ExampleTabs name="command-controlled-search" />
 
@@ -176,10 +180,54 @@ available only in that part of the app. Format shortcuts per platform with
 
 ### Nested
 
-Build nested pages by swapping the collection as the user drills in. Use
-item-level `closeOnSelect={false}` for actions that open a child page.
+Use `useCommandPages` for nested pages. Give an item a `parent` to place it on
+that item's page. Selecting an item with children opens its page, and going back
+restores the query that page had.
+
+Escape in the dialog goes back a page before closing. Pass `onInputKeyDown` to
+the input so Backspace on an empty input goes back too.
+
+```tsx
+const command = useCommandPages({
+  initialItems: [
+    { label: "Change status...", value: "status" },
+    { label: "Done", value: "status:done", parent: "status" },
+  ],
+  deepSearch: true,
+})
+
+<Command.Provider value={command}>
+  <Command.Dialog>
+    <Command.DialogContent>
+      <Command.Root>
+        <Command.Input onKeyDown={command.onInputKeyDown} />
+        ...
+      </Command.Root>
+    </Command.DialogContent>
+  </Command.Dialog>
+</Command.Provider>
+```
+
+Use `command.pages` to render a breadcrumb and `command.setPage` to jump to a
+page. With `deepSearch`, a query also matches items in nested pages; use
+`command.getPath(item)` to show where each match lives.
 
 <ExampleTabs name="command-nested" />
+
+### Async Pages
+
+Mark an item with `page: true` to open a page that loads its own items. `load`
+receives the current `page`, runs again right away when the page changes, and
+its results only show on the page that loaded them.
+
+<ExampleTabs name="command-with-async-pages" />
+
+### Input Pages
+
+Control the query to build a page's items from what the user types, such as
+renaming an issue or inviting someone by email.
+
+<ExampleTabs name="command-with-input-page" />
 
 ### Links
 
@@ -234,8 +282,8 @@ Handle large datasets efficiently by virtualizing the list.
 
 ### Sizes
 
-Use the `size` prop to change density. The dialog remains viewport-aware at each
-size and on narrow screens.
+Set `size` on `Command.Root` to change density, and on `Command.Dialog` to
+change the dialog's width. Each follows its own theme sizes.
 
 <ExampleTabs name="command-with-sizes" />
 
@@ -280,10 +328,6 @@ size and on narrow screens.
 ### ItemText
 
 <PropTable component="Command" part="ItemText" />
-
-### ItemIndicator
-
-<PropTable component="Command" part="ItemIndicator" />
 
 ### ItemGroup
 

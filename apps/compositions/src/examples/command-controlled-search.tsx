@@ -5,6 +5,7 @@ import {
   Command,
   HStack,
   Kbd,
+  KbdGroup,
   Span,
   Text,
   useCommandCollection,
@@ -21,80 +22,77 @@ import {
 } from "react-icons/lu"
 
 export const CommandControlledSearch = () => {
-  const [inputValue, setInputValue] = useState("")
+  const [query, setQuery] = useState("")
 
   const command = useCommandCollection({
     initialItems: commands,
     groupBy: (item) => item.group,
+    query,
+    onQueryChange: setQuery,
   })
-
-  const setSearch = (value: string) => {
-    setInputValue(value)
-    command.search(value)
-  }
 
   return (
     <>
-      <Command.Dialog onExitComplete={() => setSearch("")}>
-        <Command.DialogTrigger asChild>
-          <Button
-            variant="outline"
-            size="sm"
-            minW="64"
-            justifyContent="flex-start"
-            color="fg.muted"
-          >
-            <LuSearch /> {inputValue || "Search commands..."}
-          </Button>
-        </Command.DialogTrigger>
-        <Command.Root
-          collection={command.collection}
-          inputValue={inputValue}
-          onInputValueChange={(e) => setSearch(e.inputValue)}
-        >
-          <Command.Control>
-            <Command.Indicator />
-            <Command.Input placeholder="Type a command or search..." />
-          </Command.Control>
-          <Command.List>
-            {command.collection.group().map(([group, items]) => (
-              <Command.ItemGroup key={group}>
-                <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
-                {items.map((item) => (
-                  <Command.Item item={item} key={item.value}>
-                    {item.icon}
-                    <Command.ItemText highlight>{item.label}</Command.ItemText>
-                  </Command.Item>
+      <Command.Provider value={command}>
+        <Command.Dialog>
+          <Command.DialogTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              minW="64"
+              justifyContent="flex-start"
+              color="fg.muted"
+            >
+              <LuSearch /> {query || "Search commands..."}
+            </Button>
+          </Command.DialogTrigger>
+          <Command.DialogContent>
+            <Command.Root>
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Type a command or search..." />
+              </Command.Control>
+              <Command.List>
+                {command.collection.group().map(([group, items]) => (
+                  <Command.ItemGroup key={group}>
+                    <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
+                    {items.map((item) => (
+                      <Command.Item item={item} key={item.value}>
+                        {item.icon}
+                        <Command.ItemText highlight>
+                          {item.label}
+                        </Command.ItemText>
+                      </Command.Item>
+                    ))}
+                  </Command.ItemGroup>
                 ))}
-              </Command.ItemGroup>
-            ))}
-            <Command.Empty>No results found</Command.Empty>
-          </Command.List>
-          <Command.Footer>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↑
-              </Kbd>
-              <Kbd size="sm" variant="subtle">
-                ↓
-              </Kbd>
-              Navigate
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↵
-              </Kbd>
-              Select
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                esc
-              </Kbd>
-              Close
-            </HStack>
-          </Command.Footer>
-        </Command.Root>
-      </Command.Dialog>
+                <Command.Empty>No results found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Select
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    esc
+                  </Kbd>
+                  Close
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Command.Dialog>
+      </Command.Provider>
 
       <HStack mt="4" gap="2" wrap="wrap">
         <Text textStyle="sm" color="fg.muted">
@@ -105,14 +103,14 @@ export const CommandControlledSearch = () => {
             key={term}
             size="xs"
             variant="subtle"
-            onClick={() => setSearch(term)}
+            onClick={() => setQuery(term)}
           >
             {term}
           </Button>
         ))}
       </HStack>
       <Text mt="2" textStyle="sm" color="fg.muted">
-        Query: <Span color="fg">{inputValue || "empty"}</Span>
+        Query: <Span color="fg">{query || "empty"}</Span>
       </Text>
     </>
   )

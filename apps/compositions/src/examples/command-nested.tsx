@@ -3,22 +3,27 @@
 import {
   Avatar,
   Badge,
+  type BadgeProps,
   Box,
   Button,
   Command,
   DataList,
   HStack,
   Kbd,
+  KbdGroup,
   Stack,
   Status,
   Text,
-  useCommandCollection,
+  useCommandPages,
 } from "@chakra-ui/react"
-import { useMemo, useState } from "react"
+import { Fragment, useState } from "react"
 import {
   LuCheck,
+  LuChevronRight,
   LuCircleDashed,
   LuCopy,
+  LuFolder,
+  LuFolderInput,
   LuLink,
   LuSearch,
   LuSignal,
@@ -29,29 +34,29 @@ import {
   LuTrash2,
   LuTriangleAlert,
   LuUserRound,
+  LuUsers,
 } from "react-icons/lu"
-
-type PageKey = "status" | "priority" | "assignee" | "labels"
 
 interface Issue {
   status: string
   priority: string
   assignee: string
   labels: string[]
+  project: string
 }
 
-interface CommandItem extends Command.Item {
+type Field = keyof Issue
+
+interface IssueCommand extends Command.Item {
   label: string
   value: string
+  title?: string
+  placeholder?: string
   icon?: React.ReactNode
   shortcut?: string[]
   group?: string
-}
-
-interface Page {
-  label: string
-  placeholder: string
-  items: CommandItem[]
+  field?: Field
+  option?: string
 }
 
 export const CommandNested = () => {
@@ -60,221 +65,372 @@ export const CommandNested = () => {
     priority: "high",
     assignee: "olivia",
     labels: ["bug"],
+    project: "auth",
   })
-  const [page, setPage] = useState<PageKey | null>(null)
 
-  const command = useCommandCollection<CommandItem>({
-    initialItems: usePageItems(page, setIssue),
+  const command = useCommandPages({
+    initialItems: items,
     groupBy: (item) => item.group ?? "",
+    deepSearch: true,
   })
 
-  const openPage = (next: PageKey | null) => {
-    command.search("")
-    setPage(next)
+  const isSelected = (item: IssueCommand) => {
+    if (!item.field || !item.option) return false
+    const current = issue[item.field]
+    return Array.isArray(current)
+      ? current.includes(item.option)
+      : current === item.option
   }
 
-  const current = page ? pages[page] : null
-  const isSelected = (value: string) =>
-    page === "labels"
-      ? issue.labels.includes(value)
-      : page
-        ? issue[page] === value
-        : false
+  const page = command.page
+  const titleOf = (item: IssueCommand) => item.title ?? item.label
 
   return (
     <Stack gap="6" align="flex-start">
-      <Command.Dialog
-        onEscapeKeyDown={(e) => {
-          if (!page) return
-          e.preventDefault()
-          openPage(null)
-        }}
-        onExitComplete={() => openPage(null)}
-      >
-        <Command.DialogTrigger asChild>
-          <Button
-            variant="outline"
-            size="sm"
-            minW="64"
-            justifyContent="flex-start"
-            color="fg.muted"
-          >
-            <LuSearch /> Search actions...
-          </Button>
-        </Command.DialogTrigger>
-        <Command.Root
-          key={page ?? "root"}
-          autoFocus
-          collection={command.collection}
-          onInputValueChange={(e) => command.search(e.inputValue)}
-          onSelect={(e) => {
-            if (!page && isPageKey(e.itemValue)) openPage(e.itemValue)
-          }}
-        >
-          <HStack px="4" pt="3" gap="2" textStyle="xs" color="fg.muted">
-            <Badge size="sm" variant="surface" fontFamily="mono">
-              ENG-142
-            </Badge>
-            <Text truncate>Fix login redirect loop on Safari</Text>
-          </HStack>
-          <Command.Control>
-            <Command.Indicator />
-            {current && (
-              <Badge size="sm" variant="subtle" flexShrink="0">
-                {current.label}
-              </Badge>
-            )}
-            <Command.Input
-              placeholder={
-                current?.placeholder ?? "Type a command or search..."
-              }
-              onKeyDown={(e) => {
-                if (e.key !== "Backspace" || e.currentTarget.value || !page)
-                  return
-                e.preventDefault()
-                openPage(null)
+      <Command.Provider value={command}>
+        <Command.Dialog>
+          <Command.DialogTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              minW="64"
+              justifyContent="flex-start"
+              color="fg.muted"
+            >
+              <LuSearch /> Search actions...
+            </Button>
+          </Command.DialogTrigger>
+          <Command.DialogContent>
+            <Command.Root
+              onSelect={(e) => {
+                const item = command.collection.find(e.itemValue)
+                if (!item?.field || !item.option) return
+                const { field, option } = item
+                setIssue((prev) => applyOption(prev, field, option))
               }}
-            />
-          </Command.Control>
-          <Command.List>
-            {command.collection.group().map(([group, items]) => (
-              <Command.ItemGroup key={group}>
-                {group && (
-                  <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
+            >
+              <HStack px="4" pt="3" gap="1" textStyle="xs" color="fg.muted">
+                <Crumb
+                  variant="surface"
+                  fontFamily="mono"
+                  onClick={() => command.setPage(null)}
+                >
+                  ENG-142
+                </Crumb>
+                {command.pages.length === 0 && (
+                  <Text truncate ms="1">
+                    Fix login redirect loop on Safari
+                  </Text>
                 )}
-                {items.map((item) => (
-                  <Command.Item item={item} key={item.value}>
-                    {item.icon}
-                    <Command.ItemText highlight>{item.label}</Command.ItemText>
-                    {isSelected(item.value) && (
-                      <Box color="fg" ms="auto">
-                        <LuCheck />
-                      </Box>
+                {command.pages.map((item, index) => {
+                  const last = index === command.pages.length - 1
+                  return (
+                    <Fragment key={item.value}>
+                      <LuChevronRight />
+                      <Crumb
+                        variant={last ? "subtle" : "plain"}
+                        onClick={() => command.setPage(item.value)}
+                      >
+                        {titleOf(item)}
+                      </Crumb>
+                    </Fragment>
+                  )
+                })}
+              </HStack>
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input
+                  placeholder={
+                    page?.placeholder ?? "Type a command or search..."
+                  }
+                  onKeyDown={command.onInputKeyDown}
+                />
+              </Command.Control>
+              <Command.List>
+                {command.collection.group().map(([group, groupItems]) => (
+                  <Command.ItemGroup key={group}>
+                    {group && (
+                      <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
                     )}
-                    {item.shortcut?.map((key) => (
-                      <Command.ItemCommand key={key}>{key}</Command.ItemCommand>
-                    ))}
-                  </Command.Item>
+                    {groupItems.map((item) => {
+                      const path = command.getPath(item)
+                      return (
+                        <Command.Item item={item} key={item.value}>
+                          {item.icon}
+                          {path.length > 0 && (
+                            <HStack gap="1" color="fg.muted" flexShrink="0">
+                              {path.map((parent) => (
+                                <Fragment key={parent.value}>
+                                  {titleOf(parent)}
+                                  <LuChevronRight />
+                                </Fragment>
+                              ))}
+                            </HStack>
+                          )}
+                          <Command.ItemText highlight>
+                            {item.label}
+                          </Command.ItemText>
+                          {isSelected(item) && (
+                            <Box color="fg" ms="auto">
+                              <LuCheck />
+                            </Box>
+                          )}
+                          {command.isPage(item) && !item.shortcut && (
+                            <Box color="fg.subtle" ms="auto">
+                              <LuChevronRight />
+                            </Box>
+                          )}
+                          {item.shortcut?.map((key) => (
+                            <Command.ItemCommand key={key}>
+                              {key}
+                            </Command.ItemCommand>
+                          ))}
+                        </Command.Item>
+                      )
+                    })}
+                  </Command.ItemGroup>
                 ))}
-              </Command.ItemGroup>
-            ))}
-            <Command.Empty>No results found</Command.Empty>
-          </Command.List>
-          <Command.Footer>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↑
-              </Kbd>
-              <Kbd size="sm" variant="subtle">
-                ↓
-              </Kbd>
-              Navigate
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↵
-              </Kbd>
-              {page === "labels" ? "Toggle" : "Select"}
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                {page ? "⌫" : "esc"}
-              </Kbd>
-              {page ? "Back" : "Close"}
-            </HStack>
-          </Command.Footer>
-        </Command.Root>
-      </Command.Dialog>
+                <Command.Empty>No results found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  {page?.value === "labels" ? "Toggle" : "Select"}
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    {page ? "⌫" : "esc"}
+                  </Kbd>
+                  {page ? "Back" : "Close"}
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Command.Dialog>
+      </Command.Provider>
 
       <IssueSummary issue={issue} />
     </Stack>
   )
 }
 
-const isPageKey = (value: string): value is PageKey => value in pages
+const dot = (color: string) => (
+  <Status.Root colorPalette={color} size="sm">
+    <Status.Indicator />
+  </Status.Root>
+)
 
-function usePageItems(
-  page: PageKey | null,
-  setIssue: React.Dispatch<React.SetStateAction<Issue>>,
-) {
-  const items = useMemo(() => {
-    const update = (key: "status" | "priority" | "assignee", value: string) =>
-      setIssue((prev) => ({ ...prev, [key]: value }))
+const person = (name: string) => (
+  <Avatar.Root size="2xs">
+    <Avatar.Fallback name={name} />
+  </Avatar.Root>
+)
 
-    const root: CommandItem[] = [
-      ...(["status", "priority", "assignee", "labels"] as const).map((key) => ({
-        ...pages[key].entry,
-        group: "Change",
-        closeOnSelect: false,
-      })),
-      {
-        label: "Copy issue ID",
-        value: "copy-id",
-        group: "Issue",
-        icon: <LuCopy />,
-        shortcut: ["⌘", "."],
-      },
-      {
-        label: "Copy issue URL",
-        value: "copy-url",
-        group: "Issue",
-        icon: <LuLink />,
-        shortcut: ["⇧", "⌘", ","],
-      },
-      {
-        label: "Delete issue",
-        value: "delete",
-        group: "Issue",
-        icon: <LuTrash2 />,
-        shortcut: ["⌘", "⌫"],
-      },
-    ]
+const toggle = (list: string[], value: string) =>
+  list.includes(value) ? list.filter((v) => v !== value) : [...list, value]
 
-    return {
-      root,
-      status: pages.status.items.map((item) => ({
-        ...item,
-        onSelect: () => update("status", item.value),
-      })),
-      priority: pages.priority.items.map((item) => ({
-        ...item,
-        onSelect: () => update("priority", item.value),
-      })),
-      assignee: pages.assignee.items.map((item) => ({
-        ...item,
-        onSelect: () => update("assignee", item.value),
-      })),
-      labels: pages.labels.items.map((item) => ({
-        ...item,
-        closeOnSelect: false,
-        onSelect: () =>
-          setIssue((prev) => ({
-            ...prev,
-            labels: prev.labels.includes(item.value)
-              ? prev.labels.filter((label) => label !== item.value)
-              : [...prev.labels, item.value],
-          })),
-      })),
-    }
-  }, [setIssue])
+const applyOption = (issue: Issue, field: Field, option: string): Issue => ({
+  ...issue,
+  [field]: field === "labels" ? toggle(issue.labels, option) : option,
+})
 
-  return items[page ?? "root"]
+const options = (
+  field: Field,
+  parent: string,
+  list: { label: string; option: string; icon: React.ReactNode }[],
+): IssueCommand[] =>
+  list.map((item) => ({
+    ...item,
+    value: `${field}:${item.option}`,
+    parent,
+    field,
+    closeOnSelect: field !== "labels",
+  }))
+
+const teams = [
+  {
+    label: "Engineering",
+    value: "eng",
+    projects: [
+      { label: "Auth revamp", value: "auth" },
+      { label: "Billing v2", value: "billing" },
+      { label: "Mobile app", value: "mobile" },
+    ],
+  },
+  {
+    label: "Design",
+    value: "design",
+    projects: [
+      { label: "Design system", value: "design-system" },
+      { label: "Marketing site", value: "marketing" },
+    ],
+  },
+]
+
+const items: IssueCommand[] = [
+  {
+    label: "Change status...",
+    value: "status",
+    title: "Status",
+    placeholder: "Change status...",
+    group: "Change",
+    icon: <LuCircleDashed />,
+    shortcut: ["S"],
+  },
+  {
+    label: "Change priority...",
+    value: "priority",
+    title: "Priority",
+    placeholder: "Change priority...",
+    group: "Change",
+    icon: <LuSignalHigh />,
+    shortcut: ["P"],
+  },
+  {
+    label: "Assign to...",
+    value: "assignee",
+    title: "Assignee",
+    placeholder: "Assign to...",
+    group: "Change",
+    icon: <LuUserRound />,
+    shortcut: ["A"],
+  },
+  {
+    label: "Add labels...",
+    value: "labels",
+    title: "Labels",
+    placeholder: "Add labels...",
+    group: "Change",
+    icon: <LuTag />,
+    shortcut: ["L"],
+  },
+  {
+    label: "Move to project...",
+    value: "project",
+    title: "Project",
+    placeholder: "Pick a team...",
+    group: "Change",
+    icon: <LuFolderInput />,
+    shortcut: ["⇧", "P"],
+  },
+  {
+    label: "Copy issue ID",
+    value: "copy-id",
+    group: "Issue",
+    icon: <LuCopy />,
+    shortcut: ["⌘", "."],
+  },
+  {
+    label: "Copy issue URL",
+    value: "copy-url",
+    group: "Issue",
+    icon: <LuLink />,
+    shortcut: ["⇧", "⌘", ","],
+  },
+  {
+    label: "Delete issue",
+    value: "delete",
+    group: "Issue",
+    icon: <LuTrash2 />,
+    shortcut: ["⌘", "⌫"],
+  },
+  ...options("status", "status", [
+    { label: "Backlog", option: "backlog", icon: dot("gray") },
+    { label: "Todo", option: "todo", icon: dot("blue") },
+    { label: "In progress", option: "in-progress", icon: dot("orange") },
+    { label: "In review", option: "in-review", icon: dot("purple") },
+    { label: "Done", option: "done", icon: dot("green") },
+    { label: "Canceled", option: "canceled", icon: dot("red") },
+  ]),
+  ...options("priority", "priority", [
+    { label: "No priority", option: "none", icon: <LuSignal /> },
+    { label: "Urgent", option: "urgent", icon: <LuTriangleAlert /> },
+    { label: "High", option: "high", icon: <LuSignalHigh /> },
+    { label: "Medium", option: "medium", icon: <LuSignalMedium /> },
+    { label: "Low", option: "low", icon: <LuSignalLow /> },
+  ]),
+  ...options("assignee", "assignee", [
+    { label: "Unassigned", option: "unassigned", icon: <LuUserRound /> },
+    {
+      label: "Olivia Martin",
+      option: "olivia",
+      icon: person("Olivia Martin"),
+    },
+    { label: "Jackson Lee", option: "jackson", icon: person("Jackson Lee") },
+    {
+      label: "Isabella Nguyen",
+      option: "isabella",
+      icon: person("Isabella Nguyen"),
+    },
+  ]),
+  ...options("labels", "labels", [
+    { label: "Bug", option: "bug", icon: dot("red") },
+    { label: "Feature", option: "feature", icon: dot("purple") },
+    { label: "Improvement", option: "improvement", icon: dot("blue") },
+    { label: "Design", option: "design", icon: dot("pink") },
+    { label: "Documentation", option: "docs", icon: dot("teal") },
+  ]),
+  ...teams.map((team) => ({
+    label: team.label,
+    value: `team:${team.value}`,
+    parent: "project",
+    placeholder: `Move to ${team.label}...`,
+    icon: <LuUsers />,
+  })),
+  ...teams.flatMap((team) =>
+    options(
+      "project",
+      `team:${team.value}`,
+      team.projects.map((project) => ({
+        label: project.label,
+        option: project.value,
+        icon: <LuFolder />,
+      })),
+    ),
+  ),
+]
+
+const Crumb = (props: BadgeProps & { onClick: VoidFunction }) => {
+  const { onClick, children, ...rest } = props
+  return (
+    <Badge asChild size="sm" cursor="button" {...rest}>
+      <button
+        type="button"
+        onClick={onClick}
+        onMouseDown={(e) => e.preventDefault()}
+      >
+        {children}
+      </button>
+    </Badge>
+  )
 }
 
 const IssueSummary = (props: { issue: Issue }) => {
   const { issue } = props
-  const find = (key: PageKey, value: string) =>
-    pages[key].items.find((item) => item.value === value)
+  const find = (field: Field, option: string) =>
+    items.find((item) => item.field === field && item.option === option)
 
-  const rows = (["status", "priority", "assignee"] as const).map((key) => ({
-    label: pages[key].label,
-    item: find(key, issue[key]),
-  }))
+  const rows = (["status", "priority", "assignee", "project"] as const).map(
+    (field) => ({
+      field,
+      label: items.find((item) => item.value === field)?.title,
+      item: find(field, issue[field]),
+    }),
+  )
 
   return (
     <DataList.Root orientation="horizontal" size="sm">
-      {rows.map(({ label, item }) => (
-        <DataList.Item key={label}>
+      {rows.map(({ field, label, item }) => (
+        <DataList.Item key={field}>
           <DataList.ItemLabel>{label}</DataList.ItemLabel>
           <DataList.ItemValue>
             <HStack gap="1.5">
@@ -285,7 +441,7 @@ const IssueSummary = (props: { issue: Issue }) => {
         </DataList.Item>
       ))}
       <DataList.Item>
-        <DataList.ItemLabel>{pages.labels.label}</DataList.ItemLabel>
+        <DataList.ItemLabel>Labels</DataList.ItemLabel>
         <DataList.ItemValue>
           <HStack gap="1.5" wrap="wrap">
             {issue.labels.length === 0 && <Text color="fg.muted">None</Text>}
@@ -303,96 +459,4 @@ const IssueSummary = (props: { issue: Issue }) => {
       </DataList.Item>
     </DataList.Root>
   )
-}
-
-const dot = (color: string) => (
-  <Status.Root colorPalette={color} size="sm">
-    <Status.Indicator />
-  </Status.Root>
-)
-
-const person = (name: string) => (
-  <Avatar.Root size="2xs">
-    <Avatar.Fallback name={name} />
-  </Avatar.Root>
-)
-
-const pages: Record<PageKey, Page & { entry: CommandItem }> = {
-  status: {
-    label: "Status",
-    placeholder: "Change status...",
-    entry: {
-      label: "Change status...",
-      value: "status",
-      icon: <LuCircleDashed />,
-      shortcut: ["S"],
-    },
-    items: [
-      { label: "Backlog", value: "backlog", icon: dot("gray") },
-      { label: "Todo", value: "todo", icon: dot("blue") },
-      { label: "In progress", value: "in-progress", icon: dot("orange") },
-      { label: "In review", value: "in-review", icon: dot("purple") },
-      { label: "Done", value: "done", icon: dot("green") },
-      { label: "Canceled", value: "canceled", icon: dot("red") },
-    ],
-  },
-  priority: {
-    label: "Priority",
-    placeholder: "Change priority...",
-    entry: {
-      label: "Change priority...",
-      value: "priority",
-      icon: <LuSignalHigh />,
-      shortcut: ["P"],
-    },
-    items: [
-      { label: "No priority", value: "none", icon: <LuSignal /> },
-      { label: "Urgent", value: "urgent", icon: <LuTriangleAlert /> },
-      { label: "High", value: "high", icon: <LuSignalHigh /> },
-      { label: "Medium", value: "medium", icon: <LuSignalMedium /> },
-      { label: "Low", value: "low", icon: <LuSignalLow /> },
-    ],
-  },
-  assignee: {
-    label: "Assignee",
-    placeholder: "Assign to...",
-    entry: {
-      label: "Assign to...",
-      value: "assignee",
-      icon: <LuUserRound />,
-      shortcut: ["A"],
-    },
-    items: [
-      { label: "Unassigned", value: "unassigned", icon: <LuUserRound /> },
-      {
-        label: "Olivia Martin",
-        value: "olivia",
-        icon: person("Olivia Martin"),
-      },
-      { label: "Jackson Lee", value: "jackson", icon: person("Jackson Lee") },
-      {
-        label: "Isabella Nguyen",
-        value: "isabella",
-        icon: person("Isabella Nguyen"),
-      },
-      { label: "William Kim", value: "william", icon: person("William Kim") },
-    ],
-  },
-  labels: {
-    label: "Labels",
-    placeholder: "Add labels...",
-    entry: {
-      label: "Add labels...",
-      value: "labels",
-      icon: <LuTag />,
-      shortcut: ["L"],
-    },
-    items: [
-      { label: "Bug", value: "bug", icon: dot("red") },
-      { label: "Feature", value: "feature", icon: dot("purple") },
-      { label: "Improvement", value: "improvement", icon: dot("blue") },
-      { label: "Design", value: "design", icon: dot("pink") },
-      { label: "Documentation", value: "docs", icon: dot("teal") },
-    ],
-  },
 }

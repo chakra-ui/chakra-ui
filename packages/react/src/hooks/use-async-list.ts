@@ -1,6 +1,7 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
+import { useLiveRef } from "./use-live-ref"
 
 export interface AsyncListLoadDetails {
   /**
@@ -24,11 +25,10 @@ export interface UseAsyncListProps<T> {
    */
   load?: ((details: AsyncListLoadDetails) => Promise<T[]>) | undefined
   /**
-   * How long to wait after the query stops changing before loading, in ms.
-   * The first load runs right away.
-   * @default 200
+   * Identifies what is being loaded, such as a page or tab. Changing it
+   * clears the items and loads again.
    */
-  debounce?: number | undefined
+  key?: string | number | undefined
 }
 
 export interface UseAsyncListReturn<T> {
@@ -51,53 +51,55 @@ export interface UseAsyncListReturn<T> {
   retry: VoidFunction
 }
 
+const EMPTY: never[] = []
+
 /**
- * Loads a list of items for a query, debouncing changes, aborting stale
- * requests, and keeping only the latest results.
+ * Loads a list of items for a query, aborting stale requests and keeping
+ * only the latest results.
  */
 export function useAsyncList<T>(
   props: UseAsyncListProps<T>,
 ): UseAsyncListReturn<T> {
-  const { query = "", load, debounce = 200 } = props
-  const [items, setItems] = useState<T[]>([])
-  const [loading, setLoading] = useState(!!load)
+  const { query = "", load, key } = props
+
+  const [result, setResult] = useState<{ key: typeof key; items: T[] }>({
+    key,
+    items: [],
+  })
+  const [pending, setPending] = useState(!!load)
   const [error, setError] = useState<Error | undefined>(undefined)
   const [attempt, setAttempt] = useState(0)
-  const loadRef = useRef(load)
-  loadRef.current = load
-  const hasLoaded = useRef(false)
+
+  const loadRef = useLiveRef(load)
 
   useEffect(() => {
     if (!loadRef.current) return
     const controller = new AbortController()
-    setLoading(true)
+    setPending(true)
 
-    const delay = hasLoaded.current ? debounce : 0
-    const timer = setTimeout(() => {
-      loadRef.current?.({ query, signal: controller.signal }).then(
-        (results) => {
-          if (controller.signal.aborted) return
-          hasLoaded.current = true
-          setItems(results)
-          setError(undefined)
-          setLoading(false)
-        },
-        (reason) => {
-          if (controller.signal.aborted) return
-          setItems([])
-          setError(reason instanceof Error ? reason : new Error(String(reason)))
-          setLoading(false)
-        },
-      )
-    }, delay)
+    loadRef.current({ query, signal: controller.signal }).then(
+      (items) => {
+        if (controller.signal.aborted) return
+        setResult({ key, items })
+        setError(undefined)
+        setPending(false)
+      },
+      (reason) => {
+        if (controller.signal.aborted) return
+        setResult({ key, items: [] })
+        setError(reason instanceof Error ? reason : new Error(String(reason)))
+        setPending(false)
+      },
+    )
 
-    return () => {
-      clearTimeout(timer)
-      controller.abort()
-    }
-  }, [query, debounce, attempt])
+    return () => controller.abort()
+  }, [query, attempt, key])
 
   const retry = useCallback(() => setAttempt((count) => count + 1), [])
+
+  const stale = result.key !== key
+  const items = stale ? EMPTY : result.items
+  const loading = pending || (!!load && stale)
 
   return { items, loading, error, retry }
 }

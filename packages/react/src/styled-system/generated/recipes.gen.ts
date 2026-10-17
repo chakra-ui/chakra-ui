@@ -1212,7 +1212,6 @@ export type CommandSlot =
   | "item"
   | "itemText"
   | "itemCommand"
-  | "itemIndicator"
   | "empty"
   | "loading"
   | "separator"

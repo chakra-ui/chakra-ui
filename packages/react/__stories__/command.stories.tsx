@@ -25,6 +25,8 @@ export { CommandWithKeywords as Keywords } from "compositions/examples/command-w
 export { CommandWithHotkeys as Hotkeys } from "compositions/examples/command-with-hotkeys"
 export { CommandWithGroups as Groups } from "compositions/examples/command-with-groups"
 export { CommandNested as NestedPages } from "compositions/examples/command-nested"
+export { CommandWithAsyncPages as AsyncPages } from "compositions/examples/command-with-async-pages"
+export { CommandWithInputPage as InputPage } from "compositions/examples/command-with-input-page"
 export { CommandWithAsyncContent as AsyncContent } from "compositions/examples/command-with-async-content"
 export { CommandWithDisabledItems as ContextualCommands } from "compositions/examples/command-with-disabled-items"
 export { CommandWithRecentItems as RecentCommands } from "compositions/examples/command-with-recent-items"

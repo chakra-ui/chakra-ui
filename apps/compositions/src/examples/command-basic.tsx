@@ -5,6 +5,7 @@ import {
   Command,
   HStack,
   Kbd,
+  KbdGroup,
   Span,
   Text,
   useCommandCollection,
@@ -29,66 +30,66 @@ export const CommandBasic = () => {
 
   return (
     <>
-      <Command.Dialog onExitComplete={() => command.search("")}>
-        <Command.DialogTrigger asChild>
-          <Button
-            variant="outline"
-            size="sm"
-            minW="64"
-            justifyContent="flex-start"
-            color="fg.muted"
-          >
-            <LuSearch /> Search commands...
-          </Button>
-        </Command.DialogTrigger>
-        <Command.Root
-          collection={command.collection}
-          onInputValueChange={(e) => command.search(e.inputValue)}
-          onSelect={(e) =>
-            setLastCommand(command.collection.find(e.itemValue)?.label)
-          }
-        >
-          <Command.Control>
-            <Command.Indicator />
-            <Command.Input placeholder="Type a command or search..." />
-          </Command.Control>
-          <Command.List>
-            {command.collection.items.map((item) => (
-              <Command.Item item={item} key={item.value}>
-                {item.icon}
-                <Command.ItemText highlight>{item.label}</Command.ItemText>
-                {item.shortcut.map((key) => (
-                  <Command.ItemCommand key={key}>{key}</Command.ItemCommand>
+      <Command.Provider value={command}>
+        <Command.Dialog>
+          <Command.DialogTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              minW="64"
+              justifyContent="flex-start"
+              color="fg.muted"
+            >
+              <LuSearch /> Search commands...
+            </Button>
+          </Command.DialogTrigger>
+          <Command.DialogContent>
+            <Command.Root
+              onSelect={(e) =>
+                setLastCommand(command.collection.find(e.itemValue)?.label)
+              }
+            >
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Type a command or search..." />
+              </Command.Control>
+              <Command.List>
+                {command.collection.items.map((item) => (
+                  <Command.Item item={item} key={item.value}>
+                    {item.icon}
+                    <Command.ItemText highlight>{item.label}</Command.ItemText>
+                    {item.shortcut.map((key) => (
+                      <Command.ItemCommand key={key}>{key}</Command.ItemCommand>
+                    ))}
+                  </Command.Item>
                 ))}
-              </Command.Item>
-            ))}
-            <Command.Empty>No commands found</Command.Empty>
-          </Command.List>
-          <Command.Footer>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↑
-              </Kbd>
-              <Kbd size="sm" variant="subtle">
-                ↓
-              </Kbd>
-              Navigate
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↵
-              </Kbd>
-              Run
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                esc
-              </Kbd>
-              Close
-            </HStack>
-          </Command.Footer>
-        </Command.Root>
-      </Command.Dialog>
+                <Command.Empty>No commands found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Run
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    esc
+                  </Kbd>
+                  Close
+                </HStack>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Command.Dialog>
+      </Command.Provider>
       {lastCommand && (
         <Text mt="4" color="fg.muted" textStyle="sm">
           Ran <Span color="fg">{lastCommand}</Span>

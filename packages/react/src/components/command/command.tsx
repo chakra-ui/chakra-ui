@@ -6,8 +6,7 @@ import {
   useComboboxContext,
 } from "@ark-ui/react/combobox"
 import { Dialog as ArkDialog } from "@ark-ui/react/dialog"
-import { Children, type JSX, forwardRef, isValidElement, useMemo } from "react"
-import { useSafeLayoutEffect } from "../../hooks"
+import { type JSX, forwardRef, useMemo } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -17,6 +16,7 @@ import {
 import {
   DialogBackdrop,
   DialogContent,
+  type DialogContentProps,
   DialogContext,
   DialogDescription,
   DialogPositioner,
@@ -26,11 +26,17 @@ import {
   DialogTrigger,
   type DialogTriggerProps,
 } from "../dialog"
-import { CheckIcon, SearchIcon } from "../icons"
+import { SearchIcon } from "../icons"
 import { Portal } from "../portal"
-import { CommandContextProvider, useCommandContext } from "./command-context"
+import {
+  CommandContextProvider,
+  CommandSourceProvider,
+  useCommandContext,
+  useCommandSourceContext,
+} from "./command-context"
 import { getCommandMatchRanges } from "./command-score"
 import {
+  type CommandSource,
   type UseCommandProps,
   type UseCommandReturn,
   splitCommandProps,
@@ -50,20 +56,30 @@ export { useCommandStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-interface CommandProviderProps {
+export interface CommandProviderProps<T extends CommandItem = CommandItem> {
   /**
-   * Called when a selection should dismiss the command, such as closing the
-   * dialog or popover that contains it.
+   * The value of `useCommandCollection` or `useCommandPages`, shared with
+   * every `Command.Root` inside.
    */
-  onClose?: VoidFunction | undefined
+  value: CommandSource<T>
+  children?: React.ReactNode | undefined
 }
+
+export function CommandProvider<T extends CommandItem>(
+  props: CommandProviderProps<T>,
+) {
+  return (
+    <CommandSourceProvider value={props.value}>
+      {props.children}
+    </CommandSourceProvider>
+  )
+}
+
+////////////////////////////////////////////////////////////////////////////////////
 
 export interface CommandRootProviderBaseProps
   extends
-    Assign<
-      HTMLChakraProps<"div">,
-      CommandProviderProps & SlotRecipeProps<"command">
-    >,
+    Assign<HTMLChakraProps<"div">, SlotRecipeProps<"command">>,
     UnstyledProp {
   /**
    * The value returned by `useCommand`.
@@ -75,15 +91,13 @@ export interface CommandRootProviderProps extends CommandRootProviderBaseProps {
 
 const CommandRootProviderBase = forwardRef<
   HTMLDivElement,
-  CommandProviderProps & {
+  {
     value: UseCommandReturn<any>
+    onClose?: VoidFunction
   } & React.HTMLAttributes<HTMLDivElement>
 >(function CommandRootProviderBase(props, ref) {
-  const { value, onClose, ...restProps } = props
-
-  useSafeLayoutEffect(() => {
-    value.closeRef.current = onClose
-  }, [onClose, value.closeRef])
+  // `onClose` comes from `Command.Dialog`; with `useCommand`, pass it there
+  const { value, onClose: _onClose, ...restProps } = props
 
   return (
     <CommandContextProvider value={value}>
@@ -116,13 +130,16 @@ export interface CommandRootProps<
 
 const CommandRootBase = forwardRef<HTMLDivElement, CommandRootProps>(
   function CommandRootBase(props, ref) {
-    const [commandProps, { onClose, ...localProps }] = splitCommandProps(props)
-    const command = useCommand(commandProps)
+    const [commandProps, localProps] = splitCommandProps(props)
+    const source = useCommandSourceContext()
+    const command = useCommand({
+      ...commandProps,
+      command: commandProps.command ?? source,
+    })
     return (
       <CommandRootProviderBase
         ref={ref}
         value={command}
-        onClose={onClose}
         {...(localProps as React.HTMLAttributes<HTMLDivElement>)}
       />
     )
@@ -152,15 +169,44 @@ export interface CommandDialogTriggerProps extends DialogTriggerProps {}
 
 export const CommandDialogTrigger = DialogTrigger
 
-export interface CommandDialogProps extends Omit<
-  DialogRootProps,
-  "size" | "children"
+export interface CommandDialogProps extends DialogRootProps {}
+
+export const CommandDialog = (props: CommandDialogProps) => {
+  const { children, onEscapeKeyDown, onExitComplete, ...rootProps } = props
+  const source = useCommandSourceContext()
+
+  return (
+    <DialogRoot
+      lazyMount
+      unmountOnExit
+      placement="top"
+      {...rootProps}
+      onEscapeKeyDown={(event) => {
+        onEscapeKeyDown?.(event)
+        if (!event.defaultPrevented && source?.popPage?.()) {
+          event.preventDefault()
+        }
+      }}
+      onExitComplete={() => {
+        onExitComplete?.()
+        source?.reset()
+      }}
+    >
+      <DialogContext>
+        {(dialog) => (
+          <PropsProvider value={{ onClose: () => dialog.setOpen(false) }}>
+            {children}
+          </PropsProvider>
+        )}
+      </DialogContext>
+    </DialogRoot>
+  )
+}
+
+export interface CommandDialogContentProps extends Omit<
+  DialogContentProps,
+  "title"
 > {
-  /**
-   * The size of the command and the dialog that contains it.
-   * @default "md"
-   */
-  size?: "sm" | "md" | "lg" | undefined
   /**
    * The accessible title of the dialog. Visually hidden.
    * @default "Command palette"
@@ -180,60 +226,34 @@ export interface CommandDialogProps extends Omit<
    * The element to portal the dialog into.
    */
   portalRef?: React.RefObject<HTMLElement | null> | undefined
-  children?: React.ReactNode | undefined
 }
 
-export const CommandDialog = (props: CommandDialogProps) => {
+export const CommandDialogContent = forwardRef<
+  HTMLDivElement,
+  CommandDialogContentProps
+>(function CommandDialogContent(props, ref) {
   const {
-    size = "md",
     title = "Command palette",
     description = "Search for a command to run",
     portalled = true,
     portalRef,
     children,
-    ...rootProps
+    ...rest
   } = props
 
-  const triggers: React.ReactNode[] = []
-  const content: React.ReactNode[] = []
-  Children.forEach(children, (child) => {
-    if (isValidElement(child) && child.type === CommandDialogTrigger) {
-      triggers.push(child)
-    } else {
-      content.push(child)
-    }
-  })
-
   return (
-    <DialogRoot
-      lazyMount
-      unmountOnExit
-      placement="top"
-      size={size}
-      {...rootProps}
-    >
-      {triggers}
-      <Portal disabled={!portalled} container={portalRef}>
-        <DialogBackdrop />
-        <DialogPositioner>
-          <DialogContent overflow="hidden">
-            <DialogTitle srOnly>{title}</DialogTitle>
-            <DialogDescription srOnly>{description}</DialogDescription>
-            <DialogContext>
-              {(dialog) => (
-                <PropsProvider
-                  value={{ size, onClose: () => dialog.setOpen(false) }}
-                >
-                  {content}
-                </PropsProvider>
-              )}
-            </DialogContext>
-          </DialogContent>
-        </DialogPositioner>
-      </Portal>
-    </DialogRoot>
+    <Portal disabled={!portalled} container={portalRef}>
+      <DialogBackdrop />
+      <DialogPositioner>
+        <DialogContent ref={ref} overflow="hidden" {...rest}>
+          <DialogTitle srOnly>{title}</DialogTitle>
+          <DialogDescription srOnly>{description}</DialogDescription>
+          {children}
+        </DialogContent>
+      </DialogPositioner>
+    </Portal>
   )
-}
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -290,8 +310,6 @@ export const CommandInput = withContext<HTMLInputElement, CommandInputProps>(
   "input",
   { forwardAsChild: true },
 )
-
-////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -362,6 +380,20 @@ export interface CommandItem {
    * the collection to derive it from another field.
    */
   disabled?: boolean | undefined
+  /**
+   * Extra words that match the item when searching.
+   */
+  keywords?: string[] | undefined
+  /**
+   * The value of the item whose page lists this item. An item with children
+   * opens its page when selected instead of running.
+   */
+  parent?: string | undefined
+  /**
+   * Whether selecting the item opens its page even without children, such as
+   * a page that loads its items or renders custom content.
+   */
+  page?: boolean | undefined
   /**
    * Runs when the item is selected, before the Root `onSelect`.
    */
@@ -445,21 +477,6 @@ export const CommandItemCommand = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CommandItemIndicatorProps
-  extends
-    HTMLChakraProps<"div", ArkCombobox.ItemIndicatorBaseProps>,
-    UnstyledProp {}
-
-export const CommandItemIndicator = withContext<
-  HTMLDivElement,
-  CommandItemIndicatorProps
->(ArkCombobox.ItemIndicator, "itemIndicator", {
-  forwardAsChild: true,
-  defaultProps: {
-    children: <CheckIcon />,
-  },
-})
-
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CommandLoadingProps
@@ -525,10 +542,6 @@ export const CommandFooter = withContext<HTMLDivElement, CommandFooterProps>(
 export const CommandContext = ArkCombobox.Context
 export const CommandDialogContext = ArkDialog.Context
 export const CommandItemContext = ArkCombobox.ItemContext
-
-export interface CommandValueChangeDetails<
-  T extends CommandItem = CommandItem,
-> extends ArkCombobox.ValueChangeDetails<T> {}
 
 export interface CommandHighlightChangeDetails<
   T extends CommandItem = CommandItem,

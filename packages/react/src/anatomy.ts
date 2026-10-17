@@ -169,7 +169,6 @@ export const commandAnatomy = createAnatomy("command").parts(
   "item",
   "itemText",
   "itemCommand",
-  "itemIndicator",
   "empty",
   "loading",
   "separator",

@@ -5,6 +5,7 @@ import {
   Command,
   HStack,
   Kbd,
+  KbdGroup,
   SegmentGroup,
   Stack,
   Text,
@@ -101,82 +102,78 @@ export const CommandWithHotkeys = () => {
         />
       </SegmentGroup.Root>
 
-      <Command.Dialog
-        open={open}
-        onOpenChange={(e) => setOpen(e.open)}
-        onExitComplete={() => command.search("")}
-      >
-        <Command.DialogTrigger asChild>
-          <Button
-            variant="outline"
-            size="sm"
-            minW="64"
-            justifyContent="space-between"
-            color="fg.muted"
-          >
-            <HStack gap="2">
-              <LuSearch /> Search actions...
-            </HStack>
-            <HStack gap="1">
-              {keysOf("mod+k").map((key) => (
-                <Kbd key={key} size="sm" variant="subtle">
-                  {key}
-                </Kbd>
-              ))}
-            </HStack>
-          </Button>
-        </Command.DialogTrigger>
-        <Command.Root
-          collection={command.collection}
-          onInputValueChange={(e) => command.search(e.inputValue)}
-          onSelect={(e) => {
-            const item = command.collection.find(e.itemValue)
-            if (item) run(item, "menu")
-          }}
-        >
-          <Command.Control>
-            <Command.Indicator />
-            <Command.Input placeholder="Type a command or search..." />
-          </Command.Control>
-          <Command.List>
-            {command.collection.group().map(([group, groupItems]) => (
-              <Command.ItemGroup key={group}>
-                <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
-                {groupItems.map((item) => (
-                  <Command.Item item={item} key={item.value}>
-                    {item.icon}
-                    <Command.ItemText highlight>{item.label}</Command.ItemText>
-                    {keysOf(item.hotkey).map((key, index) => (
-                      <Command.ItemCommand key={index}>
-                        {key}
-                      </Command.ItemCommand>
-                    ))}
-                  </Command.Item>
+      <Command.Provider value={command}>
+        <Command.Dialog open={open} onOpenChange={(e) => setOpen(e.open)}>
+          <Command.DialogTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              minW="64"
+              justifyContent="space-between"
+              color="fg.muted"
+            >
+              <HStack gap="2">
+                <LuSearch /> Search actions...
+              </HStack>
+              <KbdGroup size="sm" variant="subtle">
+                {keysOf("mod+k").map((key) => (
+                  <Kbd key={key}>{key}</Kbd>
                 ))}
-              </Command.ItemGroup>
-            ))}
-            <Command.Empty>No commands found</Command.Empty>
-          </Command.List>
-          <Command.Footer>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↑
-              </Kbd>
-              <Kbd size="sm" variant="subtle">
-                ↓
-              </Kbd>
-              Navigate
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↵
-              </Kbd>
-              Run
-            </HStack>
-            <Text ms="auto">Shortcuts also work with the menu closed</Text>
-          </Command.Footer>
-        </Command.Root>
-      </Command.Dialog>
+              </KbdGroup>
+            </Button>
+          </Command.DialogTrigger>
+          <Command.DialogContent>
+            <Command.Root
+              onSelect={(e) => {
+                const item = command.collection.find(e.itemValue)
+                if (item) run(item, "menu")
+              }}
+            >
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Type a command or search..." />
+              </Command.Control>
+              <Command.List>
+                {command.collection.group().map(([group, groupItems]) => (
+                  <Command.ItemGroup key={group}>
+                    <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
+                    {groupItems.map((item) => (
+                      <Command.Item item={item} key={item.value}>
+                        {item.icon}
+                        <Command.ItemText highlight>
+                          {item.label}
+                        </Command.ItemText>
+                        {keysOf(item.hotkey).map((key, index) => (
+                          <Command.ItemCommand key={index}>
+                            {key}
+                          </Command.ItemCommand>
+                        ))}
+                      </Command.Item>
+                    ))}
+                  </Command.ItemGroup>
+                ))}
+                <Command.Empty>No commands found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Run
+                </HStack>
+                <Text ms="auto">Shortcuts also work with the menu closed</Text>
+              </Command.Footer>
+            </Command.Root>
+          </Command.DialogContent>
+        </Command.Dialog>
+      </Command.Provider>
 
       <Text textStyle="sm" color="fg.muted">
         {lastRun

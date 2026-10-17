@@ -144,17 +144,6 @@ export const commandSlotRecipe = defineSlotRecipe({
       },
     },
 
-    itemIndicator: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      flexShrink: 0,
-      color: "fg",
-      _icon: {
-        boxSize: "var(--command-indicator-size)",
-      },
-    },
-
     itemGroup: {
       display: "flex",
       flexDirection: "column",

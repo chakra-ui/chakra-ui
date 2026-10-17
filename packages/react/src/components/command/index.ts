@@ -3,6 +3,7 @@ export {
   CommandContext,
   CommandControl,
   CommandDialog,
+  CommandDialogContent,
   CommandDialogContext,
   CommandDialogTrigger,
   CommandEmpty,
@@ -14,12 +15,12 @@ export {
   CommandItemContext,
   CommandItemGroup,
   CommandItemGroupLabel,
-  CommandItemIndicator,
   CommandItemText,
   CommandLabel,
   CommandList,
   CommandLoading,
   CommandPropsProvider,
+  CommandProvider,
   CommandRoot,
   CommandRootProvider,
   CommandSeparator,
@@ -29,6 +30,7 @@ export {
 export type {
   CommandClearTriggerProps,
   CommandControlProps,
+  CommandDialogContentProps,
   CommandDialogProps,
   CommandDialogTriggerProps,
   CommandEmptyProps,
@@ -40,23 +42,26 @@ export type {
   CommandItemCommandProps,
   CommandItemGroupLabelProps,
   CommandItemGroupProps,
-  CommandItemIndicatorProps,
   CommandItemProps,
   CommandItemTextProps,
   CommandLabelProps,
   CommandListProps,
   CommandLoadingProps,
   CommandOpenChangeDetails,
+  CommandProviderProps,
   CommandRootComponent,
   CommandRootProps,
   CommandRootProviderProps,
   CommandSelectionDetails,
   CommandSeparatorProps,
-  CommandValueChangeDetails,
 } from "./command"
 
 export { useCommand } from "./use-command"
-export type { UseCommandProps, UseCommandReturn } from "./use-command"
+export type {
+  CommandSource,
+  UseCommandProps,
+  UseCommandReturn,
+} from "./use-command"
 
 export { useCommandCollection } from "./use-command-collection"
 export type {
@@ -64,6 +69,12 @@ export type {
   UseCommandCollectionProps,
   UseCommandCollectionReturn,
 } from "./use-command-collection"
+
+export { useCommandPages } from "./use-command-pages"
+export type {
+  UseCommandPagesProps,
+  UseCommandPagesReturn,
+} from "./use-command-pages"
 
 export { useCommandContext } from "./command-context"
 export type { UseCommandContext } from "./command-context"

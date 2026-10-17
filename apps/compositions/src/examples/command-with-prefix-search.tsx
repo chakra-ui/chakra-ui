@@ -33,84 +33,82 @@ export const CommandWithPrefixSearch = () => {
   })
 
   return (
-    <Command.Dialog
-      onExitComplete={() => {
-        command.search("")
-        setPrefix(null)
-      }}
-    >
-      <Command.DialogTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          minW="64"
-          justifyContent="flex-start"
-          color="fg.muted"
-        >
-          <LuSearch /> Search everything...
-        </Button>
-      </Command.DialogTrigger>
-      <Command.Root
-        collection={command.collection}
-        onInputValueChange={(e) => {
-          const value = e.inputValue
-          if (!prefix && isPrefix(value[0])) {
-            setPrefix(value[0] as Prefix)
-            command.search(value.slice(1).trimStart())
-            return
-          }
-          command.search(value)
+    <Command.Provider value={command}>
+      <Command.Dialog
+        onExitComplete={() => {
+          setPrefix(null)
         }}
       >
-        <Command.Control>
-          <Command.Indicator />
-          {scope && (
-            <Badge size="sm" variant="surface" flexShrink="0">
-              {scope.icon}
-              {scope.label}
-            </Badge>
-          )}
-          <Command.Input
-            placeholder={
-              scope
-                ? `Search ${scope.label.toLowerCase()}...`
-                : "Search or type > @ # to filter..."
-            }
-            value={command.query}
-            onKeyDown={(e) => {
-              if (e.key === "Backspace" && !command.query && prefix) {
-                e.preventDefault()
-                setPrefix(null)
-              }
-            }}
-          />
-        </Command.Control>
-        <Command.List>
-          {command.collection.group().map(([group, items]) => (
-            <Command.ItemGroup key={group}>
-              <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
-              {items.map((item) => (
-                <Command.Item item={item} key={item.value}>
-                  {item.icon}
-                  <Command.ItemText highlight>{item.label}</Command.ItemText>
-                </Command.Item>
+        <Command.DialogTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            minW="64"
+            justifyContent="flex-start"
+            color="fg.muted"
+          >
+            <LuSearch /> Search everything...
+          </Button>
+        </Command.DialogTrigger>
+        <Command.DialogContent>
+          <Command.Root>
+            <Command.Control>
+              <Command.Indicator />
+              {scope && (
+                <Badge size="sm" variant="surface" flexShrink="0">
+                  {scope.icon}
+                  {scope.label}
+                </Badge>
+              )}
+              <Command.Input
+                placeholder={
+                  scope
+                    ? `Search ${scope.label.toLowerCase()}...`
+                    : "Search or type > @ # to filter..."
+                }
+                onKeyDown={(e) => {
+                  if (command.query) return
+                  if (!prefix && isPrefix(e.key)) {
+                    e.preventDefault()
+                    setPrefix(e.key)
+                  }
+                  if (prefix && e.key === "Backspace") {
+                    e.preventDefault()
+                    setPrefix(null)
+                  }
+                }}
+              />
+            </Command.Control>
+            <Command.List>
+              {command.collection.group().map(([group, items]) => (
+                <Command.ItemGroup key={group}>
+                  <Command.ItemGroupLabel>{group}</Command.ItemGroupLabel>
+                  {items.map((item) => (
+                    <Command.Item item={item} key={item.value}>
+                      {item.icon}
+                      <Command.ItemText highlight>
+                        {item.label}
+                      </Command.ItemText>
+                    </Command.Item>
+                  ))}
+                </Command.ItemGroup>
               ))}
-            </Command.ItemGroup>
-          ))}
-          <Command.Empty>No results found</Command.Empty>
-        </Command.List>
-        <Command.Footer>
-          {Object.entries(scopes).map(([key, value]) => (
-            <HStack gap="1.5" key={key}>
-              <Kbd size="sm" variant="subtle">
-                {key}
-              </Kbd>
-              {value.label}
-            </HStack>
-          ))}
-        </Command.Footer>
-      </Command.Root>
-    </Command.Dialog>
+              <Command.Empty>No results found</Command.Empty>
+            </Command.List>
+            <Command.Footer>
+              {Object.entries(scopes).map(([key, value]) => (
+                <HStack gap="1.5" key={key}>
+                  <Kbd size="sm" variant="subtle">
+                    {key}
+                  </Kbd>
+                  {value.label}
+                </HStack>
+              ))}
+            </Command.Footer>
+          </Command.Root>
+        </Command.DialogContent>
+      </Command.Dialog>
+    </Command.Provider>
   )
 }
 

@@ -5,6 +5,7 @@ import {
   Command,
   HStack,
   Kbd,
+  KbdGroup,
   Span,
   Text,
   useCommand,
@@ -28,8 +29,8 @@ export const CommandWithRootProvider = () => {
   })
 
   const store = useCommand({
-    collection: command.collection,
-    onInputValueChange: (e) => command.search(e.inputValue),
+    command,
+    onClose: () => setOpen(false),
   })
 
   useEffect(() => {
@@ -55,12 +56,10 @@ export const CommandWithRootProvider = () => {
       >
         <LuSearch /> Search commands...
         <HStack gap="1" ms="auto">
-          <Kbd size="sm" variant="subtle">
-            ⌘
-          </Kbd>
-          <Kbd size="sm" variant="subtle">
-            K
-          </Kbd>
+          <KbdGroup size="sm" variant="subtle">
+            <Kbd>⌘</Kbd>
+            <Kbd>K</Kbd>
+          </KbdGroup>
         </HStack>
       </Button>
       <Text textStyle="sm" color="fg.muted">
@@ -68,49 +67,51 @@ export const CommandWithRootProvider = () => {
         <Span color="fg">{store.combobox.inputValue || "None"}</Span>
       </Text>
 
-      <Command.Dialog open={open} onOpenChange={(e) => setOpen(e.open)}>
-        <Command.RootProvider value={store}>
-          <Command.Control>
-            <Command.Indicator />
-            <Command.Input placeholder="Type a command or search..." />
-          </Command.Control>
-          <Command.List>
-            {command.collection.items.map((item) => (
-              <Command.Item item={item} key={item.value}>
-                {item.icon}
-                <Command.ItemText highlight>{item.label}</Command.ItemText>
-                {item.shortcut.map((key) => (
-                  <Command.ItemCommand key={key}>{key}</Command.ItemCommand>
+      <Command.Provider value={command}>
+        <Command.Dialog open={open} onOpenChange={(e) => setOpen(e.open)}>
+          <Command.DialogContent>
+            <Command.RootProvider value={store}>
+              <Command.Control>
+                <Command.Indicator />
+                <Command.Input placeholder="Type a command or search..." />
+              </Command.Control>
+              <Command.List>
+                {command.collection.items.map((item) => (
+                  <Command.Item item={item} key={item.value}>
+                    {item.icon}
+                    <Command.ItemText highlight>{item.label}</Command.ItemText>
+                    {item.shortcut.map((key) => (
+                      <Command.ItemCommand key={key}>{key}</Command.ItemCommand>
+                    ))}
+                  </Command.Item>
                 ))}
-              </Command.Item>
-            ))}
-            <Command.Empty>No results found</Command.Empty>
-          </Command.List>
-          <Command.Footer>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↑
-              </Kbd>
-              <Kbd size="sm" variant="subtle">
-                ↓
-              </Kbd>
-              Navigate
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                ↵
-              </Kbd>
-              Select
-            </HStack>
-            <HStack gap="1.5">
-              <Kbd size="sm" variant="subtle">
-                esc
-              </Kbd>
-              Close
-            </HStack>
-          </Command.Footer>
-        </Command.RootProvider>
-      </Command.Dialog>
+                <Command.Empty>No results found</Command.Empty>
+              </Command.List>
+              <Command.Footer>
+                <HStack gap="1.5">
+                  <KbdGroup size="sm" variant="subtle">
+                    <Kbd>↑</Kbd>
+                    <Kbd>↓</Kbd>
+                  </KbdGroup>
+                  Navigate
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    ↵
+                  </Kbd>
+                  Select
+                </HStack>
+                <HStack gap="1.5">
+                  <Kbd size="sm" variant="subtle">
+                    esc
+                  </Kbd>
+                  Close
+                </HStack>
+              </Command.Footer>
+            </Command.RootProvider>
+          </Command.DialogContent>
+        </Command.Dialog>
+      </Command.Provider>
     </HStack>
   )
 }
