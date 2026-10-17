@@ -10,6 +10,10 @@ overrides:
   immer: '>=11.0.1'
   '@internationalized/date': 3.12.3
 
+patchedDependencies:
+  '@zag-js/combobox@1.43.3': 1b382db28e8d7d338e82de073733c63f7c46f7c83c7319e69b240a522f07c08f
+  '@zag-js/live-region@1.43.3': 4bb41e1ab1c6039af2571ffcabde053be6b9cce6e0a4be8f993be3d77224e34d
+
 importers:
 
   .:
@@ -12716,7 +12720,7 @@ snapshots:
       '@zag-js/collection': 1.43.3
       '@zag-js/color-picker': 1.43.3
       '@zag-js/color-utils': 1.43.3
-      '@zag-js/combobox': 1.43.3
+      '@zag-js/combobox': 1.43.3(patch_hash=1b382db28e8d7d338e82de073733c63f7c46f7c83c7319e69b240a522f07c08f)
       '@zag-js/core': 1.43.3
       '@zag-js/date-input': 1.43.3(@internationalized/date@3.12.3)
       '@zag-js/date-picker': 1.43.3(@internationalized/date@3.12.3)
@@ -17606,7 +17610,7 @@ snapshots:
     dependencies:
       '@zag-js/utils': 1.43.3
 
-  '@zag-js/combobox@1.43.3':
+  '@zag-js/combobox@1.43.3(patch_hash=1b382db28e8d7d338e82de073733c63f7c46f7c83c7319e69b240a522f07c08f)':
     dependencies:
       '@zag-js/anatomy': 1.43.3
       '@zag-js/collection': 1.43.3
@@ -17614,7 +17618,7 @@ snapshots:
       '@zag-js/dismissable': 1.43.3
       '@zag-js/dom-query': 1.43.3
       '@zag-js/focus-visible': 1.43.3
-      '@zag-js/live-region': 1.43.3
+      '@zag-js/live-region': 1.43.3(patch_hash=4bb41e1ab1c6039af2571ffcabde053be6b9cce6e0a4be8f993be3d77224e34d)
       '@zag-js/popper': 1.43.3
       '@zag-js/types': 1.43.3
       '@zag-js/utils': 1.43.3
@@ -17631,7 +17635,7 @@ snapshots:
       '@zag-js/core': 1.43.3
       '@zag-js/date-utils': 1.43.3(@internationalized/date@3.12.3)
       '@zag-js/dom-query': 1.43.3
-      '@zag-js/live-region': 1.43.3
+      '@zag-js/live-region': 1.43.3(patch_hash=4bb41e1ab1c6039af2571ffcabde053be6b9cce6e0a4be8f993be3d77224e34d)
       '@zag-js/types': 1.43.3
       '@zag-js/utils': 1.43.3
 
@@ -17643,7 +17647,7 @@ snapshots:
       '@zag-js/date-utils': 1.43.3(@internationalized/date@3.12.3)
       '@zag-js/dismissable': 1.43.3
       '@zag-js/dom-query': 1.43.3
-      '@zag-js/live-region': 1.43.3
+      '@zag-js/live-region': 1.43.3(patch_hash=4bb41e1ab1c6039af2571ffcabde053be6b9cce6e0a4be8f993be3d77224e34d)
       '@zag-js/popper': 1.43.3
       '@zag-js/types': 1.43.3
       '@zag-js/utils': 1.43.3
@@ -17771,7 +17775,7 @@ snapshots:
       '@zag-js/types': 1.43.3
       '@zag-js/utils': 1.43.3
 
-  '@zag-js/live-region@1.43.3': {}
+  '@zag-js/live-region@1.43.3(patch_hash=4bb41e1ab1c6039af2571ffcabde053be6b9cce6e0a4be8f993be3d77224e34d)': {}
 
   '@zag-js/marquee@1.43.3':
     dependencies:
@@ -17995,7 +17999,7 @@ snapshots:
       '@zag-js/core': 1.43.3
       '@zag-js/dom-query': 1.43.3
       '@zag-js/interact-outside': 1.43.3
-      '@zag-js/live-region': 1.43.3
+      '@zag-js/live-region': 1.43.3(patch_hash=4bb41e1ab1c6039af2571ffcabde053be6b9cce6e0a4be8f993be3d77224e34d)
       '@zag-js/types': 1.43.3
       '@zag-js/utils': 1.43.3
 
