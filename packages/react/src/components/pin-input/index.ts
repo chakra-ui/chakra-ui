@@ -8,7 +8,7 @@ export {
   PinInputRoot,
   PinInputRootProvider,
   usePinInputStyles,
-} from "./pin-input"
+} from "./pin-input.ts"
 
 export type {
   PinInputControlProps,
@@ -17,9 +17,9 @@ export type {
   PinInputRootProps,
   PinInputRootProviderProps,
   PinInputValueChangeDetails,
-} from "./pin-input"
+} from "./pin-input.ts"
 
-export * as PinInput from "./namespace"
+export * as PinInput from "./namespace.ts"
 
 export { usePinInput, usePinInputContext } from "@ark-ui/react/pin-input"
 

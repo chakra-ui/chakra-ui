@@ -14,7 +14,7 @@ export {
   TagsInputItemContext,
   TagsInputClearTrigger,
   useTagsInputStyles,
-} from "./tags-input"
+} from "./tags-input.tsx"
 
 export type {
   TagsInputControlProps,
@@ -29,7 +29,7 @@ export type {
   TagsInputClearTriggerProps,
   TagsInputValueChangeDetails,
   TagsInputValidityChangeDetails,
-} from "./tags-input"
+} from "./tags-input.tsx"
 
 export {
   useTagsInput,
@@ -44,4 +44,4 @@ export type {
   UseTagsInputItemContext,
 } from "@ark-ui/react/tags-input"
 
-export * as TagsInput from "./namespace"
+export * as TagsInput from "./namespace.ts"

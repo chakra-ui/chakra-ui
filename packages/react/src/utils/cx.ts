@@ -1,4 +1,4 @@
-import { isString } from "./is"
+import { isString } from "./is.ts"
 
 export const cx = (...classNames: any[]) => {
   const classes: string[] = []

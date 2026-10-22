@@ -1,4 +1,4 @@
-import type { Dict } from "../../utils"
+import type { Dict } from "../../utils/index.ts"
 
 export interface ForProps<T> {
   /**

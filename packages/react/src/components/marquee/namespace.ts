@@ -6,7 +6,7 @@ export {
   MarqueeViewport as Viewport,
   MarqueeItem as Item,
   MarqueeEdge as Edge,
-} from "./marquee"
+} from "./marquee.ts"
 
 export type {
   MarqueeRootProps as RootProps,
@@ -15,4 +15,4 @@ export type {
   MarqueeViewportProps as ViewportProps,
   MarqueeItemProps as ItemProps,
   MarqueeEdgeProps as EdgeProps,
-} from "./marquee"
+} from "./marquee.ts"

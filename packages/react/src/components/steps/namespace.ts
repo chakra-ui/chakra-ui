@@ -17,7 +17,7 @@ export {
   StepsCompletedContent as CompletedContent,
   StepsItemContext as ItemContext,
   StepsContext as Context,
-} from "./steps"
+} from "./steps.tsx"
 
 export type {
   StepsRootProps as RootProps,
@@ -36,4 +36,4 @@ export type {
   StepsDescriptionProps as DescriptionProps,
   StepsCompletedContentProps as CompletedContentProps,
   StepsChangeDetails as ChangeDetails,
-} from "./steps"
+} from "./steps.tsx"

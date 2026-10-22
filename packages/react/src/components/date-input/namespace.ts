@@ -9,7 +9,7 @@ export {
   DateInputSegmentGroup as SegmentGroup,
   DateInputSegments as Segments,
   useDateInputStyles,
-} from "./date-input"
+} from "./date-input.tsx"
 
 export type {
   DateInputControlProps as ControlProps,
@@ -22,7 +22,7 @@ export type {
   DateInputSegmentGroupProps as SegmentGroupProps,
   DateInputSegmentProps as SegmentProps,
   DateInputSegmentsProps as SegmentsProps,
-} from "./date-input"
+} from "./date-input.tsx"
 
 export {
   DateInputContext as Context,

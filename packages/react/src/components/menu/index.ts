@@ -23,7 +23,7 @@ export {
   MenuContext,
   MenuItemContext,
   useMenuStyles,
-} from "./menu"
+} from "./menu.tsx"
 
 export type {
   MenuArrowProps,
@@ -49,7 +49,7 @@ export type {
   MenuOpenChangeDetails,
   MenuSelectionDetails,
   MenuHighlightChangeDetails,
-} from "./menu"
+} from "./menu.tsx"
 
 export { useMenu, useMenuContext, useMenuItemContext } from "@ark-ui/react/menu"
 
@@ -62,4 +62,4 @@ export type {
   MenuValueChangeDetails,
 } from "@ark-ui/react/menu"
 
-export * as Menu from "./namespace"
+export * as Menu from "./namespace.ts"

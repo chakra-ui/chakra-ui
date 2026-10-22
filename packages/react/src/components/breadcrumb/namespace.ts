@@ -7,7 +7,7 @@ export {
   BreadcrumbRoot as Root,
   BreadcrumbPropsProvider as PropsProvider,
   BreadcrumbSeparator as Separator,
-} from "./breadcrumb"
+} from "./breadcrumb.tsx"
 
 export type {
   BreadcrumbCurrentLinkProps as CurrentLinkProps,
@@ -17,4 +17,4 @@ export type {
   BreadcrumbListProps as ListProps,
   BreadcrumbRootProps as RootProps,
   BreadcrumbSeparatorProps as SeparatorProps,
-} from "./breadcrumb"
+} from "./breadcrumb.tsx"

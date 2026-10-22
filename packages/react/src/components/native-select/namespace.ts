@@ -3,10 +3,10 @@ export {
   NativeSelectIndicator as Indicator,
   NativeSelectRoot as Root,
   NativeSelectPropsProvider as PropsProvider,
-} from "./native-select"
+} from "./native-select.tsx"
 
 export type {
   NativeSelectFieldProps as FieldProps,
   NativeSelectIndicatorProps as IndicatorProps,
   NativeSelectRootProps as RootProps,
-} from "./native-select"
+} from "./native-select.tsx"

@@ -10,7 +10,7 @@ export {
   NumberInputScrubber as Scrubber,
   NumberInputContext as Context,
   NumberInputValueText as ValueText,
-} from "./number-input"
+} from "./number-input.tsx"
 
 export type {
   NumberInputControlProps as ControlProps,
@@ -25,4 +25,4 @@ export type {
   NumberInputFocusChangeDetails as FocusChangeDetails,
   NumberInputValueChangeDetails as ValueChangeDetails,
   NumberInputValueInvalidDetails as ValueInvalidDetails,
-} from "./number-input"
+} from "./number-input.tsx"

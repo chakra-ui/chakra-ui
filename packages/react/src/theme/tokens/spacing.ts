@@ -1,4 +1,4 @@
-import { defineTokens } from "../../styled-system"
+import { defineTokens } from "../../styled-system/index.ts"
 
 export const spacing = defineTokens.spacing({
   0.5: { value: "0.125rem" },

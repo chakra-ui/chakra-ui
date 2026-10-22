@@ -13,8 +13,8 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { Radiomark } from "../radiomark"
+} from "../../styled-system/index.ts"
+import { Radiomark } from "../radiomark/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

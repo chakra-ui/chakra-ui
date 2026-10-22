@@ -1,4 +1,4 @@
-import { isObject } from "./is"
+import { isObject } from "./is.ts"
 
 type Predicate<R = any> = (value: any, path: string[]) => R
 

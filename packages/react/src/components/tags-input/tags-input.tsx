@@ -10,9 +10,9 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { For } from "../for"
-import { CloseIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { For } from "../for/index.ts"
+import { CloseIcon } from "../icons.tsx"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

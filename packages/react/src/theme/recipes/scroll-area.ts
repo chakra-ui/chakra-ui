@@ -1,5 +1,5 @@
-import { scrollAreaAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { scrollAreaAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const scrollAreaSlotRecipe = defineSlotRecipe({
   className: "chakra-scroll-area",

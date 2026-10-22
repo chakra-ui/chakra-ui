@@ -8,7 +8,7 @@ export {
   CheckboxPropsProvider as PropsProvider,
   CheckboxRoot as Root,
   CheckboxRootProvider as RootProvider,
-} from "./checkbox"
+} from "./checkbox.tsx"
 
 export type {
   CheckboxCheckedChangeDetails as CheckedChangeDetails,
@@ -18,4 +18,4 @@ export type {
   CheckboxIndicatorProps as IndicatorProps,
   CheckboxLabelProps as LabelProps,
   CheckboxRootProps as RootProps,
-} from "./checkbox"
+} from "./checkbox.tsx"

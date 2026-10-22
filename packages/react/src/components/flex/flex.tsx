@@ -5,7 +5,7 @@ import {
   type HTMLChakraProps,
   type SystemStyleObject,
   chakra,
-} from "../../styled-system"
+} from "../../styled-system/index.ts"
 
 export interface FlexOptions {
   align?: SystemStyleObject["alignItems"] | undefined

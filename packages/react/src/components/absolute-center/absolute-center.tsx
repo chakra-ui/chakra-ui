@@ -1,6 +1,6 @@
 "use client"
 
-import { type HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system/index.ts"
 
 export interface AbsoluteCenterProps extends HTMLChakraProps<"div"> {
   axis?: "horizontal" | "vertical" | "both" | undefined

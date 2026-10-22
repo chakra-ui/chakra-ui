@@ -1,4 +1,4 @@
-import type { CascadeLayer, Layers, SystemConfig } from "./types"
+import type { CascadeLayer, Layers, SystemConfig } from "./types.ts"
 
 const defaultLayers: Record<CascadeLayer, string> = {
   reset: "reset",

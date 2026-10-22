@@ -3,16 +3,16 @@
 import { dataAttr } from "@ark-ui/react"
 import { Field as ArkField, useFieldContext } from "@ark-ui/react/field"
 import { forwardRef } from "react"
-import { createContext } from "../../create-context"
+import { createContext } from "../../create-context.ts"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { cx } from "../../utils"
-import { ChevronDownIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
+import { ChevronDownIcon } from "../icons.tsx"
 
 interface NativeSelectBaseProps {
   disabled?: boolean | undefined

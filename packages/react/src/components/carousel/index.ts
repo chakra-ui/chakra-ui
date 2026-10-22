@@ -15,7 +15,7 @@ export {
   useCarouselStyles,
   CarouselAutoplayIndicator,
   CarouselProgressText,
-} from "./carousel"
+} from "./carousel.tsx"
 
 export type {
   CarouselAutoplayTriggerProps,
@@ -34,7 +34,7 @@ export type {
   CarouselIndicatorsProps,
   CarouselAutoplayIndicatorProps,
   CarouselProgressTextProps,
-} from "./carousel"
+} from "./carousel.tsx"
 
 export { useCarousel, useCarouselContext } from "@ark-ui/react/carousel"
 
@@ -43,4 +43,4 @@ export type {
   UseCarouselReturn,
 } from "@ark-ui/react/carousel"
 
-export * as Carousel from "./namespace"
+export * as Carousel from "./namespace.ts"

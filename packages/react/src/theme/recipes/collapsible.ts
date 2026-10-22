@@ -1,5 +1,5 @@
-import { collapsibleAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { collapsibleAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const collapsibleSlotRecipe = defineSlotRecipe({
   slots: collapsibleAnatomy.keys(),

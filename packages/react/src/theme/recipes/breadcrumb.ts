@@ -1,5 +1,5 @@
-import { breadcrumbAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { breadcrumbAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const breadcrumbSlotRecipe = defineSlotRecipe({
   className: "chakra-breadcrumb",

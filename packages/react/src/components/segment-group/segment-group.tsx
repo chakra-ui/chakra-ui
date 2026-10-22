@@ -8,8 +8,8 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { For } from "../for"
+} from "../../styled-system/index.ts"
+import { For } from "../for/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

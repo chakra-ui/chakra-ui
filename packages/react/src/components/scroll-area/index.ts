@@ -9,7 +9,7 @@ export {
   ScrollAreaCorner,
   ScrollAreaContext,
   useScrollAreaStyles,
-} from "./scroll-area"
+} from "./scroll-area.tsx"
 
 export type {
   ScrollAreaRootProps,
@@ -19,7 +19,7 @@ export type {
   ScrollAreaScrollbarProps,
   ScrollAreaThumbProps,
   ScrollAreaCornerProps,
-} from "./scroll-area"
+} from "./scroll-area.tsx"
 
 export { useScrollArea, useScrollAreaContext } from "@ark-ui/react/scroll-area"
 
@@ -28,4 +28,4 @@ export type {
   UseScrollAreaReturn,
 } from "@ark-ui/react/scroll-area"
 
-export * as ScrollArea from "./namespace"
+export * as ScrollArea from "./namespace.ts"

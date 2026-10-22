@@ -1,6 +1,6 @@
-import { createColorMixTransform } from "./styled-system/color-mix"
-import { defineConditions, defineConfig } from "./styled-system/config"
-import { cssVar } from "./styled-system/css-var"
+import { createColorMixTransform } from "./styled-system/color-mix.ts"
+import { defineConditions, defineConfig } from "./styled-system/config.ts"
+import { cssVar } from "./styled-system/css-var.ts"
 
 const isCssVar = (v: string) => /^var\(--.+\)$/.test(v)
 

@@ -6,11 +6,11 @@ import {
   memo,
   mergeWith,
   walkObject,
-} from "../utils"
-import type { SystemStyleObject } from "./css.types"
-import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
-import { sortAtRules } from "./sort-at-rules"
-import type { SystemContext } from "./types"
+} from "../utils/index.ts"
+import type { SystemStyleObject } from "./css.types.ts"
+import { EMPTY_OBJECT, createEmptyObject } from "./singleton.ts"
+import { sortAtRules } from "./sort-at-rules.ts"
+import type { SystemContext } from "./types.ts"
 
 const importantRegex = /\s*!\s*(important)?\s*$/i
 

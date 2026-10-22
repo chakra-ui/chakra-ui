@@ -15,7 +15,7 @@ export {
   DrawerContext,
   DrawerActionTrigger,
   useDrawerStyles,
-} from "./drawer"
+} from "./drawer.tsx"
 
 export type {
   DrawerBackdropProps,
@@ -32,7 +32,7 @@ export type {
   DrawerTitleProps,
   DrawerOpenChangeDetails,
   DrawerActionTriggerProps,
-} from "./drawer"
+} from "./drawer.tsx"
 
 export {
   useDialogContext as useDrawerContext,
@@ -47,4 +47,4 @@ export type {
   DialogPointerDownOutsideEvent as DrawerPointerDownOutsideEvent,
 } from "@ark-ui/react/dialog"
 
-export * as Drawer from "./namespace"
+export * as Drawer from "./namespace.ts"

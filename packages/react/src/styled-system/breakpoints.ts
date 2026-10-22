@@ -1,6 +1,6 @@
-import { uniq } from "../utils"
-import type { BreakpointEntry, SystemContext } from "./types"
-import { toPx, toRem } from "./unit-conversion"
+import { uniq } from "../utils/index.ts"
+import type { BreakpointEntry, SystemContext } from "./types.ts"
+import { toPx, toRem } from "./unit-conversion.ts"
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 

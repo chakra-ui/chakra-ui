@@ -8,7 +8,7 @@ export {
   HoverCardPropsProvider as PropsProvider,
   HoverCardTrigger as Trigger,
   HoverCardContext as Context,
-} from "./hover-card"
+} from "./hover-card.tsx"
 
 export type {
   HoverCardArrowProps as ArrowProps,
@@ -19,7 +19,7 @@ export type {
   HoverCardRootProviderProps as RootProviderProps,
   HoverCardTriggerProps as TriggerProps,
   HoverCardOpenChangeDetails as OpenChangeDetails,
-} from "./hover-card"
+} from "./hover-card.tsx"
 
 export type {
   HoverCardInteractOutsideEvent as InteractOutsideEvent,

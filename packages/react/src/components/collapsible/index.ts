@@ -7,7 +7,7 @@ export {
   CollapsibleRootProvider,
   CollapsibleTrigger,
   useCollapsibleStyles,
-} from "./collapsible"
+} from "./collapsible.tsx"
 
 export type {
   CollapsibleContentProps,
@@ -16,7 +16,7 @@ export type {
   CollapsibleRootProps,
   CollapsibleRootProviderProps,
   CollapsibleTriggerProps,
-} from "./collapsible"
+} from "./collapsible.tsx"
 
 export {
   useCollapsible,
@@ -28,4 +28,4 @@ export type {
   UseCollapsibleReturn,
 } from "@ark-ui/react/collapsible"
 
-export * as Collapsible from "./namespace"
+export * as Collapsible from "./namespace.ts"

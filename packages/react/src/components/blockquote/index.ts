@@ -5,13 +5,13 @@ export {
   BlockquoteCaption,
   BlockquoteIcon,
   useBlockquoteStyles,
-} from "./blockquote"
+} from "./blockquote.tsx"
 
 export type {
   BlockquoteRootProps,
   BlockquoteContentProps,
   BlockquoteCaptionProps,
   BlockquoteIconProps,
-} from "./blockquote"
+} from "./blockquote.tsx"
 
-export * as Blockquote from "./namespace"
+export * as Blockquote from "./namespace.ts"

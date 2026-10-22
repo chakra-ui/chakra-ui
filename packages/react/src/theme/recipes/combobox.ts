@@ -1,5 +1,5 @@
-import { comboboxAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { comboboxAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const comboboxSlotRecipe = defineSlotRecipe({
   className: "chakra-combobox",

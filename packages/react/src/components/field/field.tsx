@@ -9,9 +9,9 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { cx } from "../../utils"
-import { createIcon } from "../icon"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
+import { createIcon } from "../icon/index.ts"
 
 ////////////////////////////////////////////////////////////////////////////////////
 

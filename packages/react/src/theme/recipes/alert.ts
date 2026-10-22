@@ -1,5 +1,5 @@
-import { alertAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { alertAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const alertSlotRecipe = defineSlotRecipe({
   slots: alertAnatomy.keys(),

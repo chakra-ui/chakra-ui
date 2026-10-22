@@ -9,7 +9,7 @@ export {
   CheckboxGroup,
   CheckboxHiddenInput,
   useCheckboxStyles,
-} from "./checkbox"
+} from "./checkbox.tsx"
 
 export type {
   CheckboxControlProps,
@@ -20,7 +20,7 @@ export type {
   CheckboxGroupProps,
   CheckboxGroupComponent,
   CheckboxCheckedChangeDetails,
-} from "./checkbox"
+} from "./checkbox.tsx"
 
 export {
   useCheckbox,
@@ -36,4 +36,4 @@ export type {
   UseCheckboxGroupReturn,
 } from "@ark-ui/react/checkbox"
 
-export * as Checkbox from "./namespace"
+export * as Checkbox from "./namespace.ts"

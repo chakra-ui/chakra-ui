@@ -1,2 +1,2 @@
-export { Checkmark } from "./checkmark"
-export type { CheckmarkProps } from "./checkmark"
+export { Checkmark } from "./checkmark.tsx"
+export type { CheckmarkProps } from "./checkmark.tsx"

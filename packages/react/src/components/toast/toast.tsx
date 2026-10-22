@@ -17,8 +17,8 @@ import {
   type UnstyledProp,
   chakra,
   createSlotRecipeContext,
-} from "../../styled-system"
-import { CheckCircleIcon, CloseIcon, WarningIcon } from "../icons"
+} from "../../styled-system/index.ts"
+import { CheckCircleIcon, CloseIcon, WarningIcon } from "../icons.tsx"
 
 export { createToaster, type CreateToasterProps, type CreateToasterReturn }
 

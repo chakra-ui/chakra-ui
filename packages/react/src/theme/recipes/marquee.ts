@@ -1,5 +1,5 @@
-import { marqueeAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { marqueeAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const marqueeSlotRecipe = defineSlotRecipe({
   className: "chakra-marquee",

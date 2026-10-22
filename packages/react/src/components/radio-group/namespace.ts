@@ -10,7 +10,7 @@ export {
   RadioGroupContext as Context,
   RadioGroupItemContext as ItemContext,
   RadioGroupItemHiddenInput as ItemHiddenInput,
-} from "./radio-group"
+} from "./radio-group.tsx"
 
 export type {
   RadioGroupItemControlProps as ItemControlProps,
@@ -20,4 +20,4 @@ export type {
   RadioGroupRootProps as RootProps,
   RadioGroupRootProviderProps as RootProviderProps,
   RadioGroupValueChangeDetails as ValueChangeDetails,
-} from "./radio-group"
+} from "./radio-group.tsx"

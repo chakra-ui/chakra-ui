@@ -1,5 +1,5 @@
-import { listboxAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
+import { listboxAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
 
 export const listboxSlotRecipe = defineSlotRecipe({
   className: "chakra-listbox",

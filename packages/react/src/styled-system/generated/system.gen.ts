@@ -1,6 +1,6 @@
-import type { ConditionalValue, CssProperties } from "../css.types"
-import type { UtilityValues } from "./prop-types.gen"
-import type { Token } from "./token.gen"
+import type { ConditionalValue, CssProperties } from "../css.types.ts"
+import type { UtilityValues } from "./prop-types.gen.ts"
+import type { Token } from "./token.gen.ts"
 type AnyString = string & {}
 type AnyNumber = number & {}
 type CssVars = `var(--${string})`

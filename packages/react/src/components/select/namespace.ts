@@ -20,7 +20,7 @@ export {
   SelectTrigger as Trigger,
   SelectValueText as ValueText,
   SelectHiddenSelect as HiddenSelect,
-} from "./select"
+} from "./select.tsx"
 
 export type {
   SelectClearTriggerProps as ClearTriggerProps,
@@ -44,7 +44,7 @@ export type {
   SelectValueChangeDetails as ValueChangeDetails,
   SelectValueTextProps as ValueTextProps,
   SelectRootComponent as RootComponent,
-} from "./select"
+} from "./select.tsx"
 
 export type {
   SelectInteractOutsideEvent as InteractOutsideEvent,

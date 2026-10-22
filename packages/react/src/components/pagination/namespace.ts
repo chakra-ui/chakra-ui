@@ -9,7 +9,7 @@ export {
   PaginationContext as Context,
   PaginationPageText as PageText,
   PaginationItems as Items,
-} from "./pagination"
+} from "./pagination.tsx"
 
 export type {
   PaginationEllipsisProps as EllipsisProps,
@@ -24,4 +24,4 @@ export type {
   PaginationPageTextFormatDetails as PageTextFormatDetails,
   PaginationPageTextFormatFn as PageTextFormatFn,
   PaginationItemsProps as ItemsProps,
-} from "./pagination"
+} from "./pagination.tsx"

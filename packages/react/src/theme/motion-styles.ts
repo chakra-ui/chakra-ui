@@ -1,4 +1,4 @@
-import { defineAnimationStyles } from "../styled-system"
+import { defineAnimationStyles } from "../styled-system/index.ts"
 
 export const animationStyles = defineAnimationStyles({
   "slide-fade-in": {

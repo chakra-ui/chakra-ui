@@ -12,10 +12,10 @@ import {
   type HTMLChakraProps,
   type SystemStyleObject,
   chakra,
-} from "../../styled-system"
-import { cx } from "../../utils"
-import type { StackDirection } from "./get-separator-style"
-import { getSeparatorStyles } from "./get-separator-style"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
+import type { StackDirection } from "./get-separator-style.ts"
+import { getSeparatorStyles } from "./get-separator-style.ts"
 
 function getValidChildren(children: React.ReactNode) {
   return Children.toArray(children).filter((child) =>

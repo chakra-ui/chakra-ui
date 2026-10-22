@@ -6,8 +6,8 @@ import {
   type HTMLChakraProps,
   chakra,
   defineStyle,
-} from "../../styled-system"
-import { cx, mapObject } from "../../utils"
+} from "../../styled-system/index.ts"
+import { cx, mapObject } from "../../utils/index.ts"
 
 export interface AspectRatioProps extends Omit<
   HTMLChakraProps<"div">,

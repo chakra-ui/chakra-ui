@@ -1,6 +1,6 @@
-import { checkboxAnatomy } from "../../anatomy"
-import { defineSlotRecipe } from "../../styled-system"
-import { checkmarkRecipe } from "./checkmark"
+import { checkboxAnatomy } from "../../anatomy.ts"
+import { defineSlotRecipe } from "../../styled-system/index.ts"
+import { checkmarkRecipe } from "./checkmark.ts"
 
 export const checkboxSlotRecipe = defineSlotRecipe({
   slots: checkboxAnatomy.keys(),

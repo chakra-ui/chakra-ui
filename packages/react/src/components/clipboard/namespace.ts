@@ -10,7 +10,7 @@ export {
   ClipboardContext as Context,
   ClipboardValueText as ValueText,
   ClipboardCopyText as CopyText,
-} from "./clipboard"
+} from "./clipboard.tsx"
 
 export type {
   ClipboardControlProps as ControlProps,
@@ -22,4 +22,4 @@ export type {
   ClipboardInputProps as InputProps,
   ClipboardCopyStatusDetails as CopyStatusDetails,
   ClipboardValueTextProps as ValueTextProps,
-} from "./clipboard"
+} from "./clipboard.tsx"

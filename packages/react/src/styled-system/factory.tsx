@@ -17,12 +17,18 @@ import {
   registerStyles,
 } from "@emotion/utils"
 import * as React from "react"
-import { mergeProps } from "../merge-props"
-import { mergeRefs } from "../merge-refs"
-import { compact, cx, getElementRef, interopDefault, uniq } from "../utils"
-import type { JsxFactory, StyledFactoryFn } from "./factory.types"
-import { useChakraContext } from "./provider"
-import { isHtmlProp, useResolvedProps } from "./use-resolved-props"
+import { mergeProps } from "../merge-props.ts"
+import { mergeRefs } from "../merge-refs.ts"
+import {
+  compact,
+  cx,
+  getElementRef,
+  interopDefault,
+  uniq,
+} from "../utils/index.ts"
+import type { JsxFactory, StyledFactoryFn } from "./factory.types.ts"
+import { useChakraContext } from "./provider.tsx"
+import { isHtmlProp, useResolvedProps } from "./use-resolved-props.ts"
 
 const isPropValid = interopDefault(emotionIsPropValid)
 

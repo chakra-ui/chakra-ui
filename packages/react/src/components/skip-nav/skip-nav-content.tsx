@@ -1,8 +1,8 @@
 "use client"
 
 import { forwardRef } from "react"
-import { type HTMLChakraProps, chakra } from "../../styled-system"
-import { fallbackId } from "./skip-nav-link"
+import { type HTMLChakraProps, chakra } from "../../styled-system/index.ts"
+import { fallbackId } from "./skip-nav-link.tsx"
 
 export interface SkipNavContentProps extends HTMLChakraProps<"div"> {}
 /**

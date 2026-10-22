@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { useCallbackRef } from "./use-callback-ref"
+import { useCallbackRef } from "./use-callback-ref.ts"
 
 /**
  * Given a prop value and state value, the useControllableProp hook is used to determine whether a component is controlled or uncontrolled, and also returns the computed value.

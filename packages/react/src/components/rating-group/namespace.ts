@@ -11,7 +11,7 @@ export {
   RatingGroupItemContext as ItemContext,
   RatingGroupItems as Items,
   useRatingGroupStyles,
-} from "./rating-group"
+} from "./rating-group.tsx"
 
 export type {
   RatingGroupControlProps as ControlProps,
@@ -23,4 +23,4 @@ export type {
   RatingGroupRootProviderProps as RootProviderProps,
   RatingGroupValueChangeDetails as ValueChangeDetails,
   RatingGroupHoverChangeDetails as HoverChangeDetails,
-} from "./rating-group"
+} from "./rating-group.tsx"

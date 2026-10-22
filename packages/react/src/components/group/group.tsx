@@ -14,8 +14,8 @@ import {
   type InferRecipeProps,
   type JsxStyleProps,
   chakra,
-} from "../../styled-system"
-import { cx } from "../../utils"
+} from "../../styled-system/index.ts"
+import { cx } from "../../utils/index.ts"
 
 const StyledGroup = chakra("div", {
   base: {

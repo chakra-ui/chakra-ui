@@ -1,4 +1,4 @@
-import type { PropertyTransform, TransformArgs } from "./types"
+import type { PropertyTransform, TransformArgs } from "./types.ts"
 
 export const colorMix = (value: string, token: TransformArgs["token"]) => {
   if (!value || typeof value !== "string") {

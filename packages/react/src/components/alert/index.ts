@@ -6,7 +6,7 @@ export {
   AlertRoot,
   AlertPropsProvider,
   useAlertStyles,
-} from "./alert"
+} from "./alert.tsx"
 
 export type {
   AlertRootProps,
@@ -14,6 +14,6 @@ export type {
   AlertDescriptionProps,
   AlertContentProps,
   AlertIndicatorProps,
-} from "./alert"
+} from "./alert.tsx"
 
-export * as Alert from "./namespace"
+export * as Alert from "./namespace.ts"

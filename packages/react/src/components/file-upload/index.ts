@@ -21,7 +21,7 @@ export {
   useFileUploadStyles,
   FileUploadContext,
   FileUploadList,
-} from "./file-upload"
+} from "./file-upload.tsx"
 
 export type {
   FileUploadDropzoneProps,
@@ -45,7 +45,7 @@ export type {
   FileUploadItemsProps,
   FileUploadClearTriggerProps,
   FileUploadListProps,
-} from "./file-upload"
+} from "./file-upload.tsx"
 
 export { useFileUpload, useFileUploadContext } from "@ark-ui/react/file-upload"
 
@@ -57,4 +57,4 @@ export type {
   FileUploadFileRejection,
 } from "@ark-ui/react/file-upload"
 
-export * as FileUpload from "./namespace"
+export * as FileUpload from "./namespace.ts"

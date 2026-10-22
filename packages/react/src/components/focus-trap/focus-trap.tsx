@@ -4,7 +4,7 @@ import {
   type FocusTrapBaseProps,
   FocusTrap as FocusTrapPrimitive,
 } from "@ark-ui/react/focus-trap"
-import { type HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system/index.ts"
 
 export interface FocusTrapProps
   extends HTMLChakraProps<"div">, FocusTrapBaseProps {}

@@ -1,7 +1,10 @@
 "use client"
 
-import { type BreakpointName, useChakraContext } from "../styled-system"
-import { useMediaQuery } from "./use-media-query"
+import {
+  type BreakpointName,
+  useChakraContext,
+} from "../styled-system/index.ts"
+import { useMediaQuery } from "./use-media-query.ts"
 
 /* -----------------------------------------------------------------------------
  * useBreakpoint

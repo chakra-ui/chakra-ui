@@ -1,4 +1,4 @@
-import { defineRecipe } from "../../styled-system"
+import { defineRecipe } from "../../styled-system/index.ts"
 
 export const badgeRecipe = defineRecipe({
   className: "chakra-badge",

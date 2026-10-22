@@ -11,7 +11,7 @@ export {
   TableRootPropsProvider as RootPropsProvider,
   TableRow as Row,
   TableScrollArea as ScrollArea,
-} from "./table"
+} from "./table.tsx"
 
 export type {
   TableBodyProps as BodyProps,
@@ -25,4 +25,4 @@ export type {
   TableRootProps as RootProps,
   TableRowProps as RowProps,
   TableScrollAreaProps as ScrollAreaProps,
-} from "./table"
+} from "./table.tsx"

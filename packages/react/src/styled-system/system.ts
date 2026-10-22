@@ -8,19 +8,19 @@ import {
   memo,
   mergeWith,
   splitProps,
-} from "../utils"
-import { createBreakpoints } from "./breakpoints"
-import { createConditions } from "./conditions"
-import { mergeConfigs } from "./config"
-import { createCssFn } from "./css"
-import { createRecipeFn } from "./cva"
-import { createLayers } from "./layers"
-import { createNormalizeFn } from "./normalize"
-import { createPreflight } from "./preflight"
-import { createSerializeFn } from "./serialize"
-import { EMPTY_OBJECT, createEmptyObject } from "./singleton"
-import { createSlotRecipeFn } from "./sva"
-import { createTokenDictionary } from "./token-dictionary"
+} from "../utils/index.ts"
+import { createBreakpoints } from "./breakpoints.ts"
+import { createConditions } from "./conditions.ts"
+import { mergeConfigs } from "./config.ts"
+import { createCssFn } from "./css.ts"
+import { createRecipeFn } from "./cva.ts"
+import { createLayers } from "./layers.ts"
+import { createNormalizeFn } from "./normalize.ts"
+import { createPreflight } from "./preflight.ts"
+import { createSerializeFn } from "./serialize.ts"
+import { EMPTY_OBJECT, createEmptyObject } from "./singleton.ts"
+import { createSlotRecipeFn } from "./sva.ts"
+import { createTokenDictionary } from "./token-dictionary.ts"
 import type {
   SystemConfig,
   SystemContext,
@@ -29,8 +29,8 @@ import type {
   TokenCategory,
   TokenDictionary,
   TokenFn,
-} from "./types"
-import { createUtility } from "./utility"
+} from "./types.ts"
+import { createUtility } from "./utility.ts"
 
 export function createSystem(...configs: SystemConfig[]): SystemContext {
   const config = mergeConfigs(...configs)

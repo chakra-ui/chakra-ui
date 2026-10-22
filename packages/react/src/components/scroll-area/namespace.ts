@@ -8,7 +8,7 @@ export {
   ScrollAreaScrollbar as Scrollbar,
   ScrollAreaThumb as Thumb,
   ScrollAreaViewport as Viewport,
-} from "./scroll-area"
+} from "./scroll-area.tsx"
 
 export type {
   ScrollAreaContentProps as ContentProps,
@@ -18,4 +18,4 @@ export type {
   ScrollAreaScrollbarProps as ScrollbarProps,
   ScrollAreaThumbProps as ThumbProps,
   ScrollAreaViewportProps as ViewportProps,
-} from "./scroll-area"
+} from "./scroll-area.tsx"

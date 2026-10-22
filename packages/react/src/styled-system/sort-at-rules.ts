@@ -1,5 +1,5 @@
-import { type Dict, isObject } from "../utils"
-import { sortAtParams } from "./sort-at-params"
+import { type Dict, isObject } from "../utils/index.ts"
+import { sortAtParams } from "./sort-at-params.ts"
 
 type Query = string
 type QueryValue = Dict
