@@ -48,7 +48,10 @@ export const ComboboxWithAsyncContent = () => {
 
       <Portal>
         <Combobox.Positioner>
-          <Combobox.Content minW="sm">
+          <Combobox.Content
+            minW="sm"
+            opacity={state.loading || state.error ? 1 : undefined}
+          >
             {state.loading ? (
               <HStack p="2">
                 <Spinner size="xs" borderWidth="1px" />
