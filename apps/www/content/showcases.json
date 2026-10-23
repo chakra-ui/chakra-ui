@@ -1,5 +1,11 @@
 [
   {
+    "title": "Wordfully",
+    "description": "AI writing assistant for grammar, rephrasing, and instant word definitions.",
+    "url": "https://wordfully.ai",
+    "image": "showcases/wordfully-preview.png"
+  },
+  {
     "title": "Chakra UI Pro",
     "description": "Featured",
     "url": "https://pro.chakra-ui.com",
