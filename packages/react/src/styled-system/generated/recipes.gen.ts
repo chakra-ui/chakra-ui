@@ -1197,6 +1197,39 @@ export type ComboboxVariantMap = {
   [K in keyof ComboboxVariant]: Array<ComboboxVariant[K]>
 }
 
+// Command
+
+export type CommandSlot =
+  | "root"
+  | "label"
+  | "control"
+  | "indicator"
+  | "input"
+  | "clearTrigger"
+  | "list"
+  | "itemGroup"
+  | "itemGroupLabel"
+  | "item"
+  | "itemText"
+  | "itemCommand"
+  | "empty"
+  | "loading"
+  | "separator"
+  | "footer"
+
+export interface CommandVariant {
+  /** @default "md" */
+  size?: "sm" | "md" | "lg" | undefined
+}
+
+export type CommandVariantProps = {
+  [K in keyof CommandVariant]?: ConditionalValue<CommandVariant[K]> | undefined
+}
+
+export type CommandVariantMap = {
+  [K in keyof CommandVariant]: Array<CommandVariant[K]>
+}
+
 // Slider
 
 export type SliderSlot =
@@ -1637,6 +1670,7 @@ export interface ConfigSlotRecipes {
   segmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps, SegmentGroupVariantMap>
   select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps, SelectVariantMap>
   combobox: SystemSlotRecipeFn<ComboboxSlot, ComboboxVariantProps, ComboboxVariantMap>
+  command: SystemSlotRecipeFn<CommandSlot, CommandVariantProps, CommandVariantMap>
   slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps, SliderVariantMap>
   splitter: SystemSlotRecipeFn<SplitterSlot, SplitterVariantProps, SplitterVariantMap>
   stat: SystemSlotRecipeFn<StatSlot, StatVariantProps, StatVariantMap>
@@ -1697,6 +1731,7 @@ export interface ConfigRecipeSlots {
   segmentGroup: SegmentGroupSlot
   select: SelectSlot
   combobox: ComboboxSlot
+  command: CommandSlot
   slider: SliderSlot
   splitter: SplitterSlot
   stat: StatSlot
