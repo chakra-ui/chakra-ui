@@ -1,6 +1,5 @@
-import { globbySync } from "globby"
 import { lookItUpSync } from "look-it-up"
-import { existsSync, readFileSync } from "node:fs"
+import { existsSync, globSync, readFileSync, statSync } from "node:fs"
 import { join } from "node:path"
 
 export interface ProjectScope {
@@ -19,22 +18,34 @@ export interface ProjectContextOptions {
   tsx?: boolean
 }
 
+/**
+ * Files in `cwd` matching `patterns`, in pattern order (sorted within each
+ * pattern). Directories and broken symlinks are skipped.
+ */
+function findFiles(patterns: string[], cwd: string) {
+  return patterns.flatMap((pattern) =>
+    globSync(pattern, { cwd })
+      .sort()
+      .filter((file) =>
+        statSync(join(cwd, file), { throwIfNoEntry: false })?.isFile(),
+      ),
+  )
+}
+
 function getFramework(files: string[], cwd: string) {
   if (files.find((file) => file.startsWith("next.config"))) {
     return "next"
   }
 
   if (files.find((file) => file.startsWith("vite.config"))) {
-    const [viteConfigPath] = globbySync(
+    const [viteConfigPath] = findFiles(
       [
         "vite.config.ts",
         "vite.config.js",
         "vite.config.mjs",
         "vite.config.mts",
       ],
-      {
-        cwd,
-      },
+      cwd,
     )
     const viteConfig = readFileSync(viteConfigPath, "utf-8")
     const isRemix =
@@ -71,7 +82,7 @@ export async function getProjectContext(opts: ProjectContextOptions) {
     componentsDir: join("src", "components", "ui"),
   }
 
-  const files = globbySync(["next.config.*", "vite.config.*"], { cwd })
+  const files = findFiles(["next.config.*", "vite.config.*"], cwd)
 
   if (files.length > 0) {
     scope.framework = getFramework(files, cwd)

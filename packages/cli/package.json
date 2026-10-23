@@ -62,7 +62,6 @@
     "dotenv": "^17.2.3",
     "esbuild": "^0.28.0",
     "get-tsconfig": "^4.14.0",
-    "globby": "16.2.0",
     "look-it-up": "2.1.0",
     "package-manager-detector": "1.6.0",
     "prettier": "3.8.3",
