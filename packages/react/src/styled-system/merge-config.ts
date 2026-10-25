@@ -9,13 +9,29 @@ const isValidToken = (token: any): boolean => {
   return token && typeof token === "object" && !Array.isArray(token)
 }
 
-const normalizeNestedTokens = (target: Record<string, any>) => {
+const tokenGroups = ["tokens", "semanticTokens"] as const
+
+const hasNestedKeys = (token: any): boolean => {
+  return (
+    isValidToken(token) &&
+    Object.keys(token).some((k) => !tokenKeys.includes(k))
+  )
+}
+
+// When `other` (the config being merged with) nests a token, move this side's
+// token properties to DEFAULT too, so both land in one place and the later wins
+const normalizeNestedTokens = (
+  target: Record<string, any>,
+  other?: Record<string, any>,
+) => {
   walkObject(
     target,
-    (value) => {
+    (value, path) => {
       const keys = Object.keys(value)
       const nestedKeys = keys.filter((k) => !tokenKeys.includes(k))
-      const hasNested = nestedKeys.length > 0
+      const hasNested =
+        nestedKeys.length > 0 ||
+        hasNestedKeys(path.reduce((obj, key) => obj?.[key], other))
       const hasTokenProps = tokenKeys.some((k) => value[k] != null)
 
       // If this token has both token properties and nested tokens,
@@ -45,17 +61,19 @@ const normalizeNestedTokens = (target: Record<string, any>) => {
 }
 
 export const mergeConfigs = (...configs: SystemConfig[]): SystemConfig => {
-  const merged = mergeWith({}, ...configs.map(clone))
+  const merged: SystemConfig = {}
 
-  // Normalize tokens to handle nested token structures
-  if (merged.theme?.tokens) {
-    normalizeNestedTokens(merged.theme.tokens)
-  }
+  for (const config of configs.map(clone)) {
+    // Normalize before each merge: afterwards we can't tell which config a value
+    // came from, and a later `value` would lose to an earlier `DEFAULT`
+    tokenGroups.forEach((group) => {
+      const source = config?.theme?.[group]
+      const target = merged.theme?.[group]
+      if (source) normalizeNestedTokens(source, target)
+      if (target) normalizeNestedTokens(target, source)
+    })
 
-  // Semantic tokens are walked with the same `stop` predicate, so they need the
-  // same normalization or a nested override hides its sibling tokens.
-  if (merged.theme?.semanticTokens) {
-    normalizeNestedTokens(merged.theme.semanticTokens)
+    mergeWith(merged, config)
   }
 
   return merged

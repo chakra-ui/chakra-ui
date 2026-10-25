@@ -233,6 +233,90 @@ describe("mergeConfig", () => {
     ).toEqual({ _light: "tomato", _dark: "firebrick" })
   })
 
+  test("later value should override an earlier DEFAULT", () => {
+    const system = createSystem(defaultConfig, {
+      theme: {
+        semanticTokens: {
+          colors: {
+            bg: { value: { _light: "pink", _dark: "purple" } },
+          },
+        },
+      },
+    })
+
+    expect(system.tokens.getByName("colors.bg")?.extensions.conditions).toEqual(
+      { _light: "pink", _dark: "purple" },
+    )
+    expect(system.token("colors.bg.subtle")).toBe(
+      "var(--chakra-colors-bg-subtle)",
+    )
+
+    const mergedConfig = mergeConfigs(
+      {
+        theme: {
+          tokens: {
+            colors: {
+              brand: {
+                DEFAULT: { value: "#000000" },
+                100: { value: "#111111" },
+              },
+            },
+          },
+        },
+      },
+      { theme: { tokens: { colors: { brand: { value: "#ff0000" } } } } },
+    )
+    const tokenSystem = createSystem(mergedConfig)
+
+    expect(tokenSystem.token("colors.brand")).toBe("#ff0000")
+    expect(tokenSystem.token("colors.brand.100")).toBe("#111111")
+
+    expect(mergedConfig.theme?.tokens).toMatchInlineSnapshot(`
+      {
+        "colors": {
+          "brand": {
+            "100": {
+              "value": "#111111",
+            },
+            "DEFAULT": {
+              "value": "#ff0000",
+            },
+          },
+        },
+      }
+    `)
+  })
+
+  test("later DEFAULT should override an earlier value", () => {
+    const mergedConfig = mergeConfigs(
+      { theme: { tokens: { colors: { brand: { value: "#000000" } } } } },
+      {
+        theme: {
+          tokens: { colors: { brand: { DEFAULT: { value: "#111111" } } } },
+        },
+      },
+    )
+    const system = createSystem(mergedConfig)
+
+    expect(system.token("colors.brand")).toBe("#111111")
+    expect(mergedConfig.theme?.tokens).toMatchInlineSnapshot(`
+      {
+        "colors": {
+          "brand": {
+            "DEFAULT": {
+              "value": "#111111",
+            },
+          },
+        },
+      }
+    `)
+    expect(
+      createSystem(mergedConfig, {
+        theme: { tokens: { colors: { brand: { value: "#222222" } } } },
+      }).token("colors.brand"),
+    ).toBe("#222222")
+  })
+
   test("should handle nested token overrides with mixed-case sibling keys", () => {
     const baseConfig = {
       theme: {
