@@ -48,16 +48,16 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@clack/prompts": "1.5.1",
+    "@clack/prompts": "1.8.1",
     "@emotion/is-prop-valid": "^1.4.0",
     "@types/node": "^24.0.0",
     "commander": "14.0.3",
     "html-element-attributes": "3.5.0",
     "is-git-clean": "1.1.0",
-    "package-manager-detector": "1.6.0",
+    "package-manager-detector": "1.9.0",
     "picocolors": "1.1.1",
-    "prettier": "3.8.3",
-    "semver": "7.8.2",
+    "prettier": "3.9.10",
+    "semver": "7.8.5",
     "ts-morph": "28.0.0"
   },
   "devDependencies": {

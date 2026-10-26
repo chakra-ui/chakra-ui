@@ -9,7 +9,7 @@ overrides:
   immer: ">=11.0.1"
   # keep a single copy: CalendarDate uses private fields, so two versions
   # produce mutually incompatible types
-  "@internationalized/date": 3.12.3
+  "@internationalized/date": 3.12.4
 
 allowBuilds:
   esbuild: true
