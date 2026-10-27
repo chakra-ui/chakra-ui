@@ -21,6 +21,7 @@ export const ComboboxWithAsyncContent = () => {
   })
 
   const state = useAsync(async () => {
+    set([])
     const response = await fetch(
       `https://swapi.py4e.com/api/people/?search=${inputValue}`,
     )
@@ -50,28 +51,31 @@ export const ComboboxWithAsyncContent = () => {
         <Combobox.Positioner>
           <Combobox.Content minW="sm">
             {state.loading ? (
-              <HStack p="2">
-                <Spinner size="xs" borderWidth="1px" />
-                <Span>Loading...</Span>
-              </HStack>
+              <Combobox.Empty>
+                <HStack>
+                  <Spinner size="xs" borderWidth="1px" />
+                  <Span>Loading...</Span>
+                </HStack>
+              </Combobox.Empty>
             ) : state.error ? (
-              <Span p="2" color="fg.error">
-                Error fetching
-              </Span>
+              <Combobox.Empty color="fg.error">Error fetching</Combobox.Empty>
             ) : (
-              collection.items?.map((character) => (
-                <Combobox.Item key={character.name} item={character}>
-                  <HStack justify="space-between" textStyle="sm">
-                    <Span fontWeight="medium" truncate>
-                      {character.name}
-                    </Span>
-                    <Span color="fg.muted" truncate>
-                      {character.height}cm / {character.mass}kg
-                    </Span>
-                  </HStack>
-                  <Combobox.ItemIndicator />
-                </Combobox.Item>
-              ))
+              <>
+                <Combobox.Empty>No characters found</Combobox.Empty>
+                {collection.items?.map((character) => (
+                  <Combobox.Item key={character.name} item={character}>
+                    <HStack justify="space-between" textStyle="sm">
+                      <Span fontWeight="medium" truncate>
+                        {character.name}
+                      </Span>
+                      <Span color="fg.muted" truncate>
+                        {character.height}cm / {character.mass}kg
+                      </Span>
+                    </HStack>
+                    <Combobox.ItemIndicator />
+                  </Combobox.Item>
+                ))}
+              </>
             )}
           </Combobox.Content>
         </Combobox.Positioner>
