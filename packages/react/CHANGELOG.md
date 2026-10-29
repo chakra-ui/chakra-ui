@@ -1,5 +1,163 @@
 # @chakra-ui/react
 
+## 3.38.0
+
+### Minor Changes
+
+- [#10883](https://github.com/chakra-ui/chakra-ui/pull/10883)
+  [`7c26f1f`](https://github.com/chakra-ui/chakra-ui/commit/7c26f1fad4dcf14e7b97bf23d9b2a8da9d204a44)
+  Thanks [@kalisaNkevin](https://github.com/kalisaNkevin)! - **[New] Command**:
+  Add a searchable command menu built on `Combobox` and `Dialog`. It manages its
+  own overlay, keyboard navigation, and the `mod+k` shortcut.
+
+  ```tsx
+  <Command.Root collection={collection}>
+    <Command.Trigger>Open commands</Command.Trigger>
+    <Portal>
+      <Command.Backdrop />
+      <Command.Positioner>
+        <Command.Panel>
+          <Command.Control>
+            <Command.Indicator />
+            <Command.Input placeholder="Search commands" />
+          </Command.Control>
+          <Command.List>
+            {collection.items.map((item) => (
+              <Command.Item
+                key={item.value}
+                item={item}
+                onSelect={() => runCommand(item.value)}
+              >
+                <Command.ItemText>{item.label}</Command.ItemText>
+              </Command.Item>
+            ))}
+            <Command.Empty>No commands found</Command.Empty>
+          </Command.List>
+        </Command.Panel>
+      </Command.Positioner>
+    </Portal>
+  </Command.Root>
+  ```
+
+  - Items run their `onSelect` action and close the palette by default. Use
+    `closeOnSelect={false}` for nested pages or actions that keep it open.
+  - Command runs actions. For a picker with a persistent selection, use Combobox
+    or Listbox.
+  - Use `useCommand` with `Command.RootProvider` to control the palette from
+    anywhere, such as binding a `⌘K` shortcut.
+  - Use `Loading`, `Empty`, and `Separator` to represent asynchronous results
+    and organize command groups.
+
+- [#10883](https://github.com/chakra-ui/chakra-ui/pull/10883)
+  [`7c26f1f`](https://github.com/chakra-ui/chakra-ui/commit/7c26f1fad4dcf14e7b97bf23d9b2a8da9d204a44)
+  Thanks [@kalisaNkevin](https://github.com/kalisaNkevin)! - **Kbd**: Add
+  `KbdGroup` to group the keys of a shortcut. Its `size` and `variant` apply to
+  every `Kbd` inside. Single keys like `K` now render square.
+
+### Patch Changes
+
+- [`2c2fd7c`](https://github.com/chakra-ui/chakra-ui/commit/2c2fd7c1a510d7bb6f9f3d2bd6450bf2f3c3a13a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Flex, Square,
+  Circle**: Fix the array form of the `css` prop being ignored.
+  - **createOverlay**: Fix `remove` and `removeAll` leaving promises from
+    `open`, `close` and `waitForExit` pending forever. They now resolve with
+    `undefined`.
+  - **useBreakpoint**
+    - Fix always returning `"base"` when the `breakpoints` option is omitted.
+    - Fix the `getWindow` option being ignored, which broke media queries in
+      iframes and Shadow DOM. This also applies to `useBreakpointValue`.
+
+- [#10928](https://github.com/chakra-ui/chakra-ui/pull/10928)
+  [`2e78697`](https://github.com/chakra-ui/chakra-ui/commit/2e78697cb0a9003f6e665b1eb1f0c3e63cf4e48a)
+  Thanks [@waterWang](https://github.com/waterWang)! - - **NumberInput**: Fix
+  `NumberInput.Control` overflowing into the label when `NumberInput.Label` is
+  used inside `NumberInput.Root`. The control is now anchored to the bottom of
+  the root and sized to the input height.
+
+- [#11013](https://github.com/chakra-ui/chakra-ui/pull/11013)
+  [`244e036`](https://github.com/chakra-ui/chakra-ui/commit/244e03605c2f167b38f9cdf76bdb2e6664759b7f)
+  Thanks [@dfedoryshchev](https://github.com/dfedoryshchev)! - Fix
+  `useMediaQuery` ignoring a change to the queries it is given. The effect that
+  evaluated and subscribed to the queries only ran on mount, so a query derived
+  from state kept reporting the first render's result, and `useBreakpointValue`
+  returned the wrong entry once its value object gained or lost a breakpoint.
+
+- [`2c2fd7c`](https://github.com/chakra-ui/chakra-ui/commit/2c2fd7c1a510d7bb6f9f3d2bd6450bf2f3c3a13a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Checkbox Card,
+  Radio Card, Slider**: Fix `cursor` token overrides in the theme being ignored.
+  - **Theme**: Use `tokens.cursor.disabled` for disabled elements instead of a
+    hardcoded `not-allowed`, and `tokens.cursor.option` for Listbox items.
+  - **FileUpload**: Fix disabled delete triggers showing an active cursor and
+    full-opacity icon.
+  - **ScrollArea**: Fix the vertical scrollbar showing when content only
+    overflows horizontally, and vice versa.
+
+- [`2c2fd7c`](https://github.com/chakra-ui/chakra-ui/commit/2c2fd7c1a510d7bb6f9f3d2bd6450bf2f3c3a13a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **System**
+  - Fix variants named after a CSS shorthand, such as `rounded`, `bg` or `p`,
+    being dropped in `cva` and `sva`.
+  - Fix a `!` inside a style value being treated as `!important`, which broke
+    values like `content: '"!"'` and `url(/a!b.png)`. Only a trailing `!` or
+    `!important` is recognized now.
+  - Fix SSR hydration mismatches on `className` caused by the style cache
+    ignoring property order.
+  - Fix tokens with a value of `0` returning the fallback instead, e.g.
+    `useToken("zIndex", "base")`.
+
+- [`676d6cf`](https://github.com/chakra-ui/chakra-ui/commit/676d6cf37386061f4e92e96169b66a9ad58f3419)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update Ark UI to
+  v5.39.3.
+  - **Field**: Fix `Field.ErrorText` not being announced by VoiceOver and
+    Narrator. It is now linked to the input via `aria-describedby` instead of
+    `aria-errormessage`, so tests asserting `toHaveAccessibleErrorMessage`
+    should use `toHaveAccessibleDescription`.
+  - **Popover**: `Popover.Title` now renders an `h2` instead of a `div`, and its
+    ref is typed as `HTMLHeadingElement`.
+  - **Listbox, Toggle**: `Listbox.ItemText` and `Toggle.Indicator` now render a
+    `span` instead of a `div`, and their refs are typed as `HTMLSpanElement`.
+  - **Dialog, Drawer, Popover, Color Picker, Floating Panel**: `initialFocusEl`
+    can now return `false` to open without moving focus.
+  - **Pagination**: Add `api.type` and `api.getPageUrl(page)`.
+  - **Presence**: Fix elements with an exit animation staying mounted forever in
+    Safari, invisible but still blocking clicks.
+  - **Popover**: Fix `autoFocus={false}` being ignored for modal popovers.
+  - **Popover, Select, Menu**: Fix a stylesheet `z-index` on the positioner
+    being ignored.
+  - **Floating Panel**: Fix `strategy="absolute"` placing the panel outside its
+    boundary, and the panel not following its boundary when an ancestor scrolls.
+  - **Listbox**: Fix Shift+click range selection anchoring on the highlighted
+    item instead of the clicked one.
+  - **Tabs**: Fix programmatic tab selection triggering link navigation.
+  - **Toaster**: Fix `dir` and `getRootNode` being ignored.
+  - **Progress**: Fix the formatter not updating when `formatOptions` changes.
+  - **Splitter**: Fix slow dragging in large documents.
+  - Fix inline style values containing semicolons, such as data URLs, being cut
+    off when props merge.
+  - Fix an `Illegal invocation` error on setup when a tool like Storybook has
+    replaced `HTMLElement.prototype.focus`.
+
+- [#11048](https://github.com/chakra-ui/chakra-ui/pull/11048)
+  [`66a22d2`](https://github.com/chakra-ui/chakra-ui/commit/66a22d25d659b73e494e9cfd676c7577953e9ab7)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - Update Ark UI to
+  v5.40.0.
+  - **Combobox**: Add a `loading` prop that sets `aria-busy` on the list and
+    holds back the empty state while loading. The content stays visible while
+    loading, so a loading indicator shows even when there are no items.
+  - **Combobox, Menu**: Add `modifiers` to the `onSelect` details, and call
+    `onSelect` when a link item is modifier-clicked.
+  - **Pagination**: Items and triggers render as anchors when `type="link"`.
+  - **Pin Input**: Fix keystrokes going into the hidden input after a blocked
+    native `required` validation. Focus now moves to a visible input.
+  - **Steps**: Add `data-current`, `data-complete` and `data-incomplete` to the
+    item, and move `aria-current="step"` to the trigger.
+  - **Field**: Fix helper and error text not being announced on Select, Tags
+    Input, Color Picker, File Upload, Rating Group and Pin Input.
+  - **File Upload**: Fix `Field.Root readOnly` not making the file upload
+    read-only.
+  - **Toast**: Move focus to the next toast when a focused toast is dismissed.
+  - **Overlays**: Fix <kbd>Escape</kbd> not closing content right after it
+    opens, and floating content flashing at the top-left on first open.
+
 ## 3.37.0
 
 ### Minor Changes
