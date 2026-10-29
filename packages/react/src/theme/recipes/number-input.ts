@@ -46,10 +46,12 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       position: "absolute",
+      top: "auto",
+      bottom: "0",
       insetEnd: "0px",
       margin: "1px",
       width: "var(--stepper-width)",
-      height: "var(--input-height)",
+      height: "calc(var(--input-height) - 2px)",
       zIndex: "1",
       borderStartWidth: "1px",
       divideY: "1px",
@@ -72,7 +74,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
     size: {
       xs: {
         root: {
-          "--input-height": "sizes.7",
+          "--input-height": inputRecipe.variants!.size.xs["--input-height"],
         },
         input: inputRecipe.variants!.size.xs,
         control: {
@@ -82,7 +84,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       },
       sm: {
         root: {
-          "--input-height": "sizes.8",
+          "--input-height": inputRecipe.variants!.size.sm["--input-height"],
         },
         input: inputRecipe.variants!.size.sm,
         control: {
@@ -92,7 +94,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       },
       md: {
         root: {
-          "--input-height": "sizes.9",
+          "--input-height": inputRecipe.variants!.size.md["--input-height"],
         },
         input: inputRecipe.variants!.size.md,
         control: {
@@ -102,7 +104,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       },
       lg: {
         root: {
-          "--input-height": "sizes.10",
+          "--input-height": inputRecipe.variants!.size.lg["--input-height"],
         },
         input: inputRecipe.variants!.size.lg,
         control: {
