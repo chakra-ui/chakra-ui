@@ -223,8 +223,15 @@ programmatically.
 
 ### Selection Behavior
 
-Use the `selectionBehavior` prop to replace, clear, or preserve the input value
-after an item is selected.
+Use the `selectionBehavior` prop to control the input value after an item is
+selected:
+
+- `replace` (default): replace the input value with the selected item's label
+- `clear`: clear the input value
+- `preserve`: keep the current input value
+
+When `multiple` is enabled, the selection behavior is automatically set to
+`clear`.
 
 <ExampleTabs name="combobox-with-selection-behavior" />
 

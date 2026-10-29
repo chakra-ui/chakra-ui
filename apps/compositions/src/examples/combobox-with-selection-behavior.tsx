@@ -1,9 +1,8 @@
 "use client"
 
 import {
-  Box,
   Combobox,
-  Heading,
+  Portal,
   Stack,
   Text,
   useFilter,
@@ -12,62 +11,85 @@ import {
 
 export const ComboboxWithSelectionBehavior = () => {
   return (
-    <Stack gap="8" p="4">
-      <ComboboxDemo selectionBehavior="replace" />
-      <ComboboxDemo selectionBehavior="clear" />
-      <ComboboxDemo selectionBehavior="preserve" />
+    <Stack gap="8" maxW="sm">
+      {behaviors.map((behavior) => (
+        <ComboboxDemo key={behavior.value} {...behavior} />
+      ))}
     </Stack>
   )
 }
 
-const descriptions = {
-  replace: "Selected item replaces the input value",
-  clear: "Input value is cleared after selection",
-  preserve: "Input value is preserved after selection",
+type SelectionBehavior = NonNullable<
+  Combobox.RootProps["selectionBehavior"]
+>
+
+interface ComboboxDemoProps {
+  value: SelectionBehavior
+  label: string
+  description: string
 }
 
-const ComboboxDemo = (props: Partial<Combobox.RootProps>) => {
-  const { selectionBehavior = "replace" } = props
-
+const ComboboxDemo = (props: ComboboxDemoProps) => {
+  const { value, label, description } = props
   const { contains } = useFilter({ sensitivity: "base" })
-
   const { collection, filter } = useListCollection({
     initialItems: companies,
     filter: contains,
   })
 
   return (
-    <Box>
-      <Stack mb={4}>
-        <Heading as="h3">{selectionBehavior} Selection</Heading>
-        <Text textStyle="sm" color="gray.600">
-          {descriptions[selectionBehavior]}
+    <Combobox.Root
+      collection={collection}
+      selectionBehavior={value}
+      onInputValueChange={(details) => filter(details.inputValue)}
+    >
+      <Stack gap="1" mb="2">
+        <Combobox.Label>{label}</Combobox.Label>
+        <Text textStyle="sm" color="fg.muted">
+          {description}
         </Text>
       </Stack>
-
-      <Combobox.Root
-        collection={collection}
-        selectionBehavior={selectionBehavior}
-        onInputValueChange={(details) => filter(details.inputValue)}
-      >
-        <Combobox.Label>Select Companies</Combobox.Label>
-
-        <Combobox.Control>
-          <Combobox.Input />
-        </Combobox.Control>
-
-        <Combobox.Content>
-          {collection.items.map((item) => (
-            <Combobox.Item key={item.value} item={item}>
-              {item.label}
-              <Combobox.ItemIndicator />
-            </Combobox.Item>
-          ))}
-        </Combobox.Content>
-      </Combobox.Root>
-    </Box>
+      <Combobox.Control>
+        <Combobox.Input placeholder="Type to filter" />
+        <Combobox.IndicatorGroup>
+          <Combobox.ClearTrigger />
+          <Combobox.Trigger />
+        </Combobox.IndicatorGroup>
+      </Combobox.Control>
+      <Portal>
+        <Combobox.Positioner>
+          <Combobox.Content>
+            <Combobox.Empty>No companies found</Combobox.Empty>
+            {collection.items.map((item) => (
+              <Combobox.Item key={item.value} item={item}>
+                <Combobox.ItemText>{item.label}</Combobox.ItemText>
+                <Combobox.ItemIndicator />
+              </Combobox.Item>
+            ))}
+          </Combobox.Content>
+        </Combobox.Positioner>
+      </Portal>
+    </Combobox.Root>
   )
 }
+
+const behaviors: ComboboxDemoProps[] = [
+  {
+    value: "replace",
+    label: "Replace (default)",
+    description: "The selected item's label replaces the input value.",
+  },
+  {
+    value: "clear",
+    label: "Clear",
+    description: "The input value is cleared after an item is selected.",
+  },
+  {
+    value: "preserve",
+    label: "Preserve",
+    description: "The current input value is kept after an item is selected.",
+  },
+]
 
 const companies = [
   { label: "Apple", value: "apple" },
