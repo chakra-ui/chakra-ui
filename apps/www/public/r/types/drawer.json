@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Body": {
     "props": {
@@ -41,7 +42,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Content": {
     "props": {
@@ -56,7 +58,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Description": {
     "props": {
@@ -71,7 +74,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Footer": {
     "props": {
@@ -114,7 +118,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -156,10 +161,21 @@
         "defaultValue": false,
         "description": "The initial open state of the dialog when rendered.\nUse when you don't need to control the open state of the dialog."
       },
+      "defaultTriggerValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The initial active trigger value when rendered.\nUse when you don't need to control the active trigger value."
+      },
       "finalFocusEl": {
         "type": "() => MaybeElement",
         "isRequired": false,
         "description": "Element to receive focus when the dialog is closed"
+      },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
       },
       "id": {
         "type": "string",
@@ -167,7 +183,7 @@
         "description": "The unique identifier of the machine."
       },
       "ids": {
-        "type": "Partial<{\n  trigger: string\n  positioner: string\n  backdrop: string\n  content: string\n  closeTrigger: string\n  title: string\n  description: string\n}>",
+        "type": "Partial<{\n  trigger: string | ((value?: string | undefined) => string)\n  positioner: string\n  backdrop: string\n  content: string\n  closeTrigger: string\n  title: string\n  description: string\n}>",
         "isRequired": false,
         "description": "The ids of the elements in the dialog. Useful for composition."
       },
@@ -228,6 +244,11 @@
         "isRequired": false,
         "description": "Function called when this layer is closed due to a parent layer being closed"
       },
+      "onTriggerValueChange": {
+        "type": "(details: TriggerValueChangeDetails) => void",
+        "isRequired": false,
+        "description": "Function to call when the active trigger changes"
+      },
       "open": {
         "type": "boolean",
         "isRequired": false,
@@ -272,6 +293,11 @@
         "defaultValue": true,
         "description": "Whether to trap focus inside the dialog when it's opened"
       },
+      "triggerValue": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The controlled active trigger value"
+      },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
@@ -312,6 +338,12 @@
       "value": {
         "type": "UseDialogReturn",
         "isRequired": true
+      },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
       },
       "immediate": {
         "type": "boolean",
@@ -359,9 +391,15 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "value": {
+        "type": "string",
+        "isRequired": false,
+        "description": "The value that identifies this specific trigger"
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Title": {
     "props": {
@@ -376,7 +414,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLHeadingElement"
+    "element": "HTMLHeadingElement",
+    "tag": "h2"
   },
   "ActionTrigger": {
     "props": {

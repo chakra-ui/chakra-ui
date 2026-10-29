@@ -1,103 +1,99 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-
+const transform: Transform = (sourceFile) => {
   const disclosureNames = new Set<string>()
 
-  // 1. Find useDisclosure and handle renames/tracking
-  root.find(j.VariableDeclarator).forEach((path) => {
-    const init = path.node.init
-
+  // 1. Find useDisclosure() and handle renames / tracking.
+  for (const decl of sourceFile.getVariableDeclarations()) {
+    const init = decl.getInitializer()
     if (
-      init?.type === "CallExpression" &&
-      init.callee.type === "Identifier" &&
-      init.callee.name === "useDisclosure"
+      !init ||
+      !Node.isCallExpression(init) ||
+      !Node.isIdentifier(init.getExpression()) ||
+      init.getExpression().getText() !== "useDisclosure"
     ) {
-      // Scenario: const menu = useDisclosure()
-      if (path.node.id.type === "Identifier") {
-        disclosureNames.add(path.node.id.name)
-      }
+      continue
+    }
 
-      // Scenario: const { isOpen, onOpen } = useDisclosure()
-      if (path.node.id.type === "ObjectPattern") {
-        path.node.id.properties.forEach((prop) => {
+    const nameNode = decl.getNameNode()
+
+    // const menu = useDisclosure()
+    if (Node.isIdentifier(nameNode)) {
+      disclosureNames.add(nameNode.getText())
+      continue
+    }
+
+    // const { isOpen, onOpen } = useDisclosure()
+    if (Node.isObjectBindingPattern(nameNode)) {
+      const elements = nameNode.getElements()
+      for (let i = elements.length - 1; i >= 0; i--) {
+        const el = elements[i]
+        const propNameNode = el.getPropertyNameNode()
+        if (propNameNode) {
+          // Aliased: const { isOpen: menuOpen } -> const { open: menuOpen }
           if (
-            prop.type === "ObjectProperty" &&
-            prop.key.type === "Identifier" &&
-            prop.key.name === "isOpen"
+            Node.isIdentifier(propNameNode) &&
+            propNameNode.getText() === "isOpen"
           ) {
-            // Rename key to 'open'
-            prop.key.name = "open"
-
-            // If it wasn't aliased (const { isOpen }), rename the value too
-            if (
-              prop.value.type === "Identifier" &&
-              prop.value.name === "isOpen"
-            ) {
-              prop.value.name = "open"
-            }
+            propNameNode.replaceWithText("open")
           }
-        })
+        } else {
+          // Shorthand: const { isOpen } -> const { open }
+          const elName = el.getNameNode()
+          if (Node.isIdentifier(elName) && elName.getText() === "isOpen") {
+            elName.replaceWithText("open")
+          }
+        }
       }
     }
-  })
+  }
 
   // 2. Update references: menu.isOpen -> menu.open
   if (disclosureNames.size > 0) {
-    root.find(j.MemberExpression).forEach((path) => {
+    const accesses = sourceFile.getDescendantsOfKind(
+      SyntaxKind.PropertyAccessExpression,
+    )
+    for (let i = accesses.length - 1; i >= 0; i--) {
+      const pae = accesses[i]
+      const obj = pae.getExpression()
       if (
-        path.node.object.type === "Identifier" &&
-        disclosureNames.has(path.node.object.name) &&
-        path.node.property.type === "Identifier" &&
-        path.node.property.name === "isOpen"
+        Node.isIdentifier(obj) &&
+        disclosureNames.has(obj.getText()) &&
+        pae.getName() === "isOpen"
       ) {
-        path.node.property.name = "open"
+        pae.getNameNode().replaceWithText("open")
       }
-    })
+    }
   }
 
-  // 3. Update JSX usage for onOpenChange callback signature
-  // Transforms:
-  // onOpenChange={menu.onClose}
-  // -> onOpenChange={(e) => menu.onClose()}
-  root
-    .find(j.JSXAttribute, { name: { name: "onOpenChange" } })
-    .forEach((path) => {
-      const value = path.node.value
-      if (!value || value.type !== "JSXExpressionContainer") return
+  // 3. Update JSX usage for onOpenChange callback signature:
+  // onOpenChange={menu.onClose} -> onOpenChange={(e) => menu.onClose()}
+  const attrs = sourceFile.getDescendantsOfKind(SyntaxKind.JsxAttribute)
+  for (let i = attrs.length - 1; i >= 0; i--) {
+    const attr = attrs[i]
+    const nameNode = attr.getNameNode()
+    if (!Node.isIdentifier(nameNode) || nameNode.getText() !== "onOpenChange") {
+      continue
+    }
+    const init = attr.getInitializer()
+    if (!init || !Node.isJsxExpression(init)) continue
+    const expr = init.getExpression()
+    if (!expr) continue
 
-      const expr = value.expression
+    // Ignore if it's already a function.
+    if (Node.isArrowFunction(expr) || Node.isFunctionExpression(expr)) continue
 
-      // Ignore if already a function
-      if (
-        expr.type === "ArrowFunctionExpression" ||
-        expr.type === "FunctionExpression"
-      ) {
-        return
-      }
+    const isDisclosureCall =
+      (Node.isPropertyAccessExpression(expr) &&
+        Node.isIdentifier(expr.getExpression()) &&
+        disclosureNames.has(expr.getExpression().getText())) ||
+      (Node.isIdentifier(expr) && expr.getText() === "onClose")
 
-      const isDisclosureCall =
-        (expr.type === "MemberExpression" &&
-          expr.object.type === "Identifier" &&
-          disclosureNames.has(expr.object.name)) ||
-        (expr.type === "Identifier" && expr.name === "onClose")
-
-      if (isDisclosureCall) {
-        path.node.value = j.jsxExpressionContainer(
-          j.arrowFunctionExpression(
-            [j.identifier("e")],
-            j.callExpression(expr, []),
-          ),
-        )
-      }
-    })
-
-  return root.toSource({ quote: "single" })
+    if (isDisclosureCall) {
+      attr.setInitializer(`{(e) => ${expr.getText()}()}`)
+    }
+  }
 }
+
+export default transform

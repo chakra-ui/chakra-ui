@@ -1,5 +1,6 @@
 "use client"
 
+import { dataAttr } from "@ark-ui/react"
 import {
   Children,
   cloneElement,
@@ -14,7 +15,7 @@ import {
   type JsxStyleProps,
   chakra,
 } from "../../styled-system"
-import { cx, dataAttr } from "../../utils"
+import { cx } from "../../utils"
 
 const StyledGroup = chakra("div", {
   base: {

@@ -1,7 +1,8 @@
 "use client"
 
-import { DatePicker, Portal, parseDate } from "@chakra-ui/react"
+import { DatePicker, Portal } from "@chakra-ui/react"
 import type { DateValue } from "@chakra-ui/react"
+import { CalendarDate } from "@internationalized/date"
 import { LuCalendar } from "react-icons/lu"
 
 export const DatePickerYearPicker = () => {
@@ -45,7 +46,7 @@ const parse = (string: string | undefined) => {
   if (year < 100) {
     const currentYear = new Date().getFullYear()
     const currentCentury = Math.floor(currentYear / 100) * 100
-    return parseDate(new Date(currentCentury + year, 0))
+    return new CalendarDate(currentCentury + year, 1, 1)
   }
-  return parseDate(new Date(Number(string), 0))
+  return new CalendarDate(Number(string), 1, 1)
 }

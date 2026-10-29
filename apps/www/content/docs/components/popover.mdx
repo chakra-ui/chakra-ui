@@ -64,6 +64,16 @@ Use the `open` and `onOpenChange` to control the visibility of the popover.
 
 <ExampleTabs name="popover-controlled" />
 
+### Multiple Triggers
+
+Don't mount a popover per button. Put `value` on each `Trigger` under one
+`Root`. Click another trigger and the same popover moves to it.
+
+Track the active trigger with `triggerValue` and `onTriggerValueChange` on
+`Root`. If the target is not a button, use `positioning.getAnchorRect`.
+
+<ExampleTabs name="popover-with-multiple-triggers" />
+
 ### Sizes
 
 Use the `size` prop to change the size of the popover component.
@@ -257,6 +267,10 @@ const MyPopover = () => {
 ### Root
 
 <PropTable component="Popover" part="Root" />
+
+### Trigger
+
+<PropTable component="Popover" part="Trigger" />
 
 ## Explorer
 

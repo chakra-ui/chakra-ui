@@ -33,3 +33,4 @@ export { TagsInputWithStore as Store } from "compositions/examples/tags-input-wi
 export { TagsInputWithVariants as Variants } from "compositions/examples/tags-input-with-variants"
 export { TagsInputWithLongTags as LongTags } from "compositions/examples/tags-input-with-long-tags"
 export { TagsInputExplorerDemo as _Explorer } from "compositions/examples/tags-input-explorer-demo"
+export { TagsInputWithSanitizedValue as SanitizedValue } from "compositions/examples/tags-input-with-sanitized-value"

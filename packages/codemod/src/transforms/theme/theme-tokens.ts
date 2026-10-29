@@ -1,631 +1,449 @@
-import type { API, FileInfo } from "jscodeshift"
-import {
-  collectChakraLocalNames,
-  getJsxBaseName,
-} from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
-
-export default function transformer(file: FileInfo, _api: API) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-
-  const CHAKRA_PACKAGES = ["@chakra-ui/react"]
-  const transformedNodes = new Set()
-
-  const isObject = (node: any) => node?.type === "ObjectExpression"
-  const isIdentifier = (node: any) => node?.type === "Identifier"
-
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  let hasExtendThemeImport = false
-
-  const themeVariableNames = new Set<string>()
-
-  root.find(j.ImportDeclaration).forEach((path) => {
-    const source = path.node.source.value as string
-    if (CHAKRA_PACKAGES.includes(source) || source.startsWith("@chakra-ui/")) {
-      path.node.specifiers?.forEach((s) => {
-        if (s.type === "ImportSpecifier" && s.imported.name === "extendTheme") {
-          hasExtendThemeImport = true
-        }
-      })
-    }
-  })
-
-  function shouldNotWrapInValue(keyName: string): boolean {
-    // Keys that should be skipped from transformation entirely
-    const skipKeys = ["mdx", "components", "variants", "baseStyle"]
-    if (skipKeys.includes(keyName)) return true
-
-    return false
-  }
-
-  function transformThemeObject(objNode: any, ancestors: string[] = []) {
-    if (!isObject(objNode)) return
-
-    objNode.properties.forEach((prop: any) => {
-      const keyName = prop.key?.name
-      const value = prop.value
-
-      // Skip certain keys entirely
-      const skipKeys = ["styles", "components", "variants", "baseStyle", "mdx"]
-      if (skipKeys.includes(keyName)) return
-
-      const currentAncestors = [...ancestors, keyName]
-
-      if (isObject(value)) {
-        const isLeafMap = value.properties.every((p: any) => !isObject(p.value))
-
-        if (isLeafMap) {
-          value.properties.forEach((childProp: any) => {
-            const childKey = childProp.key?.name
-
-            // Don't wrap responsive values in textStyles or other excluded cases
-            if (!shouldNotWrapInValue(childKey)) {
-              if (childProp.value && !transformedNodes.has(childProp.value)) {
-                const node = childProp.value
-                const hasValue =
-                  isObject(node) &&
-                  node.properties.some((p: any) => p.key?.name === "value")
-                if (!hasValue) {
-                  childProp.value = j.objectExpression([
-                    j.property("init", j.identifier("value"), node),
-                  ])
-                  transformedNodes.add(childProp.value)
-                }
-              }
-            }
-          })
-        } else {
-          transformThemeObject(value, currentAncestors)
-        }
-      } else if (isIdentifier(value)) {
-        const varName = value.name
-        root
-          .find(j.VariableDeclarator, { id: { name: varName } })
-          .forEach((decl) => {
-            transformThemeObject(decl.node.init, currentAncestors)
-          })
-      }
-    })
-  }
-
-  // Transform textStyles/layerStyles to wrap each style in { value: ... }
-  function transformStyleObject(styleNode: any) {
-    if (!isObject(styleNode)) return
-
-    styleNode.properties.forEach((styleProp: any) => {
-      const styleValue = styleProp.value
-
-      // Skip if not an object (shouldn't happen in valid styles)
-      if (!isObject(styleValue)) return
-
-      // Check if already wrapped in { value: ... }
-      const hasValue = styleValue.properties.some(
-        (p: any) => p.key?.name === "value" || p.key?.value === "value",
-      )
-
-      if (hasValue) return
-
-      // Check if this is a style definition (has CSS properties) or has description
-      const hasDescription = styleValue.properties.some(
-        (p: any) => p.key?.name === "description",
-      )
-
-      const cssProperties = styleValue.properties.filter(
-        (p: any) => p.key?.name !== "description",
-      )
-
-      // If we have CSS properties, wrap them in { value: ... }
-      if (cssProperties.length > 0) {
-        const newProperties: any[] = []
-
-        // Preserve description if it exists
-        if (hasDescription) {
-          const descProp = styleValue.properties.find(
-            (p: any) => p.key?.name === "description",
-          )
-          if (descProp) {
-            newProperties.push(descProp)
-          }
-        }
-
-        // Wrap CSS properties in value
-        newProperties.push(
-          j.property(
-            "init",
-            j.identifier("value"),
-            j.objectExpression(cssProperties),
-          ),
-        )
-
-        styleProp.value = j.objectExpression(newProperties)
-      }
-    })
-  }
-
-  // Transform semantic tokens to use nested value syntax
-  function transformSemanticTokens(semanticTokensNode: any) {
-    if (!isObject(semanticTokensNode)) return
-
-    function processSemanticToken(prop: any) {
-      const value = prop.value
-      if (!value) return
-
-      if (!isObject(value)) {
-        // Handle Literal values: 'teal.500' -> { value: 'teal.500' }
-        prop.value = j.objectExpression([
-          j.property("init", j.identifier("value"), value),
-        ])
-        return
-      }
-
-      const properties = value.properties
-      // Check if it's already wrapped in { value: ... }
-      const hasValue = properties.some(
-        (p: any) =>
-          (p.key?.type === "Identifier" && p.key?.name === "value") ||
-          (p.key?.type === "Literal" && p.key?.value === "value"),
-      )
-
-      if (hasValue) return
-
-      const hasConditions = properties.some((p: any) => {
-        const name = p.key?.name || p.key?.value
-        return (
-          name === "default" ||
-          (typeof name === "string" && name.startsWith("_"))
-        )
-      })
-
-      if (hasConditions) {
-        // Transform: { default: 'teal.500', _dark: 'teal.300' }
-        // To: { value: { base: 'teal.500', _dark: 'teal.300' } }
-        const transformedProps = properties.map((p: any) => {
-          const condKey = p.key?.name || p.key?.value
-          const newKey = condKey === "default" ? "base" : condKey
-
-          let val = p.value
-          // Flatten if already wrapped in { value: ... }
-          if (isObject(val) && val.properties.length === 1) {
-            const subProp = val.properties[0]
-            const subKey = subProp.key?.name || subProp.key?.value
-            if (subKey === "value") {
-              val = subProp.value
-            }
-          }
-
-          return j.property("init", j.identifier(newKey), val)
-        })
-
-        prop.value = j.objectExpression([
-          j.property(
-            "init",
-            j.identifier("value"),
-            j.objectExpression(transformedProps),
-          ),
-        ])
-      } else {
-        // Nested object, recurse
-        properties.forEach((childProp: any) => {
-          processSemanticToken(childProp)
-        })
-      }
-    }
-
-    semanticTokensNode.properties.forEach((categoryProp: any) => {
-      const categoryValue = categoryProp.value
-      if (isObject(categoryValue)) {
-        categoryValue.properties.forEach((tokenProp: any) => {
-          processSemanticToken(tokenProp)
-        })
-      }
-    })
-  }
-
-  // Fix nested selectors in global styles by adding & prefix
-  function fixGlobalStyleSelectors(globalStylesNode: any) {
-    if (!globalStylesNode || !isObject(globalStylesNode)) return
-
-    function processStyleObject(node: any, depth: number = 0) {
-      if (!isObject(node)) return
-
-      node.properties.forEach((prop: any) => {
-        const key = prop.key?.name || prop.key?.value
-
-        if (typeof key === "string" && isObject(prop.value)) {
-          // Only fix selectors at depth > 0 (nested inside an element selector like 'body')
-          if (depth > 0) {
-            // Check if it's a class/element selector that doesn't already have &
-            const needsAmpersand =
-              (key.startsWith(".") || /^[a-z]/i.test(key)) &&
-              !key.startsWith("&") &&
-              !key.startsWith("*") &&
-              !key.startsWith(":") && // pseudo-selectors like :hover don't need &
-              !key.includes(",") // compound selectors like 'html, body' don't need &
-
-            if (needsAmpersand) {
-              prop.key = j.literal(`& ${key}`)
-            }
-          }
-        }
-
-        // Recursively process nested objects with increased depth
-        if (isObject(prop.value)) {
-          processStyleObject(prop.value, depth + 1)
-        }
-      })
-    }
-
-    processStyleObject(globalStylesNode)
-  }
-
-  // First pass: Find all extendTheme calls and track variable names
-  root
-    .find(j.CallExpression, { callee: { name: "extendTheme" } })
-    .forEach((path) => {
-      const parent = path.parent
-
-      if (
-        parent.value.type === "VariableDeclarator" &&
-        parent.value.id.type === "Identifier"
-      ) {
-        const varName = parent.value.id.name
-        themeVariableNames.add(varName)
-      } else if (parent.value.type === "ExportDefaultDeclaration") {
-        themeVariableNames.add("theme")
-        themeVariableNames.add("system")
-      }
-
-      const argPath = path.get("arguments", 0)
-      if (isIdentifier(argPath.value)) {
-        const themeVarName = argPath.value.name
-        themeVariableNames.add(themeVarName)
-      }
-    })
-
-  // Second pass: Transform the extendTheme calls
-  root
-    .find(j.CallExpression, { callee: { name: "extendTheme" } })
-    .forEach((path) => {
-      const argPath = path.get("arguments", 0)
-      let targetObjectPath = argPath
-      let themeVarName: string | null = null
-
-      // Handle case where argument is a variable reference
-      if (isIdentifier(argPath.value)) {
-        themeVarName = argPath.value.name
-        const declPath = root.find(j.VariableDeclarator, {
-          id: { name: themeVarName as string },
-        })
-
-        if (declPath.length > 0) {
-          declPath.forEach((decl) => {
-            targetObjectPath = decl.get("init")
-            j(decl.parent).remove()
-          })
-        }
-      }
-
-      // Ensure we have an object to work with
-      if (!isObject(targetObjectPath.value)) {
-        return
-      }
-
-      const properties = targetObjectPath.value.properties as any[]
-
-      // 1. Extract and fix global styles
-      const stylesIndex = properties.findIndex((p) => p.key?.name === "styles")
-      let globalStyles = null
-      if (stylesIndex !== -1) {
-        const stylesProp = properties[stylesIndex]
-        if (isObject(stylesProp.value)) {
-          const globalProp = stylesProp.value.properties.find(
-            (p: any) => p.key?.name === "global",
-          )
-          if (globalProp) {
-            globalStyles = globalProp.value
-            fixGlobalStyleSelectors(globalStyles)
-          }
-        }
-        properties.splice(stylesIndex, 1)
-      }
-
-      // 2. Extract and transform textStyles
-      const textStylesIndex = properties.findIndex(
-        (p) => p.key?.name === "textStyles",
-      )
-      let textStyles = null
-      if (textStylesIndex !== -1) {
-        textStyles = properties[textStylesIndex].value
-        // Transform textStyles to wrap values in { value: ... }
-        transformStyleObject(textStyles)
-        properties.splice(textStylesIndex, 1)
-      }
-
-      // 3. Extract and transform layerStyles
-      const layerStylesIndex = properties.findIndex(
-        (p) => p.key?.name === "layerStyles",
-      )
-      let layerStyles = null
-      if (layerStylesIndex !== -1) {
-        layerStyles = properties[layerStylesIndex].value
-        // Transform layerStyles to wrap values in { value: ... }
-        transformStyleObject(layerStyles)
-        properties.splice(layerStylesIndex, 1)
-      }
-
-      // 4. Extract and transform semanticTokens
-      const semanticTokensIndex = properties.findIndex(
-        (p) => p.key?.name === "semanticTokens",
-      )
-      let semanticTokens = null
-      if (semanticTokensIndex !== -1) {
-        semanticTokens = properties[semanticTokensIndex].value
-        // Transform semantic tokens
-        transformSemanticTokens(semanticTokens)
-        properties.splice(semanticTokensIndex, 1)
-      }
-
-      // 5. Remove config
-      const configIndex = properties.findIndex((p) => p.key?.name === "config")
-      if (configIndex !== -1) {
-        properties.splice(configIndex, 1)
-      }
-
-      // 6. Identify regular tokens vs custom keys
-      const standardTokenKeys = [
-        "colors",
-        "space",
-        "fonts",
-        "fontSizes",
-        "fontWeights",
-        "lineHeights",
-        "letterSpacings",
-        "sizes",
-        "borders",
-        "borderStyles",
-        "borderWidths",
-        "radii",
-        "shadows",
-        "zIndices",
-        "breakpoints",
-      ]
-
-      const tokenProperties: any[] = []
-      const customProperties: any[] = []
-
-      properties.forEach((prop) => {
-        const name = prop.key?.name
-        if (standardTokenKeys.includes(name)) {
-          tokenProperties.push(prop)
-        } else {
-          customProperties.push(prop)
-        }
-      })
-
-      // Transform regular tokens
-      if (tokenProperties.length > 0) {
-        const tempObj = j.objectExpression(tokenProperties)
-        transformThemeObject(tempObj)
-      }
-
-      // 7. Build the createSystem config object
-      const themeProperties: any[] = []
-
-      if (tokenProperties.length > 0) {
-        themeProperties.push(
-          j.property(
-            "init",
-            j.identifier("tokens"),
-            j.objectExpression(tokenProperties),
-          ),
-        )
-      }
-
-      if (semanticTokens) {
-        themeProperties.push(
-          j.property("init", j.identifier("semanticTokens"), semanticTokens),
-        )
-      }
-
-      if (textStyles) {
-        themeProperties.push(
-          j.property("init", j.identifier("textStyles"), textStyles),
-        )
-      }
-
-      if (layerStyles) {
-        themeProperties.push(
-          j.property("init", j.identifier("layerStyles"), layerStyles),
-        )
-      }
-
-      const configProperties: any[] = []
-
-      if (globalStyles) {
-        configProperties.push(
-          j.property("init", j.identifier("globalCss"), globalStyles),
-        )
-      }
-
-      if (themeProperties.length > 0) {
-        configProperties.push(
-          j.property(
-            "init",
-            j.identifier("theme"),
-            j.objectExpression(themeProperties),
-          ),
-        )
-      }
-
-      // Add custom properties (like mdx) to the top level
-      customProperties.forEach((prop) => {
-        configProperties.push(prop)
-      })
-
-      path.replace(
-        j.callExpression(j.identifier("createSystem"), [
-          j.identifier("defaultConfig"),
-          j.objectExpression(configProperties),
-        ]),
-      )
-    })
-
-  if (hasExtendThemeImport) {
-    root.find(j.ImportDeclaration).forEach((path) => {
-      const source = path.node.source.value as string
-      if (
-        CHAKRA_PACKAGES.includes(source) ||
-        source.startsWith("@chakra-ui/")
-      ) {
-        path.node.source.value = "@chakra-ui/react"
-        path.node.specifiers = path.node.specifiers?.filter(
-          (s) =>
-            !(
-              s.type === "ImportSpecifier" && s.imported.name === "extendTheme"
-            ),
-        )
-        const names = path.node.specifiers?.map((s: any) => s.imported?.name)
-        if (!names?.includes("createSystem")) {
-          path.node.specifiers?.push(
-            j.importSpecifier(j.identifier("createSystem")),
-          )
-        }
-        if (!names?.includes("defaultConfig")) {
-          path.node.specifiers?.push(
-            j.importSpecifier(j.identifier("defaultConfig")),
-          )
-        }
-        if (path.node.specifiers?.length === 0) {
-          j(path).remove()
-        }
-      }
-    })
-  }
-
-  // Track default imports that might be theme/system
-  root.find(j.ImportDefaultSpecifier).forEach((path) => {
-    const localName = path.value.local?.name
-    if (localName === "theme" || localName === "system") {
-      themeVariableNames.add(localName)
-    }
-  })
-
-  // Track variable declarations
-  root.find(j.VariableDeclarator).forEach((path) => {
-    if (path.value.id.type === "Identifier") {
-      const varName = path.value.id.name
-      if (varName === "theme" || varName === "system") {
-        themeVariableNames.add(varName)
-      }
-    }
-  })
-
-  // Rename theme variables to system
-  root.find(j.VariableDeclarator, { id: { name: "theme" } }).forEach((path) => {
-    const init = path.value.init
-    const isCreateSystemCall =
-      init?.type === "CallExpression" &&
-      init.callee?.type === "Identifier" &&
-      init.callee.name === "createSystem"
-
-    if (!isCreateSystemCall) {
-      return
-    }
-
-    const newName = "system"
-    themeVariableNames.delete("theme")
-    themeVariableNames.add(newName)
-    path.get("id").replace(j.identifier(newName))
-  })
-
-  // Update standalone 'theme' identifiers to 'system'
-  root.find(j.Identifier, { name: "theme" }).forEach((path) => {
-    const parent = path.parent.node
-    if (parent.type !== "Property" || parent.value === path.node) {
-      if (
-        parent.type !== "JSXAttribute" &&
-        parent.type !== "MemberExpression" &&
-        parent.type !== "VariableDeclarator" &&
-        parent.type !== "ImportDefaultSpecifier"
-      ) {
-        if (themeVariableNames.has("theme")) {
-          path.node.name = "system"
-        }
-      }
-    }
-  })
-
-  root
-    .find(j.JSXOpeningElement)
-    .filter((p) => {
-      const baseName = getJsxBaseName(p.node.name)
-      return baseName === "ChakraProvider" || chakraLocalNames.has(baseName)
-    })
-    .forEach((path) => {
-      path.get("attributes").each((attr: any) => {
-        if (attr.value?.name?.name === "theme") {
-          attr.get("name").replace(j.jsxIdentifier("value"))
-        }
-      })
-    })
-
-  root.find(j.VariableDeclarator, { id: { name: "extendTheme" } }).remove()
-  root.find(j.FunctionDeclaration, { id: { name: "extendTheme" } }).remove()
-
-  // Helper functions for token transformation
-  function buildTokenPath(node: any): string[] {
-    const parts: string[] = []
-    let current = node
-
-    while (current && current.type === "MemberExpression") {
-      if (current.property.type === "Identifier" && !current.computed) {
-        parts.unshift(current.property.name)
-      } else if (current.property.type === "Literal") {
-        parts.unshift(String(current.property.value))
-      } else if (current.property.type === "Identifier" && current.computed) {
-        return []
-      }
-      current = current.object
-    }
-
-    return parts
-  }
-
-  function getRootIdentifier(node: any): string | null {
-    let current = node
-    while (current && current.type === "MemberExpression") {
-      current = current.object
-    }
-    if (current && current.type === "Identifier") {
-      return current.name
-    }
-    return null
-  }
-
-  // Transform all theme token accesses to .token() calls
-  root.find(j.MemberExpression).forEach((path) => {
-    const node = path.node
-    const rootName = getRootIdentifier(node)
-
-    if (!rootName || !themeVariableNames.has(rootName)) {
-      return
-    }
-
-    const parts = buildTokenPath(node)
-    if (parts.length === 0) return
-
-    if (parts.length >= 2) {
-      const tokenPath = parts.join(".")
-
-      path.replace(
-        j.callExpression(
-          j.memberExpression(j.identifier(rootName), j.identifier("token")),
-          [j.literal(tokenPath)],
-        ),
-      )
-    }
-  })
-
-  return root.toSource({ quote: "single", trailingComma: true })
+import { Node, SyntaxKind } from "ts-morph"
+import type { ObjectLiteralExpression, SourceFile } from "ts-morph"
+import type { Transform, TransformContext } from "../../transform"
+
+const STANDARD_TOKEN_KEYS = [
+  "colors",
+  "space",
+  "fonts",
+  "fontSizes",
+  "fontWeights",
+  "lineHeights",
+  "letterSpacings",
+  "sizes",
+  "borders",
+  "borderStyles",
+  "borderWidths",
+  "radii",
+  "shadows",
+  "zIndices",
+  "breakpoints",
+]
+
+const SKIP_KEYS = ["styles", "components", "variants", "baseStyle", "mdx"]
+
+function asObject(node: Node | undefined): ObjectLiteralExpression | undefined {
+  return node && Node.isObjectLiteralExpression(node) ? node : undefined
 }
+
+function initOf(prop: Node): Node | undefined {
+  return Node.isPropertyAssignment(prop) ? prop.getInitializer() : undefined
+}
+
+function hasValueKey(obj: ObjectLiteralExpression): boolean {
+  return !!obj.getProperty("value")
+}
+
+/**
+ * Wrap the leaves of a token category in `{ value: ... }`. Handles a flat leaf
+ * map (`{ sm: '8px' }`), a nested group (`{ brand: { 500: '#fff' } }`), and
+ * imported identifiers (resolved cross-file). Already-wrapped objects are left
+ * alone, so it's idempotent.
+ */
+function wrapTokenCategory(
+  obj: ObjectLiteralExpression,
+  sourceFile: SourceFile,
+  ctx: TransformContext,
+) {
+  if (hasValueKey(obj)) return
+
+  const isLeafMap = obj.getProperties().every((p) => !asObject(initOf(p)))
+  if (isLeafMap) {
+    for (const child of obj.getProperties()) wrapLeaf(child)
+    return
+  }
+
+  for (const prop of obj.getProperties()) {
+    const name = Node.isPropertyAssignment(prop)
+      ? prop.getName()
+      : Node.isShorthandPropertyAssignment(prop)
+        ? prop.getName()
+        : undefined
+    if (name && SKIP_KEYS.includes(name)) continue
+
+    const init = initOf(prop)
+    const initObj = asObject(init)
+    if (initObj) {
+      wrapTokenCategory(initObj, sourceFile, ctx)
+    } else if (init && Node.isIdentifier(init)) {
+      resolveAndWrapCrossFile(init.getText(), sourceFile, ctx)
+    } else if (Node.isShorthandPropertyAssignment(prop)) {
+      resolveAndWrapCrossFile(prop.getName(), sourceFile, ctx)
+    }
+  }
+}
+
+function wrapLeaf(prop: Node) {
+  if (!Node.isPropertyAssignment(prop)) return
+  const init = prop.getInitializer()
+  if (!init) return
+  const initObj = asObject(init)
+  if (initObj && hasValueKey(initObj)) return
+  prop.setInitializer(`{\nvalue: ${init.getText()}\n}`)
+}
+
+/**
+ * Follow an imported token identifier to its source file and wrap the leaves
+ * there (the whole point of the ts-morph engine). Leaves the theme reference
+ * untouched. Warns when the import can't be resolved.
+ */
+function resolveAndWrapCrossFile(
+  localName: string,
+  sourceFile: SourceFile,
+  ctx: TransformContext,
+) {
+  // Same-file declaration: wrap in place.
+  const localDecl = sourceFile.getVariableDeclaration(localName)
+  if (localDecl) {
+    const obj = asObject(localDecl.getInitializer())
+    if (obj) wrapTokenCategory(obj, sourceFile, ctx)
+    return
+  }
+
+  // Imported from a sibling file: resolve and wrap there.
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    const named = importDecl
+      .getNamedImports()
+      .find((n) => (n.getAliasNode()?.getText() ?? n.getName()) === localName)
+    if (!named) continue
+
+    const sibling = importDecl.getModuleSpecifierSourceFile()
+    if (!sibling) {
+      ctx.report({
+        level: "warn",
+        message: `Couldn't resolve token import "${localName}" from "${importDecl.getModuleSpecifierValue()}".`,
+        action:
+          "Migrate its token values to the `{ value: ... }` shape manually. See https://chakra-ui.com/docs/theming/tokens",
+      })
+      return
+    }
+
+    const decl = sibling.getVariableDeclaration(named.getName())
+    const obj = asObject(decl?.getInitializer())
+    if (obj) wrapTokenCategory(obj, sibling, ctx)
+    return
+  }
+}
+
+/** Wrap textStyles / layerStyles CSS in `{ value: ... }`, preserving description. */
+function transformStyleObject(obj: ObjectLiteralExpression) {
+  for (const styleProp of obj.getProperties()) {
+    if (!Node.isPropertyAssignment(styleProp)) continue
+    const val = asObject(styleProp.getInitializer())
+    if (!val || hasValueKey(val)) continue
+
+    const descProp = val.getProperty("description")
+    const descText =
+      descProp && Node.isPropertyAssignment(descProp)
+        ? descProp.getText()
+        : null
+    const cssProps = val
+      .getProperties()
+      .filter(
+        (p) => !(Node.isPropertyAssignment(p) && p.getName() === "description"),
+      )
+    if (cssProps.length === 0) continue
+
+    const cssText = cssProps.map((p) => p.getText()).join(",\n")
+    styleProp.setInitializer(
+      descText
+        ? `{\n${descText},\nvalue: {\n${cssText}\n}\n}`
+        : `{\nvalue: {\n${cssText}\n}\n}`,
+    )
+  }
+}
+
+/** Transform semanticTokens to nested `{ value: ... }` / condition syntax. */
+function transformSemanticTokens(obj: ObjectLiteralExpression) {
+  const processToken = (prop: Node) => {
+    if (!Node.isPropertyAssignment(prop)) return
+    const val = prop.getInitializer()
+    if (!val) return
+    const valObj = asObject(val)
+
+    if (!valObj) {
+      prop.setInitializer(`{\nvalue: ${val.getText()}\n}`)
+      return
+    }
+    if (hasValueKey(valObj)) return
+
+    const hasConditions = valObj.getProperties().some((p) => {
+      const name = Node.isPropertyAssignment(p) ? p.getName() : undefined
+      return name === "default" || (!!name && name.startsWith("_"))
+    })
+
+    if (hasConditions) {
+      const parts = valObj.getProperties().map((p) => {
+        if (!Node.isPropertyAssignment(p)) return p.getText()
+        const key = p.getName()
+        const newKey = key === "default" ? "base" : key
+        let v = p.getInitializer()!
+        const vObj = asObject(v)
+        if (vObj && vObj.getProperties().length === 1) {
+          const inner = vObj.getProperty("value")
+          if (inner && Node.isPropertyAssignment(inner))
+            v = inner.getInitializer()!
+        }
+        return `${newKey}: ${v.getText()}`
+      })
+      prop.setInitializer(`{\nvalue: {\n${parts.join(",\n")}\n}\n}`)
+    } else {
+      for (const child of valObj.getProperties()) processToken(child)
+    }
+  }
+
+  for (const categoryProp of obj.getProperties()) {
+    const catVal = asObject(initOf(categoryProp))
+    if (catVal)
+      for (const tokenProp of catVal.getProperties()) processToken(tokenProp)
+  }
+}
+
+/** Add `&` prefix to nested selectors in global styles. */
+function fixGlobalStyleSelectors(obj: ObjectLiteralExpression, depth = 0) {
+  for (const prop of obj.getProperties()) {
+    if (!Node.isPropertyAssignment(prop)) continue
+    const key = prop.getName()
+    const val = asObject(prop.getInitializer())
+    if (!val) continue
+    const needsAmpersand =
+      depth > 0 &&
+      (key.startsWith(".") || /^[a-z]/i.test(key)) &&
+      !key.startsWith("&") &&
+      !key.startsWith("*") &&
+      !key.startsWith(":") &&
+      !key.includes(",")
+    if (needsAmpersand) prop.getNameNode().replaceWithText(`'& ${key}'`)
+    fixGlobalStyleSelectors(val, depth + 1)
+  }
+}
+
+function buildInnerConfig(parts: {
+  globalCss?: string
+  tokens?: string[]
+  semanticTokens?: string
+  textStyles?: string
+  layerStyles?: string
+  custom: string[]
+}): string {
+  const themeEntries: string[] = []
+  if (parts.tokens?.length)
+    themeEntries.push(`tokens: {\n${parts.tokens.join(",\n")}\n}`)
+  if (parts.semanticTokens)
+    themeEntries.push(`semanticTokens: ${parts.semanticTokens}`)
+  if (parts.textStyles) themeEntries.push(`textStyles: ${parts.textStyles}`)
+  if (parts.layerStyles) themeEntries.push(`layerStyles: ${parts.layerStyles}`)
+
+  const configEntries: string[] = []
+  if (parts.globalCss) configEntries.push(`globalCss: ${parts.globalCss}`)
+  if (themeEntries.length)
+    configEntries.push(`theme: {\n${themeEntries.join(",\n")}\n}`)
+  configEntries.push(...parts.custom)
+
+  return `{\n${configEntries.join(",\n")}\n}`
+}
+
+const transform: Transform = (sourceFile, ctx) => {
+  const chakraImport = sourceFile.getImportDeclaration(
+    (d) =>
+      d.getModuleSpecifierValue() === "@chakra-ui/react" ||
+      d.getModuleSpecifierValue().startsWith("@chakra-ui/"),
+  )
+  const hasExtendTheme = !!chakraImport
+    ?.getNamedImports()
+    .find((n) => n.getName() === "extendTheme")
+
+  // Find extendTheme(...) calls.
+  const extendCalls = sourceFile
+    .getDescendantsOfKind(SyntaxKind.CallExpression)
+    .filter((c) => {
+      const expr = c.getExpression()
+      return Node.isIdentifier(expr) && expr.getText() === "extendTheme"
+    })
+
+  for (const call of extendCalls) {
+    const arg = call.getArguments()[0]
+    let obj = asObject(arg)
+    if (!obj && arg && Node.isIdentifier(arg)) {
+      const decl = sourceFile.getVariableDeclaration(arg.getText())
+      obj = asObject(decl?.getInitializer())
+    }
+    if (!obj) continue
+
+    // 1. Global styles
+    let globalCss: string | undefined
+    const stylesProp = obj.getProperty("styles")
+    if (stylesProp && Node.isPropertyAssignment(stylesProp)) {
+      const stylesObj = asObject(stylesProp.getInitializer())
+      const globalProp = stylesObj?.getProperty("global")
+      const globalObj =
+        globalProp && Node.isPropertyAssignment(globalProp)
+          ? asObject(globalProp.getInitializer())
+          : undefined
+      if (globalObj) {
+        fixGlobalStyleSelectors(globalObj)
+        globalCss = globalObj.getText()
+      }
+      stylesProp.remove()
+    }
+
+    // 2. textStyles / 3. layerStyles
+    const grabStyle = (key: string): string | undefined => {
+      const prop = obj!.getProperty(key)
+      if (!prop || !Node.isPropertyAssignment(prop)) return undefined
+      const styleObj = asObject(prop.getInitializer())
+      if (styleObj) transformStyleObject(styleObj)
+      const text = prop.getInitializer()?.getText()
+      prop.remove()
+      return text
+    }
+    const textStyles = grabStyle("textStyles")
+    const layerStyles = grabStyle("layerStyles")
+
+    // 4. semanticTokens
+    let semanticTokens: string | undefined
+    const semProp = obj.getProperty("semanticTokens")
+    if (semProp && Node.isPropertyAssignment(semProp)) {
+      const semObj = asObject(semProp.getInitializer())
+      if (semObj) transformSemanticTokens(semObj)
+      semanticTokens = semProp.getInitializer()?.getText()
+      semProp.remove()
+    }
+
+    // 5. config
+    obj.getProperty("config")?.remove()
+
+    // 6. tokens vs custom
+    const tokens: string[] = []
+    const custom: string[] = []
+
+    // Wrap token leaves across the whole object (only token keys are wrapped;
+    // non-standard keys are treated as custom and left alone below).
+    for (const prop of [...obj.getProperties()]) {
+      const name = Node.isPropertyAssignment(prop)
+        ? prop.getName()
+        : Node.isShorthandPropertyAssignment(prop)
+          ? prop.getName()
+          : undefined
+      if (!name) continue
+      if (STANDARD_TOKEN_KEYS.includes(name)) {
+        const initObj = asObject(initOf(prop))
+        if (initObj) {
+          wrapTokenCategory(initObj, sourceFile, ctx)
+        } else if (
+          Node.isPropertyAssignment(prop) &&
+          Node.isIdentifier(prop.getInitializer()!)
+        ) {
+          resolveAndWrapCrossFile(
+            prop.getInitializer()!.getText(),
+            sourceFile,
+            ctx,
+          )
+        } else if (Node.isShorthandPropertyAssignment(prop)) {
+          resolveAndWrapCrossFile(name, sourceFile, ctx)
+        }
+        tokens.push(prop.getText())
+      } else {
+        custom.push(prop.getText())
+      }
+    }
+
+    const inner = buildInnerConfig({
+      globalCss,
+      tokens,
+      semanticTokens,
+      textStyles,
+      layerStyles,
+      custom,
+    })
+
+    call.replaceWithText(`createSystem(defaultConfig, ${inner})`)
+  }
+
+  // Update imports: extendTheme -> createSystem + defaultConfig
+  if (hasExtendTheme && chakraImport) {
+    chakraImport
+      .getNamedImports()
+      .find((n) => n.getName() === "extendTheme")
+      ?.remove()
+    chakraImport.setModuleSpecifier("@chakra-ui/react")
+    const names = chakraImport.getNamedImports().map((n) => n.getName())
+    if (!names.includes("createSystem"))
+      chakraImport.addNamedImport("createSystem")
+    if (!names.includes("defaultConfig"))
+      chakraImport.addNamedImport("defaultConfig")
+  }
+
+  // Rename the theme variable (const theme = createSystem(...)) to `system`.
+  for (const decl of sourceFile.getVariableDeclarations()) {
+    const init = decl.getInitializer()
+    if (
+      decl.getName() === "theme" &&
+      init &&
+      Node.isCallExpression(init) &&
+      Node.isIdentifier(init.getExpression()) &&
+      init.getExpression().getText() === "createSystem"
+    ) {
+      const nameNode = decl.getNameNode()
+      if (Node.isIdentifier(nameNode)) nameNode.rename("system")
+    }
+  }
+
+  // Transform token access: system.colors.gray[200] -> system.token('colors.gray.200')
+  transformTokenAccess(sourceFile)
+}
+
+function transformTokenAccess(sourceFile: SourceFile) {
+  const hasSystem = sourceFile
+    .getVariableDeclarations()
+    .some((d) => d.getName() === "system")
+  if (!hasSystem) return
+
+  // Collect the longest access chains rooted at `system`.
+  const accesses = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.PropertyAccessExpression),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.ElementAccessExpression),
+  ]
+
+  for (const node of accesses) {
+    // Only handle the outermost expression of a chain.
+    const parent = node.getParent()
+    if (
+      parent &&
+      (Node.isPropertyAccessExpression(parent) ||
+        Node.isElementAccessExpression(parent))
+    ) {
+      continue
+    }
+    const parts = buildAccessPath(node)
+    if (!parts) continue
+    if (parts.root !== "system") continue
+    if (parts.path.length < 2) continue
+    node.replaceWithText(`system.token('${parts.path.join(".")}')`)
+  }
+}
+
+function buildAccessPath(
+  node: Node,
+): { root: string; path: string[] } | undefined {
+  const path: string[] = []
+  let current: Node = node
+  while (true) {
+    if (Node.isPropertyAccessExpression(current)) {
+      path.unshift(current.getName())
+      current = current.getExpression()
+    } else if (Node.isElementAccessExpression(current)) {
+      const arg = current.getArgumentExpression()
+      if (!arg || !(Node.isStringLiteral(arg) || Node.isNumericLiteral(arg)))
+        return undefined
+      path.unshift(String(arg.getLiteralValue()))
+      current = current.getExpression()
+    } else {
+      break
+    }
+  }
+  if (!Node.isIdentifier(current)) return undefined
+  return { root: current.getText(), path }
+}
+
+export default transform

@@ -1,17 +1,25 @@
 import * as p from "@clack/prompts"
 import { spawn } from "child_process"
 import fs from "fs"
+import { type Agent, resolveCommand } from "package-manager-detector"
+import path from "path"
 import picocolors from "picocolors"
 import semver from "semver"
 import { runTransform } from "./run-transform.js"
+import type { ReExportLocation } from "./run-transform.js"
+import type { Diagnostic } from "./transform.js"
 import { transforms, upgradeTransforms } from "./transforms.js"
 import { getProjectInfo } from "./utils/get-project-info.js"
 import { isGitClean } from "./utils/git.js"
 import { isPackageUsed } from "./utils/is-package-used.js"
-import { getPackageManager } from "./utils/package-manager.js"
+import { getAgent } from "./utils/package-manager.js"
 
 interface UpgradeOptions {
   dry?: boolean
+  dryRun?: boolean
+  failOnWarn?: boolean
+  transform?: string[]
+  crossFile?: boolean
 }
 
 process.once("SIGINT", () => {
@@ -28,7 +36,13 @@ export async function upgrade(
   revision: string = "latest",
   options: UpgradeOptions = {},
 ) {
-  const { dry = false } = options
+  const { failOnWarn = false } = options
+  const dry = Boolean(options.dry || options.dryRun)
+  const transformFilter = options.transform?.filter((name) => {
+    if (transforms[name]) return true
+    p.log.warn(picocolors.yellow(`Unknown transform "${name}" — skipping.`))
+    return false
+  })
 
   if (revision === "latest") {
     revision = "^3.0.0"
@@ -59,8 +73,8 @@ export async function upgrade(
     }
   }
 
-  const packageManager = getPackageManager()
-  p.log.success(`Using package manager: ${packageManager}`)
+  const agent = await getAgent()
+  p.log.success(`Using package manager: ${agent}`)
 
   section("Dependency Analysis")
 
@@ -116,20 +130,10 @@ export async function upgrade(
 
     try {
       if (packagesToRemove.length > 0) {
-        await runCommand(
-          `${packageManager} ${
-            packageManager === "npm" ? "uninstall" : "remove"
-          } ${packagesToRemove.join(" ")}`,
-          true,
-        )
+        await runResolved(agent, "uninstall", packagesToRemove)
       }
 
-      await runCommand(
-        `${packageManager} ${
-          packageManager === "npm" ? "install" : "add"
-        } ${packagesToInstall.join(" ")}`,
-        true,
-      )
+      await runResolved(agent, "add", packagesToInstall)
 
       s.stop("Dependencies updated")
     } catch (err) {
@@ -157,14 +161,7 @@ export async function upgrade(
     s.start("Installing snippets...")
 
     try {
-      const executor =
-        packageManager === "pnpm"
-          ? "pnpm dlx"
-          : packageManager === "bun"
-            ? "bunx"
-            : "npx --yes"
-
-      await runCommand(`${executor} @chakra-ui/cli snippet add`, true)
+      await runResolved(agent, "execute", ["@chakra-ui/cli", "snippet", "add"])
       s.stop("Snippets installed")
     } catch (err) {
       s.stop("Snippet installation failed")
@@ -173,40 +170,59 @@ export async function upgrade(
 
   section("Code Transforms")
 
-  const preset = await p.select({
-    message: "Upgrade depth:",
-    options: [
-      { label: "Full migration (recommended)", value: "full" },
-      { label: "Custom (select transforms manually)", value: "custom" },
-    ],
-  })
-
-  if (p.isCancel(preset)) {
-    return abort()
+  let crossFile = options.crossFile ?? false
+  if (options.crossFile === undefined) {
+    const ans = await p.confirm({
+      message:
+        "Resolve components imported through barrels/re-exports? Scans cross-file imports across your project — slower, but migrates props on re-exported components.",
+      initialValue: false,
+    })
+    if (p.isCancel(ans)) return abort()
+    crossFile = ans
   }
 
   let transformsToRun: string[] = []
 
-  if (preset === "full") {
-    transformsToRun = upgradeTransforms
+  if (transformFilter) {
+    if (transformFilter.length === 0) {
+      return abort("No valid transforms selected. Upgrade cancelled.")
+    }
+    transformsToRun = transformFilter
+    p.log.info(`Running ${transformFilter.length} selected transform(s).`)
   } else {
-    const customSelection = await p.multiselect({
-      message: "Choose the transforms to run:",
-      options: Object.keys(transforms).map((name, i) => ({
-        label: `${(i + 1).toString().padStart(2, "0")}-${name}`,
-        value: name,
-      })),
+    const preset = await p.select({
+      message: "Upgrade depth:",
+      options: [
+        { label: "Full migration (recommended)", value: "full" },
+        { label: "Custom (select transforms manually)", value: "custom" },
+      ],
     })
 
-    if (p.isCancel(customSelection)) {
+    if (p.isCancel(preset)) {
       return abort()
     }
 
-    if (customSelection.length === 0) {
-      return abort("No transforms selected. Upgrade cancelled.")
-    }
+    if (preset === "full") {
+      transformsToRun = upgradeTransforms
+    } else {
+      const customSelection = await p.multiselect({
+        message: "Choose the transforms to run:",
+        options: Object.keys(transforms).map((name, i) => ({
+          label: `${(i + 1).toString().padStart(2, "0")}-${name}`,
+          value: name,
+        })),
+      })
 
-    transformsToRun = customSelection
+      if (p.isCancel(customSelection)) {
+        return abort()
+      }
+
+      if (customSelection.length === 0) {
+        return abort("No transforms selected. Upgrade cancelled.")
+      }
+
+      transformsToRun = customSelection
+    }
   }
 
   if (transformsToRun.length > 0) {
@@ -215,26 +231,81 @@ export async function upgrade(
 
     const { componentsDir } = getProjectInfo(process.cwd())
 
+    const byFile = new Map<string, Set<string>>()
+    const errorsByFile = new Map<string, Set<string>>()
+    const diagnostics: Diagnostic[] = []
+    const reExports = new Map<string, ReExportLocation>()
+    let failed = 0
+
+    const add = (map: Map<string, Set<string>>, file: string, name: string) => {
+      if (!map.has(file)) map.set(file, new Set())
+      map.get(file)!.add(name)
+    }
+
     for (const name of transformsToRun) {
       s.message(`Transforming: ${name}`)
       try {
-        await runTransform(name, process.cwd(), {
+        const res = await runTransform(name, process.cwd(), {
           dry,
           upgrade: true,
+          crossFile,
           ignorePattern: ["node_modules", componentsDir],
         })
+        res.files.forEach((f) => add(byFile, f, name))
+        res.errorFiles.forEach((f) => add(errorsByFile, f, name))
+        diagnostics.push(...res.diagnostics)
+        for (const r of res.reExports) {
+          reExports.set(`${r.file}:${r.line}:${r.name}`, r)
+        }
       } catch (err) {
+        failed++
         const msg = err instanceof Error ? err.message : String(err)
         p.log.error(`Failed transform ${name}: ${msg}`)
       }
     }
 
-    s.stop("All transforms completed")
+    s.stop(
+      dry
+        ? "Dry run complete — no files were changed"
+        : "All transforms completed",
+    )
+
+    reportChanges(byFile, errorsByFile, dry, failed)
+    reportReExports([...reExports.values()])
+    reportDiagnostics(diagnostics)
+
+    if (failOnWarn && diagnostics.length > 0) {
+      process.exitCode = 1
+    }
   }
 
-  p.outro(
-    picocolors.green("🎉 Upgrade complete! Review your changes and run tests."),
-  )
+  if (dry) {
+    p.outro(
+      picocolors.green(
+        "Dry run done. To see exact changes, run the upgrade on a clean branch and use `git diff`.",
+      ),
+    )
+  } else {
+    p.outro(
+      picocolors.green(
+        "🎉 Upgrade complete! Review the diff and run your tests.",
+      ),
+    )
+  }
+}
+
+async function runResolved(
+  agent: Agent,
+  command: "add" | "uninstall" | "execute",
+  args: string[],
+) {
+  const resolved = resolveCommand(agent, command, args)
+  if (!resolved) {
+    throw new Error(
+      `Cannot resolve "${command}" for package manager "${agent}"`,
+    )
+  }
+  await runCommand(`${resolved.command} ${resolved.args.join(" ")}`, true)
 }
 
 async function runCommand(cmd: string, silent = false) {
@@ -259,4 +330,137 @@ async function runCommand(cmd: string, silent = false) {
 
 function section(title: string) {
   p.log.message(`\n${picocolors.bold(picocolors.cyan(`▸ ${title}`))}`)
+}
+
+const INLINE_THRESHOLD = 25
+
+function humanize(name: string): string {
+  const isComponent = transforms[name]?.path
+    .split(path.sep)
+    .includes("components")
+  if (isComponent) {
+    return name
+      .split("-")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join("")
+  }
+  return name.replace(/-/g, " ")
+}
+
+function labelsFor(names: Set<string>): string {
+  return [...new Set([...names].map(humanize))].sort().join(", ")
+}
+
+function reportChanges(
+  byFile: Map<string, Set<string>>,
+  errorsByFile: Map<string, Set<string>>,
+  dry: boolean,
+  failed: number,
+) {
+  if (byFile.size === 0 && errorsByFile.size === 0) {
+    if (failed === 0) p.log.info("No files matched any transform.")
+    return
+  }
+
+  const verb = dry ? "would change" : "changed"
+  const entries = [...byFile.entries()].sort(([a], [b]) => a.localeCompare(b))
+
+  if (entries.length > 0) {
+    if (entries.length > INLINE_THRESHOLD) {
+      const reportPath = writeReport(entries, errorsByFile, dry)
+      p.note(
+        `${entries.length} files ${verb}.\nFull breakdown: ${picocolors.cyan(reportPath)}`,
+        dry ? "Preview" : "Summary",
+      )
+    } else {
+      const body = entries
+        .map(
+          ([file, names]) =>
+            `${picocolors.cyan(file)}\n  ${picocolors.dim(labelsFor(names))}`,
+        )
+        .join("\n")
+      p.note(body, `Files that ${verb} (${entries.length})`)
+    }
+  }
+
+  if (errorsByFile.size > 0) {
+    const body = [...errorsByFile.entries()]
+      .map(([file, names]) => `${file} (${labelsFor(names)})`)
+      .join("\n")
+    p.note(
+      picocolors.yellow(body),
+      `${errorsByFile.size} file(s) need manual attention`,
+    )
+  }
+}
+
+export function dedupeDiagnostics(diagnostics: Diagnostic[]): Diagnostic[] {
+  const seen = new Set<string>()
+  const out: Diagnostic[] = []
+  for (const d of diagnostics) {
+    const key = `${d.file}::${d.line ?? ""}::${d.message}`
+    if (seen.has(key)) continue
+    seen.add(key)
+    out.push(d)
+  }
+  return out
+}
+
+function reportReExports(reExports: ReExportLocation[]) {
+  if (reExports.length === 0) return
+  const body = reExports
+    .sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line)
+    .map(
+      (r) =>
+        `${picocolors.cyan(`${r.file}:${r.line}`)}  ${r.name} ${picocolors.dim(`(via ${r.from})`)}`,
+    )
+    .join("\n")
+  p.note(body, `Cross-file re-exports resolved (${reExports.length})`)
+}
+
+function reportDiagnostics(diagnostics: Diagnostic[]) {
+  const unique = dedupeDiagnostics(diagnostics)
+  if (unique.length === 0) return
+  const body = unique
+    .map((d) => {
+      const loc = path.relative(process.cwd(), d.file)
+      const where = d.line ? `${loc}:${d.line}` : loc
+      const action = d.action ? `\n  → ${d.action}` : ""
+      return `${where}\n  ${d.message}${action}`
+    })
+    .join("\n\n")
+  p.note(picocolors.yellow(body), `Manual follow-ups (${unique.length})`)
+}
+
+function writeReport(
+  entries: [string, Set<string>][],
+  errorsByFile: Map<string, Set<string>>,
+  dry: boolean,
+): string {
+  const verb = dry ? "would change" : "changed"
+  const lines = [
+    `# Chakra UI v3 upgrade${dry ? " (dry run)" : ""}`,
+    "",
+    `${entries.length} files ${verb}.`,
+    "",
+    "## Files",
+    "",
+  ]
+
+  for (const [file, names] of entries) {
+    lines.push(`- \`${file}\` — ${labelsFor(names)}`)
+  }
+  lines.push("")
+
+  if (errorsByFile.size > 0) {
+    lines.push("## Needs manual attention", "")
+    for (const [file, names] of errorsByFile) {
+      lines.push(`- \`${file}\` — ${labelsFor(names)}`)
+    }
+    lines.push("")
+  }
+
+  const reportPath = path.join(process.cwd(), "chakra-codemod-report.md")
+  fs.writeFileSync(reportPath, lines.join("\n"))
+  return path.relative(process.cwd(), reportPath)
 }

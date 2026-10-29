@@ -22,6 +22,10 @@ export const sliderSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       position: "relative",
+      cursor: "slider",
+      _disabled: {
+        cursor: "disabled",
+      },
     },
     track: {
       overflow: "hidden",
@@ -61,6 +65,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       zIndex: "2",
       borderRadius: "full",
       transition: "shadow",
+      cursor: "slider",
 
       _focusVisible: {
         ring: "3px",

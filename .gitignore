@@ -108,3 +108,4 @@ report.*
 *storybook.log
 
 .vscode/mcp.json
+.playwright-mcp

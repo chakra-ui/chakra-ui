@@ -16,6 +16,14 @@ const { Viewport, open, close, removeAll, getSnapshot } = createOverlay(
   },
 )
 
+const settled = <T,>(promise: Promise<T>) =>
+  Promise.race([
+    promise.then((value) => ({ status: "settled", value })),
+    new Promise<{ status: string; value?: T }>((resolve) =>
+      setTimeout(() => resolve({ status: "pending" }), 50),
+    ),
+  ])
+
 describe("createOverlay", () => {
   beforeEach(() => {
     opens.length = 0
@@ -116,5 +124,56 @@ describe("createOverlay", () => {
     // explicitly remove the overlay
     overlay.remove("my-modal")
     expect(overlay.has("my-modal")).toBe(false)
+  })
+
+  it("resolves the pending open() promise when the overlay is removed", async () => {
+    const overlay = createOverlay(() => <div />)
+
+    const result = overlay.open("my-modal", {})
+    overlay.remove("my-modal")
+
+    expect(await settled(result)).toEqual({
+      status: "settled",
+      value: undefined,
+    })
+  })
+
+  it("resolves the pending open() promise when all overlays are removed", async () => {
+    const overlay = createOverlay(() => <div />)
+
+    const result = overlay.open("my-modal", {})
+    overlay.removeAll()
+
+    expect(await settled(result)).toEqual({
+      status: "settled",
+      value: undefined,
+    })
+  })
+
+  it("resolves the pending close() promise when the overlay is removed", async () => {
+    const overlay = createOverlay(() => <div />)
+
+    overlay.open("my-modal", {})
+    const closed = overlay.close("my-modal")
+    overlay.remove("my-modal")
+
+    expect(await settled(closed)).toEqual({
+      status: "settled",
+      value: undefined,
+    })
+  })
+
+  it("resolves a pending waitForExit() when all overlays are removed", async () => {
+    const overlay = createOverlay(() => <div />)
+
+    overlay.open("my-modal", {})
+    void overlay.close("my-modal")
+    const exited = overlay.waitForExit("my-modal")
+    overlay.removeAll()
+
+    expect(await settled(exited)).toEqual({
+      status: "settled",
+      value: undefined,
+    })
   })
 })

@@ -1,65 +1,80 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxElement, JsxSelfClosingElement } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   getJsxBaseName,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+function getInner(el: JsxElement | JsxSelfClosingElement): string {
+  if (!Node.isJsxElement(el)) return ""
+  const full = el.getText()
+  const openText = el.getOpeningElement().getText()
+  const closeText = el.getClosingElement().getText()
+  return full.slice(openText.length, full.length - closeText.length)
+}
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  // Remove appendToParentPortal prop from Portal
-  root.find(j.JSXElement).forEach((elPath) => {
-    const opening = elPath.node.openingElement
-    const baseName = getJsxBaseName(opening.name)
-    if (!chakraLocalNames.has(baseName)) return
-    if (baseName !== "Portal") return
+  const openings: Array<JsxElement | JsxSelfClosingElement> = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
 
-    opening.attributes = (opening.attributes || []).filter((attr) => {
-      return !(
-        attr.type === "JSXAttribute" &&
-        attr.name.type === "JSXIdentifier" &&
-        attr.name.name === "appendToParentPortal"
+  // 1. Remove `appendToParentPortal` from Portal components.
+  for (const el of openings) {
+    const opening = Node.isJsxElement(el) ? el.getOpeningElement() : el
+    if (getJsxBaseName(opening.getTagNameNode()) !== "Portal") continue
+    if (!chakraLocalNames.has("Portal")) continue
+    opening
+      .getAttributes()
+      .find(
+        (a) =>
+          Node.isJsxAttribute(a) &&
+          a.getNameNode().getText() === "appendToParentPortal",
       )
-    })
+      ?.remove()
+  }
+
+  // 2. Unwrap PortalManager usages (replace with a fragment of its children).
+  const managers = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ].filter((el) => {
+    const opening = Node.isJsxElement(el) ? el.getOpeningElement() : el
+    return (
+      getJsxBaseName(opening.getTagNameNode()) === "PortalManager" &&
+      chakraLocalNames.has("PortalManager")
+    )
   })
 
-  // Remove PortalManager import and usage
-  root.find(j.ImportDeclaration).forEach((path) => {
-    const source = path.node.source.value
-    if (typeof source !== "string") return
-    if (!source.includes("@chakra-ui/react")) return
-    path.node.specifiers = (path.node.specifiers || []).filter((spec) => {
-      return !(
-        spec.type === "ImportSpecifier" &&
-        spec.imported.type === "Identifier" &&
-        spec.imported.name === "PortalManager"
-      )
-    })
-  })
+  for (const el of managers.reverse()) {
+    const inner = getInner(el)
+    el.replaceWithText(`<>${inner}</>`)
+  }
 
-  root.find(j.JSXElement).forEach((elPath) => {
-    const opening = elPath.node.openingElement
+  // 3. Remove the PortalManager import.
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (!importDecl.getModuleSpecifierValue().includes("@chakra-ui/react"))
+      continue
+    const named = importDecl
+      .getNamedImports()
+      .find((n) => n.getName() === "PortalManager")
+    if (!named) continue
+    named.remove()
+    // Collapse to a side-effect import when nothing is left.
     if (
-      opening.name.type === "JSXIdentifier" &&
-      opening.name.name === "PortalManager"
+      importDecl.getNamedImports().length === 0 &&
+      !importDecl.getDefaultImport() &&
+      !importDecl.getNamespaceImport()
     ) {
-      const children = elPath.node.children || []
-      j(elPath).replaceWith(
-        children.length
-          ? children[0]
-          : j.jsxFragment(j.jsxOpeningFragment(), j.jsxClosingFragment(), []),
+      importDecl.replaceWithText(
+        `import '${importDecl.getModuleSpecifierValue()}'`,
       )
     }
-  })
-
-  return root.toSource({ quote: "single" })
+  }
 }
+
+export default transform

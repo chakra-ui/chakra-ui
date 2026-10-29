@@ -36,16 +36,22 @@
         "isRequired": false,
         "description": "A function that will be called **before** sending focus to the\ntrigger element upon deactivation."
       },
+      "persistentElements": {
+        "type": "(() => Element | null)[]",
+        "isRequired": false,
+        "description": "Additional elements to treat as part of the trap, for portalled content\nnot discoverable via `aria-controls`/`aria-expanded` (see `followControlledElements`)."
+      },
       "returnFocusOnDeactivate": {
         "type": "boolean",
         "isRequired": false,
         "description": "Default: `true`. If `false`, when the trap is deactivated,\nfocus will *not* return to the element that had focus before activation."
       },
       "setReturnFocus": {
-        "type": "type ONLY_FOR_FORMAT =\n  | FocusTargetValueOrFalse\n  | ((nodeFocusedBeforeActivation: HTMLElement | SVGElement) => FocusTargetValueOrFalse)",
+        "type": "type ONLY_FOR_FORMAT =\n  FocusTargetValueOrFalse | ((nodeFocusedBeforeActivation: HTMLElement | SVGElement) => FocusTargetValueOrFalse)",
         "isRequired": false,
         "description": "By default, focus trap on deactivation will return to the element\nthat was focused before activation."
       }
-    }
+    },
+    "tag": "div"
   }
 }

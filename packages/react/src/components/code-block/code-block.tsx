@@ -1,6 +1,6 @@
 "use client"
 
-import { type Assign, type HTMLArkProps } from "@ark-ui/react"
+import { type Assign, type HTMLArkProps, dataAttr } from "@ark-ui/react"
 import { useClipboard } from "@ark-ui/react/clipboard"
 import { ark } from "@ark-ui/react/factory"
 import { forwardRef, useId, useMemo } from "react"
@@ -12,7 +12,7 @@ import {
   type UnstyledProp,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { cx, dataAttr } from "../../utils"
+import { cx } from "../../utils"
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon, CopyIcon } from "../icons"
 import { useCodeBlockAdapterContext } from "./code-block-adapter-context"
 import {

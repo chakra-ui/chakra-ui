@@ -56,6 +56,18 @@ describe("Memo correctness", () => {
     expect(mockFn).toHaveBeenCalledTimes(2)
   })
 
+  test("memo treats object key order as part of the key", () => {
+    const mockFn = vi.fn((obj: Record<string, number>) => Object.keys(obj))
+    const memoizedFn = memo(mockFn)
+
+    // Same keys in a different order is a different input
+    expect(memoizedFn({ x: 1, y: 2 })).toEqual(["x", "y"])
+    expect(mockFn).toHaveBeenCalledTimes(1)
+
+    expect(memoizedFn({ y: 2, x: 1 })).toEqual(["y", "x"])
+    expect(mockFn).toHaveBeenCalledTimes(2)
+  })
+
   test("memo works with array arguments", () => {
     const mockFn = vi.fn((arr: number[]) => arr.reduce((sum, n) => sum + n, 0))
     const memoizedFn = memo(mockFn)

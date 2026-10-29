@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Label": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "Marker": {
     "props": {
@@ -46,7 +48,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "MarkerIndicator": {
     "props": {
@@ -89,7 +92,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -152,6 +156,12 @@
         "type": "boolean",
         "isRequired": false,
         "description": "Whether the slider is invalid"
+      },
+      "largeStep": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "10 * step",
+        "description": "The step value of the slider when the `Shift` key is held, or the\n`PageUp`/`PageDown` keys are used."
       },
       "max": {
         "type": "number",
@@ -255,7 +265,8 @@
         "description": "The variant of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -274,7 +285,8 @@
         "isRequired": true
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Thumb": {
     "props": {
@@ -297,7 +309,8 @@
         "isRequired": false
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Track": {
     "props": {
@@ -312,7 +325,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ValueText": {
     "props": {
@@ -327,7 +341,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "span"
   },
   "MarkerGroup": {
     "props": {
@@ -342,7 +357,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "DraggingIndicator": {
     "props": {
@@ -357,7 +373,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "HiddenInput": {
     "props": {
@@ -367,6 +384,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLInputElement"
+    "element": "HTMLInputElement",
+    "tag": "input"
   }
 }

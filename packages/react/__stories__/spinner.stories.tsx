@@ -17,6 +17,7 @@ export { SpinnerCustomColor as CustomColor } from "compositions/examples/spinner
 export { SpinnerSizeTable as Sizes } from "compositions/examples/spinner-size-table"
 export { SpinnerWithCustomSpeed as CustomSpeed } from "compositions/examples/spinner-with-custom-speed"
 export { SpinnerWithCustomThickness as CustomThickness } from "compositions/examples/spinner-with-custom-thickness"
+export { SpinnerWithCustomIndicator as CustomIndicator } from "compositions/examples/spinner-with-custom-indicator"
 export { SpinnerWithTrackColor as TrackColor } from "compositions/examples/spinner-with-track-color"
 export { SpinnerWithLabel as Label } from "compositions/examples/spinner-with-label"
 export { SpinnerWithOverlay as Overlay } from "compositions/examples/spinner-with-overlay"

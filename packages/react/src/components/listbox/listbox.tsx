@@ -144,10 +144,10 @@ export const ListboxItem = withContext<HTMLDivElement, ListboxItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ListboxItemTextProps
-  extends HTMLChakraProps<"div", ArkListbox.ItemTextBaseProps>, UnstyledProp {}
+  extends HTMLChakraProps<"span", ArkListbox.ItemTextBaseProps>, UnstyledProp {}
 
 export const ListboxItemText = withContext<
-  HTMLDivElement,
+  HTMLSpanElement,
   ListboxItemTextProps
 >(ArkListbox.ItemText, "itemText", { forwardAsChild: true })
 

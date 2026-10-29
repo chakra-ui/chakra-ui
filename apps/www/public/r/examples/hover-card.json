@@ -63,6 +63,15 @@
       "importPath": "import { HoverCard } from \"@chakra-ui/react\""
     },
     {
+      "name": "hover-card-with-multiple-triggers",
+      "content": "\"use client\"\nconst people = {\n  ananya: \"Ananya builds design systems.\",\n  jules: \"Jules works on accessibility.\",\n  nico: \"Nico writes the docs.\",\n}\n\nexport const HoverCardWithMultipleTriggers = () => {\n  return (\n    <HoverCard.Root size=\"sm\">\n      <HStack gap=\"4\">\n        <HoverCard.Trigger asChild value=\"ananya\">\n          <Link href=\"#\">@ananya</Link>\n        </HoverCard.Trigger>\n        <HoverCard.Trigger asChild value=\"jules\">\n          <Link href=\"#\">@jules</Link>\n        </HoverCard.Trigger>\n        <HoverCard.Trigger asChild value=\"nico\">\n          <Link href=\"#\">@nico</Link>\n        </HoverCard.Trigger>\n      </HStack>\n      <Portal>\n        <HoverCard.Positioner>\n          <HoverCard.Content maxWidth=\"240px\">\n            <HoverCard.Arrow />\n            <HoverCard.Context>\n              {(api) => (\n                <Text textStyle=\"sm\">\n                  {people[api.triggerValue as keyof typeof people]}\n                </Text>\n              )}\n            </HoverCard.Context>\n          </HoverCard.Content>\n        </HoverCard.Positioner>\n      </Portal>\n    </HoverCard.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { HStack, HoverCard, Link, Portal, Text } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { HoverCard } from \"@chakra-ui/react\""
+    },
+    {
       "name": "hover-card-with-placement",
       "content": "export const HoverCardWithPlacement = () => {\n  return (\n    <HoverCard.Root size=\"sm\" positioning={{ placement: \"top\" }}>\n      <HoverCard.Trigger asChild>\n        <Link href=\"#\">@chakra_ui</Link>\n      </HoverCard.Trigger>\n      <Portal>\n        <HoverCard.Positioner>\n          <HoverCard.Content maxWidth=\"240px\">\n            <HoverCard.Arrow />\n            <Box>\n              <Strong>Chakra</Strong> is a Sanskrit word that means disk or\n              wheel, referring to energy centers in the body\n            </Box>\n          </HoverCard.Content>\n        </HoverCard.Positioner>\n      </Portal>\n    </HoverCard.Root>\n  )\n}\n",
       "hasSnippet": false,

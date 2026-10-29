@@ -1036,6 +1036,7 @@ export default function App() {
               <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
                 Open
               </Button>
+
               <Drawer.Root
                 open={isOpen}
                 placement="end"

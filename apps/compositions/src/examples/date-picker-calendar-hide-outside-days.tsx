@@ -1,6 +1,7 @@
 "use client"
 
-import { DatePicker, parseDate } from "@chakra-ui/react"
+import { DatePicker } from "@chakra-ui/react"
+import { parseDate } from "@internationalized/date"
 
 export const DatePickerCalendarHideOutsideDays = () => {
   return (

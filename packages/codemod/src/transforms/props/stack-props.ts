@@ -1,84 +1,72 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { ObjectLiteralExpression } from "ts-morph"
+import type { Transform } from "../../transform"
+import { getJsxBaseName } from "../../utils/chakra-tracker"
 
 const CHAKRA_SOURCES = ["@chakra-ui/react", "@/components/ui"]
 
-export default function transform(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-
+const transform: Transform = (sourceFile) => {
   const chakraLocalNames = new Set<string>()
-  root.find(j.ImportDeclaration).forEach((path) => {
-    const source = path.node.source.value
-    if (
-      typeof source === "string" &&
-      CHAKRA_SOURCES.some((s) => source.includes(s))
-    ) {
-      path.node.specifiers?.forEach((spec) => {
-        if (spec.local) chakraLocalNames.add(spec.local.name as string)
-      })
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    const source = importDecl.getModuleSpecifierValue()
+    if (!CHAKRA_SOURCES.some((s) => source.includes(s))) continue
+    const defaultImport = importDecl.getDefaultImport()
+    if (defaultImport) chakraLocalNames.add(defaultImport.getText())
+    const namespaceImport = importDecl.getNamespaceImport()
+    if (namespaceImport) chakraLocalNames.add(namespaceImport.getText())
+    for (const named of importDecl.getNamedImports()) {
+      chakraLocalNames.add(named.getAliasNode()?.getText() ?? named.getName())
     }
-  })
-
-  if (chakraLocalNames.size === 0) return file.source
-
-  const renameObjectProps = (objectNode: any) => {
-    if (objectNode.type !== "ObjectExpression") return
-
-    objectNode.properties.forEach((prop: any) => {
-      if (prop.type === "Property" && !prop.computed) {
-        const keyName =
-          prop.key.type === "Identifier" ? prop.key.name : prop.key.value
-
-        if (keyName === "spacing") {
-          if (prop.key.type === "Identifier") {
-            prop.key.name = "gap"
-          } else {
-            prop.key.value = "gap"
-          }
-        }
-      }
-    })
   }
 
-  root.find(j.JSXOpeningElement).forEach((path) => {
-    const nameNode = path.node.name
-    let baseName = ""
+  if (chakraLocalNames.size === 0) return
 
-    if (nameNode.type === "JSXIdentifier") {
-      baseName = nameNode.name
-    } else if (nameNode.type === "JSXMemberExpression") {
-      let current: any = nameNode
-      while (current.object) current = current.object
-      baseName = current.name
+  const renameObjectProps = (obj: ObjectLiteralExpression) => {
+    const props = obj.getProperties()
+    for (let i = props.length - 1; i >= 0; i--) {
+      const prop = props[i]
+      if (Node.isPropertyAssignment(prop)) {
+        const nameNode = prop.getNameNode()
+        if (Node.isIdentifier(nameNode) && nameNode.getText() === "spacing") {
+          nameNode.replaceWithText("gap")
+        } else if (
+          Node.isStringLiteral(nameNode) &&
+          nameNode.getLiteralValue() === "spacing"
+        ) {
+          nameNode.setLiteralValue("gap")
+        }
+      } else if (
+        Node.isShorthandPropertyAssignment(prop) &&
+        prop.getName() === "spacing"
+      ) {
+        prop.replaceWithText("gap: spacing")
+      }
+    }
+  }
+
+  const openings = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
+
+  for (const opening of openings) {
+    if (!chakraLocalNames.has(getJsxBaseName(opening.getTagNameNode())))
+      continue
+
+    const attrs = opening.getDescendantsOfKind(SyntaxKind.JsxAttribute)
+    for (let i = attrs.length - 1; i >= 0; i--) {
+      const nameNode = attrs[i].getNameNode()
+      if (Node.isIdentifier(nameNode) && nameNode.getText() === "spacing") {
+        nameNode.replaceWithText("gap")
+      }
     }
 
-    if (!chakraLocalNames.has(baseName)) return
-
-    j(path)
-      .find(j.JSXAttribute)
-      .forEach((attrPath) => {
-        const name = attrPath.node.name
-        if (name.type !== "JSXIdentifier") return
-
-        if (name.name === "spacing") {
-          name.name = "gap"
-        }
-      })
-
-    j(path)
-      .find(j.JSXSpreadAttribute)
-      .forEach((spreadPath) => {
-        const arg = spreadPath.node.argument
-        if (arg.type === "ObjectExpression") {
-          renameObjectProps(arg)
-        }
-      })
-  })
-
-  return root.toSource({ quote: "single" })
+    const spreads = opening.getDescendantsOfKind(SyntaxKind.JsxSpreadAttribute)
+    for (let i = spreads.length - 1; i >= 0; i--) {
+      const arg = spreads[i].getExpression()
+      if (Node.isObjectLiteralExpression(arg)) renameObjectProps(arg)
+    }
+  }
 }
+
+export default transform

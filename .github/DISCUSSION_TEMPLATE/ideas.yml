@@ -1,0 +1,47 @@
+title: "🚀 Feature request: "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an idea 😄! Please search open discussions before posting — someone might have asked the same thing before 😉.
+  - type: textarea
+    id: idea
+    attributes:
+      label: 💡 Your idea
+      description: Fill in the sections below — delete any that don't apply.
+      value: |
+        <!---
+        Thanks for filing an issue 😄!
+
+        Please search open/closed issues before submitting. Someone
+        might have asked the same thing before 😉!
+        -->
+
+        # 🚀 Feature request
+
+        > Please describe your request in one or two sentences.
+
+        ## 🧱 Problem Statement / Justification
+
+        > Please provide valid reason(s) why this should be added.
+        >
+        > If this feature is related to a problem you've noticed. Mention it as well
+
+        ## ✅ Proposed solution or API
+
+        > Please provide code snippets, gists, or links to the ideal design or API
+
+        ## ↩️ Alternatives
+
+        > What alternative solutions have you considered before making this request?
+
+        ## 🧢 Your Company/Team
+
+        <!-- Optional: Which company or team would benefit from this feature? (e.g., Acme/Dashboard) -->
+
+        ## 📝 Additional Information
+
+        > What resources (links, screenshots, etc.) do you have to assist this effort?
+    validations:
+      required: true

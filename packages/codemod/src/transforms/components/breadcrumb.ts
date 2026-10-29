@@ -1,416 +1,175 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxElement } from "ts-morph"
+import type { Transform } from "../../transform"
 import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
 /**
- * Transforms Breadcrumb components to v3 compound component API
- *
- * @example
- * // Before
- * <Breadcrumb>
- *   <BreadcrumbItem>
- *     <BreadcrumbLink href="#">Home</BreadcrumbLink>
- *   </BreadcrumbItem>
- *   <BreadcrumbItem isCurrentPage>
- *     <BreadcrumbLink href="#">Current</BreadcrumbLink>
- *   </BreadcrumbItem>
- * </Breadcrumb>
- *
- * // After
- * <Breadcrumb.Root>
- *   <Breadcrumb.List>
- *     <Breadcrumb.Item>
- *       <Breadcrumb.Link href="#">Home</Breadcrumb.Link>
- *     </Breadcrumb.Item>
- *     <Breadcrumb.Separator />
- *     <Breadcrumb.Item>
- *       <Breadcrumb.CurrentLink>Current</Breadcrumb.CurrentLink>
- *     </Breadcrumb.Item>
- *   </Breadcrumb.List>
- * </Breadcrumb.Root>
+ * Transforms Breadcrumb components to the v3 compound component API:
+ * `<Breadcrumb>` becomes `<Breadcrumb.Root>` wrapping a `<Breadcrumb.List>`
+ * with `<Breadcrumb.Separator>` inserted between items.
  */
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  if (chakraLocalNames.size === 0) return file.source
+  const transformed = new Set<string>()
 
-  const transformedComponents = new Set<string>()
-
-  // Transform Breadcrumb
-  if (chakraLocalNames.has("Breadcrumb")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "Breadcrumb" } },
-      })
-      .forEach((path) => {
-        transformBreadcrumb(j, path)
-        transformedComponents.add("Breadcrumb")
-      })
+  const plainTag = (el: JsxElement, name: string): boolean => {
+    const tag = el.getOpeningElement().getTagNameNode()
+    return Node.isIdentifier(tag) && tag.getText() === name
   }
 
-  // Transform BreadcrumbItem
-  if (chakraLocalNames.has("BreadcrumbItem")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "BreadcrumbItem" } },
-      })
-      .forEach((path) => {
-        transformBreadcrumbItem(j, path)
-        transformedComponents.add("BreadcrumbItem")
-      })
-  }
-
-  // Transform BreadcrumbLink
+  // 1. BreadcrumbLink -> Breadcrumb.Link / Breadcrumb.CurrentLink
   if (chakraLocalNames.has("BreadcrumbLink")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "BreadcrumbLink" } },
-      })
-      .forEach((path) => {
-        transformBreadcrumbLink(j, path)
-        transformedComponents.add("BreadcrumbLink")
-      })
+    const links = sourceFile
+      .getDescendantsOfKind(SyntaxKind.JsxElement)
+      .filter((el) => plainTag(el, "BreadcrumbLink"))
+    for (const link of links.reverse()) {
+      transformLink(link)
+      transformed.add("BreadcrumbLink")
+    }
   }
 
-  // Update imports
-  if (transformedComponents.size > 0) {
-    updateBreadcrumbImports(j, root, transformedComponents)
+  // 2. BreadcrumbItem -> Breadcrumb.Item
+  if (chakraLocalNames.has("BreadcrumbItem")) {
+    const items = sourceFile
+      .getDescendantsOfKind(SyntaxKind.JsxElement)
+      .filter((el) => plainTag(el, "BreadcrumbItem"))
+    for (const item of items.reverse()) {
+      transformItem(item)
+      transformed.add("BreadcrumbItem")
+    }
   }
 
-  return root.toSource({ quote: "single" })
+  // 3. Breadcrumb -> Breadcrumb.Root + Breadcrumb.List + separators
+  if (chakraLocalNames.has("Breadcrumb")) {
+    let roots = sourceFile
+      .getDescendantsOfKind(SyntaxKind.JsxElement)
+      .filter((el) => plainTag(el, "Breadcrumb"))
+    while (roots.length) {
+      transformRoot(roots[0])
+      transformed.add("Breadcrumb")
+      roots = sourceFile
+        .getDescendantsOfKind(SyntaxKind.JsxElement)
+        .filter((el) => plainTag(el, "Breadcrumb"))
+    }
+  }
+
+  if (transformed.size > 0) updateImports(sourceFile)
 }
 
-/**
- * Transform Breadcrumb to Breadcrumb.Root with Breadcrumb.List wrapper
- */
-function transformBreadcrumb(j: any, path: any) {
-  const attrs = path.node.openingElement.attributes || []
-  const children = path.node.children || []
-
-  let separatorProp: any = null
-  let listPropsValue: any = null
-  const rootAttrs: any[] = []
-  const listAttrs: any[] = []
-
-  // Process attributes
-  attrs.forEach((attr: any) => {
-    if (attr.type !== "JSXAttribute") {
-      rootAttrs.push(attr)
-      return
+function transformLink(el: JsxElement) {
+  const opening = el.getOpeningElement()
+  let isCurrent = false
+  for (const attr of [...opening.getAttributes()].reverse()) {
+    if (!Node.isJsxAttribute(attr)) continue
+    if (attr.getNameNode().getText() !== "isCurrentPage") continue
+    const init = attr.getInitializer()
+    if (!init) {
+      isCurrent = true
+    } else if (Node.isJsxExpression(init)) {
+      const expr = init.getExpression()
+      if (expr && expr.getKind() === SyntaxKind.TrueKeyword) isCurrent = true
     }
-
-    // Extract separator prop
-    if (attr.name.name === "separator") {
-      separatorProp = attr.value
-      return
-    }
-
-    // Extract listProps
-    if (attr.name.name === "listProps") {
-      listPropsValue = attr.value
-      return
-    }
-
-    // spacing -> gap (goes on List)
-    if (attr.name.name === "spacing") {
-      attr.name.name = "gap"
-      listAttrs.push(attr)
-      return
-    }
-
-    // Other props go on Root
-    rootAttrs.push(attr)
-  })
-
-  // Spread listProps if present
-  if (listPropsValue) {
-    if (listPropsValue.type === "JSXExpressionContainer") {
-      listAttrs.push(j.jsxSpreadAttribute(listPropsValue.expression))
-    }
+    attr.remove()
   }
-
-  // Insert separators between BreadcrumbItems
-  const newChildren = insertSeparators(j, children, separatorProp)
-
-  // Create Breadcrumb.List
-  const listElement = j.jsxElement(
-    j.jsxOpeningElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Breadcrumb"),
-        j.jsxIdentifier("List"),
-      ),
-      listAttrs,
-    ),
-    j.jsxClosingElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Breadcrumb"),
-        j.jsxIdentifier("List"),
-      ),
-    ),
-    newChildren,
-  )
-
-  // Create Breadcrumb.Root
-  const rootElement = j.jsxElement(
-    j.jsxOpeningElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Breadcrumb"),
-        j.jsxIdentifier("Root"),
-      ),
-      rootAttrs,
-    ),
-    j.jsxClosingElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Breadcrumb"),
-        j.jsxIdentifier("Root"),
-      ),
-    ),
-    [j.jsxText("\n  "), listElement, j.jsxText("\n")],
-  )
-
-  j(path).replaceWith(rootElement)
+  const target = isCurrent ? "Breadcrumb.CurrentLink" : "Breadcrumb.Link"
+  el.getClosingElement()?.getTagNameNode().replaceWithText(target)
+  opening.getTagNameNode().replaceWithText(target)
 }
 
-/**
- * Insert Breadcrumb.Separator between items
- */
-function insertSeparators(j: any, children: any[], separatorProp: any) {
-  const newChildren: any[] = []
-  const items: any[] = []
+function transformItem(el: JsxElement) {
+  const opening = el.getOpeningElement()
+  for (const attr of [...opening.getAttributes()].reverse()) {
+    if (!Node.isJsxAttribute(attr)) continue
+    const name = attr.getNameNode().getText()
+    if (name === "isCurrentPage" || name === "isLastChild") {
+      attr.remove()
+    } else if (name === "spacing") {
+      attr.getNameNode().replaceWithText("gap")
+    }
+  }
+  el.getClosingElement()?.getTagNameNode().replaceWithText("Breadcrumb.Item")
+  opening.getTagNameNode().replaceWithText("Breadcrumb.Item")
+}
 
-  // Collect all BreadcrumbItem elements
-  children.forEach((child) => {
-    if (
-      child.type === "JSXElement" &&
-      child.openingElement?.name?.name === "BreadcrumbItem"
-    ) {
-      items.push(child)
-    } else if (child.type !== "JSXText" || child.value.trim() !== "") {
-      // Preserve non-empty text and other elements
-      if (child.type !== "JSXText" || child.value.trim()) {
-        newChildren.push(child)
+function transformRoot(el: JsxElement) {
+  const opening = el.getOpeningElement()
+  const rootAttrs: string[] = []
+  const listAttrs: string[] = []
+  let separatorStr = "<Breadcrumb.Separator />"
+  let listPropsStr: string | null = null
+
+  for (const attr of opening.getAttributes()) {
+    if (!Node.isJsxAttribute(attr)) {
+      rootAttrs.push(attr.getText())
+      continue
+    }
+    const name = attr.getNameNode().getText()
+    if (name === "separator") {
+      const init = attr.getInitializer()
+      if (init && Node.isStringLiteral(init)) {
+        separatorStr = `<Breadcrumb.Separator>${init.getLiteralValue()}</Breadcrumb.Separator>`
+      } else if (init && Node.isJsxExpression(init)) {
+        separatorStr = `<Breadcrumb.Separator>${init.getText()}</Breadcrumb.Separator>`
       }
+      continue
     }
-  })
-
-  // Insert items with separators
-  items.forEach((item, index) => {
-    // Add proper whitespace before item
-    if (index === 0) {
-      newChildren.push(j.jsxText("\n    "))
-    }
-
-    newChildren.push(item)
-
-    // Add separator if not last item
-    if (index < items.length - 1) {
-      newChildren.push(j.jsxText("\n    "))
-
-      const separator = createSeparator(j, separatorProp)
-      newChildren.push(separator)
-    }
-
-    // Add closing whitespace
-    if (index === items.length - 1) {
-      newChildren.push(j.jsxText("\n  "))
-    }
-  })
-
-  return newChildren
-}
-
-/**
- * Create Breadcrumb.Separator element
- */
-function createSeparator(j: any, separatorProp: any) {
-  if (!separatorProp) {
-    // Default separator (empty)
-    return j.jsxElement(
-      j.jsxOpeningElement(
-        j.jsxMemberExpression(
-          j.jsxIdentifier("Breadcrumb"),
-          j.jsxIdentifier("Separator"),
-        ),
-        [],
-        true,
-      ),
-    )
-  }
-
-  // Custom separator
-  let children: any[] = []
-
-  if (
-    separatorProp.type === "Literal" ||
-    separatorProp.type === "StringLiteral"
-  ) {
-    // String separator like "-"
-    children = [j.jsxText(separatorProp.value)]
-  } else if (separatorProp.type === "JSXExpressionContainer") {
-    // Element separator like {<ChevronRightIcon />}
-    children = [separatorProp]
-  }
-
-  return j.jsxElement(
-    j.jsxOpeningElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Breadcrumb"),
-        j.jsxIdentifier("Separator"),
-      ),
-      [],
-    ),
-    j.jsxClosingElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Breadcrumb"),
-        j.jsxIdentifier("Separator"),
-      ),
-    ),
-    children,
-  )
-}
-
-/**
- * Transform BreadcrumbItem to Breadcrumb.Item
- */
-function transformBreadcrumbItem(j: any, path: any) {
-  const attrs = path.node.openingElement.attributes || []
-
-  const newAttrs = attrs.flatMap((attr: any) => {
-    if (attr.type !== "JSXAttribute") return attr
-
-    // Remove isCurrentPage (handled by BreadcrumbLink -> CurrentLink)
-    if (attr.name.name === "isCurrentPage") {
-      return []
-    }
-
-    // Remove isLastChild
-    if (attr.name.name === "isLastChild") {
-      return []
-    }
-
-    // spacing -> gap
-    if (attr.name.name === "spacing") {
-      attr.name.name = "gap"
-      return attr
-    }
-
-    return attr
-  })
-
-  // Update component name to Breadcrumb.Item
-  path.node.openingElement.name = j.jsxMemberExpression(
-    j.jsxIdentifier("Breadcrumb"),
-    j.jsxIdentifier("Item"),
-  )
-
-  if (path.node.closingElement) {
-    path.node.closingElement.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Breadcrumb"),
-      j.jsxIdentifier("Item"),
-    )
-  }
-
-  path.node.openingElement.attributes = newAttrs
-}
-
-/**
- * Transform BreadcrumbLink to Breadcrumb.Link or Breadcrumb.CurrentLink
- */
-function transformBreadcrumbLink(j: any, path: any) {
-  const attrs = path.node.openingElement.attributes || []
-  let isCurrentPage = false
-
-  const newAttrs = attrs.flatMap((attr: any) => {
-    if (attr.type !== "JSXAttribute") return attr
-
-    // Check for isCurrentPage prop
-    if (attr.name.name === "isCurrentPage") {
-      // Check if it's true (boolean or true value)
-      if (
-        !attr.value || // <BreadcrumbLink isCurrentPage />
-        (attr.value.type === "JSXExpressionContainer" &&
-          attr.value.expression.type === "BooleanLiteral" &&
-          attr.value.expression.value === true)
-      ) {
-        isCurrentPage = true
+    if (name === "listProps") {
+      const init = attr.getInitializer()
+      if (init && Node.isJsxExpression(init)) {
+        const expr = init.getExpression()
+        if (expr) listPropsStr = `{...${expr.getText()}}`
       }
-      return [] // Remove the prop
+      continue
     }
+    if (name === "spacing") {
+      const init = attr.getInitializer()
+      listAttrs.push(`gap=${init ? init.getText() : ""}`)
+      continue
+    }
+    rootAttrs.push(attr.getText())
+  }
+  if (listPropsStr) listAttrs.push(listPropsStr)
 
-    return attr
+  const itemTexts = el
+    .getJsxChildren()
+    .filter(
+      (c): c is JsxElement =>
+        Node.isJsxElement(c) &&
+        c.getOpeningElement().getTagNameNode().getText() === "Breadcrumb.Item",
+    )
+    .map((c) => c.getText())
+
+  const listChildren: string[] = []
+  itemTexts.forEach((t, i) => {
+    listChildren.push(t)
+    if (i < itemTexts.length - 1) listChildren.push(separatorStr)
   })
 
-  // Determine component name
-  const componentName = isCurrentPage ? "CurrentLink" : "Link"
-
-  // Update component name
-  path.node.openingElement.name = j.jsxMemberExpression(
-    j.jsxIdentifier("Breadcrumb"),
-    j.jsxIdentifier(componentName),
+  const listAttrStr = listAttrs.length ? " " + listAttrs.join(" ") : ""
+  const list = `<Breadcrumb.List${listAttrStr}>\n${listChildren.join("\n")}\n</Breadcrumb.List>`
+  const rootAttrStr = rootAttrs.length ? " " + rootAttrs.join(" ") : ""
+  el.replaceWithText(
+    `<Breadcrumb.Root${rootAttrStr}>\n${list}\n</Breadcrumb.Root>`,
   )
+}
 
-  if (path.node.closingElement) {
-    path.node.closingElement.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Breadcrumb"),
-      j.jsxIdentifier(componentName),
-    )
+function updateImports(sourceFile: Parameters<Transform>[0]) {
+  const importDecl = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
+  )
+  if (!importDecl) return
+
+  const remove = ["BreadcrumbItem", "BreadcrumbLink", "BreadcrumbSeparator"]
+  for (const named of importDecl.getNamedImports()) {
+    if (remove.includes(named.getName())) named.remove()
   }
 
-  path.node.openingElement.attributes = newAttrs
+  const hasBreadcrumb = importDecl
+    .getNamedImports()
+    .some((n) => n.getName() === "Breadcrumb")
+  if (!hasBreadcrumb) importDecl.addNamedImport("Breadcrumb")
 }
 
-/**
- * Update imports for Breadcrumb components
- */
-function updateBreadcrumbImports(
-  j: any,
-  root: any,
-  transformedComponents: Set<string>,
-) {
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    .forEach((path: any) => {
-      const specifiers = path.node.specifiers
-      if (!specifiers) return
-
-      let hasBreadcrumb = false
-
-      const newSpecifiers = specifiers.flatMap((spec: any) => {
-        if (spec.type !== "ImportSpecifier") return spec
-
-        const importName = spec.imported.name
-
-        // Keep only Breadcrumb, remove component-specific imports
-        if (importName === "Breadcrumb") {
-          hasBreadcrumb = true
-          return spec
-        }
-
-        // Remove BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator
-        if (
-          importName === "BreadcrumbItem" ||
-          importName === "BreadcrumbLink" ||
-          importName === "BreadcrumbSeparator"
-        ) {
-          return []
-        }
-
-        return spec
-      })
-
-      // If we transformed breadcrumb components but don't have Breadcrumb import, add it
-      if (!hasBreadcrumb && transformedComponents.size > 0) {
-        newSpecifiers.push(j.importSpecifier(j.identifier("Breadcrumb")))
-      }
-
-      path.node.specifiers = newSpecifiers
-    })
-}
+export default transform

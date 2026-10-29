@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/cli",
-  "version": "3.36.1",
+  "version": "3.37.0",
   "description": "Generate theme typings for autocomplete",
   "keywords": [
     "theme",
@@ -54,7 +54,7 @@
     "@types/babel__core": "^7.20.5",
     "@types/cli-table": "^0.3.4",
     "@types/debug": "^4.1.12",
-    "@visulima/boxen": "^2.0.10",
+    "@visulima/boxen": "^5.0.0",
     "chokidar": "5.0.0",
     "cli-table": "^0.3.11",
     "commander": "14.0.3",

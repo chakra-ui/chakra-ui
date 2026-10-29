@@ -173,7 +173,7 @@
     },
     {
       "name": "checkbox-with-store",
-      "content": "\"use client\"\nexport const CheckboxWithStore = () => {\n  const checkbox = useCheckbox()\n  return (\n    <Checkbox.RootProvider value={checkbox}>\n      <Checkbox.Root>\n        <Checkbox.HiddenInput />\n        <Checkbox.Control />\n        <Checkbox.Label>Accept terms and conditions</Checkbox.Label>\n      </Checkbox.Root>\n    </Checkbox.RootProvider>\n  )\n}\n",
+      "content": "\"use client\"\nexport const CheckboxWithStore = () => {\n  const checkbox = useCheckbox()\n  return (\n    <Checkbox.RootProvider value={checkbox}>\n      <Checkbox.HiddenInput />\n      <Checkbox.Control />\n      <Checkbox.Label>Accept terms and conditions</Checkbox.Label>\n    </Checkbox.RootProvider>\n  )\n}\n",
       "hasSnippet": false,
       "importPaths": [
         "import { Checkbox, useCheckbox } from \"@chakra-ui/react\""

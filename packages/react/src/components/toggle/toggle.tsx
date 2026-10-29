@@ -63,10 +63,10 @@ export const TogglePropsProvider =
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToggleIndicatorProps
-  extends HTMLChakraProps<"div", ArkToggle.IndicatorBaseProps>, UnstyledProp {}
+  extends HTMLChakraProps<"span", ArkToggle.IndicatorBaseProps>, UnstyledProp {}
 
 export const ToggleIndicator = withContext<
-  HTMLButtonElement,
+  HTMLSpanElement,
   ToggleIndicatorProps
 >(ArkToggle.Indicator, "indicator", {
   forwardAsChild: true,

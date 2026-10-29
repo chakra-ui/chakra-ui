@@ -34,3 +34,4 @@ export { SliderWithMultipleThumbs as RangeSlider } from "compositions/examples/s
 export { SliderWithStep as Step } from "compositions/examples/slider-with-step"
 export { SliderWithStore as Store } from "compositions/examples/slider-with-store"
 export { SliderWithValueText as ValueText } from "compositions/examples/slider-with-value-text"
+export { SliderWithCustomMarkerLabels as CustomMarkerLabels } from "compositions/examples/slider-with-custom-marker-labels"

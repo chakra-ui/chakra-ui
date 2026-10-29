@@ -78,6 +78,15 @@
       "importPath": "import { Popover } from \"@chakra-ui/react\""
     },
     {
+      "name": "popover-with-multiple-triggers",
+      "content": "\"use client\"\nexport const PopoverWithMultipleTriggers = () => {\n  return (\n    <Popover.Root>\n      <HStack>\n        <Popover.Trigger asChild value=\"profile\">\n          <Button size=\"sm\" variant=\"outline\">\n            Profile\n          </Button>\n        </Popover.Trigger>\n        <Popover.Trigger asChild value=\"settings\">\n          <Button size=\"sm\" variant=\"outline\">\n            Settings\n          </Button>\n        </Popover.Trigger>\n        <Popover.Trigger asChild value=\"help\">\n          <Button size=\"sm\" variant=\"outline\">\n            Help\n          </Button>\n        </Popover.Trigger>\n      </HStack>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Arrow />\n            <Popover.Body>\n              <Popover.Context>\n                {(api) => (\n                  <>\n                    <Popover.Title\n                      fontWeight=\"medium\"\n                      textTransform=\"capitalize\"\n                    >\n                      {api.triggerValue}\n                    </Popover.Title>\n                    Opened from the {api.triggerValue} trigger.\n                  </>\n                )}\n              </Popover.Context>\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, HStack, Popover, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Popover } from \"@chakra-ui/react\""
+    },
+    {
       "name": "popover-with-offset",
       "content": "export const PopoverWithOffset = () => {\n  return (\n    <Popover.Root positioning={{ offset: { crossAxis: 0, mainAxis: 0 } }}>\n      <Popover.Trigger asChild>\n        <Button size=\"sm\" variant=\"outline\">\n          Open\n        </Button>\n      </Popover.Trigger>\n      <Portal>\n        <Popover.Positioner>\n          <Popover.Content>\n            <Popover.Body>\n              This popover has a custom offset from its trigger\n            </Popover.Body>\n          </Popover.Content>\n        </Popover.Positioner>\n      </Portal>\n    </Popover.Root>\n  )\n}\n",
       "hasSnippet": false,
