@@ -32,6 +32,7 @@ export const ComboboxWithAsyncContent = () => {
     <Combobox.Root
       width="320px"
       collection={collection}
+      loading={state.loading}
       placeholder="Example: C-3PO"
       onInputValueChange={(e) => setInputValue(e.inputValue)}
       positioning={{ sameWidth: false, placement: "bottom-start" }}
