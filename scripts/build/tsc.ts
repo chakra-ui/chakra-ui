@@ -28,7 +28,7 @@ export async function generateTypes(dir: string) {
 }
 
 const relativeSpecifier =
-  /(\bfrom\s*|\bimport\s*\(\s*|\bimport\s+)(["'])(\.\.?\/[^"']*)\2/g
+  /(\bfrom\s*|\bimport\s*\(\s*|\bimport\s+)(["'])(\.\.?(?:\/[^"']*)?)\2/g
 
 /**
  * The packages are `"type": "module"`, so under `moduleResolution: nodenext`
@@ -48,7 +48,8 @@ export function addRelativeExtensions(typesDir: string) {
       relativeSpecifier,
       (match, prefix, quote, spec) => {
         const base = join(dirname(path), spec)
-        if (existsSync(`${base}.d.ts`)) {
+        const isDir = spec === "." || spec === ".." || spec.endsWith("/")
+        if (!isDir && existsSync(`${base}.d.ts`)) {
           return `${prefix}${quote}${spec}.js${quote}`
         }
         if (existsSync(join(base, "index.d.ts"))) {
