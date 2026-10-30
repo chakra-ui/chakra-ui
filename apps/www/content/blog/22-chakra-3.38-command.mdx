@@ -148,7 +148,8 @@ now follows your imports across files:
 
 - Token files imported into a theme, like `colors.ts`, get rewritten to the v3
   `{ value }` shape.
-- Prop migrations apply to components imported through local barrel files.
+- Prop migrations can reach components imported through local barrel files. It's
+  slower, so it's opt-in: say yes at the prompt or pass `--cross-file`.
 - New transforms for `StackItem`, `Input`/`Textarea` border color props, and
   custom SVG icons.
 
