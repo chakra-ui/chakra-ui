@@ -1,0 +1,212 @@
+---
+title: Introducing Command
+description:
+  "Chakra UI v3.38 introduces Command, a searchable command menu for ⌘K
+  palettes, plus KbdGroup, new Combobox and Pagination APIs, a rebuilt codemod,
+  and a round of bug fixes"
+type: release
+version: "3.38"
+authors: ["lope"]
+publishedAt: "2026-10-30"
+---
+
+Today we're shipping Chakra UI v3.38, headlined by a new component:
+**[Command](/docs/components/command)**.
+
+Every app ends up with a `⌘K` menu sooner or later. Search across pages, jump to
+settings, run an action without touching the mouse. Command is that menu. Items
+are data, you type to filter them, and selecting one runs its action and closes
+the dialog.
+
+Command was built by [@kalisaNkevin](https://github.com/kalisaNkevin) and Sage
+([@segunadebayo](https://github.com/segunadebayo)). A big thank you to both of
+them!
+
+<ExampleTabs name="command-basic" />
+
+What you get:
+
+- Items are plain objects. `useCommandCollection` ranks them as you type, and
+  `keywords` let an item match words that aren't in its label.
+- Groups, separators, loading, and empty states, all as composable parts.
+- Nested pages, async results, and load-more, without leaving the same API.
+- Holding ⌘, Ctrl, Shift, or Alt while selecting keeps the dialog open, so you
+  can open several links in new tabs.
+- Command runs actions and keeps no selected value. For a picker, reach for
+  [Combobox](/docs/components/combobox) or [Listbox](/docs/components/listbox).
+
+```tsx
+const command = useCommandCollection({ initialItems: commands })
+
+<Command.Provider value={command}>
+  <Command.Dialog>
+    <Portal>
+      <Command.DialogBackdrop />
+      <Command.DialogContent>
+        <Command.Root>{/* ... */}</Command.Root>
+      </Command.DialogContent>
+    </Portal>
+  </Command.Dialog>
+</Command.Provider>
+```
+
+Coming from cmdk? The [docs](/docs/components/command#coming-from-cmdk) have a
+side-by-side mapping of the parts.
+
+### Groups
+
+Group related commands under a label so a long list stays scannable.
+
+<ExampleTabs name="command-with-groups" />
+
+### Nested pages
+
+Give an item a `parent` and it moves to that item's page. Escape goes back a
+page, Backspace on an empty input goes up one, and going back restores the query
+you had.
+
+```tsx
+const command = useCommandCollection({
+  initialItems: [
+    { label: "Change status...", value: "status" },
+    { label: "Done", value: "status:done", parent: "status" },
+  ],
+  deepSearch: true,
+})
+```
+
+<ExampleTabs name="command-nested" />
+
+### Async results
+
+Load items from a server as the user types. `Command.Loading` shows while the
+request is in flight, and `loadMore` pages through results as you scroll.
+
+<ExampleTabs name="command-with-load-more" />
+
+### Hotkeys
+
+Command doesn't bind a shortcut for you. Use the new `useHotkeys` hook to bind
+`⌘K` and register the same items, so their shortcuts work even while the menu is
+closed. `useFormatHotkey` formats them per platform.
+
+<ExampleTabs name="command-with-hotkeys" />
+
+### Links
+
+Render items as anchors with `asChild`. Click, middle-click, or Enter all work,
+and ⌘+Enter or Ctrl+Enter opens the link in a new tab.
+
+<ExampleTabs name="command-with-links" />
+
+There's a lot more in the [Command docs](/docs/components/command): prefix
+search, tabs, input pages, recent items, footer actions, and virtualization for
+large lists.
+
+## KbdGroup
+
+Shortcuts show up everywhere in a command menu, so [Kbd](/docs/components/kbd)
+got a small upgrade too. `KbdGroup` groups the keys of a shortcut, and its
+`size` and `variant` apply to every `Kbd` inside. Single keys like `K` now
+render square.
+
+<ExampleTabs name="kbd-with-group" />
+
+## New APIs
+
+We updated our headless foundation to [Ark UI](https://ark-ui.com) 5.40.0, which
+brings a few APIs worth knowing about:
+
+- **Combobox `loading`.** Sets `aria-busy` on the list and holds back the empty
+  state while results load, so you don't flash "No results" before the request
+  returns.
+
+  ```tsx
+  <Combobox.Root loading={isLoading} />
+  ```
+
+- **Pagination as links.** With `type="link"`, items and triggers render as real
+  anchors, so pages are crawlable and open in new tabs.
+
+  ```tsx
+  <Pagination.Root
+    count={100}
+    pageSize={10}
+    type="link"
+    getPageUrl={({ page }) => `?page=${page}`}
+  />
+  ```
+
+- **Modifier-aware `onSelect`.** Combobox and Menu now pass `modifiers` to
+  `onSelect`, and call it when a link item is modifier-clicked.
+- **`initialFocusEl` can return `false`** on Dialog, Drawer, Popover, Color
+  Picker, and Floating Panel to open without moving focus.
+
+## The codemod, rebuilt
+
+The upgrade codemod moved from jscodeshift to ts-morph. The big win is that it
+now follows your imports across files:
+
+- Token files imported into a theme, like `colors.ts`, get rewritten to the v3
+  `{ value }` shape.
+- Prop migrations can reach components imported through local barrel files. It's
+  slower, so it's opt-in: say yes at the prompt or pass `--cross-file`.
+- New transforms for `StackItem`, `Input`/`Textarea` border color props, and
+  custom SVG icons.
+
+Some changes need a human. Those get a `// TODO(chakra-v3)` comment in place,
+and a "Manual follow-ups" report at the end of the run tells you where to look.
+
+```bash
+npx @chakra-ui/codemod upgrade --dry-run
+```
+
+There's also `list` to see every transform, `--transform` to run only the ones
+you name, and `--fail-on-warn` for CI.
+
+## Bug fixes
+
+This release also packs a deep round of fixes. A few you'll want to know about:
+
+- **Variants named after shorthands work.** A variant called `rounded`, `bg`, or
+  `p` was dropped in `cva` and `sva`. It isn't anymore.
+- **`!` in a style value is just a `!`.** Values like `content: '"!"'` and
+  `url(/a!b.png)` were treated as `!important`. Only a trailing `!` or
+  `!important` counts now.
+- **No more `className` hydration mismatches** caused by the style cache
+  ignoring property order.
+- **Tokens with a value of `0` resolve.** `useToken("zIndex", "base")` used to
+  return the fallback.
+- **`useBreakpoint` respects `getWindow`**, so media queries work inside iframes
+  and Shadow DOM. `useBreakpointValue` gets the fix too.
+- **Field errors are announced.** `Field.ErrorText` wasn't read by VoiceOver and
+  Narrator. Helper and error text on Select, Tags Input, Color Picker, File
+  Upload, Rating Group, and Pin Input are announced now too.
+- **Presence in Safari.** Elements with an exit animation could stay mounted
+  forever, invisible but still blocking clicks.
+
+Thanks to our community contributors too:
+[@dfedoryshchev](https://github.com/dfedoryshchev) fixed `useMediaQuery`
+ignoring changes to its queries, and [@waterWang](https://github.com/waterWang)
+fixed `NumberInput.Control` overflowing into the label.
+
+See the [full changelog](https://github.com/chakra-ui/chakra-ui/releases) for
+the complete list.
+
+## Upgrading
+
+```bash
+npm install @chakra-ui/react@latest
+```
+
+This release is backward compatible, with two things to check:
+
+- `Field.ErrorText` is now linked via `aria-describedby` instead of
+  `aria-errormessage`. Tests asserting `toHaveAccessibleErrorMessage` should use
+  `toHaveAccessibleDescription`.
+- `Popover.Title` renders an `h2`, and `Listbox.ItemText` and `Toggle.Indicator`
+  render a `span`. Their ref types changed to match.
+
+Try Command out and tell us what you build in
+[Discord](https://chakra-ui.com/discord) or on
+[Twitter](https://twitter.com/chakra_ui).
