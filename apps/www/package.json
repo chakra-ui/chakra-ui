@@ -13,6 +13,7 @@
     "pregenerate:types": "pnpm build:react",
     "generate:types": "pnpm tsx scripts/generate-types.ts",
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
+    "check:illustrations": "pnpm tsx scripts/check-illustrations.tsx",
     "generate:theme": "pnpm tsx scripts/generate-theme.ts",
     "build:react": "cd ../../ && pnpm react build:fast",
     "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react && pnpm generate:theme"
