@@ -149,7 +149,7 @@ export const HeroSection = () => (
         <Announcement alignSelf="flex-start" asChild>
           <Link href="/blog/chakra-3.38-command">
             <LuPartyPopper />
-            Meet Command
+            [New] ⌘K: Introducing Command Palette
             <HiArrowRight />
           </Link>
         </Announcement>
