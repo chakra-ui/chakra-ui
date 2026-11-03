@@ -1,3 +1,4 @@
+// illustration-ref: accordion
 import { createComponent } from "./create-component"
 
 export const CollapsibleAnatomy = createComponent((props) => {
@@ -11,48 +12,19 @@ export const CollapsibleAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={80} y={60} width={240} height={46} rx={8} fill={palette[2]} />
-      <rect x={100} y={78} width={120} height={10} rx={5.0} fill={palette[3]} />
+      <rect x={53} y={78} width={294} height={44} rx={7} fill={palette[3]} />
+      <rect x={71} y={94} width={160} height={12} rx={6} fill={palette[15]} />
       <path
-        d="M290 87L298 79L306 87"
+        d="M315 103L321 97L327 103"
         stroke={palette[15]}
-        strokeWidth={4}
+        strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <rect x={80} y={118} width={240} height={122} rx={8} fill={palette[3]} />
-      <rect
-        x={100}
-        y={140}
-        width={196}
-        height={8}
-        rx={4.0}
-        fill={palette[15]}
-      />
-      <rect
-        x={100}
-        y={160}
-        width={160}
-        height={8}
-        rx={4.0}
-        fill={palette[15]}
-      />
-      <rect
-        x={100}
-        y={180}
-        width={180}
-        height={8}
-        rx={4.0}
-        fill={palette[15]}
-      />
-      <rect
-        x={100}
-        y={200}
-        width={110}
-        height={8}
-        rx={4.0}
-        fill={palette[15]}
-      />
+      <rect x={53} y={130} width={294} height={92} rx={7} fill={palette[2]} />
+      <rect x={71} y={154} width={251} height={8} rx={4} fill={palette[15]} />
+      <rect x={71} y={176} width={228} height={8} rx={4} fill={palette[15]} />
+      <rect x={71} y={198} width={180} height={8} rx={4} fill={palette[15]} />
     </svg>
   )
 })

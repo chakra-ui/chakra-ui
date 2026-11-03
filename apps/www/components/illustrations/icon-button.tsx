@@ -1,3 +1,4 @@
+// illustration-ref: close-button
 import { createComponent } from "./create-component"
 
 export const IconButtonAnatomy = createComponent((props) => {
@@ -11,27 +12,19 @@ export const IconButtonAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={108} y={106} width={88} height={88} rx={14} fill={palette[3]} />
-      <circle cx={148} cy={146} r={16} stroke={palette[15]} strokeWidth={6} />
-      <path
-        d="M160 158L170 168"
-        stroke={palette[15]}
-        strokeWidth={6}
-        strokeLinecap="round"
-      />
       <rect
-        x={207}
-        y={109}
-        width={82}
-        height={82}
-        rx={12}
-        stroke={palette[3]}
-        strokeWidth={6}
+        x={165}
+        y={115}
+        width={71}
+        height={71}
+        rx={5.79592}
+        fill={palette[3]}
       />
+      <circle cx={196} cy={146} r={9} stroke={palette[15]} strokeWidth={4} />
       <path
-        d="M248 130V170M228 150H268"
-        stroke={palette[3]}
-        strokeWidth={6}
+        d="M203 153L210 160"
+        stroke={palette[15]}
+        strokeWidth={4}
         strokeLinecap="round"
       />
     </svg>

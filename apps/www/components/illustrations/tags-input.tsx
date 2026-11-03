@@ -1,3 +1,4 @@
+// illustration-ref: tag
 import { createComponent } from "./create-component"
 
 export const TagsInputAnatomy = createComponent((props) => {
@@ -11,24 +12,22 @@ export const TagsInputAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={53} y={116} width={294} height={68} rx={8} fill={palette[7]} />
-      <rect x={65} y={128} width={108} height={44} rx={22} fill={palette[3]} />
-      <rect x={83} y={145} width={54} height={10} rx={5} fill={palette[15]} />
-      <path
-        d="M147 144L159 156M159 144L147 156"
-        stroke={palette[15]}
-        strokeWidth={4}
-        strokeLinecap="round"
+      <rect
+        x={81.5}
+        y={125.5}
+        width={237}
+        height={49}
+        rx={8}
+        stroke={palette[2]}
+        strokeWidth={3}
       />
-      <rect x={183} y={128} width={98} height={44} rx={22} fill={palette[3]} />
-      <rect x={201} y={145} width={44} height={10} rx={5} fill={palette[15]} />
+      <rect x={92} y={134} width={84} height={32} rx={16} fill={palette[3]} />
+      <rect x={184} y={134} width={68} height={32} rx={16} fill={palette[3]} />
       <path
-        d="M255 144L267 156M267 144L255 156"
-        stroke={palette[15]}
-        strokeWidth={4}
-        strokeLinecap="round"
+        d="M104 146.5h60a3.5 3.5 0 0 1 0 7h-60a3.5 3.5 0 0 1 0-7zM196 146.5h44a3.5 3.5 0 0 1 0 7h-44a3.5 3.5 0 0 1 0-7z"
+        fill={palette[15]}
       />
-      <rect x={293} y={136} width={4} height={28} rx={2} fill={palette[3]} />
+      <rect x={264} y={138} width={3} height={24} rx={1.5} fill={palette[3]} />
     </svg>
   )
 })

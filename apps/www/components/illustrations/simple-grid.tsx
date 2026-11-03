@@ -1,3 +1,4 @@
+// illustration-ref: grid
 import { createComponent } from "./create-component"
 
 export const SimpleGridAnatomy = createComponent((props) => {
@@ -11,12 +12,12 @@ export const SimpleGridAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={80} y={78} width={72} height={64} rx={8} fill={palette[3]} />
-      <rect x={164} y={78} width={72} height={64} rx={8} fill={palette[2]} />
-      <rect x={248} y={78} width={72} height={64} rx={8} fill={palette[3]} />
-      <rect x={80} y={154} width={72} height={64} rx={8} fill={palette[2]} />
-      <rect x={164} y={154} width={72} height={64} rx={8} fill={palette[3]} />
-      <rect x={248} y={154} width={72} height={64} rx={8} fill={palette[2]} />
+      <rect x={70} y={86} width={81} height={60} fill={palette[2]} />
+      <rect x={160} y={86} width={81} height={60} fill={palette[2]} />
+      <rect x={250} y={86} width={81} height={60} fill={palette[2]} />
+      <rect x={70} y={155} width={81} height={60} fill={palette[2]} />
+      <rect x={160} y={155} width={81} height={60} fill={palette[2]} />
+      <rect x={250} y={155} width={81} height={60} fill={palette[2]} />
     </svg>
   )
 })

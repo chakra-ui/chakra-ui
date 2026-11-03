@@ -1,3 +1,4 @@
+// illustration-ref: list
 import { createComponent } from "./create-component"
 
 export const ScrollAreaAnatomy = createComponent((props) => {
@@ -11,15 +12,33 @@ export const ScrollAreaAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={83} y={55} width={234} height={190} rx={10} fill={palette[7]} />
-      <rect x={105} y={80} width={160} height={12} rx={6} fill={palette[3]} />
-      <rect x={105} y={108} width={140} height={12} rx={6} fill={palette[2]} />
-      <rect x={105} y={136} width={170} height={12} rx={6} fill={palette[2]} />
-      <rect x={105} y={164} width={120} height={12} rx={6} fill={palette[2]} />
-      <rect x={105} y={192} width={155} height={12} rx={6} fill={palette[2]} />
-      <rect x={105} y={220} width={90} height={12} rx={6} fill={palette[2]} />
-      <rect x={293} y={67} width={12} height={166} rx={6} fill={palette[10]} />
-      <rect x={293} y={92} width={12} height={64} rx={6} fill={palette[3]} />
+      <rect x={79} y={97.5} width={190} height={9} rx={4.5} fill={palette[3]} />
+      <rect
+        x={79}
+        y={129.5}
+        width={220}
+        height={9}
+        rx={4.5}
+        fill={palette[3]}
+      />
+      <rect
+        x={79}
+        y={161.5}
+        width={160}
+        height={9}
+        rx={4.5}
+        fill={palette[3]}
+      />
+      <rect
+        x={79}
+        y={193.5}
+        width={200}
+        height={9}
+        rx={4.5}
+        fill={palette[3]}
+      />
+      <rect x={318} y={92} width={8} height={116} rx={4} fill={palette[2]} />
+      <rect x={318} y={92} width={8} height={48} rx={4} fill={palette[3]} />
     </svg>
   )
 })

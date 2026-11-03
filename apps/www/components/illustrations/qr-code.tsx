@@ -1,3 +1,4 @@
+// illustration-ref: image
 import { createComponent } from "./create-component"
 
 export const QrCodeAnatomy = createComponent((props) => {
@@ -11,35 +12,12 @@ export const QrCodeAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={120} y={70} width={160} height={160} rx={12} fill={palette[3]} />
-      <rect x={134} y={84} width={44} height={44} rx={6} fill={palette[15]} />
-      <rect x={142} y={92} width={28} height={28} rx={3} fill={palette[3]} />
-      <rect x={148} y={98} width={16} height={16} rx={2} fill={palette[15]} />
-      <rect x={222} y={84} width={44} height={44} rx={6} fill={palette[15]} />
-      <rect x={230} y={92} width={28} height={28} rx={3} fill={palette[3]} />
-      <rect x={236} y={98} width={16} height={16} rx={2} fill={palette[15]} />
-      <rect x={134} y={172} width={44} height={44} rx={6} fill={palette[15]} />
-      <rect x={142} y={180} width={28} height={28} rx={3} fill={palette[3]} />
-      <rect x={148} y={186} width={16} height={16} rx={2} fill={palette[15]} />
-      <rect x={186} y={84} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={200} y={98} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={186} y={112} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={186} y={140} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={214} y={140} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={242} y={140} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={158} y={140} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={134} y={140} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={200} y={154} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={228} y={154} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={256} y={154} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={186} y={182} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={214} y={182} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={242} y={196} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={256} y={182} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={200} y={202} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={228} y={202} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={256} y={210} width={14} height={14} rx={2} fill={palette[15]} />
-      <rect x={186} y={210} width={14} height={14} rx={2} fill={palette[15]} />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M152 102h30v30h-30zM158 108v18h18v-18zM162 112h10v10h-10zM218 102h30v30h-30zM224 108v18h18v-18zM228 112h10v10h-10zM152 168h30v30h-30zM158 174v18h18v-18zM162 178h10v10h-10zM194 104h10v10h-10zM206 116h10v10h-10zM194 128h10v10h-10zM152 144h10v10h-10zM166 150h10v10h-10zM194 146h10v10h-10zM212 140h10v10h-10zM228 146h10v10h-10zM240 158h10v10h-10zM196 166h10v10h-10zM214 172h10v10h-10zM232 180h10v10h-10zM198 188h10v10h-10zM240 190h10v10h-10z"
+        fill={palette[3]}
+      />
     </svg>
   )
 })

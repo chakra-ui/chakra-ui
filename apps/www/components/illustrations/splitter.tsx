@@ -1,3 +1,4 @@
+// illustration-ref: flex
 import { createComponent } from "./create-component"
 
 export const SplitterAnatomy = createComponent((props) => {
@@ -11,28 +12,16 @@ export const SplitterAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={53} y={70} width={140} height={160} rx={10} fill={palette[3]} />
-      <rect x={213} y={70} width={134} height={160} rx={10} fill={palette[7]} />
-      <rect x={198} y={70} width={10} height={160} rx={5} fill={palette[2]} />
-      <rect
-        x={193}
-        y={125}
-        width={20}
-        height={50}
-        rx={6}
-        fill={palette[3]}
-        stroke={palette[15]}
+      <rect x={70} y={90} width={146} height={125} rx={6} fill={palette[2]} />
+      <rect x={240} y={90} width={91} height={125} rx={6} fill={palette[2]} />
+      <rect x={224} y={134} width={8} height={36} rx={4} fill={palette[3]} />
+      <path
+        d="M214 72h28M214 72l6-6M214 72l6 6M242 72l-6-6M242 72l-6 6"
+        stroke={palette[3]}
         strokeWidth={3}
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <circle cx={203} cy={140} r={2.5} fill={palette[15]} />
-      <circle cx={203} cy={150} r={2.5} fill={palette[15]} />
-      <circle cx={203} cy={160} r={2.5} fill={palette[15]} />
-      <rect x={73} y={92} width={90} height={12} rx={6} fill={palette[15]} />
-      <rect x={73} y={116} width={100} height={10} rx={5} fill={palette[5]} />
-      <rect x={73} y={134} width={70} height={10} rx={5} fill={palette[5]} />
-      <rect x={233} y={92} width={80} height={12} rx={6} fill={palette[3]} />
-      <rect x={233} y={116} width={94} height={10} rx={5} fill={palette[2]} />
-      <rect x={233} y={134} width={60} height={10} rx={5} fill={palette[2]} />
     </svg>
   )
 })

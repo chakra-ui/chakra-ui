@@ -1,3 +1,4 @@
+// illustration-ref: avatar
 import { createComponent } from "./create-component"
 
 export const ColorSwatchAnatomy = createComponent((props) => {
@@ -11,19 +12,17 @@ export const ColorSwatchAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={56} y={116} width={56} height={56} rx={10} fill={palette[3]} />
-      <rect
-        x={127}
-        y={107}
-        width={74}
-        height={74}
-        rx={15}
-        stroke={palette[3]}
-        strokeWidth={4}
+      <circle cx={148} cy={150.5} r={24} fill={palette[2]} />
+      <circle cx={200} cy={150.5} r={24} fill={palette[3]} />
+      <circle
+        cx={200}
+        cy={150.5}
+        r={19}
+        fill={palette[3]}
+        stroke={palette[15]}
+        strokeWidth={3}
       />
-      <rect x={136} y={116} width={56} height={56} rx={10} fill={palette[2]} />
-      <rect x={216} y={116} width={56} height={56} rx={10} fill={palette[7]} />
-      <rect x={296} y={116} width={56} height={56} rx={10} fill={palette[10]} />
+      <circle cx={252} cy={150.5} r={24} fill={palette[2]} />
     </svg>
   )
 })

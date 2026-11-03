@@ -1,3 +1,4 @@
+// illustration-ref: close-button
 import { createComponent } from "./create-component"
 
 export const CheckmarkAnatomy = createComponent((props) => {
@@ -11,11 +12,18 @@ export const CheckmarkAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={140} y={90} width={120} height={120} rx={20} fill={palette[3]} />
+      <rect
+        x={165}
+        y={115}
+        width={71}
+        height={71}
+        rx={5.79592}
+        fill={palette[3]}
+      />
       <path
-        d="M168 152L190 174L232 128"
+        d="M187 151L196.5 160.5L214 141"
         stroke={palette[15]}
-        strokeWidth={14}
+        strokeWidth={4}
         strokeLinecap="round"
         strokeLinejoin="round"
       />

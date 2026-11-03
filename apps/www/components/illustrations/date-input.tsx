@@ -1,3 +1,4 @@
+// illustration-ref: pin-input
 import { createComponent } from "./create-component"
 
 export const DateInputAnatomy = createComponent((props) => {
@@ -11,32 +12,50 @@ export const DateInputAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={60} y={84} width={100} height={12} rx={6.0} fill={palette[3]} />
-      <rect x={60} y={110} width={280} height={70} rx={10} fill={palette[3]} />
-      <rect x={86} y={139} width={50} height={12} rx={6.0} fill={palette[15]} />
-      <path
-        d="M150 158L160 132"
-        stroke={palette[5]}
-        strokeWidth={4}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      <rect
+        x={74}
+        y={128}
+        width={252}
+        height={45}
+        rx={6}
+        fill={palette[3]}
+        opacity={0.7}
       />
-      <rect x={174} y={128} width={66} height={34} rx={6} fill={palette[15]} />
-      <rect x={186} y={139} width={42} height={12} rx={6.0} fill={palette[3]} />
+      <rect x={94} y={145.5} width={30} height={10} rx={5} fill={palette[15]} />
       <path
-        d="M254 158L264 132"
-        stroke={palette[5]}
-        strokeWidth={4}
+        d="M134 157L138 144"
+        stroke={palette[15]}
+        strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <rect
-        x={278}
-        y={139}
-        width={40}
-        height={12}
-        rx={6.0}
+        x={148}
+        y={145.5}
+        width={30}
+        height={10}
+        rx={5}
         fill={palette[15]}
+      />
+      <path
+        d="M188 157L192 144"
+        stroke={palette[15]}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect
+        x={202}
+        y={145.5}
+        width={56}
+        height={10}
+        rx={5}
+        fill={palette[15]}
+      />
+      <path
+        d="M296 144h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-14a2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2zM294 149h18M299 141v5M307 141v5"
+        stroke={palette[15]}
+        strokeWidth={2}
       />
     </svg>
   )

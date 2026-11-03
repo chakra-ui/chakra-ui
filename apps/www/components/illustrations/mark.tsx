@@ -1,3 +1,4 @@
+// illustration-ref: highlight
 import { createComponent } from "./create-component"
 
 export const MarkAnatomy = createComponent((props) => {
@@ -11,12 +12,9 @@ export const MarkAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={64} y={88} width={272} height={14} rx={7} fill={palette[7]} />
-      <rect x={64} y={143} width={70} height={14} rx={7} fill={palette[7]} />
-      <rect x={144} y={130} width={132} height={40} rx={6} fill={palette[3]} />
-      <rect x={158} y={143} width={104} height={14} rx={7} fill={palette[15]} />
-      <rect x={286} y={143} width={50} height={14} rx={7} fill={palette[7]} />
-      <rect x={64} y={198} width={210} height={14} rx={7} fill={palette[7]} />
+      <rect x={108} y={140} width={88} height={10} rx={5} fill={palette[3]} />
+      <rect x={204} y={127} width={88} height={36} rx={5} fill={palette[2]} />
+      <rect x={218} y={140} width={60} height={10} rx={5} fill={palette[15]} />
     </svg>
   )
 })

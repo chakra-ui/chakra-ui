@@ -1,3 +1,4 @@
+// illustration-ref: show
 import { createComponent } from "./create-component"
 
 export const PresenceAnatomy = createComponent((props) => {
@@ -12,30 +13,23 @@ export const PresenceAnatomy = createComponent((props) => {
       {...rest}
     >
       <rect
-        x={55.5}
-        y={112.5}
-        width={75}
-        height={75}
-        rx={12}
+        x={127}
+        y={91}
+        width={110}
+        height={110}
+        rx={8}
         stroke={palette[2]}
-        strokeWidth={5}
-        strokeDasharray="10 10"
+        strokeWidth={6}
+        strokeDasharray="9 9"
       />
-      <rect x={162} y={110} width={80} height={80} rx={12} fill={palette[7]} />
-      <rect x={273} y={110} width={80} height={80} rx={12} fill={palette[3]} />
-      <path
-        d="M136 150H154M148 143L155 150L148 157"
-        stroke={palette[2]}
-        strokeWidth={4}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M247 150H265M259 143L266 150L259 157"
-        stroke={palette[2]}
-        strokeWidth={4}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      <rect x={177} y={131} width={100} height={100} rx={8} fill={palette[3]} />
+      <rect
+        x={197}
+        y={176.5}
+        width={60}
+        height={9}
+        rx={4.5}
+        fill={palette[15]}
       />
     </svg>
   )

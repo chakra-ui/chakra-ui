@@ -1,3 +1,4 @@
+// illustration-ref: center
 import { createComponent } from "./create-component"
 
 export const AbsoluteCenterAnatomy = createComponent((props) => {
@@ -11,48 +12,10 @@ export const AbsoluteCenterAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={70} y={60} width={260} height={180} rx={10} fill={palette[2]} />
-      <rect x={165} y={115} width={70} height={70} rx={8} fill={palette[3]} />
-      <line
-        x1={84}
-        y1={150}
-        x2={151}
-        y2={150}
-        stroke={palette[15]}
-        strokeWidth={3}
-        strokeDasharray="6 7"
-        strokeLinecap="round"
-      />
-      <line
-        x1={249}
-        y1={150}
-        x2={316}
-        y2={150}
-        stroke={palette[15]}
-        strokeWidth={3}
-        strokeDasharray="6 7"
-        strokeLinecap="round"
-      />
-      <line
-        x1={200}
-        y1={74}
-        x2={200}
-        y2={101}
-        stroke={palette[15]}
-        strokeWidth={3}
-        strokeDasharray="6 7"
-        strokeLinecap="round"
-      />
-      <line
-        x1={200}
-        y1={199}
-        x2={200}
-        y2={226}
-        stroke={palette[15]}
-        strokeWidth={3}
-        strokeDasharray="6 7"
-        strokeLinecap="round"
-      />
+      <rect x={124} y={74} width={152} height={152} fill={palette[2]} />
+      <rect x={199} y={74} width={2} height={152} fill={palette[15]} />
+      <rect x={124} y={149} width={152} height={2} fill={palette[15]} />
+      <rect x={178} y={128} width={44} height={44} rx={4} fill={palette[3]} />
     </svg>
   )
 })

@@ -1,3 +1,4 @@
+// illustration-ref: menu
 import { createComponent } from "./create-component"
 
 export const CommandAnatomy = createComponent((props) => {
@@ -11,58 +12,19 @@ export const CommandAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={60} y={50} width={280} height={200} rx={12} fill={palette[3]} />
-      <circle cx={87} cy={77} r={8} stroke={palette[15]} strokeWidth={3} />
-      <line
-        x1={93}
-        y1={83}
-        x2={99}
-        y2={89}
+      <rect x={53} y={55} width={294} height={190} rx={8} fill={palette[3]} />
+      <path
+        d="M78 74a7 7 0 1 1 0 14a7 7 0 1 1 0-14zM83 86l5 5"
         stroke={palette[15]}
-        strokeWidth={3}
+        strokeWidth={2}
         strokeLinecap="round"
       />
-      <rect x={112} y={72} width={120} height={10} rx={5.0} fill={palette[5]} />
-      <rect x={296} y={67} width={28} height={20} rx={4} fill={palette[2]} />
-      <line
-        x1={60}
-        y1={104}
-        x2={340}
-        y2={104}
-        stroke={palette[2]}
-        strokeWidth={2}
-      />
-      <rect x={78} y={124} width={18} height={18} rx={4} fill={palette[15]} />
-      <rect
-        x={108}
-        y={128}
-        width={130}
-        height={10}
-        rx={5.0}
-        fill={palette[15]}
-      />
-      <rect x={296} y={125} width={26} height={16} rx={4} fill={palette[2]} />
-      <rect x={70} y={158} width={260} height={40} rx={6} fill={palette[5]} />
-      <rect x={78} y={169} width={18} height={18} rx={4} fill={palette[15]} />
-      <rect
-        x={108}
-        y={173}
-        width={100}
-        height={10}
-        rx={5.0}
-        fill={palette[15]}
-      />
-      <rect x={296} y={170} width={26} height={16} rx={4} fill={palette[3]} />
-      <rect x={78} y={214} width={18} height={18} rx={4} fill={palette[15]} />
-      <rect
-        x={108}
-        y={218}
-        width={150}
-        height={10}
-        rx={5.0}
-        fill={palette[15]}
-      />
-      <rect x={296} y={215} width={26} height={16} rx={4} fill={palette[2]} />
+      <rect x={96} y={76} width={120} height={10} rx={5} fill={palette[2]} />
+      <rect x={53} y={104} width={294} height={1} fill={palette[2]} />
+      <rect x={71} y={124} width={140} height={9} rx={4.5} fill={palette[15]} />
+      <rect x={53} y={152} width={294} height={42} fill={palette[2]} />
+      <rect x={71} y={168} width={220} height={9} rx={4.5} fill={palette[15]} />
+      <rect x={71} y={214} width={170} height={9} rx={4.5} fill={palette[15]} />
     </svg>
   )
 })
