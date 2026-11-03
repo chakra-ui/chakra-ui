@@ -22,9 +22,9 @@ Object.assign(globalThis, { React })
 const root = join(__dirname, "..")
 const dir = join(root, "components/illustrations")
 const BG = 0xf4 // card background (bg.muted) in light mode
-const PALETTE = new Set(["0", "2", "3", "15"])
+const PALETTE = new Set(["0", "2", "3", "5", "15"])
 const AREA = [0.6, 1.5] // allowed footprint ratio vs the reference
-const INK = [0.5, 1.5] // allowed ink ratio vs the reference
+const INK = [0.8, 1.5] // allowed ink ratio vs the reference
 
 const has = (name: string) => Object.hasOwn(allComponents, name)
 const source = (name: string) => readFileSync(join(dir, `${name}.tsx`), "utf8")

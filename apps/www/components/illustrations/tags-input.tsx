@@ -18,8 +18,7 @@ export const TagsInputAnatomy = createComponent((props) => {
         width={237}
         height={49}
         rx={8}
-        stroke={palette[2]}
-        strokeWidth={3}
+        fill={palette[2]}
       />
       <rect x={92} y={134} width={84} height={32} rx={16} fill={palette[3]} />
       <rect x={184} y={134} width={68} height={32} rx={16} fill={palette[3]} />

@@ -41,8 +41,10 @@ below and take every component it reports as missing.
 
    - One focal element, centered, with lots of empty space around it. Aim for
      the shape count of the reference (most originals have 3 to 6 shapes).
-   - Surfaces use `palette[3]` (dark) or `palette[2]` (mid). Content on them
-     (text bars, icons) uses `palette[15]` or `palette[0]`. No other slots.
+   - Surfaces use `palette[3]` (dark), `palette[2]` or `palette[5]` (mid).
+     Content on them (text bars, icons) uses `palette[15]` or `palette[0]`. No
+     other slots. Match the reference's darkness: if it is a solid dark block,
+     yours should be too, not an outline.
    - Text is a rounded bar (`rx` = half the height), as in the reference.
    - No dashed outlines, gradients, `id`s, masks or `<text>` unless the
      reference uses them.

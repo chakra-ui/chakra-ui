@@ -12,7 +12,7 @@ export const FloatingPanelAnatomy = createComponent((props) => {
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      <rect x={70} y={66} width={260} height={168} rx={12} fill={palette[2]} />
+      <rect x={70} y={66} width={260} height={168} rx={12} fill={palette[3]} />
       <path
         d="M70 78C70 71.3726 75.3726 66 82 66H318C324.627 66 330 71.3726 330 78V106H70V78Z"
         fill={palette[3]}
