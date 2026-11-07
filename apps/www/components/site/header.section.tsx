@@ -150,14 +150,7 @@ const MobileNavContent = () => {
           </Box>
         ))}
       </Stack>
-      <Stack
-        as="nav"
-        aria-label="Chakra projects"
-        gap="2"
-        mt="6"
-        pt="6"
-        borderTopWidth="1px"
-      >
+      <Stack as="nav" aria-label="Chakra projects" gap="2" mt="10">
         <Text
           textStyle="xs"
           fontWeight="medium"
