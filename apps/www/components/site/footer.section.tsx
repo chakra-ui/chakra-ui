@@ -43,13 +43,13 @@ export const FooterSection = () => {
     <footer role="contentinfo">
       <Container py="8" fontSize="sm">
         <Stack
-          direction={{ base: "column-reverse", md: "row" }}
+          direction={{ base: "column", md: "row" }}
           justify="space-between"
           align="flex-start"
           gap="8"
         >
           <Stack align="flex-start">
-            <Logo />
+            <Logo ms="-5px" />
             <Text color="fg.muted">
               Project by Chakra Systems &copy; {new Date().getFullYear()}
             </Text>
@@ -68,7 +68,7 @@ export const FooterSection = () => {
             columns={{ base: 1, sm: 3 }}
             gap="10"
             maxW={{ md: "2xl" }}
-            pb="20"
+            pb={{ md: "20" }}
           >
             {linkTree.map((column) => (
               <Stack key={column.title} direction="column" gap="4">
