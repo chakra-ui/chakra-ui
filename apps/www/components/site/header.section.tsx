@@ -133,13 +133,14 @@ const MobileNav = () => {
   const closeRef = useRef<HTMLButtonElement>(null)
   return (
     <Dialog.Root
+      size="full"
       motionPreset="slide-in-top"
       initialFocusEl={() => closeRef.current}
     >
       <MobileNavTrigger />
       <Dialog.Backdrop />
       <Dialog.Positioner>
-        <Dialog.Content m="0" shadow="none" borderRadius="0" bg="bg">
+        <Dialog.Content shadow="none" bg="bg">
           <HeaderRoot>
             <LogoLink />
             <Spacer />
