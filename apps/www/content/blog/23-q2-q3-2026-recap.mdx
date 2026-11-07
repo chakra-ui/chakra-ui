@@ -1,0 +1,141 @@
+---
+title: "Q2 & Q3 2026 Recap"
+description:
+  "An overview of everything that landed in Chakra UI between April and
+  September 2026"
+type: article
+authors: ["lope"]
+publishedAt: "2026-11-07"
+---
+
+The middle of the year brought two new components, a handful of APIs that make
+existing components do more, and a new home on the site for the products people
+ship with Chakra UI.
+
+Here's a quick overview of what landed between April and September.
+
+## FloatingPanel (v3.36 · June)
+
+Some UIs need a window inside the page. A chat widget, a properties inspector, a
+video player that follows you around while you work.
+
+In June we shipped **[FloatingPanel](/docs/components/floating-panel)**, a
+draggable, resizable panel that floats above your page content.
+
+<ExampleTabs name="floating-panel-basic" />
+
+Panels can minimize, maximize and restore, stay inside a boundary, and you can
+render several at once, each with its own position and size. You can also open
+one from anywhere with `createOverlay`.
+
+FloatingPanel was contributed by
+[@kalisaNkevin](https://github.com/kalisaNkevin). Read the
+[v3.36 release post](/blog/chakra-3.36-floating-panel) for the full tour.
+
+## DateInput (v3.37 · August)
+
+Calendars are great until someone just wants to type a date. In August we
+shipped **[DateInput](/docs/components/date-input)**, a segmented date field for
+typing dates without a calendar.
+
+<ExampleTabs name="date-input-basic" />
+
+Each part of the date is its own keyboard-navigable segment, ordered and
+formatted for the user's locale. It handles ranges, time segments and native
+form submission out of the box.
+
+If you want both typing and picking, pair it with DatePicker:
+
+<ExampleTabs name="date-input-with-date-picker" />
+
+DateInput was also contributed by
+[@kalisaNkevin](https://github.com/kalisaNkevin). Thank you! The
+[v3.37 release post](/blog/chakra-3.37-date-input) covers the rest.
+
+## Smaller Wins
+
+Not every improvement needs its own section, but these are worth knowing about.
+
+### Faster recipe components
+
+Recipe components like `Button`, `Badge` and `Skeleton` got a lot faster in
+large lists and tables (v3.36.1 · July). Compiled recipes are now cached per
+system instead of per component, and in our benchmarks repeated variant
+resolution is about 70 to 90 times faster. No API changes, you get it by
+upgrading.
+
+### Pause effects in hidden content
+
+Accordion, Collapsible, Dialog, Drawer and TreeView now accept `hideMode`. Set
+it to `"activity"` and content that stays mounted uses React 19's `Activity`
+when closed, so timers and effects pause instead of running in the background.
+
+<ExampleTabs name="collapsible-with-hide-mode" />
+
+### Multiple triggers, one overlay
+
+Since v3.35 in April, Dialog, Popover, HoverCard and Menu can share one instance
+across several triggers. Useful for a table where every row opens the same edit
+dialog.
+
+<ExampleTabs name="dialog-with-multiple-triggers" />
+
+### Overlays that return a value
+
+`createOverlay` gained a `TReturn` generic, so awaiting `open()` gives you the
+value passed to `close()`. Great for confirm dialogs and pickers. It also got a
+`has()` method to check whether an overlay is already open. Thanks to
+[@isBatak](https://github.com/isBatak) and
+[@WahabKhan7528](https://github.com/WahabKhan7528) for these.
+
+<ExampleTabs name="overlay-with-return-value" />
+
+### Splitter sizes in CSS units
+
+Splitter panels accept `px`, `em`, `rem`, `vh` and `vw`, not just percentages.
+
+<ExampleTabs name="splitter-css-units" />
+
+### Pagination text in any language
+
+Also from v3.35, `Pagination.PageText` accepts a function for `format`, so the
+page label can be translated.
+
+<ExampleTabs name="pagination-with-custom-format" />
+
+### A faster codemod
+
+The v2 to v3 codemod from Q1 got a lot faster. Transforms now run in-process, so
+a full upgrade takes a few seconds instead of around 30, and `--dry` lists every
+file and component it would change.
+
+```bash
+npx @chakra-ui/codemod upgrade --dry
+```
+
+## Shipped
+
+In July we launched **[Shipped](/shipped)**, a new page for the products people
+build with Chakra UI, told by the people who built them.
+
+Four stories landed through July:
+[Tree-Structured Planning](/shipped/tree-structured-planning),
+[TM Code](/shipped/tm-code), [Blockscout](/shipped/blockscout) and
+[Vemetric](/shipped/vemetric). One line from Célio Garcia at TM Code sums it up:
+
+> Go on, try Chakra and thank me later!
+
+If you've shipped something with Chakra UI, we'd love to feature it. Reach out
+on [Discord](https://chakra-ui.com/discord) or tag us on
+[X](https://x.com/chakra_ui).
+
+---
+
+## Q4 in Motion
+
+Q4 is off to a strong start. v3.38 shipped
+**[Command](/blog/chakra-3.38-command)**, a searchable command menu for `⌘K`
+palettes, and there's more in the pipeline. If there's something you've been
+waiting on, let us know in
+[GitHub discussions](https://github.com/chakra-ui/chakra-ui/discussions) or on
+[Discord](https://chakra-ui.com/discord).
