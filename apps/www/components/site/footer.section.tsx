@@ -46,22 +46,24 @@ export const FooterSection = () => {
           direction={{ base: "column", md: "row" }}
           justify="space-between"
           align="flex-start"
-          gap="8"
+          gap={{ base: "12", md: "8" }}
         >
-          <Stack align="flex-start">
+          <Stack align="flex-start" gap="4">
             <Logo ms="-5px" />
-            <Text color="fg.muted">
-              Project by Chakra Systems &copy; {new Date().getFullYear()}
-            </Text>
-            <VercelCredit />
-            <Text
-              color="fg.muted"
-              css={{ "& a": { color: "fg", textDecoration: "underline" } }}
-            >
-              Maintained by{" "}
-              <Link href="https://x.com/thesegunadebayo">Sage</Link> and
-              contributors
-            </Text>
+            <Stack align="flex-start" gap="2">
+              <Text color="fg.muted">
+                Project by Chakra Systems &copy; {new Date().getFullYear()}
+              </Text>
+              <VercelCredit />
+              <Text
+                color="fg.muted"
+                css={{ "& a": { color: "fg", textDecoration: "underline" } }}
+              >
+                Maintained by{" "}
+                <Link href="https://x.com/thesegunadebayo">Sage</Link> and
+                contributors
+              </Text>
+            </Stack>
           </Stack>
           <SimpleGrid
             width="full"
@@ -88,7 +90,7 @@ export const FooterSection = () => {
 }
 
 const VercelCredit = () => (
-  <HStack my="6" color="fg.muted" fontSize="sm" fontWeight="medium">
+  <HStack color="fg.muted" fontSize="sm" fontWeight="medium">
     Deployed on
     <VercelLogo />
   </HStack>
