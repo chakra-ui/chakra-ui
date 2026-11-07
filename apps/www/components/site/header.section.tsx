@@ -12,12 +12,14 @@ import {
   IconButton,
   Spacer,
   Stack,
+  Text,
   chakra,
 } from "@chakra-ui/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { type Ref, useRef } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
+import { LuArrowUpRight } from "react-icons/lu"
 
 const HeaderRoot = chakra(Container, {
   base: {
@@ -88,10 +90,38 @@ const MobileNavCloseTrigger = (props: { ref: Ref<HTMLButtonElement> }) => (
   </Dialog.CloseTrigger>
 )
 
+const projectLinks = [
+  {
+    title: "Chakra UI Pro",
+    description: "Ready-made components and templates",
+    url: "https://pro.chakra-ui.com",
+  },
+  {
+    title: "Ark UI",
+    description: "Headless components for any JS framework",
+    url: "https://ark-ui.com",
+  },
+  {
+    title: "Zag.js",
+    description: "State machines for UI components",
+    url: "https://zagjs.com",
+  },
+  {
+    title: "Panda CSS",
+    description: "Build-time, type-safe CSS-in-JS",
+    url: "https://panda-css.com",
+  },
+  {
+    title: "FigPilot",
+    description: "Convert Figma designs to Chakra UI components",
+    url: "https://figma.chakra-ui.com",
+  },
+]
+
 const MobileNavContent = () => {
   const pathname = usePathname()
   return (
-    <Container pb="6">
+    <Container flex="1" display="flex" flexDirection="column" pb="6">
       <Stack as="nav" aria-label="primary navigation" gap="0" py="2">
         {NAV_LINKS.map((item) => (
           <Box
@@ -120,11 +150,69 @@ const MobileNavContent = () => {
           </Box>
         ))}
       </Stack>
-      <Box borderTopWidth="1px" pt="4">
+      <Stack
+        as="nav"
+        aria-label="Chakra projects"
+        gap="2"
+        mt="6"
+        pt="6"
+        borderTopWidth="1px"
+      >
+        <Text
+          textStyle="xs"
+          fontWeight="medium"
+          letterSpacing="wider"
+          textTransform="uppercase"
+          color="fg.subtle"
+        >
+          More from Chakra
+        </Text>
+        <Stack gap="0">
+          {projectLinks.map((item) => (
+            <HStack
+              key={item.title}
+              asChild
+              gap="4"
+              py="2.5"
+              focusRing="inside"
+              className="group"
+            >
+              <a href={item.url} target="_blank" rel="noopener noreferrer">
+                <Stack gap="0.5" flex="1">
+                  <Text textStyle="md" fontWeight="medium">
+                    {item.title}
+                  </Text>
+                  <Text textStyle="sm" color="fg.muted">
+                    {item.description}
+                  </Text>
+                </Stack>
+                <Box
+                  color="fg.subtle"
+                  transition="transform 0.2s, color 0.2s"
+                  _groupHover={{
+                    color: "fg",
+                    transform: "translate(2px, -2px)",
+                  }}
+                >
+                  <LuArrowUpRight aria-hidden />
+                </Box>
+              </a>
+            </HStack>
+          ))}
+        </Stack>
+      </Stack>
+      <HStack justify="space-between" mt="auto" pt="4" borderTopWidth="1px">
         <Box ms="-2">
-          <SocialLinks items={[{ type: "github", href: docsConfig.repoUrl }]} />
+          <SocialLinks
+            items={[
+              { type: "github", href: docsConfig.repoUrl },
+              { type: "discord", href: "https://discord.gg/chakra-ui" },
+              { type: "x", href: "https://x.com/chakra_ui" },
+            ]}
+          />
         </Box>
-      </Box>
+        <ColorModeButton />
+      </HStack>
     </Container>
   )
 }
