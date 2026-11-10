@@ -1,14 +1,14 @@
 {
   "name": "chakra-ui",
+  "description": "The Chakra UI agent skills for Claude Code",
   "owner": {
-    "name": "Chakra UI"
+    "name": "Chakra UI",
+    "url": "https://chakra-ui.com"
   },
-  "description": "Chakra UI agent skills",
   "plugins": [
     {
       "name": "chakra-ui",
       "displayName": "Chakra UI",
-      "description": "Chakra UI agent skills for Claude Code",
       "source": "./skills",
       "strict": false,
       "skills": [
@@ -16,15 +16,25 @@
         "./chakra-ui-migrate",
         "./chakra-ui-refactor"
       ],
+      "description": "Agent skills for building UI with Chakra UI v3, migrating from v2, and reviewing or refactoring components. Use when creating Chakra components, pages, forms, dashboards, theming, charts, upgrading from v2 to v3, or converting HTML/CSS, Tailwind, or styled-components to Chakra.",
+      "version": "0.1.1",
       "author": {
         "name": "Chakra UI",
-        "url": "https://github.com/chakra-ui"
+        "url": "https://chakra-ui.com"
       },
       "homepage": "https://chakra-ui.com",
       "repository": "https://github.com/chakra-ui/chakra-ui",
       "license": "MIT",
-      "keywords": ["chakra-ui", "react", "design-system", "ui-library"],
-      "category": "development"
+      "category": "development",
+      "keywords": [
+        "chakra-ui",
+        "react",
+        "design-system",
+        "ui-components",
+        "theming",
+        "migration",
+        "coding-agents"
+      ]
     }
   ]
 }
