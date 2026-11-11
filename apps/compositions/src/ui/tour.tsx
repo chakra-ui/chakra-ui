@@ -19,20 +19,16 @@ export const Tour = React.forwardRef<HTMLDivElement, TourProps>(
       children,
       ...rest
     } = props
-    const step = rest.tour.step
-
     return (
       <ChakraTour.Root {...rest}>
         <Portal disabled={!portalled} container={portalRef}>
-          {step?.backdrop !== false && <ChakraTour.Backdrop />}
+          <ChakraTour.Backdrop />
           <ChakraTour.Spotlight />
           <ChakraTour.Positioner>
             <ChakraTour.Content ref={ref} {...contentProps}>
-              {step?.type === "tooltip" && step.arrow !== false && (
-                <ChakraTour.Arrow>
-                  <ChakraTour.ArrowTip />
-                </ChakraTour.Arrow>
-              )}
+              <ChakraTour.Arrow>
+                <ChakraTour.ArrowTip />
+              </ChakraTour.Arrow>
               <ChakraTour.CloseTrigger asChild>
                 <CloseButton size="sm" />
               </ChakraTour.CloseTrigger>
