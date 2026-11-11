@@ -1472,7 +1472,10 @@ export type TourSlot =
   | "spotlight"
   | "control"
 
-export interface TourVariant {}
+export interface TourVariant {
+  /** @default "md" */
+  size?: "sm" | "md" | "lg" | undefined
+}
 
 export type TourVariantProps = {
   [K in keyof TourVariant]?: ConditionalValue<TourVariant[K]> | undefined
