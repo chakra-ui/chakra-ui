@@ -107,7 +107,7 @@ const steps: TourStep[] = [
     description:
       "Add team members to collaborate. They'll get an email invite with access to the project.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },
@@ -120,7 +120,7 @@ const steps: TourStep[] = [
     description:
       "Connect your favorite tools — GitHub for code, Slack for notifications, Figma for design.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },
@@ -133,7 +133,7 @@ const steps: TourStep[] = [
     description:
       "When you're ready, deploy with a single click. Your project will be live in seconds.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Done", action: "dismiss" },
     ],
   },

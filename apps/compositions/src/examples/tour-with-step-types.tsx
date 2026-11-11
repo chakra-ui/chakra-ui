@@ -72,7 +72,7 @@ const steps: TourStep[] = [
     description:
       "This is a tooltip step. It points to a specific element on the page.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },

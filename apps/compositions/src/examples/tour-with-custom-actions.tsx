@@ -72,7 +72,7 @@ const steps: TourStep[] = [
     title: "Settings",
     description: "Manage your preferences here.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       {
         label: "Skip to End",
         action: (actionMap) => actionMap.dismiss(),

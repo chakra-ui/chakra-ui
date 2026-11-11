@@ -66,7 +66,7 @@ const steps: TourStep[] = [
     title: "Upload",
     description: "Use this button to upload your files.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },
@@ -77,7 +77,7 @@ const steps: TourStep[] = [
     title: "Save",
     description: "Click here to save your changes.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },
@@ -88,7 +88,7 @@ const steps: TourStep[] = [
     title: "Share",
     description: "Share your work with others.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Done", action: "dismiss" },
     ],
   },

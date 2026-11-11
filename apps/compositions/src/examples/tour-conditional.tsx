@@ -124,7 +124,7 @@ const steps: TourStep[] = [
     description:
       "This section walks you through creating your first project, inviting team members, and basic navigation.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Done", action: "dismiss" },
     ],
   },
@@ -144,7 +144,7 @@ const steps: TourStep[] = [
     description:
       "Set up automations, generate API keys, and build custom workflows to supercharge your productivity.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Done", action: "dismiss" },
     ],
   },

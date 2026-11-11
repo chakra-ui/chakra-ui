@@ -9,7 +9,9 @@ import {
   Tour,
   type TourStep,
   useTour,
+  waitForElement,
 } from "@chakra-ui/react"
+import { useMemo } from "react"
 import {
   Link,
   MemoryRouter,
@@ -29,15 +31,22 @@ const TourContent = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const steps: TourStep[] = tourSteps.map((step) => ({
-    ...step,
-    effect: ({ show }) => {
-      const path = stepToPage[step.id]
-      if (path && location.pathname !== path) navigate(path)
-      show()
-      return () => {}
-    },
-  }))
+  const steps = useMemo<TourStep[]>(
+    () =>
+      tourSteps.map((step) => ({
+        ...step,
+        effect: ({ show }) => {
+          // Navigate, then wait for the next page to render the target
+          navigate(stepToPage[step.id])
+          const [promise, cancel] = waitForElement(step.target!, {
+            timeout: 3000,
+          })
+          promise.then(show)
+          return cancel
+        },
+      })),
+    [navigate],
+  )
 
   const tour = useTour({ steps })
   const isActive = (path: string) => location.pathname === path
@@ -143,7 +152,7 @@ const tourSteps: Omit<TourStep, "effect">[] = [
     title: "Settings Page",
     description: "Manage your account preferences here.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },
@@ -154,7 +163,7 @@ const tourSteps: Omit<TourStep, "effect">[] = [
     title: "Profile Page",
     description: "View and edit your profile information.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Done", action: "dismiss" },
     ],
   },

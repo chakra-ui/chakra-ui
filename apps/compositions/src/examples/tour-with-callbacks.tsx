@@ -85,7 +85,7 @@ const steps: TourStep[] = [
     title: "Second Step",
     description: "The callbacks update on every step change.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Done", action: "dismiss" },
     ],
   },

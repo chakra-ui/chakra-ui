@@ -67,7 +67,7 @@ const steps: TourStep[] = [
     title: "Step Two",
     description: "Press Escape to close the tour at any time.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },
@@ -78,7 +78,7 @@ const steps: TourStep[] = [
     title: "Step Three",
     description: "Keyboard navigation makes tours accessible.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Done", action: "dismiss" },
     ],
   },

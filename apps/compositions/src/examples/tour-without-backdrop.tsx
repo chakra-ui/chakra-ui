@@ -63,7 +63,7 @@ const steps: TourStep[] = [
     title: "Save",
     description: "The page remains fully interactive.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Done", action: "dismiss" },
     ],
   },

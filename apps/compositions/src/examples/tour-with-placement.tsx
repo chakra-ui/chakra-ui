@@ -69,7 +69,7 @@ const steps: TourStep[] = [
     title: "Bottom Placement",
     description: "This tooltip appears below the target element.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Next", action: "next" },
     ],
   },
@@ -81,7 +81,7 @@ const steps: TourStep[] = [
     title: "Right Placement",
     description: "This tooltip appears to the right of the target element.",
     actions: [
-      { label: "Prev", action: "prev" },
+      { label: "Previous", action: "prev" },
       { label: "Done", action: "dismiss" },
     ],
   },
