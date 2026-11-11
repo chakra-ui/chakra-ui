@@ -1,5 +1,44 @@
 # @chakra-ui/panda-preset
 
+## 3.38.0
+
+### Patch Changes
+
+- [#10928](https://github.com/chakra-ui/chakra-ui/pull/10928)
+  [`2e78697`](https://github.com/chakra-ui/chakra-ui/commit/2e78697cb0a9003f6e665b1eb1f0c3e63cf4e48a)
+  Thanks [@waterWang](https://github.com/waterWang)! - - **NumberInput**: Fix
+  `NumberInput.Control` overflowing into the label when `NumberInput.Label` is
+  used inside `NumberInput.Root`. The control is now anchored to the bottom of
+  the root and sized to the input height.
+
+- [#10883](https://github.com/chakra-ui/chakra-ui/pull/10883)
+  [`7c26f1f`](https://github.com/chakra-ui/chakra-ui/commit/7c26f1fad4dcf14e7b97bf23d9b2a8da9d204a44)
+  Thanks [@kalisaNkevin](https://github.com/kalisaNkevin)! - **Kbd**: Add
+  `KbdGroup` to group the keys of a shortcut. Its `size` and `variant` apply to
+  every `Kbd` inside. Single keys like `K` now render square.
+
+- [`2c2fd7c`](https://github.com/chakra-ui/chakra-ui/commit/2c2fd7c1a510d7bb6f9f3d2bd6450bf2f3c3a13a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Checkbox Card,
+  Radio Card, Slider**: Fix `cursor` token overrides in the theme being ignored.
+  - **Theme**: Use `tokens.cursor.disabled` for disabled elements instead of a
+    hardcoded `not-allowed`, and `tokens.cursor.option` for Listbox items.
+  - **FileUpload**: Fix disabled delete triggers showing an active cursor and
+    full-opacity icon.
+  - **ScrollArea**: Fix the vertical scrollbar showing when content only
+    overflows horizontally, and vice versa.
+
+## 3.37.0
+
+### Patch Changes
+
+- [`065f71c`](https://github.com/chakra-ui/chakra-ui/commit/065f71ceaf0bb1aab818abe29d7f6a205c82f2aa)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix `TreeView`
+  `--tree-indentation: 0px` not fully removing nested indentation
+  - `--tree-indentation` is now the full per-level indent
+    (`indent-size + half icon-size`). Custom non-zero values no longer get an
+    extra half-icon offset on top
+  - Remove internal `--tree-icon-offset` variable from the recipe
+
 ## 3.36.1
 
 ### Patch Changes

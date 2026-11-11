@@ -41,10 +41,6 @@ export const scrollAreaSlotRecipe = defineSlotRecipe({
       position: "relative",
       margin: "var(--scrollbar-margin)",
 
-      "&:not([data-overflow-x], [data-overflow-y])": {
-        display: "none",
-      },
-
       bg: "{colors.colorPalette.solid/10}",
       "--thumb-bg": "{colors.colorPalette.solid/25}",
       "&:is(:hover, :active)": {
@@ -60,6 +56,10 @@ export const scrollAreaSlotRecipe = defineSlotRecipe({
         width: "var(--scrollbar-size)",
         flexDirection: "column",
 
+        "&:not([data-overflow-y])": {
+          display: "none",
+        },
+
         "&::before": {
           width: "var(--scrollbar-click-area)",
           height: "100%",
@@ -70,6 +70,10 @@ export const scrollAreaSlotRecipe = defineSlotRecipe({
       _horizontal: {
         height: "var(--scrollbar-size)",
         flexDirection: "row",
+
+        "&:not([data-overflow-x])": {
+          display: "none",
+        },
 
         "&::before": {
           height: "var(--scrollbar-click-area)",

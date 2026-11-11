@@ -32,6 +32,11 @@ const nextConfig = {
         destination: "/docs/get-started/ai/llms",
         permanent: true,
       },
+      {
+        source: "/blog/what-shipped-from-jan-to-march-2026",
+        destination: "/blog/q1-2026-recap",
+        permanent: true,
+      },
     ]
   },
 }

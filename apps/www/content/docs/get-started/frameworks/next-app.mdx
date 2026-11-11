@@ -28,6 +28,12 @@ configured correctly to use Chakra UI.
 
 <ResourceCard
   type="github"
+  title="Next.js app (streaming)"
+  url="https://github.com/chakra-ui/chakra-ui/tree/main/sandbox/next-app-streaming"
+/>
+
+<ResourceCard
+  type="github"
   title="Next.js pages template"
   url="https://github.com/chakra-ui/chakra-ui/tree/main/sandbox/next-pages"
 />
@@ -125,19 +131,102 @@ This also helps to resolve warnings like:
 [webpack.cache.PackFileCacheStrategy] Serializing big strings (xxxkiB)
 ```
 
-### Hydration errors
+### Stream through Suspense (optional)
 
-If you see an error like this: **Hydration failed because the initial server
-rendered HTML did not match the client**, and the error looks similar to:
+Skip this unless you stream UI through `<Suspense>`.
+
+You need it when Chakra components first appear inside a streamed `<Suspense>`
+chunk. If you enable
+[Cache Components](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents)
+in Next.js 16, that is the default.
+
+Install `@emotion/cache` and add this registry:
+
+```tsx title="components/ui/emotion-registry.tsx"
+"use client"
+
+import createCache from "@emotion/cache"
+import { CacheProvider } from "@emotion/react"
+import { useServerInsertedHTML } from "next/navigation"
+import { useState } from "react"
+
+export function EmotionRegistry({ children }: { children: React.ReactNode }) {
+  const [{ cache, flush }] = useState(() => {
+    const cache = createCache({ key: "css" })
+    cache.compat = true
+
+    const previousInsert = cache.insert
+    let inserted: string[] = []
+
+    cache.insert = (...args) => {
+      const serialized = args[1]
+      if (cache.inserted[serialized.name] === undefined) {
+        inserted.push(serialized.name)
+      }
+      return previousInsert(...args)
+    }
+
+    const flush = () => {
+      const previouslyInserted = inserted
+      inserted = []
+      return previouslyInserted
+    }
+
+    return { cache, flush }
+  })
+
+  useServerInsertedHTML(() => {
+    const names = flush()
+    if (names.length === 0) return null
+
+    const styles = names.map((name) => cache.inserted[name]).join("")
+
+    return (
+      <style
+        data-emotion={`${cache.key} ${names.join(" ")}`}
+        dangerouslySetInnerHTML={{ __html: styles }}
+      />
+    )
+  })
+
+  return <CacheProvider value={cache}>{children}</CacheProvider>
+}
+```
+
+Then wrap `Provider` with it:
+
+```tsx title="app/layout.tsx" {1,8,10}
+import { EmotionRegistry } from "@/components/ui/emotion-registry"
+import { Provider } from "@/components/ui/provider"
+
+export default function RootLayout(props: { children: React.ReactNode }) {
+  return (
+    <html suppressHydrationWarning>
+      <body>
+        <EmotionRegistry>
+          <Provider>{props.children}</Provider>
+        </EmotionRegistry>
+      </body>
+    </html>
+  )
+}
+```
+
+The
+[streaming sandbox](https://github.com/chakra-ui/chakra-ui/tree/main/sandbox/next-app-streaming)
+is a repro you can run cold, not a copy of the layout above.
+
+### Hydration errors (Turbopack)
+
+If the error looks like this:
 
 ```diff
 +<div className="chakra-xxx">
 -<style data-emotion="css-global xxx" data-s="">
 ```
 
-This is caused by how Next.js hydrates Emotion CSS when running with Turbopack.
-Please add the `--webpack` flag to your `dev` and `build` scripts in your
-`package.json` file instead.
+Turbopack is hydrating Emotion CSS incorrectly. Add `--webpack` to your `dev`
+and `build` scripts:
 
 ```diff
 - "dev": "next dev"

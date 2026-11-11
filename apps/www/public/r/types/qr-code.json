@@ -58,7 +58,8 @@
         "description": "The size of the component"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Frame": {
     "props": {
@@ -73,7 +74,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "SVGSVGElement"
+    "element": "SVGSVGElement",
+    "tag": "svg"
   },
   "Pattern": {
     "props": {
@@ -88,7 +90,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "SVGPathElement"
+    "element": "SVGPathElement",
+    "tag": "path"
   },
   "Overlay": {
     "props": {
@@ -103,7 +106,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "DownloadTrigger": {
     "props": {
@@ -128,7 +132,8 @@
         "description": "The quality of the image."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "RootProvider": {
     "props": {
@@ -142,6 +147,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   }
 }

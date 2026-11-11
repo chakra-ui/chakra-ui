@@ -1,0 +1,25 @@
+"use client"
+
+import { DateInput, Stack, Text } from "@chakra-ui/react"
+import { type DateValue, parseDate } from "@internationalized/date"
+import { useState } from "react"
+
+export const DateInputControlled = () => {
+  const [value, setValue] = useState<DateValue[]>([parseDate("2026-01-26")])
+
+  return (
+    <Stack gap="4" align="flex-start" maxW="sm">
+      <Text textStyle="sm">
+        Selected: {value.map((d) => d.toString()).join(", ") || "None"}
+      </Text>
+
+      <DateInput.Root value={value} onValueChange={(e) => setValue(e.value)}>
+        <DateInput.Label>Date of birth</DateInput.Label>
+        <DateInput.Control>
+          <DateInput.Segments />
+        </DateInput.Control>
+        <DateInput.HiddenInput />
+      </DateInput.Root>
+    </Stack>
+  )
+}

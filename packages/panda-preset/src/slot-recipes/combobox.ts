@@ -125,9 +125,10 @@ export const comboboxSlotRecipe = defineSlotRecipe({
         animationStyle: "slide-fade-out",
         animationDuration: "0s",
       },
-      "&[data-empty]:not(:has([data-scope=combobox][data-part=empty]))": {
-        opacity: 0,
-      },
+      "&[data-empty]:not([data-loading]):not(:has([data-scope=combobox][data-part=empty]))":
+        {
+          opacity: 0,
+        },
     },
     item: {
       position: "relative",

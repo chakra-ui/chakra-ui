@@ -62,14 +62,15 @@ export function useBreakpoint(options: UseBreakpointOptions = {}) {
     })
     .filter(
       ({ breakpoint }) =>
-        !!options.breakpoints?.includes(breakpoint as BreakpointName),
+        !options.breakpoints ||
+        options.breakpoints.includes(breakpoint as BreakpointName),
     )
 
   const fallback = breakpoints.map(({ fallback }) => fallback)
 
   const values = useMediaQuery(
     breakpoints.map((bp) => bp.query),
-    { fallback, ssr: options.ssr },
+    { fallback, ssr: options.ssr, getWindow: options.getWindow },
   )
 
   // find highest matched breakpoint

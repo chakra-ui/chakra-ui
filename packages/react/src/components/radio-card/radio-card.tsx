@@ -1,6 +1,6 @@
 "use client"
 
-import type { Assign } from "@ark-ui/react"
+import { type Assign, dataAttr } from "@ark-ui/react"
 import {
   RadioGroup as ArkRadioGroup,
   type UseRadioGroupContext,
@@ -16,7 +16,6 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { dataAttr } from "../../utils"
 import { Radiomark } from "../radiomark"
 
 ////////////////////////////////////////////////////////////////////////////////////

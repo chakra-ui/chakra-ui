@@ -156,6 +156,25 @@ export const comboboxAnatomy = arkComboboxAnatomy.extendWith(
   "empty",
 )
 
+export const commandAnatomy = createAnatomy("command").parts(
+  "root",
+  "label",
+  "control",
+  "indicator",
+  "input",
+  "clearTrigger",
+  "list",
+  "itemGroup",
+  "itemGroupLabel",
+  "item",
+  "itemText",
+  "itemCommand",
+  "empty",
+  "loading",
+  "separator",
+  "footer",
+)
+
 export const sliderAnatomy = arkSliderAnatomy.extendWith(
   "markerIndicator",
   "markerLabel",
@@ -263,6 +282,7 @@ export const splitterAnatomy = arkSplitterAnatomy.extendWith(
 )
 
 export { treeViewAnatomy } from "@ark-ui/react/tree-view"
+export { dateInputAnatomy } from "@ark-ui/react/date-input"
 export { avatarAnatomy } from "@ark-ui/react/avatar"
 export { checkboxAnatomy } from "@ark-ui/react/checkbox"
 export { collapsibleAnatomy } from "@ark-ui/react/collapsible"

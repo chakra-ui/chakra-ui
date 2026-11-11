@@ -17,3 +17,4 @@ export { KbdFunctionKeys as FunctionKeys } from "compositions/examples/kbd-funct
 export { KbdSizeTable as Sizes } from "compositions/examples/kbd-size-table"
 export { KbdVariantTable as Variants } from "compositions/examples/kbd-variant-table"
 export { KbdWithCombinations as Combinations } from "compositions/examples/kbd-with-combinations"
+export { KbdWithGroup as Group } from "compositions/examples/kbd-with-group"

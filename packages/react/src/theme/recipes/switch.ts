@@ -58,7 +58,7 @@ export const switchSlotRecipe = defineSlotRecipe({
       transition: "backgrounds",
       _disabled: {
         opacity: "0.5",
-        cursor: "not-allowed",
+        cursor: "disabled",
       },
       _invalid: {
         outline: "2px solid",

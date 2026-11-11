@@ -1,130 +1,5 @@
-import type {
-  API,
-  CallExpression,
-  FileInfo,
-  Options,
-  TSTypeParameterInstantiation,
-} from "jscodeshift"
-
-export default function transformer(
-  file: FileInfo,
-  api: API,
-  _options: Options,
-) {
-  const j = api.jscodeshift
-  const root = j(file.source)
-  let hasChanges = false
-
-  let needsReactForwardRef = false
-  let hasReactImport = false
-  let hasReactForwardRefImport = false
-
-  root
-    .find(j.ImportDeclaration, { source: { value: "react" } })
-    .forEach((path) => {
-      hasReactImport = true
-      path.node.specifiers?.forEach((spec) => {
-        if (
-          spec.type === "ImportSpecifier" &&
-          spec.imported.name === "forwardRef"
-        ) {
-          hasReactForwardRefImport = true
-        }
-      })
-    })
-
-  root
-    .find(j.ImportDeclaration, { source: { value: "@chakra-ui/react" } })
-    .forEach((path) => {
-      const originalLength = path.node.specifiers?.length || 0
-
-      const specifiers = path.node.specifiers?.filter((spec) => {
-        if (
-          spec.type === "ImportSpecifier" &&
-          spec.imported.name === "forwardRef"
-        ) {
-          needsReactForwardRef = true
-          return false
-        }
-        return true
-      })
-
-      if (specifiers && specifiers.length < originalLength) {
-        if (specifiers.length === 0) {
-          j(path).remove()
-        } else {
-          path.node.specifiers = specifiers
-        }
-        hasChanges = true
-      }
-    })
-
-  root
-    .find(j.CallExpression, { callee: { name: "forwardRef" } })
-    .forEach((path) => {
-      const node = path.node as CallExpression & {
-        typeParameters?: TSTypeParameterInstantiation
-      }
-
-      if (node.typeParameters && node.typeParameters.params.length === 2) {
-        const propsType = node.typeParameters.params[0]
-        const elementType = node.typeParameters.params[1]
-
-        if (
-          elementType.type === "TSLiteralType" &&
-          elementType.literal.type === "StringLiteral"
-        ) {
-          const elementName = elementType.literal.value
-          const htmlElementType = HTML_ELEMENT_MAP[elementName] || "HTMLElement"
-
-          node.typeParameters.params = [
-            j.tsTypeReference(j.identifier(htmlElementType)),
-            propsType,
-          ]
-
-          hasChanges = true
-        }
-      }
-    })
-
-  if (needsReactForwardRef && !hasReactForwardRefImport) {
-    if (hasReactImport) {
-      root
-        .find(j.ImportDeclaration, { source: { value: "react" } })
-        .forEach((path) => {
-          const hasForwardRef = path.node.specifiers?.some(
-            (spec) =>
-              spec.type === "ImportSpecifier" &&
-              spec.imported.name === "forwardRef",
-          )
-
-          if (!hasForwardRef) {
-            const forwardRefSpecifier = j.importSpecifier(
-              j.identifier("forwardRef"),
-            )
-            path.node.specifiers = path.node.specifiers || []
-            path.node.specifiers.push(forwardRefSpecifier)
-            hasChanges = true
-          }
-        })
-    } else {
-      const newImport = j.importDeclaration(
-        [j.importSpecifier(j.identifier("forwardRef"))],
-        j.literal("react"),
-      )
-
-      const firstImport = root.find(j.ImportDeclaration).at(0)
-      if (firstImport.length > 0) {
-        firstImport.insertBefore(newImport)
-      } else {
-        root.get().node.program.body.unshift(newImport)
-      }
-      hasChanges = true
-    }
-  }
-
-  return hasChanges ? root.toSource() : file.source
-}
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 
 const HTML_ELEMENT_MAP: Record<string, string> = {
   button: "HTMLButtonElement",
@@ -155,3 +30,91 @@ const HTML_ELEMENT_MAP: Record<string, string> = {
   main: "HTMLElement",
   aside: "HTMLElement",
 }
+
+const transform: Transform = (sourceFile) => {
+  const reactImports = sourceFile
+    .getImportDeclarations()
+    .filter((d) => d.getModuleSpecifierValue() === "react")
+
+  const hasReactImport = reactImports.length > 0
+  const hasReactForwardRefImport = reactImports.some((d) =>
+    d.getNamedImports().some((n) => n.getName() === "forwardRef"),
+  )
+
+  let needsReactForwardRef = false
+
+  // Remove `forwardRef` from @chakra-ui/react imports.
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (importDecl.getModuleSpecifierValue() !== "@chakra-ui/react") continue
+
+    const forwardRefSpec = importDecl
+      .getNamedImports()
+      .find((n) => n.getName() === "forwardRef")
+    if (!forwardRefSpec) continue
+
+    needsReactForwardRef = true
+    forwardRefSpec.remove()
+
+    if (
+      importDecl.getNamedImports().length === 0 &&
+      !importDecl.getDefaultImport() &&
+      !importDecl.getNamespaceImport()
+    ) {
+      importDecl.remove()
+    }
+  }
+
+  // Add `forwardRef` to react import (or create one) if needed.
+  if (needsReactForwardRef && !hasReactForwardRefImport) {
+    if (hasReactImport) {
+      for (const importDecl of sourceFile.getImportDeclarations()) {
+        if (importDecl.getModuleSpecifierValue() !== "react") continue
+        const hasForwardRef = importDecl
+          .getNamedImports()
+          .some((n) => n.getName() === "forwardRef")
+        if (!hasForwardRef) importDecl.addNamedImport("forwardRef")
+      }
+    } else {
+      sourceFile.insertImportDeclaration(0, {
+        namedImports: ["forwardRef"],
+        moduleSpecifier: "react",
+      })
+    }
+  }
+
+  // Rewrite `forwardRef<Props, "div">(...)` to `forwardRef<HTMLDivElement, Props>(...)`.
+  const replacements: Array<{ start: number; end: number; text: string }> = []
+  for (const call of sourceFile.getDescendantsOfKind(
+    SyntaxKind.CallExpression,
+  )) {
+    const callee = call.getExpression()
+    if (!Node.isIdentifier(callee) || callee.getText() !== "forwardRef")
+      continue
+
+    const typeArgs = call.getTypeArguments()
+    if (typeArgs.length !== 2) continue
+
+    const propsType = typeArgs[0]
+    const elementType = typeArgs[1]
+
+    if (!Node.isLiteralTypeNode(elementType)) continue
+    const literal = elementType.getLiteral()
+    if (!Node.isStringLiteral(literal)) continue
+
+    const elementName = literal.getLiteralValue()
+    const htmlElementType = HTML_ELEMENT_MAP[elementName] || "HTMLElement"
+
+    replacements.push({
+      start: propsType.getStart(),
+      end: elementType.getEnd(),
+      text: `${htmlElementType}, ${propsType.getText()}`,
+    })
+  }
+
+  replacements.sort((a, b) => b.start - a.start)
+  for (const r of replacements) {
+    sourceFile.replaceText([r.start, r.end], r.text)
+  }
+}
+
+export default transform

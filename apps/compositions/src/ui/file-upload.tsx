@@ -98,8 +98,7 @@ const FileUploadItem = React.forwardRef<HTMLLIElement, FileUploadItemProps>(
 )
 
 interface FileUploadListProps
-  extends VisibilityProps,
-    ChakraFileUpload.ItemGroupProps {
+  extends VisibilityProps, ChakraFileUpload.ItemGroupProps {
   files?: File[]
 }
 

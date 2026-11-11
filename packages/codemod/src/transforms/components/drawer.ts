@@ -1,353 +1,272 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { collectChakraLocalNames } from "../../utils/chakra-tracker"
+import { Node, SyntaxKind } from "ts-morph"
+import type { JsxChild } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
-  processDialogProps,
-  renameToMemberExpression,
-} from "../../utils/dialog-utils"
-import { createParserFromPath } from "../../utils/parser"
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 
-/**
- * Transforms Drawer components to v3 Drawer compound component API
- *
- * @example
- * // Before
- * <Drawer isOpen={isOpen} onClose={onClose} placement="left" isFullHeight>
- *   <DrawerOverlay />
- *   <DrawerContent>
- *     <DrawerHeader>Title</DrawerHeader>
- *     <DrawerBody>Body</DrawerBody>
- *   </DrawerContent>
- * </Drawer>
- *
- * // After
- * <Drawer.Root open={isOpen} onOpenChange={(e) => { if (!e.open) onClose() }} placement="start">
- *   <Portal>
- *     <Drawer.Backdrop />
- *     <Drawer.Positioner>
- *       <Drawer.Content height="100%">
- *         <Drawer.Header>Title</Drawer.Header>
- *         <Drawer.Body>Body</Drawer.Body>
- *       </Drawer.Content>
- *     </Drawer.Positioner>
- *   </Portal>
- * </Drawer.Root>
- */
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-
-  if (chakraLocalNames.size === 0) return file.source
-
-  const transformedComponents = new Set<string>()
-  const fullHeightContentPaths = new Set<any>()
-
-  // Transform Drawer
-  if (chakraLocalNames.has("Drawer")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "Drawer" } },
-      })
-      .forEach((path) => {
-        const isFullHeight = transformDrawer(j, path)
-        transformedComponents.add("Drawer")
-
-        // Track which DrawerContent should have height="100%"
-        if (isFullHeight) {
-          // Find DrawerContent within this Drawer
-          j(path)
-            .find(j.JSXElement, {
-              openingElement: { name: { name: "DrawerContent" } },
-            })
-            .forEach((contentPath) => {
-              fullHeightContentPaths.add(contentPath)
-            })
-        }
-      })
-  }
-
-  // Transform DrawerOverlay
-  if (chakraLocalNames.has("DrawerOverlay")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "DrawerOverlay" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Drawer", "Backdrop")
-        transformedComponents.add("DrawerOverlay")
-      })
-  }
-
-  // Transform DrawerContent
-  if (chakraLocalNames.has("DrawerContent")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "DrawerContent" } },
-      })
-      .forEach((path) => {
-        transformDrawerContent(j, path, fullHeightContentPaths.has(path))
-        transformedComponents.add("DrawerContent")
-      })
-  }
-
-  // Transform DrawerHeader
-  if (chakraLocalNames.has("DrawerHeader")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "DrawerHeader" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Drawer", "Header")
-        transformedComponents.add("DrawerHeader")
-      })
-  }
-
-  // Transform DrawerBody
-  if (chakraLocalNames.has("DrawerBody")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "DrawerBody" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Drawer", "Body")
-        transformedComponents.add("DrawerBody")
-      })
-  }
-
-  // Transform DrawerFooter
-  if (chakraLocalNames.has("DrawerFooter")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "DrawerFooter" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Drawer", "Footer")
-        transformedComponents.add("DrawerFooter")
-      })
-  }
-
-  // Transform DrawerCloseButton
-  if (chakraLocalNames.has("DrawerCloseButton")) {
-    root
-      .find(j.JSXElement, {
-        openingElement: { name: { name: "DrawerCloseButton" } },
-      })
-      .forEach((path) => {
-        renameToMemberExpression(j, path, "Drawer", "CloseTrigger")
-        transformedComponents.add("DrawerCloseButton")
-      })
-  }
-
-  // Update imports
-  if (transformedComponents.size > 0) {
-    const drawerComponentNames = [
-      "Drawer",
-      "DrawerOverlay",
-      "DrawerContent",
-      "DrawerHeader",
-      "DrawerBody",
-      "DrawerFooter",
-      "DrawerCloseButton",
-    ]
-    updateDrawerImports(j, root, transformedComponents, drawerComponentNames)
-  }
-
-  return root.toSource({ quote: "single" })
+const PLACEMENT_MAP: Record<string, string> = {
+  left: "start",
+  right: "end",
+  start: "start",
+  end: "end",
+  top: "top",
+  bottom: "bottom",
 }
 
-/**
- * Transform Drawer to Drawer.Root and wrap children in Portal
- * Handle placement remapping and isFullHeight
- * @returns {boolean} Whether isFullHeight was set
- */
-function transformDrawer(j: any, path: any): boolean {
-  const attrs = path.node.openingElement.attributes || []
-  const children = path.node.children || []
+const SIZE_MAP: Record<string, string> = {
+  xs: "xs",
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+  xl: "xl",
+  "2xl": "xl",
+  "3xl": "xl",
+  "4xl": "xl",
+  "5xl": "xl",
+  "6xl": "xl",
+  full: "full",
+}
 
+// Rename map for sub-components (DrawerContent handled specially).
+const NAME_MAP: Record<string, string> = {
+  DrawerOverlay: "Drawer.Backdrop",
+  DrawerHeader: "Drawer.Header",
+  DrawerBody: "Drawer.Body",
+  DrawerFooter: "Drawer.Footer",
+  DrawerCloseButton: "Drawer.CloseTrigger",
+}
+
+const DRAWER_SUBCOMPONENTS = [
+  "DrawerOverlay",
+  "DrawerContent",
+  "DrawerHeader",
+  "DrawerBody",
+  "DrawerFooter",
+  "DrawerCloseButton",
+]
+
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
+  if (!chakraLocalNames.has("Drawer")) return
+
+  const drawers = sourceFile
+    .getDescendantsOfKind(SyntaxKind.JsxElement)
+    .filter(
+      (el) =>
+        getJsxBaseName(el.getOpeningElement().getTagNameNode()) === "Drawer",
+    )
+    .sort((a, b) => b.getStart() - a.getStart())
+
+  let transformed = false
+
+  for (const el of drawers) {
+    const opening = el.getOpeningElement()
+    const { attrs, isFullHeight } = computeRootAttrs(opening)
+
+    const renderNode = (child: JsxChild): string => {
+      if (Node.isJsxSelfClosingElement(child) || Node.isJsxElement(child)) {
+        const childOpening = Node.isJsxElement(child)
+          ? child.getOpeningElement()
+          : child
+        const base = getJsxBaseName(childOpening.getTagNameNode())
+
+        if (!chakraLocalNames.has(base)) return child.getText()
+
+        const childAttrs = childOpening.getAttributes().map((a) => a.getText())
+
+        if (base === "DrawerContent") {
+          const contentAttrs = [...childAttrs]
+          if (isFullHeight) contentAttrs.push(`height="100%"`)
+          const attrsPart = contentAttrs.length
+            ? " " + contentAttrs.join(" ")
+            : ""
+          const inner = Node.isJsxElement(child)
+            ? child.getJsxChildren().map(renderNode).join("")
+            : ""
+          const content = Node.isJsxSelfClosingElement(child)
+            ? `<Drawer.Content${attrsPart} />`
+            : `<Drawer.Content${attrsPart}>${inner}</Drawer.Content>`
+          return `<Drawer.Positioner>${content}</Drawer.Positioner>`
+        }
+
+        const mapped = NAME_MAP[base]
+        if (mapped) {
+          const attrsPart = childAttrs.length ? " " + childAttrs.join(" ") : ""
+          if (Node.isJsxSelfClosingElement(child)) {
+            return `<${mapped}${attrsPart} />`
+          }
+          const inner = child.getJsxChildren().map(renderNode).join("")
+          return `<${mapped}${attrsPart}>${inner}</${mapped}>`
+        }
+      }
+      return child.getText()
+    }
+
+    const childrenText = el.getJsxChildren().map(renderNode).join("")
+    const attrsStr = attrs.length ? " " + attrs.join(" ") : ""
+    const body = childrenText ? `<Portal>${childrenText}</Portal>` : ""
+
+    el.replaceWithText(`<Drawer.Root${attrsStr}>${body}</Drawer.Root>`)
+    transformed = true
+  }
+
+  if (transformed) updateDrawerImports(sourceFile)
+}
+
+function computeRootAttrs(opening: import("ts-morph").JsxOpeningElement): {
+  attrs: string[]
+  isFullHeight: boolean
+} {
+  const attrs: string[] = []
   let isFullHeight = false
+  let onCloseInner: string | undefined
+  let onCloseIsFn = false
+  let onCloseFnBody: string | undefined
 
-  // Process drawer-specific props before common dialog props
-  const processedAttrs = attrs.flatMap((attr: any) => {
-    if (attr.type !== "JSXAttribute") return [attr]
+  const removed = new Set([
+    "allowPinchZoom",
+    "autoFocus",
+    "lockFocusAcrossFrames",
+    "preserveScrollBarGap",
+    "returnFocusOnClose",
+    "useInert",
+    "portalProps",
+  ])
 
-    const propName = attr.name.name
-
-    // Handle placement remapping: left→start, right→end
-    if (propName === "placement") {
-      const value = attr.value
-      if (value?.type === "StringLiteral" || value?.type === "Literal") {
-        const placement = value.value
-        const placementMap: Record<string, string> = {
-          left: "start",
-          right: "end",
-          start: "start",
-          end: "end",
-          top: "top",
-          bottom: "bottom",
-        }
-        const newPlacement = placementMap[placement] || placement
-        attr.value = j.stringLiteral(newPlacement)
-      }
-      // If it's an expression, keep as-is
-      return [attr]
+  for (const attr of opening.getAttributes()) {
+    if (!Node.isJsxAttribute(attr)) {
+      attrs.push(attr.getText())
+      continue
     }
+    const name = attr.getNameNode().getText()
+    const init = attr.getInitializer()
+    const initText = init?.getText()
+    const exprText =
+      init && Node.isJsxExpression(init)
+        ? init.getExpression()?.getText()
+        : undefined
 
-    // Track isFullHeight and remove it
-    if (propName === "isFullHeight") {
+    // Drawer-specific
+    if (name === "placement") {
+      if (init && Node.isStringLiteral(init)) {
+        const val = init.getLiteralText()
+        attrs.push(`placement="${PLACEMENT_MAP[val] ?? val}"`)
+      } else {
+        attrs.push(attr.getText())
+      }
+      continue
+    }
+    if (name === "isFullHeight") {
       isFullHeight = true
-      return []
+      continue
     }
 
-    return [attr]
-  })
-
-  // Process common dialog props
-  const newAttrs = processDialogProps(j, processedAttrs, {
-    componentType: "modal",
-  })
-
-  // Update component name to Drawer.Root
-  path.node.openingElement.name = j.jsxMemberExpression(
-    j.jsxIdentifier("Drawer"),
-    j.jsxIdentifier("Root"),
-  )
-
-  if (path.node.closingElement) {
-    path.node.closingElement.name = j.jsxMemberExpression(
-      j.jsxIdentifier("Drawer"),
-      j.jsxIdentifier("Root"),
-    )
+    // Dialog props
+    switch (name) {
+      case "isOpen":
+        attrs.push(kv("open", initText))
+        break
+      case "onClose": {
+        const expr =
+          init && Node.isJsxExpression(init) ? init.getExpression() : undefined
+        onCloseInner = expr?.getText()
+        if (
+          expr &&
+          (Node.isArrowFunction(expr) || Node.isFunctionExpression(expr))
+        ) {
+          onCloseIsFn = true
+          const fnBody = expr.getBody()
+          onCloseFnBody = Node.isBlock(fnBody)
+            ? fnBody.getText()
+            : `{ ${fnBody.getText()} }`
+        }
+        break
+      }
+      case "isCentered":
+        attrs.push(`placement="center"`)
+        break
+      case "closeOnOverlayClick":
+        attrs.push(kv("closeOnInteractOutside", initText))
+        break
+      case "closeOnEsc":
+        attrs.push(kv("closeOnEscape", initText))
+        break
+      case "blockScrollOnMount":
+        attrs.push(kv("preventScroll", initText))
+        break
+      case "onCloseComplete":
+        attrs.push(kv("onExitComplete", initText))
+        break
+      case "onEsc":
+        attrs.push(kv("onEscapeKeyDown", initText))
+        break
+      case "onOverlayClick":
+        attrs.push(kv("onInteractOutside", initText))
+        break
+      case "finalFocusRef":
+        attrs.push(`finalFocusEl={() => ${exprText ?? initText}.current}`)
+        break
+      case "initialFocusRef":
+      case "leastDestructiveRef":
+        attrs.push(`initialFocusEl={() => ${exprText ?? initText}.current}`)
+        break
+      case "size":
+        if (init && Node.isStringLiteral(init)) {
+          const val = init.getLiteralText()
+          attrs.push(`size="${SIZE_MAP[val] ?? val}"`)
+        } else {
+          attrs.push(attr.getText())
+        }
+        break
+      case "motionPreset":
+      case "scrollBehavior":
+      case "trapFocus":
+        attrs.push(attr.getText())
+        break
+      default:
+        if (removed.has(name)) break
+        attrs.push(attr.getText())
+    }
   }
 
-  path.node.openingElement.attributes = newAttrs
-
-  // Wrap children in Portal (mimicking v2 behavior)
-  if (children.length > 0) {
-    const portalElement = j.jsxElement(
-      j.jsxOpeningElement(j.jsxIdentifier("Portal"), []),
-      j.jsxClosingElement(j.jsxIdentifier("Portal")),
-      [j.jsxText("\n    "), ...children, j.jsxText("\n  ")],
-    )
-    path.node.children = [j.jsxText("\n  "), portalElement, j.jsxText("\n")]
+  if (onCloseInner !== undefined) {
+    let consequent: string
+    if (onCloseIsFn) {
+      consequent = onCloseFnBody ?? "{}"
+    } else {
+      consequent = `{ ${onCloseInner}() }`
+    }
+    attrs.push(`onOpenChange={(e) => { if (!e.open) ${consequent} }}`)
   }
 
-  return isFullHeight
+  return { attrs, isFullHeight }
 }
 
-/**
- * Transform DrawerContent to Drawer.Content wrapped in Drawer.Positioner
- * Add height="100%" if isFullHeight was set
- */
-function transformDrawerContent(j: any, path: any, addFullHeight: boolean) {
-  const attrs = path.node.openingElement.attributes || []
-  const children = path.node.children || []
-
-  // Add height="100%" if needed
-  const finalAttrs = addFullHeight
-    ? [
-        ...attrs,
-        j.jsxAttribute(j.jsxIdentifier("height"), j.stringLiteral("100%")),
-      ]
-    : attrs
-
-  // Create Drawer.Content
-  const contentElement = j.jsxElement(
-    j.jsxOpeningElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Drawer"),
-        j.jsxIdentifier("Content"),
-      ),
-      finalAttrs,
-    ),
-    j.jsxClosingElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Drawer"),
-        j.jsxIdentifier("Content"),
-      ),
-    ),
-    children,
+function updateDrawerImports(sourceFile: import("ts-morph").SourceFile): void {
+  const importDecl = sourceFile.getImportDeclaration(
+    (d) => d.getModuleSpecifierValue() === "@chakra-ui/react",
   )
+  if (!importDecl) return
 
-  // Wrap in Drawer.Positioner
-  const positionerElement = j.jsxElement(
-    j.jsxOpeningElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Drawer"),
-        j.jsxIdentifier("Positioner"),
-      ),
-      [],
-    ),
-    j.jsxClosingElement(
-      j.jsxMemberExpression(
-        j.jsxIdentifier("Drawer"),
-        j.jsxIdentifier("Positioner"),
-      ),
-    ),
-    [j.jsxText("\n    "), contentElement, j.jsxText("\n  ")],
+  const names = importDecl
+    .getNamedImports()
+    .map((n) => n.getName())
+    .filter((n) => !DRAWER_SUBCOMPONENTS.includes(n))
+  if (!names.includes("Drawer")) names.push("Drawer")
+  if (!names.includes("Portal")) names.push("Portal")
+
+  // Replace the whole declaration in one shot so the blank line that
+  // separates the imports from the rest of the file is preserved.
+  importDecl.replaceWithText(
+    `import { ${names.join(", ")} } from '@chakra-ui/react'`,
   )
-
-  j(path).replaceWith(positionerElement)
 }
 
-/**
- * Update imports for Drawer components
- * Similar to updateDialogImports but for Drawer namespace
- */
-function updateDrawerImports(
-  j: any,
-  root: any,
-  transformedComponents: Set<string>,
-  componentNames: string[],
-) {
-  root
-    .find(j.ImportDeclaration, {
-      source: { value: "@chakra-ui/react" },
-    })
-    .forEach((path: any) => {
-      const specifiers = path.node.specifiers
-      if (!specifiers) return
-
-      let hasDrawer = false
-      let hasPortal = false
-
-      const newSpecifiers = specifiers.flatMap((spec: any) => {
-        if (spec.type !== "ImportSpecifier") return spec
-
-        const importName = spec.imported.name
-
-        // Keep Drawer and Portal
-        if (importName === "Drawer") {
-          hasDrawer = true
-          return spec
-        }
-
-        if (importName === "Portal") {
-          hasPortal = true
-          return spec
-        }
-
-        // Remove all component-specific imports
-        if (componentNames.includes(importName)) {
-          return []
-        }
-
-        return spec
-      })
-
-      // If we transformed components but don't have Drawer import, add it
-      if (!hasDrawer && transformedComponents.size > 0) {
-        newSpecifiers.push(j.importSpecifier(j.identifier("Drawer")))
-      }
-
-      // If we transformed Drawer but don't have Portal import, add it
-      if (transformedComponents.has("Drawer") && !hasPortal) {
-        newSpecifiers.push(j.importSpecifier(j.identifier("Portal")))
-      }
-
-      path.node.specifiers = newSpecifiers
-    })
+function kv(name: string, initText: string | undefined): string {
+  return initText !== undefined ? `${name}=${initText}` : name
 }
+
+export default transform

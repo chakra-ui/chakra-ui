@@ -31,6 +31,7 @@ export { DatePickerMinMax as MinMax } from "compositions/examples/date-picker-mi
 export { DatePickerUnavailable as UnavailableDates } from "compositions/examples/date-picker-unavailable"
 export { DatePickerFormatParse as FormatParse } from "compositions/examples/date-picker-format-parse"
 export { DatePickerLocale as Localization } from "compositions/examples/date-picker-locale"
+export { DatePickerPersianCalendar as PersianCalendar } from "compositions/examples/date-picker-persian-calendar"
 export { DatePickerWithButton as ButtonTrigger } from "compositions/examples/date-picker-with-button"
 export { DatePickerWithOutsideIcon as OutsideIcon } from "compositions/examples/date-picker-with-outside-icon"
 export { DatePickerWithInputGroup as InputGroup } from "compositions/examples/date-picker-with-input-group"

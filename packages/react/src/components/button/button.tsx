@@ -1,5 +1,6 @@
 "use client"
 
+import { dataAttr } from "@ark-ui/react"
 import { forwardRef, useMemo } from "react"
 import { mergeProps } from "../../merge-props"
 import {
@@ -9,7 +10,7 @@ import {
   chakra,
   createRecipeContext,
 } from "../../styled-system"
-import { cx, dataAttr } from "../../utils"
+import { cx } from "../../utils"
 import { Loader } from "../loader"
 
 const { useRecipeResult, PropsProvider, usePropsContext } = createRecipeContext(

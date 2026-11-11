@@ -43,32 +43,34 @@ export const FooterSection = () => {
     <footer role="contentinfo">
       <Container py="8" fontSize="sm">
         <Stack
-          direction={{ base: "column-reverse", md: "row" }}
+          direction={{ base: "column", md: "row" }}
           justify="space-between"
           align="flex-start"
-          gap="8"
+          gap={{ base: "12", md: "8" }}
         >
-          <Stack align="flex-start">
-            <Logo />
-            <Text color="fg.muted">
-              Project by Chakra Systems &copy; {new Date().getFullYear()}
-            </Text>
-            <VercelCredit />
-            <Text
-              color="fg.muted"
-              css={{ "& a": { color: "fg", textDecoration: "underline" } }}
-            >
-              Maintained by{" "}
-              <Link href="https://x.com/thesegunadebayo">Sage</Link> and
-              contributors
-            </Text>
+          <Stack align="flex-start" gap="4">
+            <Logo ms="-5px" />
+            <Stack align="flex-start" gap="2">
+              <Text color="fg.muted">
+                Project by Chakra Systems &copy; {new Date().getFullYear()}
+              </Text>
+              <VercelCredit />
+              <Text
+                color="fg.muted"
+                css={{ "& a": { color: "fg", textDecoration: "underline" } }}
+              >
+                Maintained by{" "}
+                <Link href="https://x.com/thesegunadebayo">Sage</Link> and
+                contributors
+              </Text>
+            </Stack>
           </Stack>
           <SimpleGrid
             width="full"
             columns={{ base: 1, sm: 3 }}
             gap="10"
             maxW={{ md: "2xl" }}
-            pb="20"
+            pb={{ md: "20" }}
           >
             {linkTree.map((column) => (
               <Stack key={column.title} direction="column" gap="4">
@@ -88,7 +90,7 @@ export const FooterSection = () => {
 }
 
 const VercelCredit = () => (
-  <HStack my="6" color="fg.muted" fontSize="sm" fontWeight="medium">
+  <HStack color="fg.muted" fontSize="sm" fontWeight="medium">
     Deployed on
     <VercelLogo />
   </HStack>

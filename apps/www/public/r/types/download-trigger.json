@@ -26,6 +26,7 @@
         "isRequired": true,
         "description": "The MIME type of the data to download"
       }
-    }
+    },
+    "tag": "button"
   }
 }

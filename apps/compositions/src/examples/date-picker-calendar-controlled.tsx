@@ -1,10 +1,11 @@
 "use client"
 
-import { DatePicker, Stack, Text, parseDate } from "@chakra-ui/react"
+import { DatePicker, Stack, Text } from "@chakra-ui/react"
+import { type DateValue, parseDate } from "@internationalized/date"
 import { useState } from "react"
 
 export const DatePickerCalendarControlled = () => {
-  const [value, setValue] = useState([parseDate("2025-03-15")])
+  const [value, setValue] = useState<DateValue[]>([parseDate("2025-03-15")])
 
   return (
     <Stack gap="4">

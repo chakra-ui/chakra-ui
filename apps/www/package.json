@@ -13,12 +13,13 @@
     "pregenerate:types": "pnpm build:react",
     "generate:types": "pnpm tsx scripts/generate-types.ts",
     "generate:icon": "pnpm tsx scripts/generate-icon.ts",
+    "check:illustrations": "pnpm tsx scripts/check-illustrations.tsx",
     "generate:theme": "pnpm tsx scripts/generate-theme.ts",
     "build:react": "cd ../../ && pnpm react build:fast",
     "prebuild": "pnpm generate:composition && pnpm generate:examples && pnpm build:react && pnpm generate:theme"
   },
   "dependencies": {
-    "@ark-ui/react": "5.37.2",
+    "@ark-ui/react": "5.40.0",
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/charts": "workspace:*",
     "@emotion/react": "11.14.0",
@@ -53,7 +54,7 @@
     "@types/react-dom": "19.2.3",
     "color2k": "2.0.3",
     "eslint": "^9",
-    "eslint-config-next": "15.5.19",
+    "eslint-config-next": "15.5.28",
     "typescript": "^5",
     "ts-morph": "28.0.0",
     "markdown-table": "^3.0.4"

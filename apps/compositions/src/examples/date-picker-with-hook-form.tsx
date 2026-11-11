@@ -7,9 +7,9 @@ import {
   Input,
   Portal,
   Stack,
-  parseDate,
 } from "@chakra-ui/react"
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
+import { parseDate } from "@internationalized/date"
 import { Controller, useForm } from "react-hook-form"
 import { LuCalendar } from "react-icons/lu"
 import { z } from "zod"

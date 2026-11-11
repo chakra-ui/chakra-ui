@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Content": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Control": {
     "props": {
@@ -42,7 +44,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "List": {
     "props": {
@@ -57,7 +60,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "IndicatorGroup": {
     "props": {
@@ -86,7 +90,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemGroupLabel": {
     "props": {
@@ -101,7 +106,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemGroup": {
     "props": {
@@ -116,7 +122,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemIndicator": {
     "props": {
@@ -131,7 +138,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Item": {
     "props": {
@@ -156,7 +164,8 @@
         "description": "Whether hovering outside should clear the highlighted state"
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "ItemText": {
     "props": {
@@ -171,7 +180,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "span"
   },
   "Label": {
     "props": {
@@ -186,7 +196,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLLabelElement"
+    "element": "HTMLLabelElement",
+    "tag": "label"
   },
   "Positioner": {
     "props": {
@@ -201,7 +212,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Root": {
     "props": {
@@ -271,6 +283,12 @@
         "type": "string",
         "isRequired": false,
         "description": "The associate form of the underlying select."
+      },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
       },
       "highlightedValue": {
         "type": "string",
@@ -395,6 +413,11 @@
         "defaultValue": false,
         "description": "Whether to allow the initial presence animation."
       },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
       "unmountOnExit": {
         "type": "boolean",
         "isRequired": false,
@@ -418,7 +441,8 @@
         "isRequired": false,
         "description": "The size of the component"
       }
-    }
+    },
+    "tag": "div"
   },
   "RootProvider": {
     "props": {
@@ -435,6 +459,12 @@
       "value": {
         "type": "UseSelectReturn<T>",
         "isRequired": true
+      },
+      "hideMode": {
+        "type": "HideMode",
+        "isRequired": false,
+        "defaultValue": "'display-none'",
+        "description": "How to hide content when mounted but not present.\n- `'display-none'`: HTML `hidden` attribute. Effects stay alive.\n- `'activity'`: React 19 `<Activity mode=\"hidden\">`. Effects pause. Requires React 19+."
       },
       "immediate": {
         "type": "boolean",
@@ -469,7 +499,8 @@
         "defaultValue": false,
         "description": "Whether to unmount on exit."
       }
-    }
+    },
+    "tag": "div"
   },
   "Trigger": {
     "props": {
@@ -484,7 +515,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "ValueText": {
     "props": {
@@ -504,7 +536,8 @@
         "description": "Text to display when no value is selected."
       }
     },
-    "element": "HTMLSpanElement"
+    "element": "HTMLSpanElement",
+    "tag": "span"
   },
   "HiddenSelect": {
     "props": {
@@ -514,6 +547,7 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLSelectElement"
+    "element": "HTMLSelectElement",
+    "tag": "select"
   }
 }

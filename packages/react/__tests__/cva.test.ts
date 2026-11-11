@@ -142,4 +142,75 @@ describe("cva", () => {
         }
       `)
   })
+
+  test("resolves each variant prop order independently", () => {
+    const recipe = cva({
+      variants: {
+        size: { md: { mt: "20px" } },
+        tone: { solid: { mt: "30px", color: "pink.400" } },
+      },
+    })
+
+    // Same variants either way, so a memo key that ignored prop order would
+    // hand the second call the first one's "30px". The later prop wins.
+    expect(recipe({ size: "md", tone: "solid" })).toMatchObject({
+      "@layer recipes": { marginTop: "30px" },
+    })
+
+    expect(recipe({ tone: "solid", size: "md" })).toMatchObject({
+      "@layer recipes": { marginTop: "20px" },
+    })
+  })
+
+  test("keeps variant keys that collide with CSS shorthands", () => {
+    const sys = createSystem({
+      theme: {
+        breakpoints: { sm: "30em" },
+      },
+      utilities: {
+        borderRadius: { shorthand: "rounded" },
+        background: { shorthand: "bg" },
+        padding: { shorthand: "p" },
+      },
+    })
+
+    const recipe = sys.cva({
+      base: { color: "red" },
+      variants: {
+        rounded: {
+          true: {
+            borderWidth: "2px",
+            borderStyle: "solid",
+          },
+        },
+        bg: {
+          solid: { background: "blue" },
+        },
+        p: {
+          sm: { padding: "4px" },
+        },
+      },
+      compoundVariants: [
+        {
+          rounded: true,
+          bg: "solid",
+          css: { borderColor: "green" },
+        },
+      ],
+      defaultVariants: {
+        rounded: true,
+      },
+    })
+
+    expect(recipe({ bg: "solid", p: "sm" })).toMatchObject({
+      "@layer recipes": {
+        color: "red",
+        borderWidth: "2px",
+        borderStyle: "solid",
+        background: "blue",
+        padding: "4px",
+        borderColor: "green",
+      },
+    })
+  })
 })

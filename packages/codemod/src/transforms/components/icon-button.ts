@@ -1,82 +1,93 @@
-import type { API, FileInfo, Options } from "jscodeshift"
-import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
+import {
+  collectChakraLocalNames,
+  getJsxBaseName,
+} from "../../utils/chakra-tracker"
 
 /**
  * Transforms IconButton component:
  * - icon prop -> children
  * - isRounded -> borderRadius="full"
  */
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  root
-    .find(j.JSXElement, {
-      openingElement: { name: { name: "IconButton" } },
-    })
-    .forEach((path) => {
-      if (!chakraLocalNames.has("IconButton")) return
-      const attrs = path.node.openingElement.attributes
-      if (!attrs) return
+  const isIconButton = (tagNode: Node) =>
+    getJsxBaseName(tagNode) === "IconButton" &&
+    chakraLocalNames.has("IconButton")
 
-      let iconValue: any = null
-      const attrsToRemove: number[] = []
+  const targets: Node[] = []
+  for (const el of sourceFile.getDescendantsOfKind(SyntaxKind.JsxElement)) {
+    if (isIconButton(el.getOpeningElement().getTagNameNode())) targets.push(el)
+  }
+  for (const el of sourceFile.getDescendantsOfKind(
+    SyntaxKind.JsxSelfClosingElement,
+  )) {
+    if (isIconButton(el.getTagNameNode())) targets.push(el)
+  }
 
-      attrs.forEach((attr, index) => {
-        if (attr.type !== "JSXAttribute") return
+  targets.sort((a, b) => b.getStart() - a.getStart())
 
-        // Capture icon prop
-        if (attr.name.name === "icon") {
-          if (attr.value?.type === "JSXExpressionContainer") {
-            iconValue = attr.value.expression
-          }
-          attrsToRemove.push(index)
-        }
+  for (const el of targets) {
+    const opening = Node.isJsxElement(el) ? el.getOpeningElement() : (el as any)
 
-        // isRounded -> borderRadius="full"
-        if (attr.name.name === "isRounded") {
-          attr.name.name = "borderRadius"
-          attr.value = j.stringLiteral("full")
-        }
-      })
+    const attrParts: string[] = []
+    let iconInner: string | undefined
+    let iconIsJsx = false
+    let changed = false
 
-      // Remove icon attribute
-      attrsToRemove.reverse().forEach((index) => {
-        attrs.splice(index, 1)
-      })
-
-      // Move icon to children
-      if (iconValue) {
-        // Ensure the opening element is not self-closing
-        path.node.openingElement.selfClosing = false
-
-        // Wrap non-JSX expressions in JSXExpressionContainer
-        let childNode = iconValue
-        if (
-          iconValue.type !== "JSXElement" &&
-          iconValue.type !== "JSXFragment"
-        ) {
-          childNode = j.jsxExpressionContainer(iconValue)
-        }
-
-        // Set the icon as children
-        path.node.children = [childNode]
-
-        // Ensure closing element exists
-        if (!path.node.closingElement) {
-          path.node.closingElement = j.jsxClosingElement(
-            j.jsxIdentifier("IconButton"),
-          )
-        }
+    for (const attr of opening.getAttributes()) {
+      if (!Node.isJsxAttribute(attr)) {
+        attrParts.push(attr.getText())
+        continue
       }
-    })
+      const name = attr.getNameNode().getText()
+      if (name === "icon") {
+        changed = true
+        const init = attr.getInitializer()
+        if (init && Node.isJsxExpression(init)) {
+          const expr = init.getExpression()
+          iconInner = expr?.getText()
+          iconIsJsx =
+            !!expr &&
+            (Node.isJsxElement(expr) ||
+              Node.isJsxSelfClosingElement(expr) ||
+              Node.isJsxFragment(expr))
+        }
+        continue
+      }
+      if (name === "isRounded") {
+        changed = true
+        attrParts.push(`borderRadius="full"`)
+        continue
+      }
+      attrParts.push(attr.getText())
+    }
 
-  return root.toSource({ quote: "single" })
+    if (!changed) continue
+
+    const attrsStr = attrParts.length ? " " + attrParts.join(" ") : ""
+
+    let childText: string | null
+    if (iconInner !== undefined) {
+      childText = iconIsJsx ? iconInner : `{${iconInner}}`
+    } else if (Node.isJsxElement(el)) {
+      childText = el
+        .getJsxChildren()
+        .map((c) => c.getText())
+        .join("")
+    } else {
+      childText = null
+    }
+
+    el.replaceWithText(
+      childText === null
+        ? `<IconButton${attrsStr} />`
+        : `<IconButton${attrsStr}>${childText}</IconButton>`,
+    )
+  }
 }
+
+export default transform

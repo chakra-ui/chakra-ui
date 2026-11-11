@@ -12,7 +12,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "CloseTrigger": {
     "props": {
@@ -27,7 +28,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLButtonElement"
+    "element": "HTMLButtonElement",
+    "tag": "button"
   },
   "Description": {
     "props": {
@@ -42,7 +44,8 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Indicator": {
     "props": {
@@ -91,12 +94,13 @@
         "description": "Use the provided child element as the default rendered element, combining their props and behavior."
       }
     },
-    "element": "HTMLDivElement"
+    "element": "HTMLDivElement",
+    "tag": "div"
   },
   "Toaster": {
     "props": {
       "toaster": {
-        "type": "CreateToasterReturn",
+        "type": "CreateToasterReturn<any>",
         "isRequired": true
       },
       "asChild": {
@@ -111,10 +115,11 @@
         "description": "The document's text/writing direction."
       },
       "getRootNode": {
-        "type": "() => Node | ShadowRoot | Document",
+        "type": "() => ShadowRoot | Node | Document",
         "isRequired": false,
         "description": "A root node to correctly resolve document in custom environments. E.x.: Iframes, Electron."
       }
-    }
+    },
+    "tag": "div"
   }
 }

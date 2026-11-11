@@ -194,8 +194,23 @@ quickly using `next-themes`
 We removed the hooks package in favor of using dedicated, robust libraries like
 `react-use` and `usehooks-ts`
 
-The only hooks we ship now are `useBreakpointValue`, `useCallbackRef`,
-`useDisclosure`, `useControllableState` and `useMediaQuery`.
+The only hooks that made it from v2 are `useBreakpoint`, `useBreakpointValue`,
+`useCallbackRef`, `useConst`, `useControllableProp`, `useControllableState`,
+`useDisclosure`, `useMediaQuery`, `usePrevious`, `useSafeLayoutEffect` and
+`useUpdateEffect`.
+
+`useLatestRef` is now `useLiveRef`.
+
+`useBreakpoint` no longer accepts the fallback breakpoint as a string argument.
+Pass it as an option instead.
+
+```tsx
+// v2
+useBreakpoint("md")
+
+// v3
+useBreakpoint({ fallback: "md" })
+```
 
 ### Style Config
 

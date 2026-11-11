@@ -172,6 +172,15 @@
       "importPath": "import { Dialog } from \"@chakra-ui/react\""
     },
     {
+      "name": "dialog-with-multiple-triggers",
+      "content": "\"use client\"\nconst people = {\n  alice: \"Alice Chen\",\n  bob: \"Bob Okonkwo\",\n  cara: \"Cara Singh\",\n}\n\nexport const DialogWithMultipleTriggers = () => {\n  return (\n    <Dialog.Root>\n      <HStack>\n        {Object.entries(people).map(([id, name]) => (\n          <Dialog.Trigger asChild key={id} value={id}>\n            <Button variant=\"outline\" size=\"sm\">\n              Edit {name}\n            </Button>\n          </Dialog.Trigger>\n        ))}\n      </HStack>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Context>\n              {(api) => {\n                const name = people[api.triggerValue as keyof typeof people]\n                return (\n                  <>\n                    <Dialog.Header>\n                      <Dialog.Title>Edit {name}</Dialog.Title>\n                    </Dialog.Header>\n                    <Dialog.Body>\n                      This dialog opened from the {name} trigger.\n                    </Dialog.Body>\n                  </>\n                )\n              }}\n            </Dialog.Context>\n            <Dialog.Footer>\n              <Dialog.ActionTrigger asChild>\n                <Button variant=\"outline\">Cancel</Button>\n              </Dialog.ActionTrigger>\n              <Button>Save</Button>\n            </Dialog.Footer>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, CloseButton, Dialog, HStack, Portal } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { Dialog } from \"@chakra-ui/react\""
+    },
+    {
       "name": "dialog-with-outside-scroll",
       "content": "export const DialogWithOutsideScroll = () => {\n  return (\n    <Dialog.Root size=\"sm\" scrollBehavior=\"outside\">\n      <Dialog.Trigger asChild>\n        <Button variant=\"outline\">Outside Scroll</Button>\n      </Dialog.Trigger>\n      <Portal>\n        <Dialog.Backdrop />\n        <Dialog.Positioner>\n          <Dialog.Content>\n            <Dialog.Header>\n              <Dialog.Title>With Outside Scroll</Dialog.Title>\n            </Dialog.Header>\n            <Dialog.CloseTrigger asChild>\n              <CloseButton size=\"sm\" />\n            </Dialog.CloseTrigger>\n            <Dialog.Body>\n              <Lorem p={8} />\n            </Dialog.Body>\n          </Dialog.Content>\n        </Dialog.Positioner>\n      </Portal>\n    </Dialog.Root>\n  )\n}\n",
       "hasSnippet": false,

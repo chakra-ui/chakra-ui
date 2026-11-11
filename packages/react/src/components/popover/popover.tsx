@@ -137,9 +137,9 @@ export const PopoverIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverTitleProps
-  extends HTMLChakraProps<"div", ArkPopover.TitleBaseProps>, UnstyledProp {}
+  extends HTMLChakraProps<"h2", ArkPopover.TitleBaseProps>, UnstyledProp {}
 
-export const PopoverTitle = withContext<HTMLDivElement, PopoverTitleProps>(
+export const PopoverTitle = withContext<HTMLHeadingElement, PopoverTitleProps>(
   ArkPopover.Title,
   "title",
   { forwardAsChild: true },

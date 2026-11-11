@@ -5,6 +5,442 @@ description:
   features, bug fixes, and improvements.
 ---
 
+## [3.38.0](./#3.38.0) - 2026-11-03
+
+### Added
+
+- **Command [NEW]**: Add a searchable command menu built on `Combobox` and
+  `Dialog`. It manages its own overlay, keyboard navigation, and the `mod+k`
+  shortcut.
+
+  ```tsx
+  <Command.Root collection={collection}>
+    <Command.Trigger>Open commands</Command.Trigger>
+    <Portal>
+      <Command.Backdrop />
+      <Command.Positioner>
+        <Command.Panel>
+          <Command.Control>
+            <Command.Indicator />
+            <Command.Input placeholder="Search commands" />
+          </Command.Control>
+          <Command.List>
+            {collection.items.map((item) => (
+              <Command.Item
+                key={item.value}
+                item={item}
+                onSelect={() => runCommand(item.value)}
+              >
+                <Command.ItemText>{item.label}</Command.ItemText>
+              </Command.Item>
+            ))}
+            <Command.Empty>No commands found</Command.Empty>
+          </Command.List>
+        </Command.Panel>
+      </Command.Positioner>
+    </Portal>
+  </Command.Root>
+  ```
+
+  Items run their `onSelect` action and close the palette by default; use
+  `closeOnSelect={false}` for nested pages or actions that keep it open. Use
+  `useCommand` with `Command.RootProvider` to control the palette from anywhere.
+  For a picker with a persistent selection, use Combobox or Listbox instead.
+
+- **Kbd**: Add `KbdGroup` to group the keys of a shortcut. Its `size` and
+  `variant` apply to every `Kbd` inside. Single keys like `K` now render square.
+
+  ```tsx
+  <KbdGroup size="sm">
+    <Kbd>⌘</Kbd>
+    <Kbd>K</Kbd>
+  </KbdGroup>
+  ```
+
+- **Combobox**: Add a `loading` prop that sets `aria-busy` on the list and holds
+  back the empty state while loading. The content stays visible, so a loading
+  indicator shows even when there are no items.
+
+- **Combobox / Menu**: Add `modifiers` to the `onSelect` details, and call
+  `onSelect` when a link item is modifier-clicked.
+
+- **Dialog / Drawer / Popover / ColorPicker / FloatingPanel**: `initialFocusEl`
+  can now return `false` to open without moving focus.
+
+- **Pagination**: Items and triggers render as anchors when `type="link"`. Add
+  `api.type` and `api.getPageUrl(page)`.
+
+- **Steps**: Add `data-current`, `data-complete` and `data-incomplete` to the
+  item.
+
+- **Codemod**
+  - Rewrite token files imported into a theme (e.g. `colors.ts`) to the v3
+    `{ value }` shape.
+  - Add transforms for `StackItem`, `Input`/`Textarea` border color props, and
+    custom SVG icons.
+  - Apply prop migrations to components imported through local barrel files.
+  - Add `list`, `--dry-run`, `--transform` and `--fail-on-warn`, plus a "Manual
+    follow-ups" report and `// TODO(chakra-v3)` comments for changes that need
+    review.
+
+### Fixed
+
+- **System**
+  - Fix variants named after a CSS shorthand, such as `rounded`, `bg` or `p`,
+    being dropped in `cva` and `sva`.
+  - Fix a `!` inside a style value being treated as `!important`, which broke
+    values like `content: '"!"'` and `url(/a!b.png)`. Only a trailing `!` or
+    `!important` is recognized now.
+  - Fix SSR hydration mismatches on `className` caused by the style cache
+    ignoring property order.
+  - Fix tokens with a value of `0` returning the fallback instead, e.g.
+    `useToken("zIndex", "base")`.
+
+- **useBreakpoint / useBreakpointValue / useMediaQuery**
+  - Fix `useBreakpoint` always returning `"base"` when the `breakpoints` option
+    is omitted.
+  - Fix the `getWindow` option being ignored, which broke media queries in
+    iframes and Shadow DOM.
+  - Fix `useMediaQuery` ignoring changes to the queries passed to it, which also
+    made `useBreakpointValue` return the wrong value once its breakpoints
+    changed.
+
+- **Field**: Fix `Field.ErrorText` not being announced by VoiceOver and
+  Narrator, and helper and error text not being announced on Select, TagsInput,
+  ColorPicker, FileUpload, RatingGroup and PinInput.
+
+- **NumberInput**: Fix `NumberInput.Control` overflowing into the label when
+  `NumberInput.Label` is used inside `NumberInput.Root`.
+
+- **Flex / Square / Circle**: Fix the array form of the `css` prop being
+  ignored.
+
+- **createOverlay**: Fix `remove` and `removeAll` leaving promises from `open`,
+  `close` and `waitForExit` pending forever. They now resolve with `undefined`.
+
+- **CheckboxCard / RadioCard / Slider**: Fix `cursor` token overrides in the
+  theme being ignored.
+
+- **FileUpload**
+  - Fix disabled delete triggers showing an active cursor and full-opacity icon.
+  - Fix `Field.Root readOnly` not making the file upload read-only.
+
+- **ScrollArea**: Fix the vertical scrollbar showing when content only overflows
+  horizontally, and vice versa.
+
+- **Overlays**: Fix <kbd>Escape</kbd> not closing content right after it opens,
+  and floating content flashing at the top-left on first open.
+
+- **Presence**: Fix elements with an exit animation staying mounted forever in
+  Safari, invisible but still blocking clicks.
+
+- **Popover**: Fix `autoFocus={false}` being ignored for modal popovers.
+
+- **Popover / Select / Menu**: Fix a stylesheet `z-index` on the positioner
+  being ignored.
+
+- **FloatingPanel**: Fix `strategy="absolute"` placing the panel outside its
+  boundary, and the panel not following its boundary when an ancestor scrolls.
+
+- **Listbox**: Fix Shift+click range selection anchoring on the highlighted item
+  instead of the clicked one.
+
+- **PinInput**: Fix keystrokes going into the hidden input after a blocked
+  native `required` validation. Focus now moves to a visible input.
+
+- **Tabs**: Fix programmatic tab selection triggering link navigation.
+
+- **Toast**: Fix `dir` and `getRootNode` being ignored, and move focus to the
+  next toast when a focused toast is dismissed.
+
+- **Progress**: Fix the formatter not updating when `formatOptions` changes.
+
+- **Splitter**: Fix slow dragging in large documents.
+
+- Fix inline style values containing semicolons, such as data URLs, being cut
+  off when props merge.
+
+- Fix an `Illegal invocation` error on setup when a tool like Storybook has
+  replaced `HTMLElement.prototype.focus`.
+
+- **CLI**: Fix installation failing on Node.js 26.
+
+### Changed
+
+- **Field**: `Field.ErrorText` is now linked to the input with
+  `aria-describedby` instead of `aria-errormessage`. Tests that assert
+  `toHaveAccessibleErrorMessage` should use `toHaveAccessibleDescription`.
+
+- **Popover**: `Popover.Title` now renders an `h2` instead of a `div`, and its
+  ref is typed as `HTMLHeadingElement`.
+
+- **Listbox / Toggle**: `Listbox.ItemText` and `Toggle.Indicator` now render a
+  `span` instead of a `div`, and their refs are typed as `HTMLSpanElement`.
+
+- **Steps**: `aria-current="step"` moved from the item to the trigger.
+
+- **Theme**: Disabled elements use `tokens.cursor.disabled` instead of a
+  hardcoded `not-allowed`, and Listbox items use `tokens.cursor.option`.
+
+- Update Ark UI to v5.40.0.
+
+## [3.37.0](./#3.37.0) - 2026-08-28
+
+### Added
+
+- **DateInput [NEW]**: Add a segmented date field for typing dates without a
+  calendar.
+
+  ```tsx
+  <DateInput.Root>
+    <DateInput.Label />
+    <DateInput.Control>
+      <DateInput.Segments />
+    </DateInput.Control>
+    <DateInput.HiddenInput />
+  </DateInput.Root>
+  ```
+
+  Each part of the date is its own keyboard-navigable segment, ordered and
+  formatted by `locale`. Supports `selectionMode="range"`, `min`/`max`, and
+  `granularity` with `formatter` for time-only input.
+
+- **Accordion / Collapsible / Dialog / Drawer / TreeView**: Add `hideMode` to
+  choose how content that stays mounted is hidden when closed. The default,
+  `"display-none"`, uses the `hidden` attribute and keeps effects running, so a
+  video keeps playing and a subscription stays open while closed. `"activity"`
+  uses React 19 `Activity` to pause those effects instead.
+
+  ```tsx
+  <Dialog.Root hideMode="activity" />
+  ```
+
+  It only applies while the content stays mounted. `unmountOnExit` removes the
+  tree on close, so `hideMode` never runs.
+
+- **Codemod**: `upgrade --dry` now lists the files that would change and, per
+  file, the components and props it touches (e.g. `Button, color palette`).
+  Large projects get the full breakdown in `chakra-codemod-report.md`, smaller
+  ones print it inline.
+
+- **createOverlay**: Add a `TReturn` generic so awaiting `open()` returns the
+  value passed to `close()` instead of `any`.
+
+  ```ts
+  const dialog = createOverlay<DialogProps, DialogResult>(Component)
+
+  const result = await dialog.open("id", props)
+  ```
+
+  `TReturn` defaults to `unknown`, so untyped `open()` calls may need narrowing
+  now. The result can also be `undefined`, since `close(id, value)` doesn't
+  require a value.
+
+- **Dialog / Drawer**: Add `data-autofocus` and `data-no-autofocus` to pick what
+  gets focus when the overlay opens, without reaching for `initialFocusEl` and a
+  ref. Mark chrome like the close button to skip it, or mark the real target
+  directly.
+
+  ```tsx
+  <Dialog.Content>
+    <Dialog.CloseTrigger data-no-autofocus />
+    <input data-autofocus />
+    <button>Save</button>
+  </Dialog.Content>
+  ```
+
+  Focus goes to `initialFocusEl`, then `[data-autofocus]`, then the first
+  tabbable element without `[data-no-autofocus]`, then the content root.
+
+- **FocusTrap**: Add `persistentElements` to keep portalled content inside the
+  trap when it isn't reachable through `aria-controls` or `aria-expanded`. Pass
+  getters so the elements resolve lazily, after they mount.
+
+  ```tsx
+  <FocusTrap
+    persistentElements={[() => document.getElementById("toast-region")]}
+  />
+  ```
+
+- **NumberInput**: Add `largeStep` and `smallStep` for keyboard stepping. Hold
+  `Shift` for `largeStep`, `Alt` for `smallStep`. They default to `10 * step`
+  and `step / 10`, which is what the arrow keys already did, so existing inputs
+  behave the same until you set them.
+
+  ```tsx
+  <NumberInput.Root step={1} largeStep={20} smallStep={0.5} />
+  ```
+
+- **Presence**: Add `onEnterComplete` for when enter animations finish,
+  mirroring the existing `onExitComplete`. Affects ColorPicker, Combobox,
+  DatePicker, Dialog, Drawer, FloatingPanel, HoverCard, Menu, Popover, Select,
+  Tooltip, and Tour.
+
+- **Slider**: Add `largeStep`, applied on `Shift` and on `PageUp`/`PageDown`.
+  Defaults to `10 * step`, matching the previous behavior.
+
+- **Toast**: `createToaster` now takes a content type parameter, so `title` and
+  `description` can be something other than `ReactNode`. It still defaults to
+  `ReactNode`.
+
+  ```tsx
+  const toaster = createToaster<Content>({ placement: "top-end" })
+  toaster.create({ title: { id: "save", text: "Saved" } })
+  ```
+
+### Fixed
+
+- **Checkbox / RadioGroup / Switch**: Fix clicking a label adding
+  `data-focus-visible` to the control. Activating the label briefly moved focus
+  to an overlay container, which was read as virtual focus.
+
+- **Codemod**
+  - Fix `.ts` files being parsed as `tsx`, so type assertions and generic arrows
+    no longer throw and get skipped.
+  - Fix the unused-package check scanning `node_modules`, which flagged
+    `framer-motion` and `@emotion/styled` as used when only a dependency
+    imported them.
+  - Fix the `color-mode` transform installing a snippet during a dry run.
+  - Fix the `steps` transform adding a stray `Steps` import to files that don't
+    use a stepper.
+
+- **ColorPicker**: Fix the channel input committing a partial value when you
+  press `Enter` to confirm an IME composition.
+
+- **Combobox / Listbox / Menu / Select**: Fix keyboard navigation losing or
+  moving the highlighted item while the pointer rests over scrollable content.
+  Scrolling an item into view moved the content under the cursor, and the
+  resulting `pointerleave` counted as a real hover.
+
+- **DateInput**
+  - Fix segment text lagging a keystroke behind when you type over an already
+    committed date, and in-progress edits being dropped while focus caught up
+    after auto-advance.
+  - Fix `CalendarDate` and `CalendarDateTime` values shifting by your local UTC
+    offset when you pass a custom `formatter` without a `timeZone`.
+  - Accept your locale's native numerals when typing, not just ASCII digits.
+    Covers Arabic-Indic `٠-٩` and Devanagari `०-९`.
+
+- **DatePicker**
+  - Fix `minView`, `maxView`, and `defaultView` being ignored when resolving the
+    initial view, which was hardcoded to day through year.
+  - Fix `defaultOpen` overriding `open`, which let a controlled picker open
+    against its own prop.
+  - Fix disabled and read-only pickers still reacting to cell clicks, the clear
+    trigger, and presets. Read-only pickers keep roving-focus navigation,
+    disabled pickers drop out of the tab order.
+  - Fix `maxSelectedDates` not being enforced on month and year cells in
+    `multiple` mode.
+  - Fix keyboard range selection drifting from pointer behavior. Picking a third
+    date restarts the range, and reopening with only a start date resumes it.
+  - Fix `translations` requiring every message. It's now `Partial`, so you can
+    override one message and let the rest fall back to the defaults.
+  - Fix the view trigger's `aria-label` naming the wrong view, and announce
+    dates inside a range as "In range" instead of the generic "Choose".
+  - Accept your locale's native numerals when typing, not just ASCII digits.
+
+- **Dialog / Drawer**
+  - Fix `Dialog.ActionTrigger` and `Drawer.ActionTrigger` ignoring the `onClick`
+    handler passed to them. The handler now runs before the dialog closes.
+  - Fix the page still scrolling behind an open overlay on layouts where
+    `<html>` is the scroll container. The scroll lock targeted `<body>`, so
+    nothing was locked.
+
+- **Dialog / Drawer / Menu / Popover**: Fix `Escape` being ignored right after
+  an overlay opens. Handlers registered a frame late, so the overlay was painted
+  and focus-trapped before it could listen. Under CPU load that gap grew well
+  past one frame and swallowed the keypress.
+
+- **Dialog / Drawer / Popover**: Fix a closing overlay pulling focus back from
+  an element your app focused in the meantime, such as a second dialog opened
+  right after closing the first. Closing a nested overlay no longer throws when
+  the outer container has no connected focusable element, and the focus ring now
+  shows on the returned-to element after you close with `Escape`.
+
+- **Fieldset**: Fix `Fieldset.Root` re-rendering whenever its subtree mutated,
+  even when helper and error text were unchanged.
+
+- **FloatingPanel**: Fix closing a panel leaving it on the stack, so the next
+  panel now becomes topmost, and fix stack order not applying to the positioner,
+  so focusing a panel raises it above its siblings.
+
+- **Marquee**: Fix scroll speed depending on content width. Duration now comes
+  from the content size and the actual translation distance, so `speed` matches
+  real pixel speed even when the content is narrower than the viewport.
+
+- **Menu**: Fix `Menu.ContextTrigger` flashing at the top-left corner on the
+  first right-click, and long-press context menus on touch opening stuck at
+  `(0,0)`. The positioner reported a placement before one had been computed,
+  which skipped the off-screen guard that hides it until the anchor point is
+  known.
+
+- **NumberInput**
+  - Fix `api.setValue` throwing when you pass a number and `formatOptions` is
+    set.
+  - Fix `Cmd`/`Ctrl` with arrow keys producing values off the `step` grid.
+
+- **Popover**: Fix tabbing out of portalled content looping back into the
+  content when the trigger was the last tabbable element on the page. Focus now
+  moves to the next tabbable element after the trigger.
+
+- **Preflight**: Fix semantic `i` and `em` elements not rendering in italics.
+
+- **QrCode**: Fix `getDataUrl()` and the download trigger dropping the overlay,
+  so a logo or badge placed over the code went missing from the export.
+
+- **RadioCard**: Fix the `outline` variant losing its border width when a card
+  is both checked and disabled. The checked ring is an inset box-shadow, which
+  `itemControl`'s disabled background painted over.
+
+- **Slider**: Fix `Cmd`/`Ctrl` with arrow keys producing values off the `step`
+  grid.
+
+- **Splitter**
+  - Fix collapsed panels sizing to `minSize` instead of `collapsedSize`, and fix
+    keyboard resizing breaking when a resize trigger got focus while hovered.
+  - Fix the resize trigger matching `:focus-visible` after a pointer drag. It
+    still takes focus, so keyboard resizing keeps working, but no longer shows
+    the focus ring.
+
+- **Steps**
+  - Fix `Steps.NextTrigger` and `Steps.PrevTrigger` submitting an ancestor form
+    on click. They carried no `type`, so they defaulted to `type="submit"`.
+  - Fix `Steps.RootProvider` rendering its children twice.
+
+- **System**: Fix Next.js 15 production builds failing to compile with
+  `Attempted import error: 'Activity' is not exported from 'react'`. React's
+  optional `Activity` export was imported statically, so webpack rejected it
+  even on React versions that expose it at runtime. It now resolves at runtime
+  and falls back to `display-none` when the React build doesn't expose it.
+
+- **Tag / ActionBar / Dialog / Drawer**: Fix `Tag.CloseTrigger`,
+  `ActionBar.SelectionTrigger`, `Dialog.ActionTrigger`, and
+  `Drawer.ActionTrigger` missing `type="button"`, which submitted the
+  surrounding `<form>` on click.
+
+- **TagsInput**
+  - Fix an XSS vector in the hidden element that measures input width. It set
+    the tag value with `innerHTML`, so a value containing markup was parsed and
+    could execute. It now uses `textContent`.
+  - Fix native form submit so `FormData` reflects the current tags. The hidden
+    input kept its initial value after you added, removed, or cleared tags.
+
+- **Toast**: Fix a height flicker when expanding the stack in overlap mode.
+  Heights are measured without the `scale` transform applied.
+
+- **TreeView**: Fix `--tree-indentation: 0px` not fully removing nested
+  indentation.
+
+### Changed
+
+- **Codemod**: Run `upgrade` transforms in-process instead of spawning a Node
+  process per transform, taking a full run from around 30s to a few seconds.
+
+- **TreeView**: `--tree-indentation` is now the full per-level indent
+  (`indent-size + half icon-size`). Custom non-zero values no longer get an
+  extra half-icon offset on top, and the internal `--tree-icon-offset` variable
+  has been removed from the recipe.
+
 ## [3.36.1](./#3.36.1) - 2026-07-19
 
 ### Fixed

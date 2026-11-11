@@ -1,85 +1,61 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 import { collectChakraLocalNames } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
-export default function transform(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const transform: Transform = (sourceFile) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile)
+  if (chakraLocalNames.size === 0) return
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
+  const chakraImports = sourceFile
+    .getImportDeclarations()
+    .filter((d) => d.getModuleSpecifierValue() === "@chakra-ui/react")
 
-  if (chakraLocalNames.size === 0) {
-    return file.source
-  }
+  const hasChakraSystemPropsImport = chakraImports.some((d) =>
+    d.getNamedImports().some((n) => n.getName() === "SystemProps"),
+  )
 
-  let hasChakraSystemPropsImport = false
+  if (!hasChakraSystemPropsImport) return
 
-  root.find(j.ImportDeclaration).forEach((path) => {
-    if (path.node.source.value !== "@chakra-ui/react") return
-
-    path.node.specifiers?.forEach((spec) => {
-      if (
-        spec.type === "ImportSpecifier" &&
-        spec.imported.name === "SystemProps"
-      ) {
-        hasChakraSystemPropsImport = true
-      }
-    })
-  })
-
-  if (!hasChakraSystemPropsImport) {
-    return file.source
-  }
-
-  root.find(j.Identifier, { name: "SystemProps" }).forEach((path) => {
-    const parent = path.parent.node
-
-    // Only touch type positions
+  // Rename `SystemProps` -> `SystemStyleObject`, but only when it appears in a
+  // type position (inside a type reference / indexed access type).
+  const ranges: Array<[number, number]> = []
+  for (const id of sourceFile.getDescendantsOfKind(SyntaxKind.Identifier)) {
+    if (id.getText() !== "SystemProps") continue
+    const parent = id.getParent()
+    if (!parent) continue
     if (
-      parent.type.startsWith("TS") ||
-      parent.type === "TSTypeReference" ||
-      parent.type === "TSIndexedAccessType"
+      Node.isTypeReference(parent) ||
+      Node.isIndexedAccessTypeNode(parent) ||
+      parent.getKindName().startsWith("TS")
     ) {
-      path.node.name = "SystemStyleObject"
+      ranges.push([id.getStart(), id.getEnd()])
     }
-  })
+  }
 
-  root.find(j.ImportDeclaration).forEach((path) => {
-    if (path.node.source.value !== "@chakra-ui/react") return
+  // Apply replacements from last to first so earlier positions stay valid.
+  ranges.sort((a, b) => b[0] - a[0])
+  for (const [start, end] of ranges) {
+    sourceFile.replaceText([start, end], "SystemStyleObject")
+  }
 
-    let systemPropsSpec: any = null
-    let hasSystemStyleObject = false
+  // Update imports: remove `SystemProps`, add `SystemStyleObject` if missing.
+  for (const importDecl of sourceFile.getImportDeclarations()) {
+    if (importDecl.getModuleSpecifierValue() !== "@chakra-ui/react") continue
 
-    path.node.specifiers?.forEach((spec) => {
-      if (spec.type !== "ImportSpecifier") return
+    const named = importDecl.getNamedImports()
+    const systemPropsSpec = named.find((n) => n.getName() === "SystemProps")
+    if (!systemPropsSpec) continue
 
-      if (spec.imported.name === "SystemProps") {
-        systemPropsSpec = spec
-      }
-
-      if (spec.imported.name === "SystemStyleObject") {
-        hasSystemStyleObject = true
-      }
-    })
-
-    if (!systemPropsSpec) return
-
-    // Remove SystemProps
-    path.node.specifiers = path.node.specifiers!.filter(
-      (spec) => spec !== systemPropsSpec,
+    const hasSystemStyleObject = named.some(
+      (n) => n.getName() === "SystemStyleObject",
     )
 
-    // Add SystemStyleObject if missing
-    if (!hasSystemStyleObject) {
-      path.node.specifiers!.push(
-        j.importSpecifier(j.identifier("SystemStyleObject")),
-      )
-    }
-  })
+    systemPropsSpec.remove()
 
-  return root.toSource({ quote: "single" })
+    if (!hasSystemStyleObject) {
+      importDecl.addNamedImport("SystemStyleObject")
+    }
+  }
 }
+
+export default transform

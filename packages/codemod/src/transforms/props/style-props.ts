@@ -1,9 +1,9 @@
-import type { API, FileInfo, Options } from "jscodeshift"
+import { Node, SyntaxKind } from "ts-morph"
+import type { Transform } from "../../transform"
 import {
   collectChakraLocalNames,
   isTrackedJsx,
 } from "../../utils/chakra-tracker"
-import { createParserFromPath } from "../../utils/parser"
 
 const STYLE_PROP_MAP: Record<string, string> = {
   noOfLines: "lineClamp",
@@ -14,37 +14,39 @@ const STYLE_PROP_MAP: Record<string, string> = {
   _mediaLight: "_osLight",
 }
 
-export default function transformer(
-  file: FileInfo,
-  _api: API,
-  _options: Options,
-) {
-  const j = createParserFromPath(file.path)
-  const root = j(file.source)
+const transform: Transform = (sourceFile, ctx) => {
+  const { chakraLocalNames } = collectChakraLocalNames(sourceFile, {
+    crossFile: ctx.crossFile,
+  })
+  if (chakraLocalNames.size === 0) return
 
-  const { chakraLocalNames } = collectChakraLocalNames(j, root)
-  if (chakraLocalNames.size === 0) return file.source
+  const openings = [
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxOpeningElement),
+    ...sourceFile.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement),
+  ]
 
-  root.find(j.JSXElement).forEach((elementPath) => {
-    const openingElement = elementPath.node.openingElement
-    if (!isTrackedJsx(openingElement, chakraLocalNames)) return
-    const attrs = openingElement.attributes || []
-    attrs.forEach((attr) => {
-      if (attr.type !== "JSXAttribute") return
-      if (attr.name.type !== "JSXIdentifier") return
-      const oldName = attr.name.name
+  for (const opening of openings) {
+    if (!isTrackedJsx(opening, chakraLocalNames)) continue
+
+    const attrs = opening.getAttributes()
+    // Edit later-in-file nodes first so removals don't invalidate earlier ones.
+    for (let i = attrs.length - 1; i >= 0; i--) {
+      const attr = attrs[i]
+      if (!Node.isJsxAttribute(attr)) continue
+      const nameNode = attr.getNameNode()
+      if (!Node.isIdentifier(nameNode)) continue
+      const oldName = nameNode.getText()
 
       if (oldName === "apply") {
-        openingElement.attributes = attrs.filter((a) => a !== attr)
-        return
+        attr.remove()
+        continue
       }
 
       const newName = STYLE_PROP_MAP[oldName]
-      if (!newName) return
-
-      attr.name.name = newName
-    })
-  })
-
-  return root.toSource({ quote: "single" })
+      if (!newName) continue
+      nameNode.replaceWithText(newName)
+    }
+  }
 }
+
+export default transform

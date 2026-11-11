@@ -23,14 +23,12 @@ export async function GET(request: NextRequest) {
   ).then((res) => res.arrayBuffer())
 
   return new ImageResponse(
-    (
-      <OpenGraphImage
-        category={category}
-        title={title}
-        backgroundSrc={backgroundArrayBuffer}
-        description={description}
-      />
-    ),
+    <OpenGraphImage
+      category={category}
+      title={title}
+      backgroundSrc={backgroundArrayBuffer}
+      description={description}
+    />,
     {
       ...size,
       fonts: [

@@ -1,0 +1,230 @@
+{
+  "name": "date-input",
+  "snippet": null,
+  "examples": [
+    {
+      "name": "date-input-basic",
+      "content": "export const DateInputBasic = () => {\n  return (\n    <DateInput.Root maxW=\"sm\">\n      <DateInput.Label>Date of birth</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "date-input-controlled",
+      "content": "\"use client\"\nexport const DateInputControlled = () => {\n  const [value, setValue] = useState<DateValue[]>([parseDate(\"2026-01-26\")])\n\n  return (\n    <Stack gap=\"4\" align=\"flex-start\" maxW=\"sm\">\n      <Text textStyle=\"sm\">\n        Selected: {value.map((d) => d.toString()).join(\", \") || \"None\"}\n      </Text>\n\n      <DateInput.Root value={value} onValueChange={(e) => setValue(e.value)}>\n        <DateInput.Label>Date of birth</DateInput.Label>\n        <DateInput.Control>\n          <DateInput.Segments />\n        </DateInput.Control>\n        <DateInput.HiddenInput />\n      </DateInput.Root>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput, Stack, Text } from \"@chakra-ui/react\"",
+        "import { type DateValue, parseDate } from \"@internationalized/date\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
+    },
+    {
+      "name": "date-input-default-value",
+      "content": "\"use client\"\nexport const DateInputDefaultValue = () => {\n  return (\n    <DateInput.Root defaultValue={[parseDate(\"2026-01-26\")]} maxW=\"sm\">\n      <DateInput.Label>Date of birth</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
+    },
+    {
+      "name": "date-input-disabled",
+      "content": "export const DateInputDisabled = () => {\n  return (\n    <DateInput.Root disabled maxW=\"sm\">\n      <DateInput.Label>Date of birth</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "date-input-granularity",
+      "content": "export const DateInputGranularity = () => {\n  return (\n    <DateInput.Root granularity=\"minute\" maxW=\"sm\">\n      <DateInput.Label>Appointment</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "date-input-invalid",
+      "content": "export const DateInputInvalid = () => {\n  return (\n    <DateInput.Root invalid maxW=\"sm\">\n      <DateInput.Label>Date of birth</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "date-input-leading-zeros",
+      "content": "\"use client\"\nexport const DateInputLeadingZeros = () => {\n  return (\n    <DateInput.Root\n      shouldForceLeadingZeros\n      defaultValue={[parseDate(\"2026-01-05\")]}\n      maxW=\"sm\"\n    >\n      <DateInput.Label>Date of birth</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
+    },
+    {
+      "name": "date-input-locale",
+      "content": "export const DateInputLocale = () => {\n  return (\n    <DateInput.Root locale=\"de-DE\" maxW=\"sm\">\n      <DateInput.Label>Geburtsdatum</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "date-input-min-max",
+      "content": "\"use client\"\nexport const DateInputMinMax = () => {\n  return (\n    <DateInput.Root\n      min={parseDate(\"2026-01-01\")}\n      max={parseDate(\"2026-12-31\")}\n      maxW=\"sm\"\n    >\n      <DateInput.Label>Appointment date (2026 only)</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
+    },
+    {
+      "name": "date-input-range",
+      "content": "\"use client\"\nexport const DateInputRange = () => {\n  return (\n    <DateInput.Root selectionMode=\"range\" maxW=\"sm\">\n      <DateInput.Label>Trip duration</DateInput.Label>\n\n      <DateInput.Control gap=\"4\">\n        <DateInput.Segments index={0} />\n        <Icon color=\"fg.subtle\" boxSize=\"4\" as={LuArrowRight} />\n        <DateInput.Segments index={1} />\n      </DateInput.Control>\n\n      <DateInput.HiddenInput index={0} />\n      <DateInput.HiddenInput index={1} />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput, Icon } from \"@chakra-ui/react\"",
+        "import { LuArrowRight } from \"react-icons/lu\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "date-input-read-only",
+      "content": "\"use client\"\nexport const DateInputReadOnly = () => {\n  return (\n    <DateInput.Root readOnly defaultValue={[parseDate(\"2026-01-26\")]} maxW=\"sm\">\n      <DateInput.Label>Date of birth</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
+    },
+    {
+      "name": "date-input-rtl",
+      "content": "export const DateInputRtl = () => {\n  return (\n    <LocaleProvider locale=\"ar-AE\">\n      <DateInput.Root maxW=\"sm\">\n        <DateInput.Label>تاريخ الميلاد</DateInput.Label>\n        <DateInput.Control>\n          <DateInput.Segments />\n        </DateInput.Control>\n        <DateInput.HiddenInput />\n      </DateInput.Root>\n    </LocaleProvider>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput, LocaleProvider } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "date-input-time-only",
+      "content": "\"use client\"\nconst formatter = new DateFormatter(\"en-US\", {\n  hour: \"numeric\",\n  minute: \"numeric\",\n  hour12: true,\n})\n\nexport const DateInputTimeOnly = () => {\n  return (\n    <DateInput.Root granularity=\"minute\" formatter={formatter} maxW=\"sm\">\n      <DateInput.Label>Appointment time</DateInput.Label>\n      <DateInput.Control>\n        <DateInput.Segments />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput } from \"@chakra-ui/react\"",
+        "import { DateFormatter } from \"@internationalized/date\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
+    },
+    {
+      "name": "date-input-time-zone",
+      "content": "\"use client\"\nexport const DateInputTimeZone = () => {\n  const [hour12, setHour12] = useState(true)\n  const [hideTimeZone, setHideTimeZone] = useState(false)\n\n  return (\n    <Stack gap=\"4\" maxW=\"sm\">\n      <DateInput.Root\n        defaultValue={[\n          parseZonedDateTime(\"2026-02-03T08:45:00[America/Los_Angeles]\"),\n        ]}\n        timeZone=\"America/Los_Angeles\"\n        granularity=\"minute\"\n        hourCycle={hour12 ? 12 : 24}\n        hideTimeZone={hideTimeZone}\n      >\n        <DateInput.Label>Meeting time</DateInput.Label>\n        <DateInput.Control>\n          <DateInput.Segments />\n        </DateInput.Control>\n        <DateInput.HiddenInput />\n      </DateInput.Root>\n\n      <HStack gap=\"4\">\n        <Checkbox.Root\n          size=\"sm\"\n          checked={hour12}\n          onCheckedChange={(e) => setHour12(!!e.checked)}\n        >\n          <Checkbox.HiddenInput />\n          <Checkbox.Control />\n          <Checkbox.Label>12 hour</Checkbox.Label>\n        </Checkbox.Root>\n        <Checkbox.Root\n          size=\"sm\"\n          checked={hideTimeZone}\n          onCheckedChange={(e) => setHideTimeZone(!!e.checked)}\n        >\n          <Checkbox.HiddenInput />\n          <Checkbox.Control />\n          <Checkbox.Label>Hide time zone</Checkbox.Label>\n        </Checkbox.Root>\n      </HStack>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Checkbox, DateInput, HStack, Stack } from \"@chakra-ui/react\"",
+        "import { parseZonedDateTime } from \"@internationalized/date\"",
+        "import { useState } from \"react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date"
+      ]
+    },
+    {
+      "name": "date-input-with-clear-trigger",
+      "content": "\"use client\"\nconst ClearTrigger = () => {\n  const dateInput = useDateInputContext()\n\n  if (!dateInput.value.length) return null\n\n  return (\n    <IconButton\n      aria-label=\"Clear date\"\n      variant=\"ghost\"\n      size=\"xs\"\n      onClick={() => dateInput.clearValue()}\n    >\n      <LuX />\n    </IconButton>\n  )\n}\n\nexport const DateInputWithClearTrigger = () => {\n  return (\n    <DateInput.Root defaultValue={[parseDate(\"2026-01-26\")]} maxW=\"sm\">\n      <DateInput.Label>Date of birth</DateInput.Label>\n      <DateInput.Control gap=\"2\">\n        <DateInput.Segments />\n        <ClearTrigger />\n      </DateInput.Control>\n      <DateInput.HiddenInput />\n    </DateInput.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput, IconButton, useDateInputContext } from \"@chakra-ui/react\"",
+        "import { parseDate } from \"@internationalized/date\"",
+        "import { LuX } from \"react-icons/lu\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@internationalized/date",
+        "react-icons"
+      ]
+    },
+    {
+      "name": "date-input-with-date-picker",
+      "content": "\"use client\"\nexport const DateInputWithDatePicker = () => {\n  const [value, setValue] = useState<DateInput.DateValue[]>([])\n\n  const dateInput = useDateInput({\n    value,\n    onValueChange: (e) => setValue(e.value),\n  })\n\n  return (\n    <DatePicker.Root\n      value={value}\n      onValueChange={(e) => setValue(e.value)}\n      maxWidth=\"sm\"\n    >\n      <DateInput.RootProvider value={dateInput}>\n        <DateInput.Label>Date of birth</DateInput.Label>\n        <DatePicker.Control>\n          <DateInput.Control flex=\"1\">\n            <DateInput.Segments />\n          </DateInput.Control>\n          <DatePicker.IndicatorGroup>\n            <DatePicker.Trigger>\n              <LuCalendar />\n            </DatePicker.Trigger>\n          </DatePicker.IndicatorGroup>\n        </DatePicker.Control>\n        <DateInput.HiddenInput />\n      </DateInput.RootProvider>\n\n      <Portal>\n        <DatePicker.Positioner>\n          <DatePicker.Content>\n            <DatePicker.View view=\"day\">\n              <DatePicker.Header />\n              <DatePicker.DayTable />\n            </DatePicker.View>\n            <DatePicker.View view=\"month\">\n              <DatePicker.Header />\n              <DatePicker.MonthTable />\n            </DatePicker.View>\n            <DatePicker.View view=\"year\">\n              <DatePicker.Header />\n              <DatePicker.YearTable />\n            </DatePicker.View>\n          </DatePicker.Content>\n        </DatePicker.Positioner>\n      </Portal>\n    </DatePicker.Root>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput, DatePicker, Portal, useDateInput } from \"@chakra-ui/react\"",
+        "import { useState } from \"react\"",
+        "import { LuCalendar } from \"react-icons/lu\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "react-icons"
+      ]
+    },
+    {
+      "name": "date-input-with-hook-form",
+      "content": "\"use client\"\nconst formSchema = z.object({\n  name: z.string().min(1, { message: \"Name is required\" }),\n  dob: z.array(z.any()).min(1, { message: \"Date of birth is required\" }),\n})\n\ntype FormValues = z.infer<typeof formSchema>\n\nexport const DateInputWithHookForm = () => {\n  const { handleSubmit, control, formState } = useForm<FormValues>({\n    resolver: standardSchemaResolver(formSchema),\n    defaultValues: { dob: [] },\n  })\n\n  const onSubmit = handleSubmit((data) => console.log(data))\n\n  return (\n    <form onSubmit={onSubmit}>\n      <Stack gap=\"4\" align=\"flex-start\" maxW=\"sm\">\n        <Field.Root invalid={!!formState.errors.name}>\n          <Field.Label>Name</Field.Label>\n          <Input placeholder=\"Enter your name\" />\n          <Field.ErrorText>{formState.errors.name?.message}</Field.ErrorText>\n        </Field.Root>\n        <Field.Root invalid={!!formState.errors.dob}>\n          <Controller\n            control={control}\n            name=\"dob\"\n            render={({ field }) => (\n              <DateInput.Root\n                value={field.value}\n                onValueChange={(e) => field.onChange(e.value)}\n                invalid={!!formState.errors.dob}\n              >\n                <DateInput.Label>Date of birth</DateInput.Label>\n                <DateInput.Control>\n                  <DateInput.Segments />\n                </DateInput.Control>\n                <DateInput.HiddenInput />\n              </DateInput.Root>\n            )}\n          />\n          <Field.ErrorText>{formState.errors.dob?.message}</Field.ErrorText>\n        </Field.Root>\n        <Button type=\"submit\">Submit</Button>\n      </Stack>\n    </form>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { Button, DateInput, Field, Input, Stack } from \"@chakra-ui/react\"",
+        "import { standardSchemaResolver } from \"@hookform/resolvers/standard-schema\"",
+        "import { Controller, useForm } from \"react-hook-form\"",
+        "import { z } from \"zod\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\"",
+      "npmDependencies": [
+        "@hookform/resolvers",
+        "react-hook-form",
+        "zod"
+      ]
+    },
+    {
+      "name": "date-input-with-sizes",
+      "content": "export const DateInputWithSizes = () => {\n  return (\n    <Stack gap=\"4\" maxW=\"sm\">\n      <For each={[\"2xs\", \"xs\", \"sm\", \"md\", \"lg\", \"xl\", \"2xl\"]}>\n        {(size) => (\n          <DateInput.Root key={size} size={size}>\n            <DateInput.Label>Date of birth (size: {size})</DateInput.Label>\n            <DateInput.Control>\n              <DateInput.Segments />\n            </DateInput.Control>\n            <DateInput.HiddenInput />\n          </DateInput.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    },
+    {
+      "name": "date-input-with-variants",
+      "content": "export const DateInputWithVariants = () => {\n  return (\n    <Stack gap=\"4\" maxW=\"sm\">\n      <For each={[\"outline\", \"subtle\", \"flushed\"]}>\n        {(variant) => (\n          <DateInput.Root key={variant} variant={variant}>\n            <DateInput.Label>Date of birth - {variant}</DateInput.Label>\n            <DateInput.Control>\n              <DateInput.Segments />\n            </DateInput.Control>\n            <DateInput.HiddenInput />\n          </DateInput.Root>\n        )}\n      </For>\n    </Stack>\n  )\n}\n",
+      "hasSnippet": false,
+      "importPaths": [
+        "import { DateInput, For, Stack } from \"@chakra-ui/react\""
+      ],
+      "importPath": "import { DateInput } from \"@chakra-ui/react\""
+    }
+  ]
+}

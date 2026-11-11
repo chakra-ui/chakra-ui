@@ -23,6 +23,17 @@ export interface Sponsor {
 // Static fallback data for major sponsors (updated manually when needed)
 const FALLBACK_SPONSORS: Sponsor[] = []
 
+const EXCLUDED_SPONSORS = new Set([
+  "globenewswire-rolex-super",
+  "prestigewatches",
+  "super-clone-prestige",
+  "super-clone-watches-com",
+  "superclonereps",
+  "superluxury-reps",
+  "superluxuryreps",
+  "watchindiaa",
+])
+
 async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
   const response = await fetch("https://api.opencollective.com/graphql/v2", {
     method: "POST",
@@ -48,6 +59,7 @@ async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
                 }
                 account {
                   id
+                  slug
                   name
                   description
                   imageUrl
@@ -55,6 +67,14 @@ async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
                   twitterHandle
                   githubHandle
                   type
+                }
+              }
+            }
+            orders(filter: INCOMING, limit: 1000) {
+              nodes {
+                status
+                fromAccount {
+                  id
                 }
               }
             }
@@ -94,18 +114,39 @@ async function fetchSponsorsFromGraphQL(): Promise<Sponsor[]> {
   }
 
   const members = result.data.collective.members.nodes
+
+  const orderStatuses = new Map<string, Set<string>>()
+  for (const order of result.data.collective.orders?.nodes ?? []) {
+    const accountId = order.fromAccount?.id
+    if (!accountId) continue
+    if (!orderStatuses.has(accountId)) orderStatuses.set(accountId, new Set())
+    orderStatuses.get(accountId)!.add(order.status)
+  }
+
+  const isCancelled = (member: any) => {
+    const statuses = orderStatuses.get(member.account?.id)
+    return !!statuses?.has("CANCELLED") && !statuses.has("ACTIVE")
+  }
+
   const activeMembers = members.filter(
     (member: any) =>
-      member.isActive && member.account?.id && member.account?.name,
+      member.isActive &&
+      member.account?.id &&
+      member.account?.name &&
+      !isCancelled(member) &&
+      !EXCLUDED_SPONSORS.has(member.account.slug),
   )
 
   const inactiveCount = members.filter((member: any) => !member.isActive).length
   const missingAccountCount = members.filter(
     (member: any) => member.isActive && !member.account?.id,
   ).length
+  const cancelledCount = members.filter(
+    (member: any) => member.isActive && isCancelled(member),
+  ).length
 
   console.log(
-    `Filtered to ${activeMembers.length} active members (${inactiveCount} inactive, ${missingAccountCount} missing account filtered out)`,
+    `Filtered to ${activeMembers.length} active members (${inactiveCount} inactive, ${missingAccountCount} missing account, ${cancelledCount} cancelled filtered out)`,
   )
 
   return activeMembers.map((member: any) => ({

@@ -55,7 +55,7 @@ export const LAUNCH_DATA: LaunchItem[] = [
     cards: [
       {
         title: "Blog Post",
-        url: "/blog/10-announcing-chakra-ui-mcp-server",
+        url: "/blog/announcing-chakra-ui-mcp-server",
         icon: LuFileText,
       },
       {
@@ -89,7 +89,7 @@ export const LAUNCH_DATA: LaunchItem[] = [
     cards: [
       {
         title: "Announcement",
-        url: "/blog/11-improved-developer-experience",
+        url: "/blog/improved-developer-experience",
         icon: LuFileText,
       },
       {

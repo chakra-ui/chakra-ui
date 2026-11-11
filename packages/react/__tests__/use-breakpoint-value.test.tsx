@@ -51,4 +51,83 @@ describe("useBreakpointValue", () => {
       window.matchMedia = originalMatchMedia
     }
   })
+
+  test("should re-resolve when the value gains a breakpoint", () => {
+    const createMatchMedia = (matching: string[]) => (query: string) => ({
+      matches: matching.includes(query),
+      media: query,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    })
+
+    const originalMatchMedia = window.matchMedia
+    window.matchMedia = vi
+      .fn()
+      .mockImplementation(
+        createMatchMedia([
+          "(min-width: 0px)",
+          "(min-width: 30rem)",
+          "(min-width: 48rem)",
+        ]),
+      ) as any
+
+    try {
+      const initialProps: { value: Record<string, number> } = {
+        value: { base: 1, md: 3 },
+      }
+
+      const { result, rerender } = renderHook(
+        ({ value }: { value: Record<string, number> }) =>
+          useBreakpointValue(value, { ssr: false }),
+        { wrapper, initialProps },
+      )
+
+      expect(result.current).toBe(3)
+
+      rerender({ value: { base: 1, sm: 2, md: 3 } })
+
+      expect(result.current).toBe(3)
+    } finally {
+      window.matchMedia = originalMatchMedia
+    }
+  })
+
+  test("should evaluate media queries against the window from getWindow", () => {
+    const createMatchMedia = (matching: string[]) => (query: string) => ({
+      matches: matching.includes(query),
+      media: query,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    })
+
+    // the ambient window reports `md`, the injected one only reports `sm`
+    const originalMatchMedia = window.matchMedia
+    window.matchMedia = vi
+      .fn()
+      .mockImplementation(
+        createMatchMedia([
+          "(min-width: 0px)",
+          "(min-width: 30rem)",
+          "(min-width: 48rem)",
+        ]),
+      ) as any
+
+    const iframeWindow = {
+      matchMedia: createMatchMedia(["(min-width: 0px)", "(min-width: 30rem)"]),
+    } as unknown as typeof window
+
+    try {
+      const { result } = renderHook(
+        () =>
+          useBreakpointValue(
+            { base: 1, sm: 2, md: 3 },
+            { ssr: false, getWindow: () => iframeWindow },
+          ),
+        { wrapper },
+      )
+      expect(result.current).toBe(2)
+    } finally {
+      window.matchMedia = originalMatchMedia
+    }
+  })
 })

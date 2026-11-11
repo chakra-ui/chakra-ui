@@ -45,7 +45,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         outlineColor: "colorPalette.focusRing",
       },
       _disabled: {
-        cursor: "not-allowed",
+        cursor: "disabled",
         opacity: 0.5,
       },
     },

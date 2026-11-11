@@ -1,5 +1,6 @@
 "use client"
 
+import { dataAttr } from "@ark-ui/react"
 import { forwardRef } from "react"
 import {
   EMPTY_STYLES,
@@ -9,7 +10,6 @@ import {
   chakra,
   useRecipe,
 } from "../../styled-system"
-import { dataAttr } from "../../utils"
 
 export interface RadiomarkProps
   extends HTMLChakraProps<"span", RecipeProps<"radiomark">>, UnstyledProp {
