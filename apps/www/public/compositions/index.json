@@ -556,6 +556,8 @@
     "file": "tour.tsx",
     "component": "Tour",
     "npmDependencies": [],
-    "fileDependencies": []
+    "fileDependencies": [
+      "compositions/ui/close-button"
+    ]
   }
 ]

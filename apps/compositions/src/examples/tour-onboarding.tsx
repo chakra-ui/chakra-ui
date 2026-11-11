@@ -7,11 +7,10 @@ import {
   Heading,
   Stack,
   Text,
-  Tour,
   type TourStep,
   useTour,
 } from "@chakra-ui/react"
-import { TourOverlay } from "./tour-parts"
+import { Tour } from "compositions/ui/tour"
 
 export const TourOnboarding = () => {
   const tour = useTour({ steps })
@@ -60,9 +59,7 @@ export const TourOnboarding = () => {
         </Box>
       </Flex>
 
-      <Tour.Root tour={tour}>
-        <TourOverlay />
-      </Tour.Root>
+      <Tour tour={tour} />
     </Box>
   )
 }

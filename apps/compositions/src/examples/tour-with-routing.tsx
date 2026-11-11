@@ -6,11 +6,11 @@ import {
   HStack,
   Stack,
   Text,
-  Tour,
   type TourStep,
   useTour,
   waitForElement,
 } from "@chakra-ui/react"
+import { Tour } from "compositions/ui/tour"
 import { useMemo } from "react"
 import {
   Link,
@@ -36,7 +36,6 @@ const TourContent = () => {
       tourSteps.map((step) => ({
         ...step,
         effect: ({ show }) => {
-          // Navigate, then wait for the next page to render the target
           navigate(stepToPage[step.id])
           const [promise, cancel] = waitForElement(step.target!, {
             timeout: 3000,
@@ -66,7 +65,12 @@ const TourContent = () => {
         ))}
       </HStack>
 
-      <Button size="sm" variant="outline" onClick={() => tour.start()}>
+      <Button
+        size="sm"
+        variant="outline"
+        alignSelf="flex-start"
+        onClick={() => tour.start()}
+      >
         Start Tour
       </Button>
 
@@ -76,23 +80,7 @@ const TourContent = () => {
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
 
-      <Tour.Root tour={tour}>
-        <Tour.Backdrop />
-        <Tour.Spotlight />
-        <Tour.Positioner>
-          <Tour.Content>
-            <Tour.Arrow>
-              <Tour.ArrowTip />
-            </Tour.Arrow>
-            <Tour.CloseTrigger />
-            <Tour.Title />
-            <Tour.Description />
-            <Tour.Control>
-              <Tour.ActionTriggers />
-            </Tour.Control>
-          </Tour.Content>
-        </Tour.Positioner>
-      </Tour.Root>
+      <Tour tour={tour} />
     </Stack>
   )
 }

@@ -4,11 +4,11 @@ import {
   Button,
   HStack,
   Text,
-  Tour,
   type TourStep,
   VStack,
   useTour,
 } from "@chakra-ui/react"
+import { Tour } from "compositions/ui/tour"
 import { useState } from "react"
 
 export const TourWithCallbacks = () => {
@@ -48,23 +48,7 @@ export const TourWithCallbacks = () => {
         )}
       </VStack>
 
-      <Tour.Root tour={tour}>
-        <Tour.Backdrop />
-        <Tour.Spotlight />
-        <Tour.Positioner>
-          <Tour.Content>
-            <Tour.Arrow>
-              <Tour.ArrowTip />
-            </Tour.Arrow>
-            <Tour.CloseTrigger />
-            <Tour.Title />
-            <Tour.Description />
-            <Tour.Control>
-              <Tour.ActionTriggers />
-            </Tour.Control>
-          </Tour.Content>
-        </Tour.Positioner>
-      </Tour.Root>
+      <Tour tour={tour} />
     </VStack>
   )
 }

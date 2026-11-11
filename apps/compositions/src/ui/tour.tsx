@@ -1,39 +1,69 @@
 "use client"
 
-import { Tour as ChakraTour } from "@chakra-ui/react"
+import { Button, Tour as ChakraTour, Portal } from "@chakra-ui/react"
+import { CloseButton } from "compositions/ui/close-button"
 import * as React from "react"
 
-export const TourRoot = ChakraTour.Root
-export const TourBackdrop = ChakraTour.Backdrop
-export const TourSpotlight = ChakraTour.Spotlight
-export const TourPositioner = ChakraTour.Positioner
-export const TourTitle = ChakraTour.Title
-export const TourDescription = ChakraTour.Description
-export const TourControl = ChakraTour.Control
-export const TourProgressText = ChakraTour.ProgressText
-export const TourCloseTrigger = ChakraTour.CloseTrigger
-export const TourActionTrigger = ChakraTour.ActionTrigger
-export const TourContext = ChakraTour.Context
-
-interface TourContentProps extends ChakraTour.ContentProps {
-  showArrow?: boolean
+export interface TourProps extends ChakraTour.RootProps {
+  portalled?: boolean
+  portalRef?: React.RefObject<HTMLElement | null>
+  contentProps?: ChakraTour.ContentProps
 }
 
-export const TourContent = React.forwardRef<HTMLDivElement, TourContentProps>(
-  function TourContent(props, ref) {
-    const { children, showArrow = true, ...rest } = props
+export const Tour = React.forwardRef<HTMLDivElement, TourProps>(
+  function Tour(props, ref) {
+    const {
+      portalled = true,
+      portalRef,
+      contentProps,
+      children,
+      ...rest
+    } = props
+    const step = rest.tour.step
+
     return (
-      <ChakraTour.Positioner>
-        <ChakraTour.Content ref={ref} {...rest}>
-          {showArrow && (
-            <ChakraTour.Arrow>
-              <ChakraTour.ArrowTip />
-            </ChakraTour.Arrow>
-          )}
-          <ChakraTour.CloseTrigger />
-          {children}
-        </ChakraTour.Content>
-      </ChakraTour.Positioner>
+      <ChakraTour.Root {...rest}>
+        <Portal disabled={!portalled} container={portalRef}>
+          {step?.backdrop !== false && <ChakraTour.Backdrop />}
+          <ChakraTour.Spotlight />
+          <ChakraTour.Positioner>
+            <ChakraTour.Content ref={ref} {...contentProps}>
+              {step?.type === "tooltip" && step.arrow !== false && (
+                <ChakraTour.Arrow>
+                  <ChakraTour.ArrowTip />
+                </ChakraTour.Arrow>
+              )}
+              <ChakraTour.CloseTrigger asChild>
+                <CloseButton size="sm" />
+              </ChakraTour.CloseTrigger>
+              <ChakraTour.Title />
+              <ChakraTour.Description />
+              {children}
+              <ChakraTour.Control>
+                <ChakraTour.ProgressText />
+                <TourActions />
+              </ChakraTour.Control>
+            </ChakraTour.Content>
+          </ChakraTour.Positioner>
+        </Portal>
+      </ChakraTour.Root>
     )
   },
+)
+
+const TourActions = () => (
+  <ChakraTour.Actions>
+    {(actions) =>
+      actions.map((action, index) => (
+        <ChakraTour.ActionTrigger key={index} action={action} asChild>
+          <Button
+            size="sm"
+            variant={index === actions.length - 1 ? "solid" : "outline"}
+          >
+            {action.label}
+          </Button>
+        </ChakraTour.ActionTrigger>
+      ))
+    }
+  </ChakraTour.Actions>
 )

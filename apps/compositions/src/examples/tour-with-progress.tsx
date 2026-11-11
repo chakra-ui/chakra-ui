@@ -78,7 +78,21 @@ export const TourWithProgress = () => {
             <Tour.Title />
             <Tour.Description />
             <Tour.Control>
-              <Tour.ActionTriggers />
+              <Tour.Actions>
+                {(actions) =>
+                  actions.map((action) => (
+                    <Tour.ActionTrigger
+                      key={action.label}
+                      action={action}
+                      asChild
+                    >
+                      <Button size="sm" variant="outline">
+                        {action.label}
+                      </Button>
+                    </Tour.ActionTrigger>
+                  ))
+                }
+              </Tour.Actions>
             </Tour.Control>
           </Tour.Content>
         </Tour.Positioner>

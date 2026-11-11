@@ -6,11 +6,11 @@ import {
   HStack,
   Stack,
   Text,
-  Tour,
   type TourStep,
   VStack,
   useTour,
 } from "@chakra-ui/react"
+import { Tour } from "compositions/ui/tour"
 
 export const TourConditional = () => {
   const tour = useTour({ steps })
@@ -68,23 +68,7 @@ export const TourConditional = () => {
         </HStack>
       </Stack>
 
-      <Tour.Root tour={tour}>
-        <Tour.Backdrop />
-        <Tour.Spotlight />
-        <Tour.Positioner>
-          <Tour.Content>
-            <Tour.Arrow>
-              <Tour.ArrowTip />
-            </Tour.Arrow>
-            <Tour.CloseTrigger />
-            <Tour.Title />
-            <Tour.Description />
-            <Tour.Control>
-              <Tour.ActionTriggers />
-            </Tour.Control>
-          </Tour.Content>
-        </Tour.Positioner>
-      </Tour.Root>
+      <Tour tour={tour} />
     </VStack>
   )
 }

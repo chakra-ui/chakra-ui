@@ -32,7 +32,16 @@ const tour = useTour({ steps })
         <Tour.Title />
         <Tour.Description />
         <Tour.Control>
-          <Tour.ActionTriggers />
+          <Tour.ProgressText />
+          <Tour.Actions>
+            {(actions) =>
+              actions.map((action) => (
+                <Tour.ActionTrigger key={action.label} action={action}>
+                  {action.label}
+                </Tour.ActionTrigger>
+              ))
+            }
+          </Tour.Actions>
         </Tour.Control>
       </Tour.Content>
     </Tour.Positioner>
@@ -40,30 +49,27 @@ const tour = useTour({ steps })
 </Tour.Root>
 ```
 
-## Shortcuts
+## Closed Component
 
-`Tour.ActionTriggers` renders all action buttons for the current step from its
-`actions` array. Each action can be a built-in string
-(`"next" | "prev" | "dismiss"`) or a custom handler.
+For ease of use, create a closed component composition for the `Tour` component.
+It renders the full anatomy, composes `Button` and `CloseButton`, and respects
+each step's `backdrop` and `arrow` options.
 
-This works (manual mapping):
+<SnippetCode name="tour" />
 
-```jsx
-<Tour.Context>
-  {(api) =>
-    api.step?.actions?.map((action) => (
-      <Tour.ActionTrigger key={action.label} action={action}>
-        {action.label}
-      </Tour.ActionTrigger>
-    ))
-  }
-</Tour.Context>
+Alternatively, you can add it to your project using the following command.
+
+```sh
+npx @chakra-ui/cli snippet add tour
 ```
 
-This is more concise:
-
 ```jsx
-<Tour.ActionTriggers />
+import { useTour } from "@chakra-ui/react"
+import { Tour } from "@/components/ui/tour"
+
+const tour = useTour({ steps })
+
+<Tour tour={tour} />
 ```
 
 ## Examples
@@ -110,7 +116,7 @@ Use `Tour.ProgressText` to display the current step count. Access
 
 ### Without Backdrop
 
-Remove the backdrop overlay by omitting `Tour.Backdrop` from the render tree.
+Set `backdrop: false` on a step to hide the backdrop for that step.
 
 <ExampleTabs name="tour-without-backdrop" />
 

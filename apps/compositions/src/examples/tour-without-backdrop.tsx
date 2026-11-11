@@ -3,11 +3,11 @@
 import {
   Button,
   HStack,
-  Tour,
   type TourStep,
   VStack,
   useTour,
 } from "@chakra-ui/react"
+import { Tour } from "compositions/ui/tour"
 
 export const TourWithoutBackdrop = () => {
   const tour = useTour({ steps })
@@ -27,22 +27,7 @@ export const TourWithoutBackdrop = () => {
         </Button>
       </HStack>
 
-      <Tour.Root tour={tour}>
-        <Tour.Spotlight />
-        <Tour.Positioner>
-          <Tour.Content>
-            <Tour.Arrow>
-              <Tour.ArrowTip />
-            </Tour.Arrow>
-            <Tour.CloseTrigger />
-            <Tour.Title />
-            <Tour.Description />
-            <Tour.Control>
-              <Tour.ActionTriggers />
-            </Tour.Control>
-          </Tour.Content>
-        </Tour.Positioner>
-      </Tour.Root>
+      <Tour tour={tour} />
     </VStack>
   )
 }
@@ -51,6 +36,7 @@ const steps: TourStep[] = [
   {
     id: "a",
     type: "tooltip",
+    backdrop: false,
     target: () => document.querySelector<HTMLElement>("#step-a"),
     title: "Upload",
     description: "This tour has no backdrop overlay.",
@@ -59,6 +45,7 @@ const steps: TourStep[] = [
   {
     id: "b",
     type: "tooltip",
+    backdrop: false,
     target: () => document.querySelector<HTMLElement>("#step-b"),
     title: "Save",
     description: "The page remains fully interactive.",

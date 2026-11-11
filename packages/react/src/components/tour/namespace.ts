@@ -1,7 +1,6 @@
 export {
   TourActions as Actions,
   TourActionTrigger as ActionTrigger,
-  TourActionTriggers as ActionTriggers,
   TourArrow as Arrow,
   TourArrowTip as ArrowTip,
   TourBackdrop as Backdrop,
@@ -35,6 +34,7 @@ export type {
   TourSpotlightProps as SpotlightProps,
   TourStepChangeDetails as StepChangeDetails,
   TourStatusChangeDetails as StatusChangeDetails,
+  TourStep as Step,
+  TourStepAction as StepAction,
   TourTitleProps as TitleProps,
-  TourActionTriggersProps as ActionTriggersProps,
 } from "./tour"
