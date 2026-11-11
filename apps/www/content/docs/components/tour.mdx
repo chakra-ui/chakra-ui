@@ -1,0 +1,268 @@
+---
+title: Tour
+description: Guide users through your interface one highlighted step at a time.
+links:
+  source: components/tour
+  storybook: components-tour--basic
+  recipe: tour
+  ark: https://ark-ui.com/docs/components/tour
+---
+
+<ExampleTabs name="tour-basic" />
+
+## Usage
+
+```jsx
+import { Portal, Tour, useTour } from "@chakra-ui/react"
+```
+
+```jsx
+const tour = useTour({ steps })
+
+<Tour.Root tour={tour}>
+  <Portal>
+    <Tour.Backdrop />
+    <Tour.Spotlight />
+    <Tour.Positioner>
+      <Tour.Content>
+        <Tour.Arrow>
+          <Tour.ArrowTip />
+        </Tour.Arrow>
+        <Tour.CloseTrigger />
+        <Tour.Title />
+        <Tour.Description />
+        <Tour.Control>
+          <Tour.ProgressText />
+          <Tour.Actions>
+            {(actions) =>
+              actions.map((action) => (
+                <Tour.ActionTrigger key={action.label} action={action}>
+                  {action.label}
+                </Tour.ActionTrigger>
+              ))
+            }
+          </Tour.Actions>
+        </Tour.Control>
+      </Tour.Content>
+    </Tour.Positioner>
+  </Portal>
+</Tour.Root>
+```
+
+## Closed Component
+
+For ease of use, create a closed component composition for the `Tour` component.
+It renders the full anatomy and composes `Button` and `CloseButton`.
+
+<SnippetCode name="tour" />
+
+Alternatively, you can add it to your project using the following command.
+
+```sh
+npx @chakra-ui/cli snippet add tour
+```
+
+```jsx
+import { useTour } from "@chakra-ui/react"
+import { Tour } from "@/components/ui/tour"
+
+const tour = useTour({ steps })
+
+<Tour tour={tour} />
+```
+
+## Examples
+
+### Step Types
+
+Each step can be one of four types:
+
+- `dialog`: centered modal, not attached to any element
+- `tooltip`: points to a target element
+- `floating`: pinned to a corner of the screen, no target
+- `wait`: invisible step that pauses until something happens
+
+<ExampleTabs name="tour-with-step-types" />
+
+### Placement
+
+Set `placement` on a step to control where the tooltip sits relative to its
+target.
+
+<ExampleTabs name="tour-with-placement" />
+
+### Without Backdrop
+
+Set `backdrop: false` on a step to hide the backdrop for that step.
+
+<ExampleTabs name="tour-without-backdrop" />
+
+### Progress
+
+`Tour.ProgressText` shows the step count. For a percentage, read
+`getProgressPercent()` from `Tour.Context`. This example builds the content by
+hand instead of using the snippet.
+
+<ExampleTabs name="tour-with-progress" />
+
+### Prevent Interaction
+
+Set `preventInteraction` to stop clicks on the page while the tour is open, and
+`closeOnInteractOutside: false` to keep a stray click from ending it.
+
+<ExampleTabs name="tour-prevent-interaction" />
+
+## Patterns
+
+### Wait for an Action
+
+Move on only when the user does what the step asks. Use the step's `effect` with
+`waitForEvent` or `waitForElementValue`, and call `next()` when it resolves.
+
+<ExampleTabs name="tour-wait-for-action" />
+
+### Branching
+
+A custom action receives `next`, `prev`, `dismiss`, `skip` and `goto`. Use
+`goto` to send people down different paths.
+
+<ExampleTabs name="tour-branching" />
+
+### Checklist
+
+Start the tour at a specific step with `tour.start(stepId)`, and mark items done
+from `onStatusChange`.
+
+<ExampleTabs name="tour-with-checklist" />
+
+### Resume Later
+
+Save the current step in `onStepChange` and pass it to `tour.start()` to pick up
+where the user left off.
+
+<ExampleTabs name="tour-persisted" />
+
+### Don't Show Again
+
+Pass extra content to the snippet as children. Here, a checkbox stops the tour
+from opening next time.
+
+<ExampleTabs name="tour-dont-show-again" />
+
+### Feature Announcement
+
+A single tooltip step works well for pointing out something new.
+
+<ExampleTabs name="tour-feature-announcement" />
+
+### Media
+
+Store anything you need per step in `meta`, then read it with `useTourContext`.
+
+<ExampleTabs name="tour-with-media" />
+
+### Empty State
+
+Start a tour from an empty state and finish it when the first item exists. The
+second step waits for the new element with `waitForElement`.
+
+<ExampleTabs name="tour-empty-state" />
+
+### Routing
+
+Use a step's `effect` to navigate, wait for the target on the new page, then
+call `show()`.
+
+<ExampleTabs name="tour-with-routing" />
+
+## Keyboard
+
+Arrow keys move between steps and Escape closes the tour. Turn arrow key
+navigation off with `keyboardNavigation: false`, and Escape with
+`closeOnEscape: false`.
+
+## Callbacks
+
+`onStepChange` fires when the step changes. `onStatusChange` reports `started`,
+`completed`, `dismissed`, `skipped` and `not-found`.
+
+## Configuration
+
+These options can be passed to `useTour`:
+
+| Option                   | Type      | Default | Description                                         |
+| ------------------------ | --------- | ------- | --------------------------------------------------- |
+| `closeOnEscape`          | `boolean` | `true`  | Close the tour when pressing Escape                 |
+| `closeOnInteractOutside` | `boolean` | `true`  | Close when clicking outside tour content            |
+| `preventInteraction`     | `boolean` | `false` | Block page interaction while tour is active         |
+| `keyboardNavigation`     | `boolean` | `true`  | Navigate steps with arrow keys                      |
+| `spotlightOffset`        | `object`  | -       | Padding around spotlight `{ x: number, y: number }` |
+| `spotlightRadius`        | `number`  | -       | Border radius of the spotlight in pixels            |
+
+Per-step options:
+
+| Option      | Type       | Default | Description                                                           |
+| ----------- | ---------- | ------- | --------------------------------------------------------------------- |
+| `type`      | `string`   | -       | `dialog`, `tooltip`, `floating` or `wait`                             |
+| `target`    | `function` | -       | Returns the element to highlight                                      |
+| `actions`   | `array`    | -       | Buttons for the step: `next`, `prev`, `dismiss`, `skip` or a function |
+| `effect`    | `function` | -       | Runs when the step starts; receives `show`, `next`, `goto`, `update`  |
+| `arrow`     | `boolean`  | `true`  | Show arrow on tooltip steps                                           |
+| `backdrop`  | `boolean`  | `true`  | Show backdrop for this step                                           |
+| `placement` | `string`   | -       | Tooltip placement relative to target                                  |
+| `offset`    | `object`   | -       | Distance between content and target `{ mainAxis, crossAxis }`         |
+| `meta`      | `object`   | -       | Arbitrary metadata for custom rendering                               |
+
+## Props
+
+### Root
+
+<PropTable component="Tour" part="Root" />
+
+### Control
+
+<PropTable component="Tour" part="Control" />
+
+### Content
+
+<PropTable component="Tour" part="Content" />
+
+### Positioner
+
+<PropTable component="Tour" part="Positioner" />
+
+### Title
+
+<PropTable component="Tour" part="Title" />
+
+### ActionTrigger
+
+<PropTable component="Tour" part="ActionTrigger" />
+
+### CloseTrigger
+
+<PropTable component="Tour" part="CloseTrigger" />
+
+### ProgressText
+
+<PropTable component="Tour" part="ProgressText" />
+
+### Description
+
+<PropTable component="Tour" part="Description" />
+
+### Arrow
+
+<PropTable component="Tour" part="Arrow" />
+
+### ArrowTip
+
+<PropTable component="Tour" part="ArrowTip" />
+
+### Backdrop
+
+<PropTable component="Tour" part="Backdrop" />
+
+### Spotlight
+
+<PropTable component="Tour" part="Spotlight" />

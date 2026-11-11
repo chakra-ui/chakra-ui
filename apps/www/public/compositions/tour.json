@@ -1,0 +1,13 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [
+    "compositions/ui/close-button"
+  ],
+  "id": "tour",
+  "file": {
+    "name": "tour.tsx",
+    "content": "\"use client\"\n\nimport { Button, Tour as ChakraTour, Portal } from \"@chakra-ui/react\"\nimport { CloseButton } from \"./close-button\"\nimport * as React from \"react\"\n\nexport interface TourProps extends ChakraTour.RootProps {\n  portalled?: boolean\n  portalRef?: React.RefObject<HTMLElement | null>\n  contentProps?: ChakraTour.ContentProps\n}\n\nexport const Tour = React.forwardRef<HTMLDivElement, TourProps>(\n  function Tour(props, ref) {\n    const {\n      portalled = true,\n      portalRef,\n      contentProps,\n      children,\n      ...rest\n    } = props\n    return (\n      <ChakraTour.Root {...rest}>\n        <Portal disabled={!portalled} container={portalRef}>\n          <ChakraTour.Backdrop />\n          <ChakraTour.Spotlight />\n          <ChakraTour.Positioner>\n            <ChakraTour.Content ref={ref} {...contentProps}>\n              <ChakraTour.Arrow>\n                <ChakraTour.ArrowTip />\n              </ChakraTour.Arrow>\n              <ChakraTour.CloseTrigger asChild>\n                <CloseButton size=\"sm\" />\n              </ChakraTour.CloseTrigger>\n              <ChakraTour.Title />\n              <ChakraTour.Description />\n              {children}\n              <ChakraTour.Control>\n                {rest.tour.totalSteps > 1 && <ChakraTour.ProgressText />}\n                <TourActions />\n              </ChakraTour.Control>\n            </ChakraTour.Content>\n          </ChakraTour.Positioner>\n        </Portal>\n      </ChakraTour.Root>\n    )\n  },\n)\n\nconst TourActions = () => (\n  <ChakraTour.Actions>\n    {(actions) =>\n      actions.map((action, index) => (\n        <ChakraTour.ActionTrigger key={index} action={action} asChild>\n          <Button\n            size=\"sm\"\n            variant={index === actions.length - 1 ? \"solid\" : \"outline\"}\n          >\n            {action.label}\n          </Button>\n        </ChakraTour.ActionTrigger>\n      ))\n    }\n  </ChakraTour.Actions>\n)\n"
+  },
+  "component": "Tour"
+}

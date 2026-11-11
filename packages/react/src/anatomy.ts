@@ -290,6 +290,7 @@ export { scrollAreaAnatomy } from "@ark-ui/react/scroll-area"
 export { segmentGroupAnatomy } from "@ark-ui/react/segment-group"
 export { tooltipAnatomy } from "@ark-ui/react/tooltip"
 export { tagsInputAnatomy } from "@ark-ui/react/tags-input"
+export { tourAnatomy } from "@ark-ui/react/tour"
 export const splitterAnatomy = arkSplitterAnatomy.extendWith(
   "resizeTriggerSeparator",
   "resizeTriggerIndicator",
