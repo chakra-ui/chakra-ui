@@ -10,7 +10,7 @@ import {
 import { Tour } from "compositions/ui/tour"
 
 export const TourWithKeyboard = () => {
-  const tour = useTour({ steps, keyboardNavigation: true })
+  const tour = useTour({ steps })
 
   return (
     <VStack gap="4" alignItems="flex-start">

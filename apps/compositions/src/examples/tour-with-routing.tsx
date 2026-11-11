@@ -11,7 +11,7 @@ import {
   waitForElement,
 } from "@chakra-ui/react"
 import { Tour } from "compositions/ui/tour"
-import { useMemo } from "react"
+import { useMemo, useRef } from "react"
 import {
   Link,
   MemoryRouter,
@@ -31,12 +31,15 @@ const TourContent = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
+  const navigateRef = useRef(navigate)
+  navigateRef.current = navigate
+
   const steps = useMemo<TourStep[]>(
     () =>
       tourSteps.map((step) => ({
         ...step,
         effect: ({ show }) => {
-          navigate(stepToPage[step.id])
+          navigateRef.current(stepToPage[step.id])
           const [promise, cancel] = waitForElement(step.target!, {
             timeout: 3000,
           })
@@ -44,7 +47,7 @@ const TourContent = () => {
           return cancel
         },
       })),
-    [navigate],
+    [],
   )
 
   const tour = useTour({ steps })

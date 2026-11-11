@@ -38,13 +38,12 @@ export const tourSlotRecipe = defineSlotRecipe({
       "--tour-z-index": "zIndex.popover",
       zIndex: "calc(var(--tour-z-index) + var(--tour-layer, 0))",
       bg: "blackAlpha.500",
+      "&[data-type=floating]": {
+        position: "fixed",
+      },
       _open: {
         animationName: "fade-in",
         animationDuration: "slow",
-      },
-      _closed: {
-        animationName: "fade-out",
-        animationDuration: "moderate",
       },
     },
     spotlight: {
@@ -68,7 +67,7 @@ export const tourSlotRecipe = defineSlotRecipe({
         base: "min(var(--tour-mobile-size), var(--tour-size))",
         sm: "var(--tour-size)",
       },
-      maxHeight: "var(--available-height, 100dvh)",
+      maxHeight: "var(--available-height, calc(100dvh - 2rem))",
       p: "var(--tour-padding)",
       bg: "var(--tour-bg)",
       borderRadius: "l3",

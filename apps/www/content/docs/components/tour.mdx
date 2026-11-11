@@ -159,16 +159,21 @@ These options can be passed to `useTour`:
 | `preventInteraction`     | `boolean` | `false` | Block page interaction while tour is active         |
 | `keyboardNavigation`     | `boolean` | `true`  | Navigate steps with arrow keys                      |
 | `spotlightOffset`        | `object`  | -       | Padding around spotlight `{ x: number, y: number }` |
+| `spotlightRadius`        | `number`  | -       | Border radius of the spotlight in pixels            |
 
 Per-step options:
 
-| Option      | Type      | Default | Description                             |
-| ----------- | --------- | ------- | --------------------------------------- |
-| `arrow`     | `boolean` | `true`  | Show arrow on tooltip steps             |
-| `backdrop`  | `boolean` | `true`  | Show backdrop for this step             |
-| `placement` | `string`  | -       | Tooltip placement relative to target    |
-| `offset`    | `object`  | -       | Step-level spotlight offset             |
-| `meta`      | `object`  | -       | Arbitrary metadata for custom rendering |
+| Option      | Type       | Default | Description                                                           |
+| ----------- | ---------- | ------- | --------------------------------------------------------------------- |
+| `type`      | `string`   | -       | `dialog`, `tooltip`, `floating` or `wait`                             |
+| `target`    | `function` | -       | Returns the element to highlight                                      |
+| `actions`   | `array`    | -       | Buttons for the step: `next`, `prev`, `dismiss`, `skip` or a function |
+| `effect`    | `function` | -       | Runs when the step starts; receives `show`, `next`, `goto`, `update`  |
+| `arrow`     | `boolean`  | `true`  | Show arrow on tooltip steps                                           |
+| `backdrop`  | `boolean`  | `true`  | Show backdrop for this step                                           |
+| `placement` | `string`   | -       | Tooltip placement relative to target                                  |
+| `offset`    | `object`   | -       | Distance between content and target `{ mainAxis, crossAxis }`         |
+| `meta`      | `object`   | -       | Arbitrary metadata for custom rendering                               |
 
 ## Props
 

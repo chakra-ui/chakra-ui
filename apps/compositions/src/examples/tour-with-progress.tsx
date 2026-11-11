@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   HStack,
+  Portal,
   Stack,
   Text,
   Tour,
@@ -11,6 +12,7 @@ import {
   VStack,
   useTour,
 } from "@chakra-ui/react"
+import { CloseButton } from "compositions/ui/close-button"
 
 export const TourWithProgress = () => {
   const tour = useTour({ steps })
@@ -57,45 +59,49 @@ export const TourWithProgress = () => {
       </Stack>
 
       <Tour.Root tour={tour}>
-        <Tour.Backdrop />
-        <Tour.Spotlight />
-        <Tour.Positioner>
-          <Tour.Content>
-            <Tour.Arrow>
-              <Tour.ArrowTip />
-            </Tour.Arrow>
-            <Tour.CloseTrigger />
-            <HStack justify="space-between" mb="2">
-              <Tour.ProgressText />
-              <Tour.Context>
-                {(api) => (
-                  <Text textStyle="xs" color="fg.subtle">
-                    {Math.round(api.getProgressPercent())}%
-                  </Text>
-                )}
-              </Tour.Context>
-            </HStack>
-            <Tour.Title />
-            <Tour.Description />
-            <Tour.Control>
-              <Tour.Actions>
-                {(actions) =>
-                  actions.map((action) => (
-                    <Tour.ActionTrigger
-                      key={action.label}
-                      action={action}
-                      asChild
-                    >
-                      <Button size="sm" variant="outline">
-                        {action.label}
-                      </Button>
-                    </Tour.ActionTrigger>
-                  ))
-                }
-              </Tour.Actions>
-            </Tour.Control>
-          </Tour.Content>
-        </Tour.Positioner>
+        <Portal>
+          <Tour.Backdrop />
+          <Tour.Spotlight />
+          <Tour.Positioner>
+            <Tour.Content>
+              <Tour.Arrow>
+                <Tour.ArrowTip />
+              </Tour.Arrow>
+              <Tour.CloseTrigger asChild>
+                <CloseButton size="sm" />
+              </Tour.CloseTrigger>
+              <HStack justify="space-between" mb="2" pe="8">
+                <Tour.ProgressText />
+                <Tour.Context>
+                  {(api) => (
+                    <Text textStyle="xs" color="fg.subtle">
+                      {Math.round(api.getProgressPercent())}%
+                    </Text>
+                  )}
+                </Tour.Context>
+              </HStack>
+              <Tour.Title />
+              <Tour.Description />
+              <Tour.Control>
+                <Tour.Actions>
+                  {(actions) =>
+                    actions.map((action) => (
+                      <Tour.ActionTrigger
+                        key={action.label}
+                        action={action}
+                        asChild
+                      >
+                        <Button size="sm" variant="outline">
+                          {action.label}
+                        </Button>
+                      </Tour.ActionTrigger>
+                    ))
+                  }
+                </Tour.Actions>
+              </Tour.Control>
+            </Tour.Content>
+          </Tour.Positioner>
+        </Portal>
       </Tour.Root>
     </VStack>
   )

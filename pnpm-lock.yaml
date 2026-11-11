@@ -509,7 +509,7 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(react@19.2.6)(styled-components@6.1.15(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
       react-router-dom:
-        specifier: ^7.9.4
+        specifier: 7.18.5
         version: 7.18.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react-spinners:
         specifier: 0.17.0
