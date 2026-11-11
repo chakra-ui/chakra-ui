@@ -1,0 +1,47 @@
+{
+  "name": "chakra-ui",
+  "version": "0.1.1",
+  "description": "Agent skills for building UI with Chakra UI v3, migrating from v2, and reviewing or refactoring components.",
+  "author": {
+    "name": "Chakra UI",
+    "url": "https://chakra-ui.com"
+  },
+  "homepage": "https://chakra-ui.com",
+  "repository": "https://github.com/chakra-ui/chakra-ui",
+  "license": "MIT",
+  "keywords": [
+    "chakra-ui",
+    "react",
+    "design-system",
+    "ui-components",
+    "theming",
+    "migration",
+    "coding-agents"
+  ],
+  "skills": [
+    "./chakra-ui-builder",
+    "./chakra-ui-migrate",
+    "./chakra-ui-refactor"
+  ],
+  "interface": {
+    "displayName": "Chakra UI",
+    "shortDescription": "Build, migrate, and refactor UI with Chakra UI v3",
+    "longDescription": "Chakra UI is a modular React component library for building accessible, themeable interfaces. This plugin installs the agent skills already maintained in this repository so coding agents can build with Chakra UI v3, migrate projects from v2, and review or refactor UI code.\n\nUse chakra-ui-builder when creating components, pages, forms, dashboards, layouts, installing or configuring Chakra, theming with tokens and recipes, or working with charts. Use chakra-ui-migrate when upgrading from v2 to v3 or fixing breaking changes. Use chakra-ui-refactor when reviewing Chakra code or converting HTML/CSS, Tailwind, CSS Modules, or styled-components to Chakra UI v3 patterns.",
+    "developerName": "Chakra UI",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Chakra UI v3 UI building",
+      "v2 to v3 migration",
+      "Component review and refactoring"
+    ],
+    "websiteURL": "https://chakra-ui.com",
+    "defaultPrompt": [
+      "Build a login form with Chakra UI",
+      "Migrate my Chakra UI project from v2 to v3",
+      "Refactor this Tailwind layout to Chakra UI"
+    ],
+    "brandColor": "#00DEAE",
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg"
+  }
+}
