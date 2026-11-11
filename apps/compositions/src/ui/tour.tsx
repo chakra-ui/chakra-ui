@@ -36,7 +36,7 @@ export const Tour = React.forwardRef<HTMLDivElement, TourProps>(
               <ChakraTour.Description />
               {children}
               <ChakraTour.Control>
-                <ChakraTour.ProgressText />
+                {rest.tour.totalSteps > 1 && <ChakraTour.ProgressText />}
                 <TourActions />
               </ChakraTour.Control>
             </ChakraTour.Content>

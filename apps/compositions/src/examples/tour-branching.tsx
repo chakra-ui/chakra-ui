@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react"
 import { Tour } from "compositions/ui/tour"
 
-export const TourConditional = () => {
+export const TourBranching = () => {
   const tour = useTour({ steps })
 
   return (

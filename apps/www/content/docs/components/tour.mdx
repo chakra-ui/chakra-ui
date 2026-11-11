@@ -77,41 +77,19 @@ const tour = useTour({ steps })
 
 Each step can be one of four types:
 
-- `dialog` - centered modal, not attached to any element
-- `tooltip` - points to a specific target element
-- `floating` - fixed position on screen, no target
-- `wait` - invisible step that pauses until a condition is met
+- `dialog`: centered modal, not attached to any element
+- `tooltip`: points to a target element
+- `floating`: pinned to a corner of the screen, no target
+- `wait`: invisible step that pauses until something happens
 
 <ExampleTabs name="tour-with-step-types" />
 
 ### Placement
 
-Control where the tooltip appears relative to its target using the `placement`
-property per step.
+Set `placement` on a step to control where the tooltip sits relative to its
+target.
 
 <ExampleTabs name="tour-with-placement" />
-
-### Custom Actions
-
-Step actions can use custom functions instead of built-in strings. The function
-receives an action map with `next`, `prev`, `dismiss`, `skip`, and `goto`
-methods.
-
-<ExampleTabs name="tour-with-custom-actions" />
-
-### Callbacks
-
-Use `onStepChange` and `onStatusChange` callbacks to track tour progress. Status
-values include `started`, `completed`, `dismissed`, and `skipped`.
-
-<ExampleTabs name="tour-with-callbacks" />
-
-### Progress
-
-Use `Tour.ProgressText` to display the current step count. Access
-`getProgressPercent()` via `Tour.Context` for a percentage value.
-
-<ExampleTabs name="tour-with-progress" />
 
 ### Without Backdrop
 
@@ -119,33 +97,94 @@ Set `backdrop: false` on a step to hide the backdrop for that step.
 
 <ExampleTabs name="tour-without-backdrop" />
 
-### Keyboard Navigation
+### Progress
 
-Enable keyboard navigation with `keyboardNavigation: true` on the `useTour`
-hook. Users can navigate with arrow keys and close with Escape.
+`Tour.ProgressText` shows the step count. For a percentage, read
+`getProgressPercent()` from `Tour.Context`. This example builds the content by
+hand instead of using the snippet.
 
-<ExampleTabs name="tour-with-keyboard" />
+<ExampleTabs name="tour-with-progress" />
 
-### Onboarding
+### Prevent Interaction
 
-An onboarding tour that walks new users through the sidebar, header, and content
-area.
+Set `preventInteraction` to stop clicks on the page while the tour is open, and
+`closeOnInteractOutside: false` to keep a stray click from ending it.
 
-<ExampleTabs name="tour-onboarding" />
+<ExampleTabs name="tour-prevent-interaction" />
+
+## Patterns
+
+### Wait for an Action
+
+Move on only when the user does what the step asks. Use the step's `effect` with
+`waitForEvent` or `waitForElementValue`, and call `next()` when it resolves.
+
+<ExampleTabs name="tour-wait-for-action" />
+
+### Branching
+
+A custom action receives `next`, `prev`, `dismiss`, `skip` and `goto`. Use
+`goto` to send people down different paths.
+
+<ExampleTabs name="tour-branching" />
+
+### Checklist
+
+Start the tour at a specific step with `tour.start(stepId)`, and mark items done
+from `onStatusChange`.
+
+<ExampleTabs name="tour-with-checklist" />
+
+### Resume Later
+
+Save the current step in `onStepChange` and pass it to `tour.start()` to pick up
+where the user left off.
+
+<ExampleTabs name="tour-persisted" />
+
+### Don't Show Again
+
+Pass extra content to the snippet as children. Here, a checkbox stops the tour
+from opening next time.
+
+<ExampleTabs name="tour-dont-show-again" />
+
+### Feature Announcement
+
+A single tooltip step works well for pointing out something new.
+
+<ExampleTabs name="tour-feature-announcement" />
+
+### Media
+
+Store anything you need per step in `meta`, then read it with `useTourContext`.
+
+<ExampleTabs name="tour-with-media" />
+
+### Empty State
+
+Start a tour from an empty state and finish it when the first item exists. The
+second step waits for the new element with `waitForElement`.
+
+<ExampleTabs name="tour-empty-state" />
 
 ### Routing
 
-Use step effects to navigate between pages during a tour. Each step's `effect`
-function navigates to the correct route and calls `show()` when ready.
+Use a step's `effect` to navigate, wait for the target on the new page, then
+call `show()`.
 
 <ExampleTabs name="tour-with-routing" />
 
-### Conditional
+## Keyboard
 
-Use `goto` in custom actions to create branching tours. Users choose a path and
-the tour adapts accordingly.
+Arrow keys move between steps and Escape closes the tour. Turn arrow key
+navigation off with `keyboardNavigation: false`, and Escape with
+`closeOnEscape: false`.
 
-<ExampleTabs name="tour-conditional" />
+## Callbacks
+
+`onStepChange` fires when the step changes. `onStatusChange` reports `started`,
+`completed`, `dismissed`, `skipped` and `not-found`.
 
 ## Configuration
 
