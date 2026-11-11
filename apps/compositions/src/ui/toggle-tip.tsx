@@ -30,7 +30,10 @@ export const ToggleTip = React.forwardRef<HTMLDivElement, ToggleTipProps>(
     return (
       <ChakraPopover.Root
         {...rest}
-        positioning={{ ...rest.positioning, gutter: 4 }}
+        positioning={{
+          ...rest.positioning,
+          gutter: rest.positioning?.gutter ?? 4,
+        }}
       >
         <ChakraPopover.Trigger asChild>{children}</ChakraPopover.Trigger>
         <Portal disabled={!portalled} container={portalRef}>
