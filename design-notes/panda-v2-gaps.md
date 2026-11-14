@@ -10,6 +10,39 @@ companion to the v4 engine design
 ([chakra-v4-styling-engine.md](./chakra-v4-styling-engine.md)); items here are
 the dependencies and friction that design assumes.
 
+## Status on Panda 2.5.0
+
+Re-checked by running `panda codegen` / `cssgen` 2.5.0 with
+`@chakra-ui/panda-preset` as the only preset. The numbered sections below
+describe each gap as first found; this table is the current status.
+
+| Item                          | Status                                                                                                                                                                         |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1. No auto base               | **Open, and worse than described.** See below. Silent drop: [panda#4098](https://github.com/chakra-ui/panda/issues/4098).                                                      |
+| 2. Array conditions           | Fixed. Converted automatically with a `config_condition_array_unsupported` deprecation warning.                                                                                |
+| 3. Inline-transform inference | Fixed. An inline `transform(value, args)` on `UtilityConfig` typechecks under `strict`.                                                                                        |
+| 4. Types re-export            | Eased. `@pandacss/dev` adds `defineUtility`, but still re-exports only `Config`, `Preset`, `UserConfig`. [panda#4100](https://github.com/chakra-ui/panda/issues/4100).         |
+| 5. `container` conflict       | Open, now a `config_artifact_name_conflict` warning. Chakra avoids it by not using preset-base.                                                                                |
+| 6. Missing-token warnings     | Fixed on the Chakra side: `scripts/sync.ts` maps `black` to `{colors.black}`. No token warnings at codegen.                                                                    |
+| 7. Composite extraction       | Inherent; unchanged.                                                                                                                                                           |
+| 8. Slot context               | Partly fixed. Adds `PropsProvider` and `usePropsContext`. Still no `useStyles`, `wrapElement`, `forwardAsChild`. [panda#4099](https://github.com/chakra-ui/panda/issues/4099). |
+| Pattern `jsxName`             | Unchanged (`hstack` generates `Hstack`). Worked around by setting `jsxName` per pattern.                                                                                       |
+
+**Item 1 in practice.** The preset carries only the theme and one `icon`
+condition. Without Chakra's base (conditions, utilities, shorthands, color
+palette), the generated system knows a single condition, `_icon`, and recipe CSS
+comes out wrong with no error:
+
+- Top-level `_hover` / `_expanded` blocks are dropped silently.
+- Conditions nested in a value (`color: { _disabled }`) are emitted as CSS
+  properties, with a `nested_property` warning (7 of them).
+- Shorthands and palette refs pass through raw: `bg: colorPalette.solid`.
+
+So the base has to move into the preset (from
+`packages/react/src/preset-base.ts`) before any component can render on Panda.
+On the Panda side, an unknown `_condition` key should warn instead of
+disappearing.
+
 ## 1. No auto base/preset in v2
 
 v2 no longer auto-includes the base + default theme; configs must list
