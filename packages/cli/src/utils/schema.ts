@@ -33,7 +33,7 @@ export const processEnvSchema = z.object({
   // REGISTRY_URL: z.string().default("http://localhost:3000"),
   REGISTRY_URL: z.string().default("https://chakra-v3-docs.vercel.app"),
   /** Base URL for docs site API (types, theme, search, examples). */
-  CHAKRA_DOCS_URL: z.string().url().default("https://chakra-ui.com"),
+  CHAKRA_DOCS_URL: z.url().default("https://chakra-ui.com"),
   HTTPS_PROXY: z.string().optional(),
 })
 
@@ -65,18 +65,16 @@ export const themeIndexSchema = z.array(themeEntrySchema)
 
 export type ThemeEntry = z.infer<typeof themeEntrySchema>
 
-export const proBlockResponseSchema = z
-  .object({
-    files: z
-      .array(
-        z.object({
-          filename: z.string().optional(),
-          content: z.string().optional(),
-        }),
-      )
-      .optional(),
-  })
-  .passthrough()
+export const proBlockResponseSchema = z.looseObject({
+  files: z
+    .array(
+      z.object({
+        filename: z.string().optional(),
+        content: z.string().optional(),
+      }),
+    )
+    .optional(),
+})
 
 export type ProBlockResponse = z.infer<typeof proBlockResponseSchema>
 
