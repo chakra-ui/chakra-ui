@@ -40,7 +40,10 @@ export const numberInputSlotRecipe = defineSlotRecipe({
     input: {
       ...inputRecipe.base,
       verticalAlign: "top",
-      pe: "calc(var(--stepper-width) + 0.5rem)",
+      "&:where([data-scope=number-input][data-part=root]:has(> [data-scope=number-input][data-part=control]:not([hidden])) *)":
+        {
+          pe: "calc(var(--stepper-width) + 0.5rem)",
+        },
     },
     control: {
       display: "flex",
@@ -75,41 +78,41 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       xs: {
         root: {
           "--input-height": inputRecipe.variants!.size.xs["--input-height"],
+          "--stepper-width": "sizes.4",
         },
         input: inputRecipe.variants!.size.xs,
         control: {
           fontSize: "2xs",
-          "--stepper-width": "sizes.4",
         },
       },
       sm: {
         root: {
           "--input-height": inputRecipe.variants!.size.sm["--input-height"],
+          "--stepper-width": "sizes.5",
         },
         input: inputRecipe.variants!.size.sm,
         control: {
           fontSize: "xs",
-          "--stepper-width": "sizes.5",
         },
       },
       md: {
         root: {
           "--input-height": inputRecipe.variants!.size.md["--input-height"],
+          "--stepper-width": "sizes.6",
         },
         input: inputRecipe.variants!.size.md,
         control: {
           fontSize: "sm",
-          "--stepper-width": "sizes.6",
         },
       },
       lg: {
         root: {
           "--input-height": inputRecipe.variants!.size.lg["--input-height"],
+          "--stepper-width": "sizes.6",
         },
         input: inputRecipe.variants!.size.lg,
         control: {
           fontSize: "sm",
-          "--stepper-width": "sizes.6",
         },
       },
     },

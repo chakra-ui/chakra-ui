@@ -38,7 +38,10 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         borderColor: "var(--error-color)",
       },
       verticalAlign: "top",
-      pe: "calc(var(--stepper-width) + 0.5rem)",
+      "&:where([data-scope=number-input][data-part=root]:has(> [data-scope=number-input][data-part=control]:not([hidden])) *)":
+        {
+          pe: "calc(var(--stepper-width) + 0.5rem)",
+        },
     },
     control: {
       display: "flex",
@@ -115,6 +118,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       xs: {
         root: {
           "--input-height": "sizes.8",
+          "--stepper-width": "sizes.4",
         },
         input: {
           textStyle: "xs",
@@ -123,12 +127,12 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         },
         control: {
           fontSize: "2xs",
-          "--stepper-width": "sizes.4",
         },
       },
       sm: {
         root: {
           "--input-height": "sizes.9",
+          "--stepper-width": "sizes.5",
         },
         input: {
           textStyle: "sm",
@@ -137,12 +141,12 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         },
         control: {
           fontSize: "xs",
-          "--stepper-width": "sizes.5",
         },
       },
       md: {
         root: {
           "--input-height": "sizes.10",
+          "--stepper-width": "sizes.6",
         },
         input: {
           textStyle: "sm",
@@ -151,12 +155,12 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         },
         control: {
           fontSize: "sm",
-          "--stepper-width": "sizes.6",
         },
       },
       lg: {
         root: {
           "--input-height": "sizes.11",
+          "--stepper-width": "sizes.6",
         },
         input: {
           textStyle: "md",
@@ -165,7 +169,6 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         },
         control: {
           fontSize: "sm",
-          "--stepper-width": "sizes.6",
         },
       },
     },
