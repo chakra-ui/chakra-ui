@@ -94,7 +94,7 @@ function adjust(value: string | null | undefined) {
 
 function sort(breakpoints: Record<string, string>): Entries {
   const entries = Object.entries(breakpoints).sort(([, minA], [, minB]) => {
-    return parseInt(minA, 10) < parseInt(minB, 10) ? -1 : 1
+    return parseFloat(toPx(minA)!) - parseFloat(toPx(minB)!)
   })
 
   return entries.map(([name, min], index, entries) => {
