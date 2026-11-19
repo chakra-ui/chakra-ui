@@ -13,9 +13,13 @@ import {
   defineStyle,
 } from "@chakra-ui/react"
 import { createContext, useContext, useMemo } from "react"
-import type { LegendPayload, LegendProps, TooltipContentProps } from "recharts"
-import type { Payload } from "recharts/types/component/DefaultTooltipContent"
-import type { PolarViewBoxRequired, ViewBox } from "recharts/types/util/types"
+import type {
+  LabelProps,
+  LegendPayload,
+  LegendProps,
+  TooltipPayloadEntry as Payload,
+  TooltipContentProps,
+} from "recharts"
 import { type ChartColor, type UseChartReturn, getProp } from "../use-chart"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -333,6 +337,10 @@ export interface ChartRadialTextProps {
   gap?: number
   fontSize?: string
 }
+
+// recharts has no `exports` map, so deep `recharts/types/*` imports break nodenext
+type ViewBox = NonNullable<LabelProps["viewBox"]>
+type PolarViewBoxRequired = Extract<ViewBox, { cx: number }>
 
 const isPolarViewBox = (viewBox: ViewBox): viewBox is PolarViewBoxRequired =>
   "cx" in viewBox && "cy" in viewBox
