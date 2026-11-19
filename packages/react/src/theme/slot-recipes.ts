@@ -55,6 +55,7 @@ import { tagsInputSlotRecipe } from "./recipes/tags-input"
 import { timelineSlotRecipe } from "./recipes/timeline"
 import { toastSlotRecipe } from "./recipes/toast"
 import { tooltipSlotRecipe } from "./recipes/tooltip"
+import { tourSlotRecipe } from "./recipes/tour"
 import { treeViewSlotRecipe } from "./recipes/tree-view"
 
 export const slotRecipes = {
@@ -109,6 +110,7 @@ export const slotRecipes = {
   tagsInput: tagsInputSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,
+  tour: tourSlotRecipe,
   status: statusSlotRecipe,
   timeline: timelineSlotRecipe,
   colorPicker: colorPickerSlotRecipe,
