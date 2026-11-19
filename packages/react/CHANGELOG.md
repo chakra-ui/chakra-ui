@@ -1,5 +1,7 @@
 # @chakra-ui/react
 
+## 3.38.1
+
 ## 3.38.0
 
 ### Minor Changes
