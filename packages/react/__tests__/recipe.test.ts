@@ -516,4 +516,43 @@ describe("Recipe caching", () => {
     expect(baseConfig).toEqual(baseSnapshot)
     expect(overrideConfig).toEqual(overrideSnapshot)
   })
+
+  it("should not mutate the source configs when merging nested styles", () => {
+    const system = createSystem(defaultConfig)
+    const baseConfig = {
+      base: {
+        _hover: { color: "red" },
+        padding: { base: "1", md: "2" },
+      },
+      variants: { size: { sm: { fontSize: "12px" } } },
+    }
+    const overrideConfig = {
+      base: {
+        _hover: { background: "green" },
+        padding: { md: "4" },
+      },
+      variants: { size: { sm: { textAlign: "center" } } },
+    }
+    const baseSnapshot = structuredClone(baseConfig)
+    const overrideSnapshot = structuredClone(overrideConfig)
+
+    const base = system.cva(baseConfig)
+    const override = system.cva(overrideConfig)
+    const merged = (base as any).merge(override)
+    const result = merged({ size: "sm" })
+
+    expect(result).toMatchObject({
+      "@layer recipes": {
+        fontSize: "12px",
+        textAlign: "center",
+      },
+    })
+    expect(baseConfig).toEqual(baseSnapshot)
+    expect(overrideConfig).toEqual(overrideSnapshot)
+
+    // The standalone base recipe must not pick up the merged styles.
+    expect(base({ size: "sm" })).not.toMatchObject({
+      "@layer recipes": { textAlign: "center" },
+    })
+  })
 })
