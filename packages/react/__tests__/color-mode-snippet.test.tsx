@@ -1,4 +1,9 @@
-import { DarkMode, LightMode } from "compositions/ui/color-mode"
+import { screen } from "@testing-library/react"
+import {
+  ColorModeButton,
+  DarkMode,
+  LightMode,
+} from "compositions/ui/color-mode"
 import { render } from "./core/render"
 
 describe("DarkMode / LightMode snippet", () => {
@@ -28,5 +33,13 @@ describe("DarkMode / LightMode snippet", () => {
     const el = getByTestId("scope")
     expect(el).toHaveClass("chakra-theme", "light")
     expect(el).toHaveClass("custom")
+  })
+})
+
+describe("ColorModeButton snippet", () => {
+  it("keeps a css prop passed by the user", async () => {
+    render(<ColorModeButton css={{ color: "rgb(255, 0, 0)" }} />)
+    const button = await screen.findByRole("button")
+    expect(button).toHaveStyle({ color: "rgb(255, 0, 0)" })
   })
 })
