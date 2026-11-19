@@ -1,10 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "dependencyDashboard": false,
-  "extends": ["config:base", "schedule:earlyMondays"],
+  "extends": ["config:recommended", "schedule:earlyMondays"],
   "labels": ["dependencies"],
   "rebaseWhen": "conflicted",
   "timezone": "UTC",
+  "minimumReleaseAge": "1 day",
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
@@ -14,7 +15,13 @@
     },
     {
       "groupName": "react",
-      "matchPackageNames": ["react", "react-dom"]
+      "matchPackageNames": [
+        "react",
+        "react-dom",
+        "@types/react",
+        "@types/react-dom"
+      ],
+      "automerge": false
     },
     {
       "groupName": "eslint",
@@ -35,6 +42,17 @@
     {
       "groupName": "panda",
       "matchPackageNames": ["/^@pandacss\\//"]
+    },
+    {
+      "groupName": "prettier",
+      "matchPackageNames": ["prettier"],
+      "automerge": false
+    },
+    {
+      "groupName": "0.x minor updates",
+      "matchCurrentVersion": "<1.0.0",
+      "matchUpdateTypes": ["minor"],
+      "automerge": false
     }
   ]
 }
