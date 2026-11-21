@@ -1,5 +1,6 @@
 import {
   type Dict,
+  clone,
   compact,
   cx,
   mapEntries,
@@ -144,7 +145,7 @@ const toRecipeConfig = (cva: any) =>
   (cva?.__cva__ ? cva.config : cva) ?? EMPTY_OBJECT
 
 function mergeCva(cvaA: any, cvaB: any) {
-  const a = defaults(toRecipeConfig(cvaA))
+  const a = defaults(clone(toRecipeConfig(cvaA)))
   const b = defaults(toRecipeConfig(cvaB))
 
   const variantKeys = uniq(Object.keys(a.variants), Object.keys(b.variants))
