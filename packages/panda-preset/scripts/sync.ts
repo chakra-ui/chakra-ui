@@ -46,7 +46,8 @@ async function main() {
   }
 
   const files = await globby("src/**/*.{ts,tsx}", {
-    ignore: ["src/index.ts", "src/recipes/container.ts"],
+    // conditions.ts is hand-written; stripping `chakra-` would break `.chakra-theme`
+    ignore: ["src/index.ts", "src/recipes/container.ts", "src/conditions.ts"],
   })
   const defFile = join("src", "def.ts")
 
@@ -83,6 +84,7 @@ async function main() {
   // Update src/index.ts to match exports
   const indexContent = `import { animationStyles } from "./animation-styles"
 import { breakpoints } from "./breakpoints"
+import { conditions } from "./conditions"
 import { definePreset } from "./def"
 import { globalCss } from "./global-css"
 import { keyframes } from "./keyframes"
@@ -112,9 +114,7 @@ export default definePreset({
     extend: utilities,
   },
   conditions: {
-    extend: {
-      icon: "& :where(svg)",
-    },
+    extend: conditions,
   },
 })`
 

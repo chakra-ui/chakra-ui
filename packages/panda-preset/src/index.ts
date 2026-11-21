@@ -1,5 +1,6 @@
 import { animationStyles } from "./animation-styles"
 import { breakpoints } from "./breakpoints"
+import { conditions } from "./conditions"
 import { definePreset } from "./def"
 import { globalCss } from "./global-css"
 import { keyframes } from "./keyframes"
@@ -29,8 +30,6 @@ export default definePreset({
     extend: utilities,
   },
   conditions: {
-    extend: {
-      icon: "& :where(svg)",
-    },
+    extend: conditions,
   },
 })
