@@ -3,7 +3,7 @@ import { rm } from "node:fs/promises"
 
 export async function cleanFiles() {
   const files = await globby("src/**/*.{ts,tsx}", {
-    ignore: ["src/{def,utilities}.ts"],
+    ignore: ["src/{def,utilities,conditions}.ts"],
   })
 
   const promises = files.map(async (file) => {
