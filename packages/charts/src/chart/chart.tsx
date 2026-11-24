@@ -16,7 +16,12 @@ import { createContext, useContext, useMemo } from "react"
 import type { LegendPayload, LegendProps, TooltipContentProps } from "recharts"
 import type { Payload } from "recharts/types/component/DefaultTooltipContent"
 import type { PolarViewBoxRequired, ViewBox } from "recharts/types/util/types"
-import { type ChartColor, type UseChartReturn, getProp } from "../use-chart"
+import {
+  type ChartColor,
+  type ChartSpacing,
+  type UseChartReturn,
+  getProp,
+} from "../use-chart"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -104,6 +109,8 @@ export interface ChartLegendProps extends LegendProps {
   nameKey?: string
   interaction?: "hover" | "click"
   payload?: LegendPayload[]
+  orientation?: "horizontal" | "vertical"
+  spacing?: ChartSpacing | number
 }
 
 const hAlignMap = {

@@ -91,9 +91,10 @@ export function useChart<T = any>(props: UseChartProps<T>) {
     return data.reduce((acc, d) => acc + Number(d[key]), 0)
   }
 
-  function getPayloadTotal<T extends { value?: string }>(
-    payload: Array<T> | undefined,
-  ) {
+  // mirrors recharts' tooltip `ValueType` (not exported from the root in 3.7)
+  function getPayloadTotal<
+    T extends { value?: string | number | ReadonlyArray<string | number> },
+  >(payload: Array<T> | undefined) {
     return payload?.reduce((acc, item) => {
       if (!item.value) return acc
       const num = Number(item.value)
