@@ -52,7 +52,7 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://next.chakra-ui.com"),
+  metadataBase: new URL("https://chakra-ui.com"),
   title: {
     template: docsConfig.titleTemplate,
     default: docsConfig.title,
