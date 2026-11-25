@@ -516,4 +516,28 @@ describe("Recipe caching", () => {
     expect(baseConfig).toEqual(baseSnapshot)
     expect(overrideConfig).toEqual(overrideSnapshot)
   })
+
+  it("should not mutate the source configs when merging nested styles", () => {
+    const system = createSystem(defaultConfig)
+    const baseConfig = {
+      base: { _hover: { color: "red" } },
+      variants: { tone: { solid: { opacity: "0.5" } } },
+    }
+    const overrideConfig = {
+      base: { _hover: { background: "green" } },
+      variants: { tone: { solid: { textAlign: "center" } } },
+    }
+    const baseSnapshot = structuredClone(baseConfig)
+    const overrideSnapshot = structuredClone(overrideConfig)
+
+    const base = system.cva(baseConfig)
+    const override = system.cva(overrideConfig)
+    const merged = (base as any).merge(override)
+
+    expect(merged({ tone: "solid" })).toMatchObject({
+      "@layer recipes": { opacity: "0.5", textAlign: "center" },
+    })
+    expect(baseConfig).toEqual(baseSnapshot)
+    expect(overrideConfig).toEqual(overrideSnapshot)
+  })
 })
