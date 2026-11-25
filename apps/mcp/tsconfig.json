@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/node24/tsconfig.json",
+  "extends": "@tsconfig/node26/tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
     "skipLibCheck": true,
