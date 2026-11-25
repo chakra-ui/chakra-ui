@@ -147,7 +147,7 @@ export function createHighlightJsAdapter<T extends HighlightJsHighlighterBase>(
           ...highlightOptions,
         })
 
-        const lines = result.value.split("\n")
+        const lines = splitHighlightJsLines(result.value)
 
         return {
           highlighted: true,
@@ -174,4 +174,18 @@ export function createHighlightJsAdapter<T extends HighlightJsHighlighterBase>(
       }
     },
   }
+}
+
+// highlight.js keeps a multi-line token (block comment, template string) in
+// one span, so each line closes the spans still open and the next reopens them
+const splitHighlightJsLines = (html: string): string[] => {
+  const open: string[] = []
+  return html.split("\n").map((line) => {
+    const prefix = open.join("")
+    for (const [tag] of line.matchAll(/<span[^>]*>|<\/span>/g)) {
+      if (tag === "</span>") open.pop()
+      else open.push(tag)
+    }
+    return prefix + line + "</span>".repeat(open.length)
+  })
 }
