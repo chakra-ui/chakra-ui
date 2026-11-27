@@ -788,8 +788,8 @@ importers:
         specifier: ^7.24.5
         version: 7.30.2
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.6.7
+        version: 4.6.7
     devDependencies:
       '@chakra-ui/react':
         specifier: workspace:*
