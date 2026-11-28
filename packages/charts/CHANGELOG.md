@@ -1,5 +1,15 @@
 # @chakra-ui/charts
 
+## 3.38.1
+
+### Patch Changes
+
+- [#11086](https://github.com/chakra-ui/chakra-ui/pull/11086)
+  [`b60742c`](https://github.com/chakra-ui/chakra-ui/commit/b60742c204a8b5d68e37f2b6779e63af561cd3d1)
+  Thanks [@Adebesin-Cell](https://github.com/Adebesin-Cell)! - - **Chart**: Fix
+  `Chart.Legend` type errors on `orientation` and `spacing` when using
+  `recharts@3.11`.
+
 ## 3.38.0
 
 ## 3.37.0
